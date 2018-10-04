@@ -32,4 +32,5 @@ group :development do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'mailcatcher'
+  gem 'pry-rails'
 end

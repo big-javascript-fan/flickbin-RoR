@@ -11,13 +11,73 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
-
-/node_modules
-/yarn-error.log
-
+# Rails
+.bundle
+db/*.sqlite3
+db/*.sqlite3-journal
+*.log
+tmp
+tmp/**/*
 .byebug_history
+
+# Documentation
+doc/api
+doc/app
+.yardoc
+.yardopts
+coverage
+
+# Public Uploads
+public/system/*
+public/themes/*
+public/uploads/*
+
+# Public Cache
+public/javascripts/cache
+public/stylesheets/cache
+public/refinery/*
+
+# Vendor Cache
+vendor/cache
+
+# Acts as Indexed
+index/**/*
+
+# NetBeans
+nbproject
+
+# Eclipse
+.project
+
+# Redcar
+.redcar
+
+# RubyMine
+.idea
+
+# E-texteditor
+.eprj
+
+# Backup
+*~
+
+# Capybara Bug
+capybara-*html
+
+# sass
+.sass-cache
+.sass-cache/*
+
+#rvm
+.rvmrc
+.rvmrc.*
+
+# auto configuration files for ruby version and gemset
+.ruby-version
+.ruby-gemset
+
+# environment variables
+.env
+
+# vendor/extensions dummy applications.
+vendor/extensions/**/spec/dummy

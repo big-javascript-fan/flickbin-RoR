@@ -1,1 +1,12 @@
+<h1>Home</h1>
+<% if flash[:notice].to_s == I18n.t('devise.registrations.signed_up_but_unconfirmed') %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+  <div class='resend-confirmation'>
+    Click
+    <%= link_to 'resend confirmation', new_confirmation_path(:user) %>
+    if didn't receive confirmation instructions
+  </div>
+<% end %>
 

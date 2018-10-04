@@ -1,6 +1,15 @@
-<h2>Log in</h2>
+<%= link_to 'Birdy', root_path %>
+<h1>Start catching up.</h1>
+<h3>Log back into birdy and start where you left off.</h3>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<% if flash[:alert].present? %>
+
+  <div class="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -11,16 +20,10 @@
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
   <div class="actions">
     <%= f.submit "Log in" %>
+    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to "Forgot password?", new_password_path(resource_name) %>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>

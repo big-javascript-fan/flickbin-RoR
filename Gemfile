@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'lograge'
 gem 'friendly_id', '~> 5.2.0'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

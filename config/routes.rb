@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+  get  'station/:channel_slug' => 'users#show', as: :show_station
+
   root 'home#index'
 end

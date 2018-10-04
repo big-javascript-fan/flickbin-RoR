@@ -32,6 +32,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'awesome_print'
   gem 'better_errors'
-  gem 'mailcatcher'
   gem 'pry-rails'
 end

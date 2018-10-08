@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008130357) do
+ActiveRecord::Schema.define(version: 20181008130626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20181008130357) do
     t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["rank"], name: "index_tags_on_rank"
+    t.index ["rank"], name: "index_tags_on_rank", unique: true
     t.index ["title"], name: "index_tags_on_title"
   end
 
@@ -57,6 +57,20 @@ ActiveRecord::Schema.define(version: 20181008130357) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.integer "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rank"], name: "index_videos_on_rank", unique: true
+    t.index ["tag_id"], name: "index_videos_on_tag_id"
+    t.index ["url", "tag_id"], name: "index_videos_on_url_and_tag_id"
+    t.index ["user_id", "tag_id"], name: "index_videos_on_user_id_and_tag_id"
   end
 
 end

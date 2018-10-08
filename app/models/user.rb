@@ -5,6 +5,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :confirmable
 
+  has_many :videos, dependent: :destroy
+  has_many :tags, through: :videos
+
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008130626) do
+ActiveRecord::Schema.define(version: 20181008145414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,9 @@ ActiveRecord::Schema.define(version: 20181008130626) do
     t.integer "rank"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["rank"], name: "index_tags_on_rank", unique: true
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
     t.index ["title"], name: "index_tags_on_title"
   end
 

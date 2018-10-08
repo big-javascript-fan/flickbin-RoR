@@ -11,7 +11,7 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates_uniqueness_of :url, scope: :tag_id
 
-  after_validation :upload_video_cover
+  before_validation :upload_video_cover
 
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?

@@ -5,21 +5,6 @@ namespace :fake_data do
     hacks bodyhacking lifestyle riches
   )
 
-  VIDEO_TITLES = [
-    'Pos Hardware More Options In Less Space',
-    'Going Wireless With Your Headphones',
-    'Popular Uses Of The Internet',
-    'Why Use External It Support',
-    'Compatible Inkjet Cartridge',
-    'Stu Unger Rise And Fall Of A Poker Genius',
-    'Download Anything Now A Days',
-    'Looking For Your Dvd Printing Solution',
-    'Not All Blank Cassettes Are Created Equal',
-    'How Plasma Tvs And Lcd Tvs Diffe',
-    'Thousands Now Adware Removal Who Never Thought They Could',
-    'Fta Keys'
-  ]
-
   desc "Create user"
   # example of task launch - rake fake_data:create_user
   task create_user: :environment do
@@ -51,24 +36,35 @@ namespace :fake_data do
     end
   end
 
-  desc "Create videos with tags for user"
+  desc "Create 20 videos for each tags for user"
   # example of task launch - rake fake_data:create_videos
   task create_videos: :environment do
     Rake::Task['fake_data:create_user'].invoke
     Rake::Task['fake_data:create_tags'].invoke
+    random_youtube_video_query_params = {
+      part: 'id',
+      maxResults: 20,
+      type: 'video',
+      q: 'test',
+      key: Yt.configuration.api_key
+    }
 
+    response = RestClient.get('https://www.googleapis.com/youtube/v3/search', {
+      params: random_youtube_video_query_params
+    })
+
+    random_youtube_video_ids = JSON.parse(response.body)['items'].map { |item| item.dig('id', 'videoId') }
     user = User.find_by_email('facker@gmail.com')
 
     Tag.find_each do |tag|
-      VIDEO_TITLES.each do |video_title|
+      20.times do |index|
         video = user.videos.build(
-          title: video_title,
           tag_id: tag.id,
-          url: "https://www.youtube.com/watch?v=#{SecureRandom.hex.first(20)}",
+          url: "https://www.youtube.com/watch?v=#{random_youtube_video_ids[index]}",
         )
 
         if video.save
-          puts "Create video - #{video_title}".green
+          puts "Create video - #{video.title}".green
         else
           puts "#{video.errors.full_messages}".red
         end

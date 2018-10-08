@@ -13,6 +13,6 @@ class CreateVideos < ActiveRecord::Migration[5.1]
     add_index :videos, [:url, :tag_id]
     add_index :videos, [:user_id, :tag_id]
     add_index :videos, :tag_id
-    add_index :videos, :rank, unique: true
+    add_index :videos, :rank
   end
 end

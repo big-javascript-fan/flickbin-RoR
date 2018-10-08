@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20181008160620) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["rank"], name: "index_tags_on_rank", unique: true
+    t.index ["rank"], name: "index_tags_on_rank"
     t.index ["slug"], name: "index_tags_on_slug", unique: true
     t.index ["title"], name: "index_tags_on_title"
   end
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20181008160620) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "cover"
-    t.index ["rank"], name: "index_videos_on_rank", unique: true
+    t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["tag_id"], name: "index_videos_on_tag_id"
     t.index ["url", "tag_id"], name: "index_videos_on_url_and_tag_id"

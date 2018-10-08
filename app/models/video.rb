@@ -12,6 +12,7 @@ class Video < ApplicationRecord
   validates_uniqueness_of :url, scope: :tag_id
 
   before_validation :upload_video_cover
+  after_create :set_init_rank
 
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
@@ -23,5 +24,9 @@ class Video < ApplicationRecord
 
     self.title = youtube_video.title
     self.remote_cover_url = youtube_video.thumbnail_url
+  end
+
+  def set_init_rank
+    self.update(rank: self.id)
   end
 end

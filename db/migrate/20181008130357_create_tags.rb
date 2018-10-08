@@ -8,6 +8,6 @@ class CreateTags < ActiveRecord::Migration[5.1]
     end
 
     add_index :tags, :title
-    add_index :tags, :rank, unique: true
+    add_index :tags, :rank
   end
 end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :confirmable
 
+  mount_uploader :avatar, UserAvatarUploader
+
   has_many :videos, dependent: :destroy
   has_many :tags, through: :videos
 

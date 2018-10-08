@@ -1,29 +1,32 @@
-<%= link_to 'Birdy', root_path %>
-<h1>Sign up and start curating.</h1>
-<h3>Start showing the world your favorite videos.</h3>
+<div class="loginBg">
+  <div class="loginAside">
+    <%= link_to "Birdy", root_path, class: "brand inLogin bottomMargin50" %>
+    <h2 class="loginTitle bottomMargin50">Sign up and start curating.
+      <span>Start showing the world your favorite videos.</span>
+    </h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :channel_name %><br />
-    <%= f.text_field :channel_name, autofocus: true %><br />
-    <%= f.error :channel_name %>
-  </div>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="labelFields">
+        <%= f.label :channel_name %>
+        <%= f.text_field :channel_name, placeholder: 'Enter your channel name', class: 'block' %>
+        <%= f.error :channel_name, class: 'error' %>
+      </div>
+      <div class="labelFields">
+        <%= f.label :email, 'Email Address' %>
+        <%= f.email_field :email, placeholder: 'Enter your email', class: 'block' %>
+        <%= f.error :email, class: 'error' %>
+      </div>
+      <div class="labelFields bottomMargin50">
+        <%= f.label :password %>
+        <%= f.password_field :password, placeholder: 'Enter your password', class: 'block' %>
+        <%= f.error :password, class: 'error' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email, 'Email Address' %><br />
-    <%= f.email_field :email, autocomplete: "email" %><br />
-    <%= f.error :email %>
+      <div class="clearfix btnFromLeft">
+        <%= f.submit "Sign up", class: 'btn' %>
+        <%= link_to "Log in", new_session_path(resource_name), class: 'btn noBg' %>
+        <%= link_to "Forgot Password?", new_password_path(resource_name), class: "forgotLinks fRight" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %><br />
-    <%= f.error :password %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-    <%= link_to "Log in", new_session_path(resource_name) %>
-    <%= link_to "Forgot password?", new_password_path(resource_name) %>
-  </div>
-<% end %>
+</div>

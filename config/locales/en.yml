@@ -6,6 +6,8 @@ en:
           attributes:
             email:
               invalid: "Invalid format"
+            reset_password_token:
+              invalid: "Reset password link might be expired or invalid"
 
   errors:
     # The default format to use in full error messages.
@@ -18,7 +20,7 @@ en:
       inclusion: "is not included in the list"
       exclusion: "is reserved"
       invalid: "is invalid"
-      confirmation: "doesn't match %{attribute}"
+      confirmation: "Password confirmation does not match %{attribute}"
       accepted: "must be accepted"
       empty: "can't be empty"
       blank: "can't be blank"

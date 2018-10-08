@@ -1,20 +1,27 @@
-<h2>Change your password</h2>
+<div class="loginBg">
+  <div class="loginAside">
+    <%= link_to "Birdy", root_path, class: "brand inLogin" %>
+    <h2 class="loginTitle">Change your password</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <div class="labelFields">
+        <%= f.hidden_field :reset_password_token %>
+        <%= f.error :reset_password_token, class: 'error' %>
+      </div>
+      <div class="labelFields">
+        <%= f.label :password, "New password" %>
+        <%= f.password_field :password, placeholder: 'Enter your new password', class: 'block' %>
+        <%= f.error :password, class: 'error' %>
+      </div>
+      <div class="labelFields">
+        <%= f.label :password_confirmation, "Confirm new password" %>
+        <%= f.password_field :password_confirmation, placeholder: 'Confirm your new password', class: 'block' %>
+        <%= f.error :password_confirmation, class: 'error' %>
+      </div>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+      <div class="clearfix btnFromLeft">
+        <%= f.submit "Change my password", class: "btn" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+</div>

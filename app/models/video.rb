@@ -19,7 +19,9 @@ class Video < ApplicationRecord
 
   def upload_video_cover
     youtube_video_id = self.url.split('watch?v=').last
-    cover_url = "https://img.youtube.com/vi/#{youtube_video_id}/1.jpg"
-    self.remote_cover_url = cover_url
+    youtube_video = Yt::Video.new id: youtube_video_id
+
+    self.title = youtube_video.title
+    self.remote_cover_url = youtube_video.thumbnail_url
   end
 end

@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def should_generate_new_friendly_id?
     slug.blank? || channel_name_changed?
   end
+
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end

@@ -53,5 +53,19 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
+  if ENV["SMTP_USER_NAME"].present? && ENV["SMTP_PASSWORD"].present?
+    config.action_mailer.smtp_settings = {
+      address:        'smtp.gmail.com',
+      port:           587,
+      user_name:      ENV["SMTP_USER_NAME"],
+      password:       ENV["SMTP_PASSWORD"],
+      authentication: :plain
+    }
+  else # use settings for gem mailcatcher
+    config.action_mailer.smtp_settings = {
+      address: 'localhost',
+      port: 1025
+    }
+  end
 end

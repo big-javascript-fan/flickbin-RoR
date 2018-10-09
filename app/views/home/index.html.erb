@@ -32,52 +32,56 @@
     </div>
 
     <div class="row">
-      <div class="colHalf colTitle clearfix mobileColBottom">
-        <div class="clearfix bottom-margin-15">
-            <span class="sideTitle"><%= @top_1_tag.title %></span>
-            <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
-        </div>
+      <% if @top_1_tag.present? %>
+        <div class="colHalf colTitle clearfix mobileColBottom">
+          <div class="clearfix bottom-margin-15">
+              <span class="sideTitle"><%= @top_1_tag.title %></span>
+              <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
+          </div>
 
-        <ul class="entityList">
-          <% @top_1_tag.top_10_videos.each_with_index do |top_video, index| %>
-            <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                <%= link_to video_path(top_video), class: "thumbnail" do %>
-                  <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
-                  <span class="playerIcon"><i class="fas fa-play"></i></span>
-                <% end %>
-              </div>
-              <div class="entityCell serialText active"><%= index + 1 %></div>
-              <div class="entityCell">
-                <%= link_to top_video.title, video_path(top_video), class: "descText" %>
-              </div>
-            </li>
-        <% end %>
-        </ul>
-      </div>
-      <div class="colHalf clearfix">
-        <div class="clearfix bottom-margin-15">
-            <span class="sideTitle"><%= @top_2_tag.title %></span>
-            <%= link_to 'SEE ALL', tag_path(@top_2_tag), class: "seeAllLink" %>
-        </div>
-
-        <ul class="entityList">
-          <% @top_2_tag.top_10_videos.each_with_index do |top_video, index| %>
-            <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                <%= link_to video_path(top_video), class: "thumbnail" do %>
-                  <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
-                  <span class="playerIcon"><i class="fas fa-play"></i></span>
-                <% end %>
-              </div>
-              <div class="entityCell serialText active"><%= index + 1%></div>
-              <div class="entityCell">
-                <%= link_to top_video.title, video_path(top_video), class: "descText" %>
-              </div>
-            </li>
+          <ul class="entityList">
+            <% @top_1_tag.top_10_videos.each_with_index do |top_video, index| %>
+              <li class="entityRow">
+                <div class="entityCell thumbnailCell">
+                  <%= link_to video_path(top_video), class: "thumbnail" do %>
+                    <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
+                    <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  <% end %>
+                </div>
+                <div class="entityCell serialText active"><%= index + 1 %></div>
+                <div class="entityCell">
+                  <%= link_to top_video.title, video_path(top_video), class: "descText" %>
+                </div>
+              </li>
           <% end %>
-        </ul>
-      </div>
+          </ul>
+        </div>
+      <% end %>
+      <% if @top_2_tag.present? %>
+        <div class="colHalf clearfix">
+          <div class="clearfix bottom-margin-15">
+              <span class="sideTitle"><%= @top_2_tag.title %></span>
+              <%= link_to 'SEE ALL', tag_path(@top_2_tag), class: "seeAllLink" %>
+          </div>
+
+          <ul class="entityList">
+            <% @top_2_tag.top_10_videos.each_with_index do |top_video, index| %>
+              <li class="entityRow">
+                <div class="entityCell thumbnailCell">
+                  <%= link_to video_path(top_video), class: "thumbnail" do %>
+                    <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
+                    <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  <% end %>
+                </div>
+                <div class="entityCell serialText active"><%= index + 1%></div>
+                <div class="entityCell">
+                  <%= link_to top_video.title, video_path(top_video), class: "descText" %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>

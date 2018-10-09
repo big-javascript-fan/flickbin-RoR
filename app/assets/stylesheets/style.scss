@@ -356,7 +356,7 @@ select:actived {
     text-indent: -9999px;
     overflow: hidden;
     height: 41px;
-    background-image:: url('/images/logo.png') no-repeat center center;
+    background: url('/images/login-logo.png') no-repeat center center;
     margin: 39px 0;
 }
 
@@ -383,7 +383,7 @@ select:actived {
     color: #090A0B;
     font-size: 16px;
     font-weight: 500;
-    background: url(images/trending.png) no-repeat 0 0;
+    background: url('/images/trending.png') no-repeat 0 0;
 }
 .leftPanelTags {
     list-style: none;

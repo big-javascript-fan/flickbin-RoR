@@ -1,4 +1,5 @@
 //= require jquery
 //= require rails-ujs
 //= require turbolinks
-//= require_tree .
+//= require utilities
+//= require jquery.dropdown.min

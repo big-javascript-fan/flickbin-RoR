@@ -1,12 +1,83 @@
-<h1>Home</h1>
-<% if flash[:notice].to_s == I18n.t('devise.registrations.signed_up_but_unconfirmed') %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
-  <div class='resend-confirmation'>
-    Click
-    <%= link_to 'resend confirmation', new_confirmation_path(:user) %>
-    if didn't receive confirmation instructions
-  </div>
-<% end %>
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel">
+    <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+    </button>
 
+    <%= link_to "Birdy", root_path, class: "brand" %>
+    <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnMobile" %>
+
+    <div class="leftTagsOuter">
+      <a href="#" class="offCanvasBtn offCanvasBtnClose">&times;</a>
+      <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnDesktop" %>
+
+      <span class="tagsTitle">Trending Tags</span>
+      <ul class="leftPanelTags">
+        <% @trending_tags.each do |trending_tag| %>
+          <li>
+            <%= link_to trending_tag.title, tag_path(trending_tag) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </aside>
+
+  <section class="contentPanel">
+    <div class="clearfix btnGroup">
+      <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+      <%= link_to "Log in", new_user_session_path, class: 'btn noBg' %>
+    </div>
+
+    <div class="row">
+      <div class="colHalf colTitle clearfix mobileColBottom">
+        <div class="clearfix bottom-margin-15">
+            <span class="sideTitle"><%= @top_1_tag.title %></span>
+            <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
+        </div>
+
+        <ul class="entityList">
+          <% @top_1_tag.top_10_videos.each_with_index do |top_video, index| %>
+            <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                <%= link_to video_path(top_video), class: "thumbnail" do %>
+                  <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
+                  <span class="playerIcon"><i class="fas fa-play"></i></span>
+                <% end %>
+              </div>
+              <div class="entityCell serialText active"><%= index + 1 %></div>
+              <div class="entityCell">
+                <%= link_to top_video.title, video_path(top_video), class: "descText" %>
+              </div>
+            </li>
+        <% end %>
+        </ul>
+      </div>
+      <div class="colHalf clearfix">
+        <div class="clearfix bottom-margin-15">
+            <span class="sideTitle"><%= @top_2_tag.title %></span>
+            <%= link_to 'SEE ALL', tag_path(@top_2_tag), class: "seeAllLink" %>
+        </div>
+
+        <ul class="entityList">
+          <% @top_2_tag.top_10_videos.each_with_index do |top_video, index| %>
+            <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                <%= link_to video_path(top_video), class: "thumbnail" do %>
+                  <%= image_tag(top_video.cover.url, alt: top_video.title, height: '66') %>
+                  <span class="playerIcon"><i class="fas fa-play"></i></span>
+                <% end %>
+              </div>
+              <div class="entityCell serialText active"><%= index + 1%></div>
+              <div class="entityCell">
+                <%= link_to top_video.title, video_path(top_video), class: "descText" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

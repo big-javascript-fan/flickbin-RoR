@@ -1,7 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html class="not-ie" lang="en">
   <head>
-    <title>Birdy</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title><%= content_for?(:meta_title) ? yield(:meta_title) : 'Birdy' %></title>
+    <meta name='description' content='<%= yield(:meta_description) %>' />
+    <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,7 +20,6 @@
   </head>
 
   <body>
-    <%= render 'partials/user_auth' %>
     <%= yield %>
   </body>
 </html>

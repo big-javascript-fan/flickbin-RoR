@@ -40,10 +40,45 @@
   </aside>
 
   <section class="contentPanel">
-    <div class="clearfix btnGroup">
-      <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
-      <%= link_to "Log in", new_user_session_path, class: 'btn noBg' %>
-    </div>
+    <% if current_user.present? %>
+      <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
+        <ul class="afterLoginBtns">
+          <li>
+            <%= link_to '+', videos_new_path, class: "addCircle" %>
+          </li>
+          <li class="profileDropdownHolder">
+            <%= link_to '#', class: 'profileDropdown' do %>
+              <%= image_tag(current_user.avatar.url || '/images/user_avatar_placeholder.png', alt: "User Name") %>
+            <% end %>
+            <div class="jq-dropdown push-left jq-dropdown-tip jq-dropdown-anchor-right">
+              <div class="jq-dropdown-panel">
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to 'Post a Video', videos_new_path, class: "current" %>
+                  </li>
+                  <li>
+                    <%= link_to 'My Account', edit_user_registration_path %>
+                  </li>
+                  <li class="jq-dropdown-divider">&nbsp;</li>
+                  <li>
+                    <%= link_to 'My Station', station_path(current_user) %>
+                  </li>
+                  <li class="jq-dropdown-divider">&nbsp;</li>
+                  <li>
+                    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup">
+        <%= link_to "Sign up", new_user_registration_path, class: "btn" %>
+        <%= link_to "Log in", new_user_session_path, class: 'btn noBg' %>
+      </div>
+    <% end %>
 
     <div class="row">
       <% if @top_1_tag.present? %>

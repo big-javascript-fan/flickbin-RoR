@@ -15,8 +15,8 @@ test:
 
 staging:
   <<: *default
-  database: <%= ENV["PG_DB_BIRDY"] %>
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   <<: *default
-  database: <%= ENV["PG_DB_BIRDY"] %>
+  url: <%= ENV['DATABASE_URL'] %>

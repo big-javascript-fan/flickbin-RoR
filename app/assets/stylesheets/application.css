@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+.entityList > li:first-child > div.serialText {
+    color: #31B4B0;
+}
+
+.flashNotification {
+  height: 50px;
+  color: #B5C1D5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 30px;
+  padding: 10px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  background-color: #4E5766;
+}

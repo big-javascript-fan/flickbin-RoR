@@ -1,3 +1,17 @@
+<% if flash[:notice].present? %>
+  <div class="flashNotification">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:notice].to_s == I18n.t('devise.registrations.signed_up_but_unconfirmed') %>
+  <div class='flashNotification'>
+    Click
+    <%= link_to 'resend confirmation', new_confirmation_path(:user) %>
+    if didn't receive confirmation instructions
+  </div>
+<% end %>
+
 <div class="wrapper">
   <div class="offCanvasMask"></div>
   <aside class="leftPanel">
@@ -48,7 +62,7 @@
                     <span class="playerIcon"><i class="fas fa-play"></i></span>
                   <% end %>
                 </div>
-                <div class="entityCell serialText active"><%= index + 1 %></div>
+                <div class="entityCell serialText"><%= index + 1 %></div>
                 <div class="entityCell">
                   <%= link_to top_video.title, video_path(top_video), class: "descText" %>
                 </div>
@@ -73,7 +87,7 @@
                     <span class="playerIcon"><i class="fas fa-play"></i></span>
                   <% end %>
                 </div>
-                <div class="entityCell serialText active"><%= index + 1%></div>
+                <div class="entityCell serialText"><%= index + 1%></div>
                 <div class="entityCell">
                   <%= link_to top_video.title, video_path(top_video), class: "descText" %>
                 </div>

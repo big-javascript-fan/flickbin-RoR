@@ -1,0 +1,13 @@
+<div class="leftTagsOuter">
+  <a href="#" class="offCanvasBtn offCanvasBtnClose">&times;</a>
+  <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnDesktop" %>
+
+  <span class="tagsTitle">Trending Tags</span>
+  <ul class="leftPanelTags">
+    <% @trending_tags.each do |trending_tag| %>
+      <li>
+        <%= link_to trending_tag.title, tag_path(trending_tag) %>
+      </li>
+    <% end %>
+  </ul>
+</div>

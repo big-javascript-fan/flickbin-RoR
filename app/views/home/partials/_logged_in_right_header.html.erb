@@ -1,0 +1,28 @@
+<ul class="afterLoginBtns">
+  <li><%= link_to '+', videos_new_path, class: "addCircle" %></li>
+  <li class="profileDropdownHolder">
+    <div class='profileDropdown'>
+      <%= image_tag(current_user.avatar.url || '/images/avatar_placeholder.jpg', alt: "User Name") %>
+    </div>
+    <div class="jq-dropdown push-left jq-dropdown-tip jq-dropdown-anchor-right">
+      <div class="jq-dropdown-panel">
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to 'Post a Video', videos_new_path, class: "current" %>
+          </li>
+          <li>
+            <%= link_to 'My Account', edit_user_registration_path %>
+          </li>
+          <li class="jq-dropdown-divider">&nbsp;</li>
+          <li>
+            <%= link_to 'My Station', station_path(current_user) %>
+          </li>
+          <li class="jq-dropdown-divider">&nbsp;</li>
+          <li>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>

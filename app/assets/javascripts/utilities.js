@@ -27,7 +27,7 @@ $(function(){
 });
 
 $(function() {
-    
+
     $(document).on('click', '.megamenu .dropdown-menu', function(e) {
       e.stopPropagation()
     });
@@ -38,7 +38,7 @@ $(function() {
         else { $('html').addClass('offCanvasOpen');}
     });
 
-    $('.offCanvasMask').click(function(){
+    $('.offCanvasMask').click(function(e){
         $('html').removeClass('offCanvasOpen');
         e.preventDefault();
     });

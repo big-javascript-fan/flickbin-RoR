@@ -24,9 +24,15 @@ class Video < ApplicationRecord
 
     self.title = youtube_video.title
     self.remote_cover_url = youtube_video.thumbnail_url
+  rescue => e
+    errors.add(:invalid_url, 'Video url invalid')
   end
 
   def set_init_rank
     self.update(rank: self.id)
+  end
+
+  def remaining_days
+    AppConstants::LIFETIME_IN_DAYS_OF_TAGGED_VIDEO - ((Time.now - self.created_at) / 1.day).round
   end
 end

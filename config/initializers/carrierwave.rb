@@ -1,16 +1,17 @@
 CarrierWave.configure do |config|
-  # config.fog_credentials = {
-  #   :provider               => 'AWS',
-  #   :aws_access_key_id      => Rails.application.secrets.aws_access_key_id,
-  #   :aws_secret_access_key  => Rails.application.secrets.aws_secret_access_key,
-  #   :region                 => 'eu-central-1'
-  # }
-
-  config.storage = :file
   config.asset_host = ActionController::Base.asset_host
+  config.fog_provider = 'fog/aws'                        # required
+  config.fog_credentials = {
+    provider:              'AWS',                        # required
+    aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],     # required unless using use_iam_profile
+    aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], # required unless using use_iam_profile
+    region:                'eu-west-1',                  # optional, defaults to 'us-east-1'
+  }
+  config.fog_directory  = 'flickbin'                     # required
 
-  # config.fog_directory = 'birdy'
-  #config.fog_host       = 'https://assets.example.com'           # optional, defaults to nil
-  #config.fog_public     = false                                  # optional, defaults to true
-  # config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
+  if Rails.env.staging? || Rails.env.production?
+    config.storage = :fog
+  else
+    config.storage = :file
+  end
 end

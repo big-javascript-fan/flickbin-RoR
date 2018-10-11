@@ -11,7 +11,7 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates_uniqueness_of :url, scope: :tag_id
 
-  before_validation :upload_video_cover, if: :saved_change_to_url?
+  before_validation :upload_video_cover, if: :will_save_change_to_url?
   after_create :set_init_rank
 
   def should_generate_new_friendly_id?

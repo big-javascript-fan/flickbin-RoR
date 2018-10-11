@@ -1,44 +1,120 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
 <% if flash[:notice].present? %>
-  <div class="notice">
+  <div class="flashNotification">
     <%= flash[:notice] %>
   </div>
 <% end %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <div class="field">
-    <%= f.label :email, 'Email Address' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%= f.error :email %>
-  </div>
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel">
+      <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+          <span class="offCanvasBar">&nbsp;</span>
+          <span class="offCanvasBar">&nbsp;</span>
+          <span class="offCanvasBar">&nbsp;</span>
+      </button>
 
-  <div class="field">
-    <%= f.label :channel_name %><br />
-    <%= f.text_field :channel_name %><br />
-    <%= f.error :channel_name %>
-  </div>
+      <%= link_to "Birdy", root_path, class: "brand" %>
 
-  <div class="field">
-    <%= f.label :password, 'New password' %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %><br />
-    <%= f.error :password %>
-  </div>
+      <!-- show button in mobile -->
+      <div class="clearfix hideOnDesktop mobileBtnPosition">
+        <ul class="afterLoginBtns reverseThemeHoler">
+          <li>
+            <span class="addCircle dblBorder edit">
+              <i class="fas fa-pen"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <!-- end mobile btn -->
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirm new password' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    <%= f.error :password_confirmation %>
-  </div>
+      <%= render 'partials/trending_tags_bar' %>
+  </aside>
 
-  <div class="field">
-    <%= f.label :channel_description %><br />
-    <%= f.text_field :channel_description %><br />
-    <%= f.error :channel_description %>
-  </div>
+  <section class="contentPanel">
+    <div class="redTopBox redBoxInProfile">
+      <div class="clearfix topBtnBottomGap hideOnMobile">
+        <ul class="afterLoginBtns reverseThemeHoler">
+          <li>
+            <span class="addCircle dblBorder edit">
+              <i class="fas fa-pen"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-    <%= link_to "Cancel", station_path(current_user) %>
-  </div>
-<% end %>
+      <div class="redBoxInsideContent">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="row">
+            <div class="colHalf">
+              <div class="labelFields">
+                <%= f.label :email, 'Email Address' %>
+                <%= f.email_field :email, class: 'block grayNormal' %>
+                <%= f.error :email %>
+              </div>
+            </div>
+            <div class="colHalf">
+              <div class="labelFields">
+                <%= f.label :channel_name %>
+                <%= f.text_field :channel_name, class: 'block grayNormal' %>
+                <%= f.error :channel_name %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="colHalf">
+              <div class="labelFields">
+                <%= f.label :password, 'New password' %>
+                <%= f.password_field :password, class: 'block grayNormal' %>
+                <%= f.error :password %>
+              </div>
+            </div>
+            <div class="colHalf">
+              <div class="labelFields">
+                <%= f.label :password_confirmation, 'Confirm new password' %>
+                <%= f.password_field :password_confirmation, class: 'block grayNormal' %>
+                <%= f.error :password_confirmation %>
+              </div>
+            </div>
+          </div>
+          <div class="labelFields lastFieldInProfile">
+            <%= f.label :channel_description %>
+            <span class="rightNumber">27</span>
+            <%= f.text_field :channel_description, class: "block hasRightNumber grayNormal" %>
+            <%= f.error :channel_description %>
+          </div>
+          <div class="clearfix btnGroup btnGroupNoReverse">
+            <%= f.submit "Update Info", class: "btn medium border2x strong noMargin" %>
+            <%= link_to "Cancel", station_path(current_user), class: "btn medium strong noBorder colorNoBg" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <ul class="entityList inTag tagNewest stationList">
+      <% @user_videos.each do |video| %>
+        <li class="entityRow" slug="<%= video.slug %>">
+          <div class="entityCell thumbnailCell">
+            <%= link_to video_path(video), class: "thumbnail large" do %>
+              <%= image_tag(video.cover.url, alt: video.title, width: 136, height: 85) %>
+              <span class="playerIcon"><i class="fas fa-play"></i></span>
+            <% end %>
+          </div>
+          <div class="entityCell cellSpace24">&nbsp;</div>
+          <div class="entityCell hasRemover">
+            <span class="postTime">1 week ago in <a href="#">technology</a></span>
+            <%= link_to video.title, video_path(video), class: "descText" %>
+            <div class="removerBar" id="<%= video.id %>">
+              <span class="removerBarTrack">Are you sure?&nbsp;&nbsp;&nbsp;
+                <%= link_to 'Yes', video_path(video), method: :delete, remote: true %>
+                <a href="#" class="rejectDestroyVideo">No</a>
+              </span>
+              <a href="#" onclick='utilities.toggler(`#${"<%= video.id %>"}`, "removerBarActivated", this)' class="removeIcon">&times;</a>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</div>
+
+<%= javascript_include_tag('station') %>

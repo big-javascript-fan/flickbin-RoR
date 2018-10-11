@@ -15,9 +15,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @trending_tags = Tag.order(rank: :asc)
+    @user_videos = current_user.videos.order(created_at: :desc).limit(10)
+    super
+  end
 
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
@@ -57,11 +59,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def update_resource(resource, params)
-    if params[:password].present? && params[:password] != params[:password_confirmation]
-      return resource.errors.add(:password_confirmation, :confirmation, message: "doesn't match password")
+    if  change_password_request?(params) && params[:password] != params[:password_confirmation]
+      resource.errors.add(:password_confirmation, :confirmation, message: "doesn't match password")
+      return false
     end
 
-    resource.update_with_password(params)
+    resource.update_without_password(params)
+  end
+
+  def change_password_request?(params)
+    params[:password].present? || params[:password_confirmation].present?
   end
 
   def configure_sign_up_params

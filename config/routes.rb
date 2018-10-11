@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   end
 
   scope module: :videos do
-    get  'videos/new',         action: :new
-    get  'videos',             action: :index
-    get  'videos/:video_slug', action: :show, as: :video
-    post 'videos',             action: :create
+    get    'videos/new',         action: :new
+    get    'videos',             action: :index
+    get    'videos/:video_slug', action: :show, as: :video
+    post   'videos',             action: :create
+    delete 'videos/:video_slug', action: :destroy
   end
 
   get  'stations/:channel_slug' => 'users#show', as: :station

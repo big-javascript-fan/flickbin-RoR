@@ -33,6 +33,6 @@ class VideosController < ApplicationController
   private
 
   def create_params
-    params.fetch(:video, {}).permit(:tag_id, :url)
+    params.fetch(:video, {}).permit(:url, :tag_name, :tag_id)
   end
 end

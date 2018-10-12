@@ -12,7 +12,7 @@ class Tag < ApplicationRecord
   after_create :set_init_rank
 
   def should_generate_new_friendly_id?
-    slug.blank? || title_changed?
+    slug.blank? || will_save_change_to_title?
   end
 
   def set_init_rank

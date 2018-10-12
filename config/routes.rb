@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       scope module: :tags do
-        get 'tags', action: :index
+        get  'tags', action: :index
+        post 'tags', action: :create
       end
     end
   end

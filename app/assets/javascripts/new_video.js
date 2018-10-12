@@ -80,7 +80,7 @@ $(function() {
     var dropdownContent = '';
     var newTag = true;
     var createTagBtn = `
-      <a href="#" class="createTagBtn">
+      <a href="#" class="createTagBtn" tag_title="${query}">
         <span class="inlineAddCircle ">+</span> Create Tag ${query}
       </a>
     `
@@ -112,6 +112,18 @@ $(function() {
       $('#video_tag_name').val(tagTitle);
       $('#video_tag_name').removeClass('hasBorder');
       $('#video_tag_id').val(tagId);
+    });
+
+    $('.createTagBtn').on('click', function(e) {
+      e.preventDefault();
+      var tagTitle = $(this).attr('tag_title');
+
+      $.post('/api/v1/tags', { title: tagTitle }).then(function(response) {
+        $('.dropdownItemListOuter').hide();
+        $('#video_tag_name').val(tagTitle);
+        $('#video_tag_name').removeClass('hasBorder');
+        $('#video_tag_id').val(response.id);
+      });
     });
   }
 });

@@ -48,6 +48,10 @@ $(function() {
     videoTagInput.filled = true;
   }
 
+  $('#video_url').on('click', function() {
+    $(this).parent().removeClass('errorMsg');
+  });
+
   $('#video_url').on('keyup', function() {
     if($(this).val().length > 0) {
       videoUrlInput.filled = true;
@@ -57,14 +61,40 @@ $(function() {
   });
 
   $('#video_tag_id').on('keyup', function() {
-    if($(this).val().length > 0) {
+    var query = $(this).val();
+
+    if(query.length > 0) {
       videoTagInput.filled = true;
+      $.get('/api/v1/tags', { query: query }).then(function(response) {
+        dropdownBuilder(response, query);
+      });
     } else {
       videoTagInput.filled = false;
+      $('.dropdownItemListOuter').hide();
     }
   });
 
-  $('#video_url').on('click', function() {
-    $(this).parent().removeClass('errorMsg');
-  });
+  function dropdownBuilder(data, query) {
+    var dropdownContent = '';
+    var createTagBtn = `
+      <a href="#" class="createTagBtn">
+        <span class="inlineAddCircle">+</span> Create Tag ${query}
+      </a>
+    `
+    if(data.length > 0) {
+      $.each(data, function(index, tag) {
+        dropdownContent += `
+          <li>
+            <a href="#">
+              ${tag.title} <span class="inlineAddCircle">+</span>
+            </a>
+          </li>
+        `
+      });
+    }
+
+    $('.dropdownItemList').html(dropdownContent);
+    $('.createTagBtnHolder').html(createTagBtn);
+    $('.dropdownItemListOuter').show();
+  }
 });

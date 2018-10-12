@@ -37,8 +37,12 @@
         </div>
         <div class="labelFields hasNumberInside postVideoLastField">
           <%= f.label :tag_id, 'Select One Tag' %>
-            <span class="ovalShape">2</span>
-          <%= f.text_field :tag_id, value: 1, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
+          <span class="ovalShape">2</span>
+          <div class="dropdownItemListOuter" style="display: none;">
+            <ul class="dropdownItemList"></ul>
+            <div class="createTagBtnHolder"></div>
+          </div>
+          <%= f.text_field :tag_id, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
           <%= f.error :tag_id %>
         </div>
         <div class="clearfix">

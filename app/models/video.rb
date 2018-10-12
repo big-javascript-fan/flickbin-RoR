@@ -19,9 +19,10 @@ class Video < ApplicationRecord
   end
 
   def upload_video_cover
-    youtube_video_id = self.url.split('watch?v=').last
-    youtube_video = Yt::Video.new id: youtube_video_id
+    youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1]
+    return errors.add(:invalid_url, 'Video url invalid') if youtube_video_id.blank?
 
+    youtube_video = Yt::Video.new id: youtube_video_id
     self.title = youtube_video.title
     self.remote_cover_url = youtube_video.thumbnail_url
   rescue => e

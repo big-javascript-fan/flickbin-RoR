@@ -1,10 +1,9 @@
 /*
+ *= require reset.scss
+ *= require styles.scss
+ *= require responsive.scss
  *= require_self
 */
-
-@import 'reset.scss';
-@import 'styles.scss';
-@import 'responsive.scss';
 
 .error {
   color: red;

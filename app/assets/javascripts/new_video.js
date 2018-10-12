@@ -15,7 +15,7 @@ $(function() {
   };
 
   videoTagInput = {
-    parentDiv: $('#video_tag_id').parent(),
+    parentDiv: $('#video_tag_name').parent(),
     valid: false,
     set filled(flag) {
       if(flag == true) {
@@ -44,7 +44,7 @@ $(function() {
     videoUrlInput.filled = true;
   }
 
-  if($('#video_tag_id').val().length > 0) {
+  if($('#video_tag_name').val().length > 0) {
     videoTagInput.filled = true;
   }
 
@@ -60,16 +60,18 @@ $(function() {
     }
   });
 
-  $('#video_tag_id').on('keyup', function() {
+  $('#video_tag_name').on('keyup', function() {
     var query = $(this).val();
 
     if(query.length > 0) {
       videoTagInput.filled = true;
+      $(this).addClass('hasBorder');
       $.get('/api/v1/tags', { query: query }).then(function(response) {
         dropdownBuilder(response, query);
       });
     } else {
       videoTagInput.filled = false;
+      $(this).removeClass('hasBorder')
       $('.dropdownItemListOuter').hide();
     }
   });
@@ -78,14 +80,14 @@ $(function() {
     var dropdownContent = '';
     var createTagBtn = `
       <a href="#" class="createTagBtn">
-        <span class="inlineAddCircle">+</span> Create Tag ${query}
+        <span class="inlineAddCircle ">+</span> Create Tag ${query}
       </a>
     `
     if(data.length > 0) {
       $.each(data, function(index, tag) {
         dropdownContent += `
           <li>
-            <a href="#">
+            <a href="#" class="chooseTagBtn" tag_title="${tag.title}" tag_id="${tag.id}">
               ${tag.title} <span class="inlineAddCircle">+</span>
             </a>
           </li>
@@ -96,5 +98,17 @@ $(function() {
     $('.dropdownItemList').html(dropdownContent);
     $('.createTagBtnHolder').html(createTagBtn);
     $('.dropdownItemListOuter').show();
+
+    $('.chooseTagBtn').on('click', function(e) {
+      e.preventDefault();
+
+      var tagTitle = $(this).attr('tag_title');
+      var tagId = $(this).attr('tag_id');
+
+      $('.dropdownItemListOuter').hide();
+      $('#video_tag_name').val(tagTitle);
+      $('#video_tag_name').removeClass('hasBorder');
+      $('#video_tag_id').val(tagId);
+    });
   }
 });

@@ -20,7 +20,7 @@
         Post a Video to chanceTV_123
         <span>Follow the two easy steps below and start sharing</span>
       </div>
-      <%= simple_form_for(@video, url: videos_path) do |f| %>
+      <%= simple_form_for(@video, url: videos_path, html: {autocomplete: 'off'}) do |f| %>
         <div class="labelFields hasNumberInside <%= 'errorMsg' if @video.errors.present? %>">
           <%= f.label :url, 'Enter Any Youtube URL' %>
           <span class="ovalShape">1</span>
@@ -36,14 +36,14 @@
           <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l-229' %>
         </div>
         <div class="labelFields hasNumberInside postVideoLastField">
-          <%= f.label :tag_id, 'Select One Tag' %>
+          <%= f.label :tag_name, 'Select One Tag' %>
           <span class="ovalShape">2</span>
           <div class="dropdownItemListOuter" style="display: none;">
             <ul class="dropdownItemList"></ul>
             <div class="createTagBtnHolder"></div>
           </div>
-          <%= f.text_field :tag_id, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
-          <%= f.error :tag_id %>
+          <%= f.text_field :tag_name, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
+          <%= f.hidden_field :tag_id %>
         </div>
         <div class="clearfix">
           <%= f.submit 'Post Video', id: 'post_video', class: "btn large fRight widthMore", disabled: "disabled" %>

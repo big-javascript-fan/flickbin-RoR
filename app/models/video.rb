@@ -1,4 +1,6 @@
 class Video < ApplicationRecord
+  attr_accessor :tag_name
+
   extend FriendlyId
   friendly_id :title, use: [:sequentially_slugged, :finders]
 

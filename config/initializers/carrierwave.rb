@@ -5,8 +5,7 @@ CarrierWave.configure do |config|
     provider:              'AWS',                        # required
     aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],     # required unless using use_iam_profile
     aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'], # required unless using use_iam_profile
-    region:                'us-west-1',                  # optional, defaults to 'us-east-1'
-    endpoint:              'http://s3.amazonaws.com'
+    region:                'us-west-1'                   # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'flickbin'                     # required
 

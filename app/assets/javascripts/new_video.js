@@ -78,6 +78,7 @@ $(function() {
 
   function dropdownBuilder(data, query) {
     var dropdownContent = '';
+    var newTag = true;
     var createTagBtn = `
       <a href="#" class="createTagBtn">
         <span class="inlineAddCircle ">+</span> Create Tag ${query}
@@ -85,6 +86,8 @@ $(function() {
     `
     if(data.length > 0) {
       $.each(data, function(index, tag) {
+        if(newTag == true && tag.title == query) newTag = false;
+
         dropdownContent += `
           <li>
             <a href="#" class="chooseTagBtn" tag_title="${tag.title}" tag_id="${tag.id}">
@@ -96,7 +99,7 @@ $(function() {
     }
 
     $('.dropdownItemList').html(dropdownContent);
-    $('.createTagBtnHolder').html(createTagBtn);
+    $('.createTagBtnHolder').html(newTag == true ? createTagBtn : '');
     $('.dropdownItemListOuter').show();
 
     $('.chooseTagBtn').on('click', function(e) {

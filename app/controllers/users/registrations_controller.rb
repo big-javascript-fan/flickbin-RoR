@@ -17,7 +17,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/edit
   def edit
     @trending_tags = Tag.order(rank: :asc)
-    @user_videos = current_user.videos.order(created_at: :desc).limit(10)
+    @user_videos = current_user.videos
+                               .active
+                               .tagged
+                               .order(created_at: :desc)
+                               .limit(10)
     super
   end
 

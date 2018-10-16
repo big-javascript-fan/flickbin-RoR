@@ -16,6 +16,9 @@ class Video < ApplicationRecord
   before_validation :upload_video_cover, if: :will_save_change_to_url?
   after_create :set_init_rank
 
+  scope :active, -> { where(removed: false) }
+  scope :tagged, -> { where(untagged: false) }
+
   def should_generate_new_friendly_id?
     slug.blank? || will_save_change_to_title?
   end

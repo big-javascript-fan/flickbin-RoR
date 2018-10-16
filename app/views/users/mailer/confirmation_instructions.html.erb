@@ -1,5 +1,43 @@
-<p>Welcome <%= @email %>!</p>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      .btn {
+          display: inline-block;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: middle;
+          user-select: none;
+          padding: 16px 20px;
+          font-size: 16px;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-weight: 600;
+          line-height: 22px;
+          background-color: #4E5766;
+          border:1px solid #4E5766;
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
+      }
+    </style>
+  </head>
 
-<p>You can confirm your account email through the link below:</p>
+  <body style="padding: 30px; background: #F8F8F8; position: relative;">
+    <div class="" style="position: absolute; top: 50%; left:50%; transform: translate(-50%, -50%); margin: 30px 0;">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <%= image_tag('/images/logo.png') %>
+      </div>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+      <div class="" style="background: #ffffff; margin:0 auto 30px; width: 500px; padding: 30px">
+        <div style="margin-bottom: 30px; font-size: 20px;">Welcome <%= @email %>,</div>
+        <div style="color: #4F5766; margin-bottom: 30px; font-size: 20px">Thanks for signing up on flickbin. Before getting started, click the "Verify Account" link below</span>
+      </div>
+      <div>
+        <%= link_to confirmation_url(@resource, confirmation_token: @token), class: 'btn' do %>
+          <span style= "color: #ffffff;" >Verify Account</span>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

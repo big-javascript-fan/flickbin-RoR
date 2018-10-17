@@ -102,7 +102,7 @@
           <div class="entityCell cellSpace24">&nbsp;</div>
           <div class="entityCell hasRemover">
             <span class="postTime">
-              <%= '1 week ago in '%>
+              <%= "#{time_ago_in_words(video.created_at)} in "%>
               <%= link_to video.tag.title, tag_path(video.tag) %>
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>

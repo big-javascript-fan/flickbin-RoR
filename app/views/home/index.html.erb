@@ -88,7 +88,7 @@
                     <span class="playerIcon"><i class="fas fa-play"></i></span>
                   <% end %>
                 </div>
-                <div class="entityCell serialText"><%= index + 1%></div>
+                <div class="entityCell serialText"><%= index + 1 %></div>
                 <div class="entityCell">
                   <%= link_to top_video.title, video_path(top_video), class: "descText" %>
                 </div>
@@ -100,3 +100,5 @@
     </div>
   </section>
 </div>
+
+<%= javascript_include_tag('specific_by_templates/home') %>

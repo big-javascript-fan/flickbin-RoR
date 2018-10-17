@@ -11,4 +11,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
-Rails.application.config.assets.precompile += %w(station.js new_video.js)
+Rails.application.config.assets.precompile += %w(
+  specific_by_templates/station.js
+  specific_by_templates/new_video.js
+  specific_by_templates/home.js
+)

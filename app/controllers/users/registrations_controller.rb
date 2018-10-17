@@ -66,6 +66,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user_videos = current_user.videos
                                .active
                                .tagged
+                               .includes(:tag)
                                .order(created_at: :desc)
                                .limit(10)
   end

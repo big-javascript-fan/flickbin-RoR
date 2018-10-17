@@ -19,6 +19,10 @@ class User < ApplicationRecord
     slug.blank? || channel_name_changed?
   end
 
+  def normalize_friendly_id(text)
+    text.to_slug.transliterate.normalize.to_s
+  end
+
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end

@@ -15,6 +15,10 @@ class Tag < ApplicationRecord
     slug.blank? || will_save_change_to_title?
   end
 
+  def normalize_friendly_id(text)
+    text.to_slug.transliterate.normalize.to_s
+  end
+
   def set_init_rank
     self.update(rank: self.id)
   end

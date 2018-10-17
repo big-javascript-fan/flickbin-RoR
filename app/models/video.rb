@@ -23,6 +23,10 @@ class Video < ApplicationRecord
     slug.blank? || will_save_change_to_title?
   end
 
+  def normalize_friendly_id(text)
+    text.to_slug.transliterate.normalize.to_s
+  end
+
   def upload_video_cover
     youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1]
     return errors.add(:invalid_url, 'Video url invalid') if youtube_video_id.blank?

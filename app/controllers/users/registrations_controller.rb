@@ -17,14 +17,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  def edit
-    @user_videos = current_user.videos
-                               .active
-                               .tagged
-                               .order(created_at: :desc)
-                               .limit(10)
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
@@ -64,7 +59,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def get_tending_tags
-    @trending_tags = Tag.order(rank: :asc).limit(15)
+    @trending_tags = Tag.order(rank: :asc).limit(25)
   end
 
   def get_user_videos

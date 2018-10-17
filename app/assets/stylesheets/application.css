@@ -27,3 +27,46 @@
   z-index: 3;
   background-color: #4E5766;
 }
+
+.flashError {
+  background-color: #2FA9A5;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 22px 25px;
+  font-weight: 400;
+  z-index: 5;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.simpleFormErrorMsg {
+  background-color: #2FA9A5;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  color: #FFFFFF;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 22px 25px;
+  font-weight: 400;
+  z-index: 5;
+  width: 100%;
+  position: relative;
+  margin-top: 7px;
+}
+
+.simpleFormErrorMsg::before {
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  content: '';
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #2FA9A5;
+  display: inline-block;
+}

@@ -3,6 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :get_tending_tags, only: [:edit, :update]
+  before_action :get_user_videos, only: [:edit, :update]
 
   # GET /resource/sign_up
   # def new
@@ -16,7 +18,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    @trending_tags = Tag.order(rank: :asc)
     @user_videos = current_user.videos
                                .active
                                .tagged
@@ -61,6 +62,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
+
+  def get_tending_tags
+    @trending_tags = Tag.order(rank: :asc).limit(15)
+  end
+
+  def get_user_videos
+    @user_videos = current_user.videos
+                               .active
+                               .tagged
+                               .order(created_at: :desc)
+                               .limit(10)
+  end
 
   def update_resource(resource, params)
     if  change_password_request?(params) && params[:password] != params[:password_confirmation]

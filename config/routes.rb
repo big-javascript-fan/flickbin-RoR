@@ -5,6 +5,16 @@ Rails.application.routes.draw do
         get  'tags', action: :index
         post 'tags', action: :create
       end
+
+      namespace :home do
+        scope module: :tags do
+          get 'tags', action: :index
+        end
+
+        scope module: :videos do
+          get 'videos', action: :index
+        end
+      end
     end
   end
 

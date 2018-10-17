@@ -48,7 +48,7 @@
 
     <div class="row">
       <% if @top_1_tag.present? %>
-        <div class="colHalf colTitle clearfix mobileColBottom">
+        <div id="<%= @top_1_tag.id %>" class="colHalf colTitle clearfix mobileColBottom top_1_tag">
           <div class="clearfix bottom-margin-15">
               <span class="sideTitle"><%= @top_1_tag.title %></span>
               <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
@@ -73,7 +73,7 @@
         </div>
       <% end %>
       <% if @top_2_tag.present? %>
-        <div class="colHalf clearfix">
+        <div id="<%= @top_2_tag.id %>" class="colHalf clearfix top_2_tag">
           <div class="clearfix bottom-margin-15">
               <span class="sideTitle"><%= @top_2_tag.title %></span>
               <%= link_to 'SEE ALL', tag_path(@top_2_tag), class: "seeAllLink" %>

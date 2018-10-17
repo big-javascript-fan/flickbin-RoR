@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true
+  validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
+                                            allow_blank: true
 
   def should_generate_new_friendly_id?
     slug.blank? || channel_name_changed?

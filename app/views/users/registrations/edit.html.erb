@@ -78,8 +78,8 @@
           </div>
           <div class="labelFields lastFieldInProfile">
             <%= f.label :channel_description %>
-            <span class="rightNumber">27</span>
-            <%= f.text_field :channel_description, class: "block hasRightNumber grayNormal" %>
+            <span class="rightNumber"></span>
+            <%= f.text_field :channel_description, maxlength: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH, class: "block hasRightNumber grayNormal" %>
             <%= f.error :channel_description %>
           </div>
           <div class="clearfix btnGroup btnGroupNoReverse">

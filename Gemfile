@@ -23,6 +23,7 @@ gem 'mini_magick'
 gem 'yt', '~> 0.28.0'
 gem 'rest-client'
 gem 'awesome_print'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

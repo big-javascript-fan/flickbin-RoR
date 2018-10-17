@@ -27,7 +27,12 @@ class VideosController < ApplicationController
 
   def destroy
     video = current_user.videos.find_by_slug(params[:video_slug])
-    video.update_attribute(:removed, true)# if video.present?
+
+    if video.present?
+      video.update_attribute(:removed, true)
+    else
+      render js: "alert('Video with slug - \"#{params[:video_slug]}\" not found')"
+    end
   end
 
   private

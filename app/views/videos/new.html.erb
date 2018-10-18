@@ -20,7 +20,7 @@
         Post a Video to chanceTV_123
         <span>Follow the two easy steps below and start sharing</span>
       </div>
-      <%= simple_form_for(@video, url: videos_path, html: {autocomplete: 'off'}) do |f| %>
+      <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>
         <div class="labelFields hasNumberInside <%= 'errorMsg' if @video.errors.present? %>">
           <%= f.label :url, 'Enter Any Youtube URL' %>
           <span class="ovalShape">1</span>

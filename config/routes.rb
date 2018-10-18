@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   scope module: :videos do
     get    'videos/new',         action: :new
     get    'videos/:video_slug', action: :show, as: :video
-    post   'videos',             action: :create
+    post   'videos/new',         action: :create, as: :create_video
     delete 'videos/:video_slug', action: :destroy
   end
 

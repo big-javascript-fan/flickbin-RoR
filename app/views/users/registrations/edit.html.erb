@@ -95,7 +95,7 @@
         <li class="entityRow" slug="<%= video.slug %>">
           <div class="entityCell thumbnailCell">
             <%= link_to video_path(video), class: "thumbnail large" do %>
-              <%= image_tag(video.cover.url, alt: video.title, width: 136, height: 85) %>
+              <%= image_tag(video.cover.url, alt: video.title, class: "thumbnail large") %>
               <span class="playerIcon"><i class="fas fa-play"></i></span>
             <% end %>
           </div>

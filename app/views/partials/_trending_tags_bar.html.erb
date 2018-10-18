@@ -4,7 +4,7 @@
   <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnDesktop" %>
 
   <span class="tagsTitle">Trending Tags</span>
-  <ul class="leftPanelTags">
+  <ul class="leftPanelTags tag-feed">
     <% @trending_tags.each do |trending_tag| %>
       <li>
         <%= link_to trending_tag.title, tag_path(trending_tag) %>

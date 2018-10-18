@@ -9,6 +9,7 @@ class Tag < ApplicationRecord
 
   validates_presence_of :title
 
+  before_save :convert_to_lowercase_title
   after_create :set_init_rank
 
   def should_generate_new_friendly_id?
@@ -21,5 +22,9 @@ class Tag < ApplicationRecord
 
   def set_init_rank
     self.update(rank: self.id)
+  end
+
+  def convert_to_lowercase_title
+    self.title.downcase!
   end
 end

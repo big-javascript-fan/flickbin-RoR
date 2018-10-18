@@ -49,6 +49,7 @@ $(function() {
   }
 
   $('#video_url').on('click', function() {
+    $(this).removeAttr('placeholder');
     $(this).parent().removeClass('errorMsg');
   });
 
@@ -62,13 +63,25 @@ $(function() {
 
   $('#video_tag_name').on('keyup', function() {
     var query = $(this).val();
+    var regex = new RegExp("^[a-zA-Z0-9]+$");
 
-    if(query.length > 0) {
-      videoTagInput.filled = true;
-      $(this).addClass('hasBorder');
-      $.get('/api/v1/tags', { query: query }).then(function(response) {
-        dropdownBuilder(response, query);
-      });
+    if(regex.test(query)) {
+      $('.postVideoLastField').removeClass('errorMsg')
+
+      if(query.length > 0 && regex.test(query)) {
+        videoTagInput.filled = true;
+        $(this).addClass('hasBorder');
+        $.get('/api/v1/tags', { query: query }).then(function(response) {
+          dropdownBuilder(response, query);
+        });
+      } else {
+        videoTagInput.filled = false;
+        $(this).removeClass('hasBorder')
+        $('.dropdownItemListOuter').hide();
+      }
+    } else if(query.length > 0) {
+      $('.dropdownItemListOuter').hide();
+      $('.postVideoLastField').addClass('errorMsg')
     } else {
       videoTagInput.filled = false;
       $(this).removeClass('hasBorder')

@@ -42,6 +42,8 @@
             <ul class="dropdownItemList"></ul>
             <div class="createTagBtnHolder"></div>
           </div>
+          <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+          <div class="validationContent largeTooltip">You can use only letters & numbers</div>
           <%= f.text_field :tag_name, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
           <%= f.hidden_field :tag_id %>
         </div>

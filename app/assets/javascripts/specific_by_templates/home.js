@@ -4,10 +4,8 @@ $(function() {
   var top1TagId = $('.top_1_tag').attr('id');
   var top2TagId = $('.top_2_tag').attr('id');
 
-  $(document).scroll(function(e) {
-    var scrollReachedEndOfDocument = ($(document).height() - $(document).scrollTop()) < $(window).height() + 50;
-
-    console.log($(document).height() - $(document).scrollTop())
+  $('.contentPanel').scroll(function(e) {
+    var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
 
     if(loading) {
       return false;

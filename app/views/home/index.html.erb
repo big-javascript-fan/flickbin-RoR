@@ -14,7 +14,7 @@
 
 <div class="wrapper">
   <div class="offCanvasMask"></div>
-  <aside class="leftPanel">
+  <aside class="leftPanel scroll">
     <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
       <span class="offCanvasBar">&nbsp;</span>
       <span class="offCanvasBar">&nbsp;</span>
@@ -35,7 +35,7 @@
     <%= render 'partials/trending_tags_bar' %>
   </aside>
 
-  <section class="contentPanel">
+  <section class="contentPanel scroll">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
         <%= render 'home/partials/logged_in_right_header' %>

@@ -8,6 +8,8 @@ class Tag < ApplicationRecord
 
 
   validates_presence_of :title
+  validates_format_of   :title, with: AppConstants::TAG_TITLE_REGEXP,
+                                message: 'You can use only letters & numbers'
 
   before_save :convert_to_lowercase_title
   after_create :set_init_rank

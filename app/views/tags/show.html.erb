@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel scroll">
+    <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+    </button>
+
+    <%= link_to "Birdy", root_path, class: "brand" %>
+    <% if current_user.present? %>
+      <div class="clearfix hideOnDesktop mobileBtnPosition">
+        <%= render 'home/partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+
+  <section class="contentPanel leftSpace36 scroll">
+    <% if current_user.present? %>
+      <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
+        <%= render 'home/partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+
+    <div class="tagSpecificWrapper">
+      <div class="clearfix tagHeadingBottomGap">
+        <span class="sideTitle titleSpecific" slug="<%= @tag.slug %>"><%= @tag.title %></span>
+
+        <ul class="pillNav clearfix">
+          <li>sort by</li>
+          <% if params[:sort_by] == 'newest' %>
+            <li><%= link_to 'top charts', tag_path(@tag), class: "filter", remote: true %></li>
+            <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), class: "filter current", remote: true %></li>
+          <% else %>
+            <li><%= link_to 'top charts', tag_path(@tag), class: "filter current", remote: true %></li>
+            <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), class: "filter", remote: true %></li>
+          <% end %>
+        </ul>
+      </div>
+      <ul class="entityList inTag specificTagList tagListHasNumber video-feed">
+        <%= render 'tags/partials/videos_feed' %>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<%= javascript_include_tag('specific_by_templates/specific_tag') %>

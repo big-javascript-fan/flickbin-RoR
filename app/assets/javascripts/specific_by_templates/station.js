@@ -61,7 +61,7 @@ $(function() {
                   <div class="entityCell cellSpace24">&nbsp;</div>
                   <div class="entityCell hasRemover">
                     <span class="postTime">
-                      about 19 hours in
+                      ${video.post_time} in
                       <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
                     </span>
                     <a class="descText" href="/videos/${video.slug}">${video.title}</a>
@@ -78,6 +78,8 @@ $(function() {
             });
 
             $('ul.stationList').append(videosContent);
+            loading = false;
+            lastPageNumber += 1;
             removeIconHandler();
           }
         });

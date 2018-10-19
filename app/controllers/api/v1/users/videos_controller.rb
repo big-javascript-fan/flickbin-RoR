@@ -8,6 +8,6 @@ class Api::V1::Users::VideosController < Api::V1::BaseController
                  .page(params[:page])
                  .per(10)
 
-    render json: Api::V1::Videos::IndexSerializer.new(videos).call
+    render json: Api::V1::Users::Videos::IndexSerializer.new(videos).call
   end
 end

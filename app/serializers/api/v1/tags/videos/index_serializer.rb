@@ -1,4 +1,4 @@
-class Api::V1::Videos::IndexSerializer
+class Api::V1::Tags::Videos::IndexSerializer
   include ActionView::Helpers::DateHelper
 
   def initialize(videos)
@@ -21,17 +21,8 @@ class Api::V1::Videos::IndexSerializer
         title:     video.title,
         cover_url: video.cover.url,
         rank:      video.rank,
-        post_time: time_ago_in_words(video.created_at),
-        tag:       tag_to_hash(video.tag)
+        post_time: time_ago_in_words(video.created_at)
       }
     end
-  end
-
-  def tag_to_hash(tag)
-    {
-      id:    tag.id,
-      slug:  tag.slug,
-      title: tag.title
-    }
   end
 end

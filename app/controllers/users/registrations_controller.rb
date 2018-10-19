@@ -63,12 +63,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def get_user_videos
-    @user_videos = current_user.videos
-                               .active
-                               .tagged
-                               .includes(:tag)
-                               .order(created_at: :desc)
-                               .limit(10)
+    @user_videos = Video.includes(:tag)
+                        .active
+                        .tagged
+                        .where(user_id: @user.id)
+                        .order(created_at: :desc)
+                        .limit(10)
   end
 
   def update_resource(resource, params)

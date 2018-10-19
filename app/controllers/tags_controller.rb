@@ -13,6 +13,11 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.friendly.find(params[:tag_slug])
-    @tag_videos = @tag.videos.order(rank: :asc)
+
+    if params[:sort_by] == 'newest'
+      @tag_videos = Video.where(tag_id: @tag.id).order(created_at: :desc).limit(10)
+    else
+      @tag_videos = Video.where(tag_id: @tag.id).order(rank: :asc).limit(10)
+    end
   end
 end

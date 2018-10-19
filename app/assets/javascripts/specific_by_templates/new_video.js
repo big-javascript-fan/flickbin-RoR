@@ -44,13 +44,21 @@ $(function() {
     videoUrlInput.filled = true;
   }
 
-  if($('#video_tag_name').val().length > 0) {
+  if($('#video_tag_id').val().length > 0) {
     videoTagInput.filled = true;
   }
 
+  $(document).on('click', function() {
+    $('.videoUrlField.errorMsg').removeClass('errorMsg');
+  });
+
   $('#video_url').on('click', function() {
     $(this).removeAttr('placeholder');
-    $(this).parent().removeClass('errorMsg');
+    $(this).closest("div.videoUrlField").removeClass('errorMsg');
+  });
+
+  $('#video_url').on('focusout', function() {
+    $(this).attr("placeholder", 'https://www.youtube.com/watch?v=ABuQA13l-229')
   });
 
   $('#video_url').on('keyup', function() {
@@ -61,21 +69,28 @@ $(function() {
     }
   });
 
+  $('#video_tag_name').on('click', function() {
+    $(this).removeAttr('placeholder');
+  });
+
+  $('#video_tag_name').on('focusout', function() {
+    $(this).attr("placeholder", 'Add and Existing Tag or Create a New One')
+  });
+
   $('#video_tag_name').on('keyup', function() {
     var query = $(this).val();
     var regex = new RegExp("^[a-zA-Z0-9]+$");
 
     if(regex.test(query)) {
       $('.postVideoLastField').removeClass('errorMsg')
+      videoTagInput.filled = false;
 
       if(query.length > 0 && regex.test(query)) {
-        videoTagInput.filled = true;
         $(this).addClass('hasBorder');
         $.get('/api/v1/tags', { query: query }).then(function(response) {
           dropdownBuilder(response, query);
         });
       } else {
-        videoTagInput.filled = false;
         $(this).removeClass('hasBorder')
         $('.dropdownItemListOuter').hide();
       }
@@ -83,8 +98,8 @@ $(function() {
       $('.dropdownItemListOuter').hide();
       $('.postVideoLastField').addClass('errorMsg')
     } else {
-      videoTagInput.filled = false;
       $(this).removeClass('hasBorder')
+      $('.tagNameField.errorMsg').removeClass('errorMsg');
       $('.dropdownItemListOuter').hide();
     }
   });
@@ -125,6 +140,7 @@ $(function() {
       $('#video_tag_name').val(tagTitle);
       $('#video_tag_name').removeClass('hasBorder');
       $('#video_tag_id').val(tagId);
+      videoTagInput.filled = true;
     });
 
     $('.createTagBtn').on('click', function(e) {
@@ -136,6 +152,7 @@ $(function() {
         $('#video_tag_name').val(tagTitle);
         $('#video_tag_name').removeClass('hasBorder');
         $('#video_tag_id').val(response.id);
+        videoTagInput.filled = true;
       });
     });
   }

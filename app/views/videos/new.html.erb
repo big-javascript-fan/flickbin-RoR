@@ -21,7 +21,7 @@
         <span>Follow the two easy steps below and start sharing</span>
       </div>
       <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>
-        <div class="labelFields hasNumberInside <%= 'errorMsg' if @video.errors.present? %>">
+        <div class="labelFields hasNumberInside videoUrlField <%= 'errorMsg' if @video.errors.present? %>">
           <%= f.label :url, 'Enter Any Youtube URL' %>
           <span class="ovalShape">1</span>
           <% if @existing_video.present? %>
@@ -35,7 +35,7 @@
           <% end %>
           <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l-229' %>
         </div>
-        <div class="labelFields hasNumberInside postVideoLastField">
+        <div class="labelFields hasNumberInside postVideoLastField tagNameField">
           <%= f.label :tag_name, 'Select One Tag' %>
           <span class="ovalShape">2</span>
           <div class="dropdownItemListOuter" style="display: none;">

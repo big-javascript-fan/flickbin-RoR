@@ -4,6 +4,7 @@ $(function() {
   $('.filter').on('click', function() {
     $('.filter').removeClass('current');
     $(this).addClass('current');
+    infiniteScrollForVideos();
   });
 
   function infiniteScrollForVideos() {

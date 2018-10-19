@@ -4,4 +4,160 @@
   </div>
 <% end %>
 
-<h1><%= @user.channel_name %></h1>
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel scroll">
+    <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+    </button>
+
+    <%= link_to "Birdy", root_path, class: "brand" %>
+    <% if current_user.present? %>
+      <div class="clearfix hideOnDesktop mobileBtnPosition">
+        <%= render 'partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+
+  <section class="contentPanel">
+      <div class="redTopBox">
+          <div class="clearfix bottom-margin-10 hideOnMobile">
+              <div class="clearfix btnGroup btnReverseTheme btnGroupTopSpace">
+                  <a href="signup.html" class="btn">Sign Up</a>
+                  <a href="login.html" class="btn noBg">Log in</a>
+              </div>
+          </div>
+          <div class="redBoxInsideContent">
+              <div class="userThumbnail">
+                  <a href="#" class="userThumbnailHolder">
+                      <img src="images/user-thumbnil-128x128.png" alt="User Name" />
+                      <span class="hoverCamera"><i class="fas fa-camera"></i></span>
+                  </a>
+              </div>
+              <div class="cellSpace20"></div>
+              <div class="userActivity">
+                  <div class="userActivityLine">
+                      <span class="btnActivity"><strong>+</strong> 457</span>
+                      johnmcclean_44
+                  </div>
+                  <p>Today, many people rely on computers to do homework, work, and create or store useful information. Therefore, it is important for the information</p>
+              </div>
+          </div>
+      </div>
+      <ul class="entityList inTag tagNewest stationList">
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="Thousands Now Adware Removal Who Never Thought They Could" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      Thousands Now Adware Removal Who Never Thought They Could
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="Pos Hardware More Options In Less Space" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      Pos Hardware More Options In Less Space
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="V7 Digital Photo Printing" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      V7 Digital Photo Printing
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="The Skinny On Lcd Monitors" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      The Skinny On Lcd Monitors
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="Fta Keys" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      Fta Keys
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="Compatible Inkjet Cartridge" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      Compatible Inkjet Cartridge
+                  </a>
+              </div>
+          </li>
+          <li class="entityRow">
+              <div class="entityCell thumbnailCell">
+                  <a href="#" class="thumbnail large">
+                      <img src="images/thumb-nail-136x85.jpg" alt="Download Anything Now A Days" />
+                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                  </a>
+              </div>
+              <div class="entityCell cellSpace24">&nbsp;</div>
+              <div class="entityCell">
+                  <a href="#" class="descText">
+                      <span class="time">10 seconds ago</span>
+                      Pos Hardware More Options In Less Space
+                  </a>
+              </div>
+          </li>
+      </ul>
+  </section>
+</div>

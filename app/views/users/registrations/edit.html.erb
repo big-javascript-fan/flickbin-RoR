@@ -6,7 +6,7 @@
 
 <div class="wrapper">
   <div class="offCanvasMask"></div>
-  <aside class="leftPanel">
+  <aside class="leftPanel scroll">
       <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
         <span class="offCanvasBar">&nbsp;</span>
         <span class="offCanvasBar">&nbsp;</span>
@@ -30,7 +30,7 @@
       <%= render 'partials/trending_tags_bar' %>
   </aside>
 
-  <section class="contentPanel">
+  <section class="contentPanel scroll">
     <div class="redTopBox redBoxInProfile">
       <div class="clearfix topBtnBottomGap hideOnMobile">
         <ul class="afterLoginBtns reverseThemeHoler">
@@ -90,7 +90,7 @@
       </div>
     </div>
 
-    <ul class="entityList inTag tagNewest stationList">
+    <ul class="entityList inTag tagNewest stationList video-feed" channel_slug="<%= current_user.slug %>">
       <% @user_videos.each do |video| %>
         <li class="entityRow" slug="<%= video.slug %>">
           <div class="entityCell thumbnailCell">
@@ -107,11 +107,11 @@
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>
             <div class="removerBar" id="<%= video.id %>">
-              <span class="removerBarTrack">Are you sure?&nbsp;&nbsp;&nbsp;
+              <span class="removerBarTrack">Are you sure?
                 <%= link_to 'Yes', video_path(video), method: :delete, remote: true %>
                 <a href="#" class="rejectDestroyVideo">No</a>
               </span>
-              <a href="#" onclick='utilities.toggler(`#${"<%= video.id %>"}`, "removerBarActivated", this)' class="removeIcon">&times;</a>
+              <a href="#" class="removeIcon">&times;</a>
             </div>
           </div>
         </li>

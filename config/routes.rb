@@ -15,6 +15,12 @@ Rails.application.routes.draw do
           get 'videos', action: :index
         end
       end
+
+      namespace :users do
+        scope module: :videos do
+          get '/:channel_slug/videos', action: :index
+        end
+      end
     end
   end
 

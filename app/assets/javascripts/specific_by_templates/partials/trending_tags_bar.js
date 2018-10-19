@@ -5,8 +5,14 @@ $(function() {
     var loading = false;
     var lastPageNumber = 1;
 
-    $('.leftPanel').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.tag-feed').height() - $(this).scrollTop()) < $(window).height() - 200;
+    $('.leftPanel, .leftTagsOuter').scroll(function(e) {
+      var scrollReachedEndOfDocument;
+
+      if($(this).hasClass('leftPanel')) {
+        scrollReachedEndOfDocument = ($('.tag-feed').height() - $(this).scrollTop()) < $(window).height() - 200;
+      } else if($(this).hasClass('leftTagsOuter')) {
+        scrollReachedEndOfDocument = ($('.tag-feed').height() - $(this).scrollTop()) < $(window).height() - 50;
+      }
 
       if(loading) {
         return false;

@@ -35,7 +35,7 @@ $(function() {
     var channelSlug = $('ul.stationList').attr('channel_slug');
 
     $('.contentPanel').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 400;
+      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 300;
 
       if(loading) {
         return false;

@@ -73,6 +73,16 @@
 
 .hidden { display: none !important; }
 
+.leftTagsOuter.scroll{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.station.scroll{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 @media(min-width: 768px){
   .scroll {
     overflow-y: scroll;
@@ -86,3 +96,5 @@
     margin-left: -16px;
   }
 }
+
+

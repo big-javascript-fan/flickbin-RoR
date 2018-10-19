@@ -1,6 +1,7 @@
 $(function() {
   removeIconHandler();
   infiniteScrollForVideos();
+  avatarHandler();
 
   $('#user_channel_description').on('keyup', function(e) {
     var maxDescriptionLentgh = 160;
@@ -34,7 +35,7 @@ $(function() {
     var channelSlug = $('ul.stationList').attr('channel_slug');
 
     $('.contentPanel').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 500;
+      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 400;
 
       if(loading) {
         return false;
@@ -82,5 +83,34 @@ $(function() {
         });
       }
     });
+  }
+
+  function avatarHandler() {
+    $('#user_avatar').on('change', function() {
+      var preview = $('img.avatar')[0];
+      var file    = this.files[0];
+      var reader  = new FileReader();
+      var formData = new FormData();
+      formData.append('user[avatar]', $('#user_avatar')[0].files[0])
+
+      $.ajax({
+        url: '/api/v1/users/avatars',
+        type: 'PUT',
+        data: formData,
+        dataType: 'json',
+        contentType: false,
+        processData: false
+      });
+
+      reader.onloadend = function () {
+        preview.src = reader.result;
+      }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      } else {
+        preview.src = "";
+      }
+    })
   }
 });

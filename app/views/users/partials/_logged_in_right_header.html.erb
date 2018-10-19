@@ -1,10 +1,10 @@
-<ul class="afterLoginBtns">
+<ul class="afterLoginBtns reverseThemeHoler">
   <li><%= link_to '+', videos_new_path, class: "addCircle" %></li>
   <li class="profileDropdownHolder">
     <div class='profileDropdown'>
-      <%= image_tag(current_user.avatar.url || '/images/avatar_placeholder.jpg', alt: "User Name") %>
+      <%= image_tag(current_user.avatar.url || '/images/avatar_holder.jpg', alt: "User Name") %>
     </div>
-    <div class="jq-dropdown push-left jq-dropdown-tip jq-dropdown-anchor-right">
+    <div class="jq-dropdown reverseTheme push-left jq-dropdown-tip jq-dropdown-anchor-right">
       <div class="jq-dropdown-panel">
         <ul class="dropdown-menu">
           <li>

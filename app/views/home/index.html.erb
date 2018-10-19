@@ -24,7 +24,7 @@
     <%= link_to "Birdy", root_path, class: "brand" %>
     <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <%= render 'partials/logged_in_right_header' %>
+        <%= render 'home/partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
@@ -38,7 +38,7 @@
   <section class="contentPanel scroll">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
-        <%= render 'partials/logged_in_right_header' %>
+        <%= render 'home/partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnMobile">
@@ -50,8 +50,8 @@
       <% if @top_1_tag.present? %>
         <div id="<%= @top_1_tag.id %>" class="colHalf colTitle clearfix mobileColBottom top_1_tag">
           <div class="clearfix bottom-margin-15">
-              <span class="sideTitle"><%= @top_1_tag.title %></span>
-              <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
+            <span class="sideTitle"><%= @top_1_tag.title %></span>
+            <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
           </div>
 
           <ul class="entityList">

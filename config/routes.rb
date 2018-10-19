@@ -17,8 +17,12 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
+        scope module: :avatars do
+          put 'avatars', action: :update
+        end
+
         scope module: :videos do
-          get '/:channel_slug/videos', action: :index
+          get ':channel_slug/videos', action: :index
         end
       end
     end

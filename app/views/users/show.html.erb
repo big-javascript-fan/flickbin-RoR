@@ -14,150 +14,86 @@
     </button>
 
     <%= link_to "Birdy", root_path, class: "brand" %>
+
+    <!-- show button in mobile -->
     <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <%= render 'partials/logged_in_right_header' %>
+        <%= render 'users/partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
+    <!-- end mobile btn -->
 
     <%= render 'partials/trending_tags_bar' %>
   </aside>
 
-  <section class="contentPanel">
-      <div class="redTopBox">
-          <div class="clearfix bottom-margin-10 hideOnMobile">
-              <div class="clearfix btnGroup btnReverseTheme btnGroupTopSpace">
-                  <a href="signup.html" class="btn">Sign Up</a>
-                  <a href="login.html" class="btn noBg">Log in</a>
-              </div>
+  <section class="contentPanel scroll">
+    <div class="redTopBox">
+      <!-- show button in desktop -->
+      <div class="clearfix bottom-margin-10 hideOnMobile">
+        <% if current_user.present? %>
+          <%= render 'users/partials/logged_in_right_header' %>
+        <% else %>
+          <div class="clearfix btnGroup btnReverseTheme btnGroupTopSpace">
+            <%= render 'partials/right_header' %>
           </div>
-          <div class="redBoxInsideContent">
-              <div class="userThumbnail">
-                  <a href="#" class="userThumbnailHolder">
-                      <img src="images/user-thumbnil-128x128.png" alt="User Name" />
-                      <span class="hoverCamera"><i class="fas fa-camera"></i></span>
-                  </a>
-              </div>
-              <div class="cellSpace20"></div>
-              <div class="userActivity">
-                  <div class="userActivityLine">
-                      <span class="btnActivity"><strong>+</strong> 457</span>
-                      johnmcclean_44
-                  </div>
-                  <p>Today, many people rely on computers to do homework, work, and create or store useful information. Therefore, it is important for the information</p>
-              </div>
-          </div>
+        <% end %>
       </div>
-      <ul class="entityList inTag tagNewest stationList">
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="Thousands Now Adware Removal Who Never Thought They Could" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      Thousands Now Adware Removal Who Never Thought They Could
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="Pos Hardware More Options In Less Space" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      Pos Hardware More Options In Less Space
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="V7 Digital Photo Printing" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      V7 Digital Photo Printing
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="The Skinny On Lcd Monitors" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      The Skinny On Lcd Monitors
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="Fta Keys" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      Fta Keys
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="Compatible Inkjet Cartridge" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      Compatible Inkjet Cartridge
-                  </a>
-              </div>
-          </li>
-          <li class="entityRow">
-              <div class="entityCell thumbnailCell">
-                  <a href="#" class="thumbnail large">
-                      <img src="images/thumb-nail-136x85.jpg" alt="Download Anything Now A Days" />
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
-                  </a>
-              </div>
-              <div class="entityCell cellSpace24">&nbsp;</div>
-              <div class="entityCell">
-                  <a href="#" class="descText">
-                      <span class="time">10 seconds ago</span>
-                      Pos Hardware More Options In Less Space
-                  </a>
-              </div>
-          </li>
-      </ul>
+      <!-- end desktop btn -->
+
+      <div class="redBoxInsideContent">
+        <div class="userThumbnail">
+          <div class="userThumbnailHolder">
+            <%= label_tag :user_avatar do %>
+              <%= image_tag(@user.avatar.thumb_128x128.url || '/images/avatar_holder_large.jpg', alt: "User Name", class: "userThumbnailHolder avatar") %>
+              <% if current_user.present? && current_user.id == @user.id %>
+                <%= file_field_tag :user_avatar, class: 'hidden' %>
+                <span class="hoverCamera"><i class="fas fa-camera"></i></span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="cellSpace20"></div>
+        <div class="userActivity">
+          <div class="userActivityLine">
+            <span class="btnActivity">
+              <% if @user.rank.negative? %>
+                <strong>-</strong>
+              <% elsif @user.rank.positive? %>
+                <strong>+</strong>
+              <% end %>
+              <%= @user.rank.abs %>
+            </span>
+            <%= @user.channel_name %>
+          </div>
+          <p><%= @user.channel_description %></p>
+        </div>
+      </div>
+    </div>
+    <ul class="entityList inTag tagNewest stationList video-feed" channel_slug="<%= @user.slug %>">
+      <% @user_videos.each do |video| %>
+        <li class="entityRow">
+          <div class="entityCell thumbnailCell">
+            <%= link_to video_path(video), class: "thumbnail large" do %>
+              <%= image_tag(video.cover.url, alt: video.title, class: "thumbnail large") %>
+              <span class="playerIcon"><i class="fas fa-play"></i></span>
+            <% end %>
+          </div>
+          <div class="entityCell cellSpace24">&nbsp;</div>
+          <div class="entityCell">
+            <span class="postTime">
+              <%= "#{time_ago_in_words(video.created_at)} in "%>
+              <%= link_to video.tag.title, tag_path(video.tag) %>
+            </span>
+            <%= link_to video.title, video_path(video), class: "descText" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </section>
 </div>
+
+<%= javascript_include_tag('specific_by_templates/station') %>

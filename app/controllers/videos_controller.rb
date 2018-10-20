@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def new
     @video = current_user.videos.build
@@ -23,6 +23,8 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.friendly.find(params[:video_slug])
+    @user = @video.user
+    @tag = @video.tag
   end
 
   def destroy

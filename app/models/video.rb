@@ -13,7 +13,7 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates_uniqueness_of :url, scope: :tag_id
 
-  before_validation :upload_video_cover, if: :will_save_change_to_url?
+  before_validation :upload_data_from_youtube_api, if: :will_save_change_to_url?
   after_create :set_init_rank
 
   scope :active, -> { where(removed: false) }
@@ -27,12 +27,13 @@ class Video < ApplicationRecord
     text.to_slug.transliterate.normalize.to_s
   end
 
-  def upload_video_cover
+  def upload_data_from_youtube_api
     youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1]
     return errors.add(:invalid_url, 'Video url invalid') if youtube_video_id.blank?
 
     youtube_video = Yt::Video.new id: youtube_video_id
     self.title = youtube_video.title
+    self.youtube_id = youtube_video_id
     self.remote_cover_url = youtube_video.thumbnail_url
   rescue => e
     errors.add(:invalid_url, 'Video url invalid')

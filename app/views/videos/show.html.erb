@@ -31,11 +31,11 @@
         </div>
 
         <% if current_user.present? %>
-          <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
+          <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">
             <%= render 'partials/logged_in_right_header' %>
           </div>
         <% else %>
-          <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
+          <div class="clearfix btnGroup btnReverseTheme fRight hideOnMobile">
             <%= render 'partials/right_header' %>
           </div>
         <% end %>

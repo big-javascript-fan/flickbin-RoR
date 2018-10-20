@@ -1,8 +1,7 @@
 $(function() {
-  filter = {};
   newUrl = '';
+  filter = filterBuilder();
 
-  filterBuilder();
   searchFieldHandler();
   alphabetHandler();
   infiniteScrollForTags();
@@ -64,11 +63,14 @@ $(function() {
   }
 
   function filterBuilder() {
+    var filter = {};
     var first_char = window.location.search.match('first_char=([^&#]*)');
     var query = window.location.search.match('query=([^&#]*)');
 
     if(first_char != null) filter.first_char = first_char[1];
     if(query != null) filter.query = query[1];
+
+    return filter;
   }
 
   function infiniteScrollForTags() {
@@ -90,40 +92,40 @@ $(function() {
 
       function loadNextBatchOfTags() {
         $.get(groupedTagsUrl, { page: nextPageNumber + 1 }).then(function(response) {
-          var tagsContent = '';
-
           if($.isEmptyObject(response)) {
             lastPageReached = true;
           } else {
             $.each(response, function(char, tags) {
+              var charTagsContent = '';
+
               if(lastAlphabetTitle == char) {
                 $.each(tags, function(index, tag) {
-                  tagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                  charTagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
                 });
 
-                tagsContent += `
+                charTagsContent += `
                     </div>
                   </div>
                 `
 
-                $('.charTags').last().append(tagsContent);
+                $('.charTags').last().append(charTagsContent);
               } else {
-                tagsContent += `
+                charTagsContent += `
                   <div class="tagGroup clearfix">
                     <h2 class="tagGroupTitle">${char}</h2>
                     <div class="clearfix">
                 `
                 $.each(tags, function(index, tag) {
-                  tagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                  charTagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
                 });
 
-                tagsContent += `
+                charTagsContent += `
                     </div>
                   </div>
                 `
 
                 lastAlphabetTitle = char;
-                $('.tags-feed').last().append(tagsContent);
+                $('.tags-feed').append(charTagsContent);
               }
             });
 

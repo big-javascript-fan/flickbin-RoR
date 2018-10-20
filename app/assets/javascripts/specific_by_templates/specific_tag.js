@@ -1,6 +1,6 @@
 $(function() {
-  var tagSlug = $('.titleSpecific').attr('slug');
-  var sortBy;
+  tagSlug = $('.titleSpecific').attr('slug');
+  sortBy = '';
 
   sortingHandler();
   infiniteScrollForVideos();

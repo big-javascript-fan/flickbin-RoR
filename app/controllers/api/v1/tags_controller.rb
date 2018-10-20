@@ -17,11 +17,15 @@ class Api::V1::TagsController < Api::V1::BaseController
   def show
     tag = Tag.friendly.find(params[:tag_slug])
 
-    if params[:sort_by] == 'newest'
-      tag_videos = Video.where(tag_id: tag.id).order(created_at: :desc)
-    else
-      tag_videos = Video.where(tag_id: tag.id).order(rank: :asc)
-    end
+    tag_videos =
+      case params[:sort_by]
+      when 'newest'
+        Video.where(tag_id: tag.id).order(created_at: :desc)
+      when 'top_charts'
+        Video.where(tag_id: tag.id).order(rank: :asc)
+      else
+        Video.where(tag_id: tag.id).order(rank: :asc)
+      end
 
     tag_videos = tag_videos.page(params[:page]).per(10)
     render json: Api::V1::Tags::Videos::IndexSerializer.new(tag_videos).call

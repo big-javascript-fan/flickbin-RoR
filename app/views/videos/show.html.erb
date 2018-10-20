@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="offCanvasMask"></div>
-  <aside class="leftPanel">
+  <aside class="leftPanel scroll">
     <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
       <span class="offCanvasBar">&nbsp;</span>
       <span class="offCanvasBar">&nbsp;</span>
@@ -21,13 +21,19 @@
     <%= render 'partials/trending_tags_bar' %>
   </aside>
 
-  <section class="contentPanel">
+  <section class="contentPanel comments scroll">
     <section class="videoTop">
       <div class="clearfix bottom-margin-15">
-        <div class="upDownOptions clearfix">
-          <span class="counterOption" onclick="utilities.counterIncrement()"><i class="fas fa-caret-up"></i></span>
-          <span class="counterNumber counterValueHolder">456</span>
-          <span class="counterOption" onclick="utilities.counterDecrement()"><i class="fas fa-caret-down"></i></span>
+        <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
+          <% if current_user.present? %>
+            <span class="counterOption upVote" voted="<% @vate&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
+            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
+            <span class="counterOption downVote" voted="<% @vate&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
+          <% else %>
+            <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
+            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
+            <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
+          <% end %>
         </div>
 
         <% if current_user.present? %>
@@ -56,7 +62,7 @@
       <span>
         <a href="#">#<%= @video.rank %></a> in <%= link_to @tag.title, tag_path(@tag) %>
       </span>
-      <span>submitted by <%= link_to @user.channel_name, station_path(@user) %></span>
+      <span>submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
     </div>
 
     <div class="commentSection">
@@ -67,7 +73,7 @@
 
       <!-- For reply option -->
       <div class="commentEntity">
-        <a href="#" class="commentorThumb"><img src="images/commentor-thumb.png" alt="Allen Frank" /></a>
+        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
         <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
         <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
           Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
@@ -77,13 +83,13 @@
 
       <!-- For comment reply type -->
       <div class="commentEntity">
-        <a href="#" class="commentorThumb"><img src="images/commentor-thumb.png" alt="Allen Frank" /></a>
+        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
         <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
         <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
           Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
 
           <div class="nestedComment">
-            <a href="#" class="commentorThumb asCommentor commentTypin"><img src="images/profile.png" alt="Allen Frank" /></a>
+            <a href="#" class="commentorThumb asCommentor commentTypin"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
             <div class="labelFields noBottomMargin">
               <input type="text" class="block noInsideLabel asCommentField" value="johnny@cash.com" placeholder="Enter comment" />
               <button class="commentSendIcon"><i class="fas fa-paper-plane"></i></button>
@@ -93,14 +99,14 @@
 
       <!-- For nested comment -->
       <div class="commentEntity hasNestedComment">
-        <a href="#" class="commentorThumb"><img src="images/commentor-thumb.png" alt="Allen Frank" /></a>
+        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
         <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
         <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
           Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
       </div>
       <div class="commentEntity">
         <div class="nestedComment nestedCommented">
-          <a href="#" class="commentorThumb asCommentor"><img src="images/profile.png" alt="Allen Frank" /></a>
+          <a href="#" class="commentorThumb asCommentor"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
           <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
           <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
         </div>
@@ -108,3 +114,5 @@
     </div>
   </section>
 </div>
+
+<%= javascript_include_tag('specific_by_templates/specific_video') %>

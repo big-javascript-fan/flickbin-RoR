@@ -23,8 +23,12 @@ class VideosController < ApplicationController
 
   def show
     @video = Video.friendly.find(params[:video_slug])
-    @user = @video.user
+    @video_owner = @video.user
     @tag = @video.tag
+
+    if current_user.present?
+      @vote = Vote.find_by(voter_id: current_user.id, user_id: @video_owner.id)
+    end
   end
 
   def destroy

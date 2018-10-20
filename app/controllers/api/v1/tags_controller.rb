@@ -1,4 +1,6 @@
 class Api::V1::TagsController < Api::V1::BaseController
+  before_action :authenticate_user!, only: [:create]
+
   def create
     tag = Tag.find_or_initialize_by(title: create_params[:title])
 

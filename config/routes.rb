@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       end
 
       scope module: :tags do
-        get 'tags/:tag_slug', action: :show
+        get  'tags/:tag_slug', action: :show
         get  'tags',          action: :index
         post 'tags',          action: :create
       end
@@ -30,13 +30,18 @@ Rails.application.routes.draw do
       scope module: :grouped_tags do
         get 'grouped_tags', action: :index
       end
+
+      scope module: :votes do
+        post ':channel_slug/votes', action: :create, as: :create_vote
+        put  ':channel_slug/votes', action: :update, as: :update_vote
+      end
     end
   end
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: 'users/sessions',
-    passwords: 'users/passwords',
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
     confirmations: 'users/confirmations'
   }
 

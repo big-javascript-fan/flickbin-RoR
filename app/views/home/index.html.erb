@@ -24,7 +24,7 @@
     <%= link_to "Birdy", root_path, class: "brand" %>
     <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <%= render 'home/partials/logged_in_right_header' %>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
@@ -38,7 +38,7 @@
   <section class="contentPanel scroll">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
-        <%= render 'home/partials/logged_in_right_header' %>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnMobile">

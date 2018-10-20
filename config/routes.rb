@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      scope module: :tags do
-        get 'tags/:tag_slug', action: :show
-        get  'tags',          action: :index
-        post 'tags',          action: :create
-      end
-
       namespace :home do
         scope module: :tags do
           get 'tags', action: :index
@@ -25,6 +19,16 @@ Rails.application.routes.draw do
         scope module: :videos do
           get ':channel_slug/videos', action: :index
         end
+      end
+
+      scope module: :tags do
+        get 'tags/:tag_slug', action: :show
+        get  'tags',          action: :index
+        post 'tags',          action: :create
+      end
+
+      scope module: :grouped_tags do
+        get 'grouped_tags', action: :index
       end
     end
   end

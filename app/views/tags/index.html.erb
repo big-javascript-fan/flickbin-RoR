@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel">
+    <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+    </button>
+
+    <%= link_to "Birdy", root_path, class: "brand" %>
+    <% if current_user.present? %>
+      <div class="clearfix hideOnDesktop mobileBtnPosition">
+        <%= render 'partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+
+  <section class="contentPanel allTags scroll">
+    <% if current_user.present? %>
+      <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
+        <%= render 'partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="clearfix btnGroup btnGroupTagBrws hideOnMobile">
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+
+    <div class="searchBar clearfix">
+      <span class="labelTitle">browse tags</span>
+      <div class="searchOuter">
+        <a href="#" class="searchIcon"><i class="fas fa-search"></i></a>
+        <%= text_field_tag :search_query, nil, value: params[:search_query], class: 'searchField' %>
+      </div>
+    </div>
+
+    <div class="tagNavBar">
+      <span class="labelTitle">all tags</span>
+      <ul class="tagNavLinks">
+        <% ('a'..'z').to_a.each do |char| %>
+          <li><%= link_to char, tags_path(first_char: char), remote: true, class: 'alphabet' %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="badgesHolder clearfix tags-feed">
+      <%= render 'tags/partials/tags_feed' %>
+    </div>
+  </section>
+</div>
+
+<%= javascript_include_tag('specific_by_templates/all_tags') %>

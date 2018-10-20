@@ -3,14 +3,15 @@ $(function() {
 
   function infiniteScrollForVideos() {
     var loading = false;
-    var lastPageNumber = 1;
+    var lastPageReached = false;
+    var nextPageNumber = 1;
     var top1TagId = $('.top_1_tag').attr('id');
     var top2TagId = $('.top_2_tag').attr('id');
 
     $('.contentPanel').scroll(function(e) {
       var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
 
-      if(loading) {
+      if(loading || lastPageReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
         loading = true;
@@ -19,7 +20,7 @@ $(function() {
 
       function loadNextBatchOfVideos() {
         $.get('/api/v1/home/videos', {
-          page: lastPageNumber + 1,
+          page: nextPageNumber + 1,
           top_1_tag_id: top1TagId,
           top_2_tag_id: top2TagId
         }).then(function(response) {
@@ -71,7 +72,11 @@ $(function() {
           }
 
           loading = false;
-          lastPageNumber += 1;
+          nextPageNumber += 1;
+
+          if(videosTop1Tag.length == 0 && videosTop2Tag.length == 0) {
+            lastPageReached = true;
+          }
         })
       }
     });

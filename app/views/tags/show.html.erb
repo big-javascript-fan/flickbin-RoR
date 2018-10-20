@@ -10,7 +10,7 @@
     <%= link_to "Birdy", root_path, class: "brand" %>
     <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <%= render 'home/partials/logged_in_right_header' %>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup hideOnDesktop mobileBtnPosition">
@@ -21,10 +21,10 @@
     <%= render 'partials/trending_tags_bar' %>
   </aside>
 
-  <section class="contentPanel leftSpace36 scroll">
+  <section class="contentPanel leftSpace36 tag scroll">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
-        <%= render 'home/partials/logged_in_right_header' %>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
@@ -38,13 +38,8 @@
 
         <ul class="pillNav clearfix">
           <li>sort by</li>
-          <% if params[:sort_by] == 'newest' %>
-            <li><%= link_to 'top charts', tag_path(@tag), class: "filter", remote: true %></li>
-            <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), class: "filter current", remote: true %></li>
-          <% else %>
-            <li><%= link_to 'top charts', tag_path(@tag), class: "filter current", remote: true %></li>
-            <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), class: "filter", remote: true %></li>
-          <% end %>
+          <li><%= link_to 'top charts', tag_path(@tag, sort_by: :top_charts), filter: 'top_charts', class: "top_charts filter", remote: true %></li>
+          <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), filter: 'newest', class: "filter", remote: true %></li>
         </ul>
       </div>
       <ul class="entityList inTag specificTagList tagListHasNumber video-feed">

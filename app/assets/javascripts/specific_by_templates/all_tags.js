@@ -1,45 +1,52 @@
 $(function() {
-  var tagSlug = $('.titleSpecific').attr('slug');
-  var sortBy;
+  var filter = {};
 
-  sortingHandler();
-  infiniteScrollForVideos();
+  searchFieldHandler();
+  alphabetHandler();
+  // infiniteScrollForTags();
 
-  function sortingHandler() {
-    sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
-    $(`a.filter[filter=${sortBy}]`).addClass('current');
+  function searchFieldHandler() {
+    $('a.searchIcon').on('click', function(e) {
+      e.preventDefault();
+      var parentDiv = $(this).closest( "div.searchOuter");
 
-    $('.filter').on('click', function() {
-      sortBy = $(this).attr('filter');
-      $('.filter').removeClass('current');
-      $(this).addClass('current');
-
-      var newUrl = `${window.location.origin}/tags/${tagSlug}?sort_by=${sortBy}`;
-      window.history.pushState({path: newUrl}, '', newUrl);
-
-      infiniteScrollForVideos();
+      if(parentDiv.hasClass('searchActivated')) {
+        parentDiv.removeClass('searchActivated');
+      } else {
+        parentDiv.addClass('searchActivated');
+      }
     });
   }
 
-  function infiniteScrollForVideos() {
+  function alphabetHandler() {
+    $('a.alphabet').on('click', function(e) {
+      filter.first_char = $(this).text();
+      var newUrl = `${window.location.origin}/tags?first_char=${$(this).text()}`;
+      window.history.pushState({path: newUrl}, '', newUrl);
+    });
+  }
+
+  function infiniteScrollForTags() {
     var loading = false;
     var lastPageReached = false;
     var nextPageNumber = 1;
+    var filter = $('a.filter.current').text();
 
-    $('.contentPanel').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
-
+    $('.contentPanel.allTags').scroll(function(e) {
+      // var scrollReachedEndOfDocument = ($('.tags-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
+var scrollReachedEndOfDocument  = true
       if(loading || lastPageReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
         loading = true;
-        loadNextBatchOfVideos();
+        loadNextBatchOfTags();
       }
 
-      function loadNextBatchOfVideos() {
-        $.get(`/api/v1/tags/${tagSlug}`, {
+      function loadNextBatchOfTags() {
+        $.get('/api/v1/grouped_tags', {
           page: nextPageNumber + 1,
-          sort_by: sortBy
+          first_char: filter,
+          query: query
         }).then(function(response) {
           var videosContent = '';
 
@@ -54,7 +61,7 @@ $(function() {
                     </a>
                   </div>
               `
-              if(sortBy == 'newest') {
+              if(filter == 'newest') {
                 videosContent += `
                   <div class="entityCell serialText">&nbsp;</div>
                   <div class="entityCell">

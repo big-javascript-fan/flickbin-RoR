@@ -3,7 +3,7 @@ $(function() {
 
   function infiniteScrollForTags() {
     var loading = false;
-    var lastPageNumber = 1;
+    var nextPageNumber = 1;
 
     $('.leftPanel, .leftTagsOuter').scroll(function(e) {
       var scrollReachedEndOfDocument;
@@ -23,7 +23,7 @@ $(function() {
     });
 
     function loadNextBatchOfTags() {
-      $.get('/api/v1/home/tags', { page: lastPageNumber + 1}).then(function(response) {
+      $.get('/api/v1/home/tags', { page: nextPageNumber + 1}).then(function(response) {
         var tagContent = '';
 
         if(response.length > 0) {
@@ -39,7 +39,7 @@ $(function() {
         }
 
         loading = false;
-        lastPageNumber += 1;
+        nextPageNumber += 1;
       })
     }
   }

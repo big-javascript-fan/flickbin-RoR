@@ -31,13 +31,14 @@ $(function() {
 
   function infiniteScrollForVideos() {
     var loading = false;
-    var lastPageNumber = 1;
+    var lastPageReached = false;
+    var nextPageNumber = 1;
     var channelSlug = $('ul.stationList').attr('channel_slug');
 
     $('.contentPanel').scroll(function(e) {
       var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 300;
 
-      if(loading) {
+      if(loading || lastPageReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
         loading = true;
@@ -45,7 +46,7 @@ $(function() {
       }
 
       function loadNextBatchOfVideos() {
-        $.get(`/api/v1/users/${channelSlug}/videos`, { page: lastPageNumber + 1}).then(function(response) {
+        $.get(`/api/v1/users/${channelSlug}/videos`, { page: nextPageNumber + 1}).then(function(response) {
           var videosContent = '';
 
           if(response.length > 0) {
@@ -79,8 +80,10 @@ $(function() {
 
             $('ul.stationList').append(videosContent);
             loading = false;
-            lastPageNumber += 1;
+            nextPageNumber += 1;
             removeIconHandler();
+          } else {
+            lastPageReached = true;
           }
         });
       }

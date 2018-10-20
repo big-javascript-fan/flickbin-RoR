@@ -35,9 +35,17 @@ $(function() {
 
   function alphabetHandler() {
     $('a.alphabet').on('click', function(e) {
+      e.preventDefault();
+
       filter.first_char = $(this).text();
       newUrlBuilder();
-      infiniteScrollForTags();
+
+      $.get({
+        url: newUrl,
+        dataType: 'script'
+      }).then(function(response) {
+        infiniteScrollForTags();
+      });
     });
   }
 

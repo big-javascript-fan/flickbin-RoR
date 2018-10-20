@@ -2,14 +2,21 @@ $(function() {
   filter = {};
   newUrl = '';
 
+  filterBuilder();
   searchFieldHandler();
   alphabetHandler();
   infiniteScrollForTags();
 
   function searchFieldHandler() {
+    if($('#search_query').val().length > 0) {
+      $('.searchOuter').addClass('searchActivated');
+    }
+
     $('a.searchIcon').on('click', function(e) {
       e.preventDefault();
-      var parentDiv = $(this).closest( "div.searchOuter");
+      var parentDiv = $(this).closest('.searchOuter');
+
+      $('#search_query').focus();
 
       if(parentDiv.hasClass('searchActivated')) {
         parentDiv.removeClass('searchActivated');
@@ -51,21 +58,17 @@ $(function() {
 
   function newUrlBuilder() {
     newUrl = `${window.location.origin}/tags`;
-
-    if(!$.isEmptyObject(filter)) {
-      var firstParametr = true;
-
-      $.each(filter, function(key, value) {
-        if(firstParametr) {
-          newUrl += `?${key}=${value}`;
-          firstParametr = false;
-        } else {
-          newUrl += `&${key}=${value}`;
-        }
-      });
-    }
+    if(!$.isEmptyObject(filter)) newUrl += `?${$.param(filter)}`
 
     window.history.pushState({path: newUrl}, '', newUrl);
+  }
+
+  function filterBuilder() {
+    var first_char = window.location.search.match('first_char=([^&#]*)');
+    var query = window.location.search.match('query=([^&#]*)');
+
+    if(first_char != null) filter.first_char = first_char[1];
+    if(query != null) filter.query = query[1];
   }
 
   function infiniteScrollForTags() {
@@ -75,6 +78,7 @@ $(function() {
     var groupedTagsUrl = `/api/v1/grouped_tags${window.location.search}`;
 
     $('.contentPanel.allTags').scroll(function(e) {
+      var lastAlphabetTitle =  $('.tagGroupTitle').last().text();
       var scrollReachedEndOfDocument = ($('.tags-feed').height() - $(this).scrollTop()) < $(window).height() - 100;
 
       if(loading || lastPageReached) {
@@ -86,19 +90,45 @@ $(function() {
 
       function loadNextBatchOfTags() {
         $.get(groupedTagsUrl, { page: nextPageNumber + 1 }).then(function(response) {
-          var videosContent = '';
+          var tagsContent = '';
 
-          if(response.length > 0) {
-            $.each(response, function(index, video) {
-              videosContent += `
-              `
+          if($.isEmptyObject(response)) {
+            lastPageReached = true;
+          } else {
+            $.each(response, function(char, tags) {
+              if(lastAlphabetTitle == char) {
+                $.each(tags, function(index, tag) {
+                  tagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                });
+
+                tagsContent += `
+                    </div>
+                  </div>
+                `
+
+                $('.charTags').last().append(tagsContent);
+              } else {
+                tagsContent += `
+                  <div class="tagGroup clearfix">
+                    <h2 class="tagGroupTitle">${char}</h2>
+                    <div class="clearfix">
+                `
+                $.each(tags, function(index, tag) {
+                  tagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                });
+
+                tagsContent += `
+                    </div>
+                  </div>
+                `
+
+                lastAlphabetTitle = char;
+                $('.tags-feed').last().append(tagsContent);
+              }
             });
 
-            $('ul.tags-feed').append(videosContent);
             loading = false;
             nextPageNumber += 1;
-          } else {
-            lastPageReached = true;
           }
         });
       }

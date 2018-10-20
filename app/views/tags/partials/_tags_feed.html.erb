@@ -1,7 +1,7 @@
 <% @grouped_tags.each do |char, tags| %>
   <div class="tagGroup clearfix">
     <h2 class="tagGroupTitle"><%= char %></h2>
-    <div class="clearfix">
+    <div class="clearfix charTags">
       <% tags.each do |tag| %>
         <%= link_to tag.title, tag_path(tag), class: "tagsBadge" %>
       <% end %>

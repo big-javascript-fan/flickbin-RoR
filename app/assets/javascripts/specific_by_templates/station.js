@@ -49,7 +49,9 @@ $(function() {
         $.get(`/api/v1/users/${channelSlug}/videos`, { page: nextPageNumber + 1}).then(function(response) {
           var videosContent = '';
 
-          if(response.length > 0) {
+          if($.isEmptyObject(response)) {
+            lastPageReached = true;
+          } else {
             $.each(response, function(index, video) {
               videosContent += `
                 <li class="entityRow" slug="${video.slug}">
@@ -82,8 +84,6 @@ $(function() {
             loading = false;
             nextPageNumber += 1;
             removeIconHandler();
-          } else {
-            lastPageReached = true;
           }
         });
       }

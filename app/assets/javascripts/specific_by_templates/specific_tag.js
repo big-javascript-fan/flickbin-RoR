@@ -43,7 +43,9 @@ $(function() {
         }).then(function(response) {
           var videosContent = '';
 
-          if(response.length > 0) {
+          if($.isEmptyObject(response)) {
+            lastPageReached = true;
+          } else {
             $.each(response, function(index, video) {
               videosContent += `
                 <li class="entityRow">
@@ -78,8 +80,6 @@ $(function() {
             $('ul.video-feed').append(videosContent);
             loading = false;
             nextPageNumber += 1;
-          } else {
-            lastPageReached = true;
           }
         });
       }

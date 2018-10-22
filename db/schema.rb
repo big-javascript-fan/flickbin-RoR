@@ -99,12 +99,12 @@ ActiveRecord::Schema.define(version: 20181022100543) do
 
   create_table "votes", force: :cascade do |t|
     t.integer "value"
-    t.integer "user_id"
+    t.integer "video_id"
     t.integer "voter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_votes_on_user_id"
-    t.index ["voter_id", "user_id"], name: "index_votes_on_voter_id_and_user_id", unique: true
+    t.index ["video_id", "voter_id"], name: "index_votes_on_video_id_and_voter_id", unique: true
+    t.index ["video_id"], name: "index_votes_on_video_id"
   end
 
 end

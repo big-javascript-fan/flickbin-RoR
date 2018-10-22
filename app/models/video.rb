@@ -8,6 +8,7 @@ class Video < ApplicationRecord
 
   belongs_to :user
   belongs_to :tag
+  has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :url, presence: true, format: { with: AppConstants::YOUTUBE_URL_REGEXP }

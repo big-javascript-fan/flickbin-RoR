@@ -32,8 +32,13 @@ Rails.application.routes.draw do
       end
 
       scope module: :votes do
-        post ':channel_slug/votes', action: :create, as: :create_vote
-        put  ':channel_slug/votes', action: :update, as: :update_vote
+        post ':video_slug/votes', action: :create, as: :create_vote
+        put  ':video_slug/votes', action: :update, as: :update_vote
+      end
+
+      scope module: :comments do
+        get  ':video_slug/comments', action: :index
+        post ':video_slug/comments', action: :create, as: :create_comment
       end
     end
   end

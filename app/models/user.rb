@@ -9,8 +9,7 @@ class User < ApplicationRecord
 
   has_many :videos, dependent: :destroy
   has_many :tags, through: :videos
-  has_many :votes, dependent: :destroy
-  has_many :given_votes, dependent: :destroy, class_name: 'Vote', foreign_key: :voter_id
+  has_many :votes, dependent: :destroy, class_name: 'Vote', foreign_key: :voter_id
   has_many :voters, through: :votes
   has_many :comments, dependent: :destroy, class_name: 'Comment', foreign_key: :commentator_id
 

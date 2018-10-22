@@ -26,9 +26,9 @@
       <div class="clearfix bottom-margin-15">
         <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
           <% if current_user.present? %>
-            <span class="counterOption upVote" voted="<% @vate&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
+            <span class="counterOption upVote" voted="<% @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
             <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
-            <span class="counterOption downVote" voted="<% @vate&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
+            <span class="counterOption downVote" voted="<% @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
           <% else %>
             <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
             <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
@@ -46,7 +46,7 @@
           </div>
         <% end %>
 
-        <div class="videoTopDesc">
+        <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
           <div class="videoTopDescCell"><%= @video.title %></div>
         </div>
       </div>
@@ -68,50 +68,29 @@
     <div class="commentSection">
       <h4 class="commentTitle">How does this video make you feel?</h4>
       <div class="labelFields vidioFieldOuter">
-        <input type="text" class="block noInsideLabel" value="johnny@cash.com" placeholder="Enter your email" />
+        <%= text_field_tag :message, nil, placeholder: 'Enter your comment', class: "block noInsideLabel" %>
       </div>
 
-      <!-- For reply option -->
-      <div class="commentEntity">
-        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
-        <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
-        <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
-          Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
-
-        <div class="commentReplyOption"><a href="#">Reply</a></div>
-      </div>
-
-      <!-- For comment reply type -->
-      <div class="commentEntity">
-        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
-        <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
-        <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
-          Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
-
-          <div class="nestedComment">
-            <a href="#" class="commentorThumb asCommentor commentTypin"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
-            <div class="labelFields noBottomMargin">
-              <input type="text" class="block noInsideLabel asCommentField" value="johnny@cash.com" placeholder="Enter comment" />
-              <button class="commentSendIcon"><i class="fas fa-paper-plane"></i></button>
+      <div class="comments-feed">
+        <% if @comments.present? %>
+          <% @comments.each do |comment| %>
+            <div class="commentEntity">
+              <%= link_to station_path(comment.commentator), class: 'commentorThumb' do %>
+                <%= image_tag(comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>
+              <% end %>
+              <div class="commentorLine clearfix">
+                <%= link_to comment.commentator.channel_name, station_path(comment.commentator) %>
+                <span>&bull;</span>
+                <small><%= "#{time_ago_in_words(comment.created_at)} ago" %></small>
+              </div>
+              <p><%= comment.message %></p>
+              <div class="commentReplyOption">
+                <a href="#" class="replyComment">Reply</a>
+              </div>
             </div>
-          </div>
+          <% end %>
+        <% end %>
       </div>
-
-      <!-- For nested comment -->
-      <div class="commentEntity hasNestedComment">
-        <a href="#" class="commentorThumb"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
-        <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
-        <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.
-          Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
-      </div>
-      <div class="commentEntity">
-        <div class="nestedComment nestedCommented">
-          <a href="#" class="commentorThumb asCommentor"><img src="/images/avatar_holder.jpg" alt="Allen Frank" /></a>
-          <div class="commentorLine clearfix"><a href="#">Allen Frank</a><span>&bull;</span><small>8 minutes ago</small></div>
-          <p>Photographs are a way of preserving a moment in our lives for the rest of our lives. Many of us have at least been tempted at the flashy array of photo printers which seemingly leap off the shelves at even the least tech-savvy.</p>
-        </div>
-      </div>
-    </div>
   </section>
 </div>
 

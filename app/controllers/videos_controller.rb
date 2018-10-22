@@ -25,9 +25,12 @@ class VideosController < ApplicationController
     @video = Video.friendly.find(params[:video_slug])
     @video_owner = @video.user
     @tag = @video.tag
+    @comments = @video.comments
+                      .includes(:commentator)
+                      .limit(10)
 
     if current_user.present?
-      @vote = Vote.find_by(voter_id: current_user.id, user_id: @video_owner.id)
+      @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id)
     end
   end
 

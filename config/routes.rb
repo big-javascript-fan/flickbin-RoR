@@ -32,8 +32,9 @@ Rails.application.routes.draw do
       end
 
       scope module: :votes do
-        post ':video_slug/votes', action: :create, as: :create_vote
-        put  ':video_slug/votes', action: :update, as: :update_vote
+        post   ':video_slug/votes', action: :create,  as: :create_vote
+        put    ':video_slug/votes', action: :update,  as: :update_vote
+        delete ':video_slug/votes', action: :destroy, as: :destroy_vote
       end
 
       scope module: :comments do

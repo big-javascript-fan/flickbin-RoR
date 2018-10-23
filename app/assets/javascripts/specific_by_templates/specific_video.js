@@ -1,26 +1,51 @@
 $(function() {
   channelSlug = $('.upDownOptions').attr('channelSlug');
   videoSlug = $('.videoTopDesc').attr('videoSlug');
+  votedValue = $('.upDownOptions').attr('voted');
 
   votesHandler();
   commentFieldHandler();
 
   function votesHandler() {
     $('span.counterOption').on('click', function(e) {
-      var voteValue = $(this).hasClass('upVote') ? 1 : -1
+      var newVoteValue = $(this).hasClass('upVote') ? 1 : -1;
 
       if($(this).attr('loginRequired')) {
         window.location = '/users/sign_in'
-      } else if($(this).attr('voted')){
-
+      } else if(votedValue && votedValue == newVoteValue) {
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/v1/${videoSlug}/votes`,
+          data: { value: newVoteValue }
+        }).done(function(response, statusText, xhr) {
+          votedValue = '';
+          $('.counterValueHolder').text(response.new_rank);
+          $('.upDownOptions').removeAttr('voted');
+        }).fail(function(response, statusText, xhr) {
+          console.log(response.responseJSON.messages);
+        });
+      } else if(votedValue && votedValue != newVoteValue) {
+        $.ajax({
+          type: 'PUT',
+          url: `/api/v1/${videoSlug}/votes`,
+          data: { value: newVoteValue }
+        }).done(function(response, statusText, xhr) {
+          votedValue = newVoteValue;
+          $('.counterValueHolder').text(response.new_rank);
+          $('.upDownOptions').attr("voted", votedValue);
+        }).fail(function(response, statusText, xhr) {
+          console.log(response.responseJSON.messages);
+        });
       } else {
         $.post({
           url: `/api/v1/${videoSlug}/votes`,
-          data: { value: voteValue }
+          data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
+          votedValue = newVoteValue;
           $('.counterValueHolder').text(response.new_rank);
+          $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
-          alert(response.responseJSON.messages);
+          console.log(response.responseJSON.messages);
         });
       }
     });
@@ -39,7 +64,7 @@ $(function() {
       if (e.which == 13) {
         var commentContent = '';
 
-        $.post(`/api/v1/${videoSlug}/comments`,{
+        $.post(`/api/v1/${videoSlug}/comments`, {
           message: $(this).val()
         }).then(function(response) {
           var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
@@ -63,7 +88,7 @@ $(function() {
           `
 
           $('.comments-feed').prepend(commentContent);
-          $(this).val('');
+          $('#message').val('');
         });
       }
     });

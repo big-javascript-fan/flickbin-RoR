@@ -18,18 +18,32 @@ class Api::V1::VotesController < Api::V1::BaseController
 
   def update
     video = get_video
+    video_owner = video.user
     new_vote_value = get_vote_value
 
     video_owner.transaction do
       vote = Vote.find_by!(voter_id: current_user.id, video_id: video.id)
-      old_vote_value = vote.value
+      new_rank = video_owner.rank - vote.value + new_vote_value
 
-      if(new_vote_value != old_vote_value)
-        new_rank = video_owner.rank - old_vote_value + new_vote_value
-        video_owner.update(rank: new_rank)
-      else
-        video_owner.update(rank: video_owner.rank - new_vote_value)
-      end
+      vote.update(value: new_vote_value)
+      video_owner.update(rank: new_rank)
+    end
+
+    render json: { new_rank: video_owner.rank }
+  rescue => e
+    render_error(422, 'NotValid', e)
+  end
+
+  def destroy
+    video = get_video
+    video_owner = video.user
+
+    video_owner.transaction do
+      vote = Vote.find_by!(voter_id: current_user.id, video_id: video.id)
+      new_rank = video_owner.rank - vote.value
+
+      vote.destroy
+      video_owner.update(rank: new_rank)
     end
 
     render json: { new_rank: video_owner.rank }

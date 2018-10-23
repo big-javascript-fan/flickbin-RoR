@@ -24,23 +24,23 @@
   <section class="contentPanel comments scroll">
     <section class="videoTop">
       <div class="clearfix bottom-margin-15">
-        <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
-          <% if current_user.present? %>
-            <span class="counterOption upVote" voted="<% @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
-            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
-            <span class="counterOption downVote" voted="<% @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
-          <% else %>
-            <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
-            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
-            <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
-          <% end %>
-        </div>
-
         <% if current_user.present? %>
+          <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
+            <span class="counterOption upVote"><i class="fas fa-caret-up"></i></span>
+            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
+            <span class="counterOption downVote"><i class="fas fa-caret-down"></i></span>
+          </div>
+
           <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">
             <%= render 'partials/logged_in_right_header' %>
           </div>
         <% else %>
+          <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
+            <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
+            <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
+            <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
+          </div>
+
           <div class="clearfix btnGroup btnReverseTheme fRight hideOnMobile">
             <%= render 'partials/right_header' %>
           </div>

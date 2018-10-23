@@ -26,6 +26,7 @@ gem 'rest-client'
 gem 'awesome_print'
 gem 'kaminari'
 gem 'oj'
+gem 'ancestry'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

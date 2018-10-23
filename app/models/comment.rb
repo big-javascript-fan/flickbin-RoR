@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
+  has_ancestry cache_depth: true
+
   belongs_to :video
   belongs_to :commentator, class_name: 'User'
   belongs_to :parent, class_name: 'Comment', optional: true, inverse_of: :parent

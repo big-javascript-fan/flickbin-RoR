@@ -68,26 +68,43 @@
     <div class="commentSection">
       <h4 class="commentTitle">How does this video make you feel?</h4>
       <div class="labelFields vidioFieldOuter">
-        <%= text_field_tag :message, nil, placeholder: 'Enter your comment', class: "block noInsideLabel" %>
+        <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
       </div>
 
       <div class="comments-feed">
         <% if @comments.present? %>
-          <% @comments.each do |comment| %>
-            <div class="commentEntity">
-              <%= link_to station_path(comment.commentator), class: 'commentorThumb' do %>
-                <%= image_tag(comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>
+          <% @comments.each do |parent_comment, child_comments| %>
+            <div class="commentEntity <%='hasNestedComment' if child_comments.present? %>" comment_id="<%= parent_comment.id %>">
+              <%= link_to station_path(parent_comment.commentator), class: 'commentorThumb' do %>
+                <%= image_tag(parent_comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>
               <% end %>
               <div class="commentorLine clearfix">
-                <%= link_to comment.commentator.channel_name, station_path(comment.commentator) %>
+                <%= link_to parent_comment.commentator.channel_name, station_path(parent_comment.commentator) %>
                 <span>&bull;</span>
-                <small><%= "#{time_ago_in_words(comment.created_at)} ago" %></small>
+                <small><%= "#{time_ago_in_words(parent_comment.created_at)} ago" %></small>
               </div>
-              <p><%= comment.message %></p>
+              <p><%= parent_comment.message %></p>
               <div class="commentReplyOption">
                 <a href="#" class="replyComment">Reply</a>
               </div>
             </div>
+            <% if child_comments.present? %>
+              <% child_comments.each do |child_comment, grand_child| %>
+                <div class="commentEntity" comment_id="<%= child_comment.id %>">
+                  <div class="nestedComment nestedCommented">
+                    <%= link_to station_path(child_comment.commentator), class: 'commentorThumb' do %>
+                      <%= image_tag(child_comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>
+                    <% end %>
+                    <div class="commentorLine clearfix">
+                      <%= link_to child_comment.commentator.channel_name, station_path(child_comment.commentator) %>
+                      <span>&bull;</span>
+                      <small><%= "#{time_ago_in_words(child_comment.created_at)} ago" %></small>
+                    </div>
+                    <p><%= child_comment.message %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

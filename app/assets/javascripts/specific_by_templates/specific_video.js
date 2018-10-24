@@ -10,6 +10,7 @@ $(function() {
 
   function votesHandler() {
     $('span.counterOption').on('click', function(e) {
+      var counterOptionElement = $(this);
       var newVoteValue = $(this).hasClass('upVote') ? 1 : -1;
 
       if($(this).attr('loginRequired')) {
@@ -21,6 +22,7 @@ $(function() {
           data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
           votedValue = '';
+          counterOptionElement.removeClass('voted');
           $('.counterValueHolder').text(response.new_rank);
           $('.upDownOptions').removeAttr('voted');
         }).fail(function(response, statusText, xhr) {
@@ -33,6 +35,8 @@ $(function() {
           data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
           votedValue = newVoteValue;
+          $('.counterOption').removeClass('voted');
+          counterOptionElement.addClass('voted');
           $('.counterValueHolder').text(response.new_rank);
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
@@ -44,6 +48,7 @@ $(function() {
           data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
           votedValue = newVoteValue;
+          counterOptionElement.addClass('voted');
           $('.counterValueHolder').text(response.new_rank);
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {

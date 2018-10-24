@@ -26,9 +26,9 @@
       <div class="clearfix bottom-margin-15">
         <% if current_user.present? %>
           <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
-            <span class="counterOption upVote"><i class="fas fa-caret-up"></i></span>
+            <span class="counterOption upVote <%= 'voted' if @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
             <span class="counterNumber counterValueHolder"><%= @video_owner.rank %></span>
-            <span class="counterOption downVote"><i class="fas fa-caret-down"></i></span>
+            <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
           </div>
 
           <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">

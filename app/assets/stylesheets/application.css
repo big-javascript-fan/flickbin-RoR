@@ -10,7 +10,12 @@
 }
 
 .entityList > li:first-child > div.serialText {
-    color: #31B4B0;
+  color: #31B4B0;
+}
+
+.voted {
+  background-color: #4e5766;
+  color:#31b4b0;
 }
 
 .flashNotification {

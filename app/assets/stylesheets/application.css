@@ -113,8 +113,4 @@
   .scroll-disable{
     overflow: hidden;
   }
-
-  .redTopBox {
-    margin-left: -16px;
-  }
 }

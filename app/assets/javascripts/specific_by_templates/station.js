@@ -12,9 +12,9 @@ $(function() {
   });
 
   function removeIconHandler() {
-    $('a.removeIcon').on('click', function(e) {
+    $(document).on('click', 'a.removeIcon', function(e) {
       e.preventDefault();
-      var parentDiv = $(this).closest( "div.removerBar");
+      var parentDiv = $(this).closest('.removerBar');
 
       if(parentDiv.hasClass('removerBarActivated')) {
         parentDiv.removeClass('removerBarActivated');
@@ -23,7 +23,7 @@ $(function() {
       }
     });
 
-    $('a.rejectDestroyVideo').on('click', function(e) {
+    $(document).on('click', 'a.rejectDestroyVideo', function(e) {
       e.preventDefault();
       $(this).closest( "div.removerBar").removeClass('removerBarActivated');
     });
@@ -83,7 +83,6 @@ $(function() {
             $('ul.stationList').append(videosContent);
             loading = false;
             nextPageNumber += 1;
-            removeIconHandler();
           }
         });
       }

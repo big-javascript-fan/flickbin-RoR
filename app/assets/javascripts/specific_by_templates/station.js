@@ -97,23 +97,20 @@ $(function() {
       var formData = new FormData();
       formData.append('user[avatar]', $('#user_avatar')[0].files[0])
 
-      $.ajax({
-        url: '/api/v1/users/avatars',
-        type: 'PUT',
-        data: formData,
-        dataType: 'json',
-        contentType: false,
-        processData: false
-      });
+      if(file) {
+        $.ajax({
+          url: '/api/v1/users/avatars',
+          type: 'PUT',
+          data: formData,
+          dataType: 'json',
+          contentType: false,
+          processData: false
+        });
 
-      reader.onloadend = function () {
-        preview.src = reader.result;
-      }
-
-      if (file) {
+        reader.onloadend = function () {
+          preview.src = reader.result;
+        }
         reader.readAsDataURL(file);
-      } else {
-        preview.src = "";
       }
     })
   }

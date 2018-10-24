@@ -14,7 +14,6 @@
 }
 
 .flashNotification {
-  height: 50px;
   color: #B5C1D5;
   font-size: 16px;
   font-weight: 500;
@@ -97,6 +96,15 @@
   height: 100vh;
 }
 
+.contentPanel.scroll{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.top-margin-25 {
+  margin-top: 25px;
+}
+
 @media(min-width: 768px){
   .scroll {
     overflow-y: scroll;
@@ -110,5 +118,3 @@
     margin-left: -16px;
   }
 }
-
-

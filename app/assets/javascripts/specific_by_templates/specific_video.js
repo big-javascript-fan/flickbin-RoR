@@ -7,6 +7,7 @@ $(function() {
   votesHandler();
   commentFieldHandler();
   replyCommentHandler();
+  infiniteScrollForComments();
 
   $('.jq-dropdown-anchor-right').addClass('reverseTheme');
 
@@ -98,15 +99,13 @@ $(function() {
 
           $('.comments-feed').prepend(commentContent);
           $('#message').val('');
-
-          replyCommentHandler();
         });
       }
     });
   }
 
   function replyCommentHandler() {
-    $('a.replyComment').on('click', function(e) {
+    $(document).on('click', 'a.replyComment', function(e) {
       e.preventDefault();
 
       if($(this).attr('loginRequired')) {
@@ -134,7 +133,7 @@ $(function() {
 
         $('.nestedCommentField').focus();
         $('.nestedCommentField').on('focusout', function() {
-          if($('.replyComment:hover').length) return;
+          if($('.replyComment:hover').length || $('.commentSendIcon:hover').length) return;
 
           $(this).closest('.nestedComment').remove();
           replyLink.removeClass('hidden');
@@ -145,7 +144,7 @@ $(function() {
         });
 
         $('.commentSendIcon').on('click', function(e) {
-          var message = $(this).closest('.nestedCommentField').val();
+          var message = $(this).siblings('.nestedCommentField').val();
           sendReplyComment(commentId, message);
         });
       }
@@ -182,6 +181,87 @@ $(function() {
       $('.nestedCommentField').closest('.nestedComment').remove();
       $('a.replyComment').removeClass('hidden');
       parentComment.after(commentContent);
+    });
+  }
+
+  function infiniteScrollForComments() {
+    var loading = false;
+    var lastPageReached = false;
+    var nextPageNumber = 1;
+
+    $('.contentPanel').scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('.comments-feed').height() - $(this).scrollTop()) < $(window).height() - 500;
+
+      if(loading || lastPageReached) {
+        return false;
+      } else if(scrollReachedEndOfDocument) {
+        loading = true;
+        loadNextBatchOfComments();
+      }
+
+
+      function loadNextBatchOfComments() {
+        $.get(`/api/v1/${videoSlug}/comments`, { page: nextPageNumber + 1 }).then(function(response) {
+          if($.isEmptyObject(response)) {
+            lastPageReached = true;
+          } else {
+            $.each(response, function(index, root_comment) {
+              var commentContent = '';
+              var commentatorAvatar = root_comment.commentator.avatar || '/images/avatar_holder.jpg';
+              var rootCommentClass = 'commentEntity';
+
+              if(root_comment.child_comments.length > 0) rootCommentClass += ' hasNestedComment';
+
+              commentContent += `
+                <div class="${rootCommentClass}" comment_id="${root_comment.id}">
+                  <a href="#" class="commentorThumb">
+                    <img src="${commentatorAvatar}">
+                  </a>
+                  <div class="commentorLine clearfix">
+                    <a href="/stations/${root_comment.commentator.channel_name}">
+                      ${root_comment.commentator.channel_name}
+                    </a>
+                    <span>•</span>
+                    <small>${root_comment.post_time} ago</small>
+                  </div>
+                  <p>${root_comment.message}</p>
+
+                  <div class="commentReplyOption">
+                    <a href="#" class="replyComment">Reply</a>
+                  </div>
+                </div>
+              `
+
+              if(root_comment.child_comments.length > 0) {
+                $.each(root_comment.child_comments, function(index, child_comment) {
+                  var commentatorAvatar = child_comment.commentator.avatar || '/images/avatar_holder.jpg';
+
+                  commentContent += `
+                    <div class="commentEntity" comment_id="${child_comment.id}">
+                      <div class="nestedComment nestedCommented">
+                        <a href="#" class="commentorThumb">
+                          <img src="${commentatorAvatar}">
+                        </a>
+                        <div class="commentorLine clearfix">
+                          <a href="/stations/${child_comment.commentator.channel_name}">${child_comment.commentator.channel_name}</a>
+                          <span>•</span>
+                          <small>${child_comment.post_time} ago</small>
+                        </div>
+                        <p>${child_comment.message}</p>
+                      </div>
+                    </div>
+                  `
+                });
+              }
+
+              $('.comments-feed').append(commentContent);
+            });
+
+            loading = false;
+            nextPageNumber += 1;
+          }
+        });
+      }
     });
   }
 });

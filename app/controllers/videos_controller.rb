@@ -25,10 +25,13 @@ class VideosController < ApplicationController
     @video = Video.friendly.find(params[:video_slug])
     @video_owner = @video.user
     @tag = @video.tag
-    @comments = @video.comments
-                      .includes(:commentator)
-                      .limit(10)
-                      .arrange(order: :created_at)
+    comments = @video.comments
+                     .roots
+                     .includes(:commentator)
+                     .order(created_at: :desc)
+                     .limit(6)
+
+    @comments_tree = comments.map { |comment| comment.subtree(to_depth: 1).arrange }
 
     if current_user.present?
       @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id)

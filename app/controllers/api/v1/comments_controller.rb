@@ -1,4 +1,5 @@
 class Api::V1::CommentsController < Api::V1::BaseController
+  include ActionView::Helpers::DateHelper
   before_action :authenticate_user!, only: [:create]
 
   def create
@@ -18,16 +19,44 @@ class Api::V1::CommentsController < Api::V1::BaseController
 
   def index
     video = get_video
-    comments = Comment.includes(:commentator)
-                      .where(video_id: video.id)
-                      .page(params[:page])
-                      .per(10)
-    render json: Api::V1::Comments::IndexSerializer.new(comments).call
+    comments = video.comments
+                    .roots
+                    .includes(:commentator)
+                    .order(created_at: :desc)
+                    .page(params[:page])
+                    .per(6)
+
+    comments_tree = comments.map do |comment|
+      comment.subtree(to_depth: 1).arrange_serializable(order: { created_at: :desc }) do |root_comment, child_comments|
+        comments_tree_to_hash(root_comment, child_comments)
+      end
+    end
+
+    render json: Oj.dump(comments_tree.flatten)
   end
 
   private
 
   def get_video
     @video ||= Video.friendly.find(params[:video_slug])
+  end
+
+  def comments_tree_to_hash(root_comment, child_comments)
+    {
+      id:             root_comment.id,
+      parent_id:      root_comment.parent_id,
+      message:        root_comment.message,
+      post_time:      time_ago_in_words(root_comment.created_at),
+      commentator:    commentator_to_hash(root_comment.commentator),
+      child_comments: child_comments
+    }
+  end
+
+  def commentator_to_hash(commentator)
+    {
+      id:           commentator.id,
+      channel_name: commentator.channel_name,
+      avatar:       commentator.avatar.thumb_44x44.url
+    }
   end
 end

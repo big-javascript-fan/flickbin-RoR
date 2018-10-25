@@ -101,6 +101,11 @@
   height: 100vh;
 }
 
+.comments.scroll{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 .contentPanel.scroll{
   overflow-y: scroll;
   height: 100vh;

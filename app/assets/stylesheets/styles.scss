@@ -345,10 +345,12 @@ select:actived {
 }
 .contentPanel {
     position: relative;
+    z-index: 2;
+    background:#fff;
     width: calc(100% - 165px);
     float: left;
     padding: 39px 37px 37px 27px;
-    margin-left: 165px;
+    margin-left: 162px;
 }
 .brand {
     display: block;

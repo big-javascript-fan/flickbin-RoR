@@ -75,10 +75,6 @@
   display: inline-block;
 }
 
-.videoTop {
-  margin-left: -16px;
-}
-
 .hidden { display: none !important; }
 
 .leftTagsOuter.scroll{
@@ -124,3 +120,4 @@
     overflow: hidden;
   }
 }
+

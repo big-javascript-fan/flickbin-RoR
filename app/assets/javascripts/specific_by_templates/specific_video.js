@@ -8,6 +8,8 @@ $(function() {
   commentFieldHandler();
   replyCommentHandler();
 
+  $('.jq-dropdown-anchor-right').addClass('reverseTheme');
+
   function votesHandler() {
     $('span.counterOption').on('click', function(e) {
       var counterOptionElement = $(this);

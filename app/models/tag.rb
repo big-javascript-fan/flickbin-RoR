@@ -8,6 +8,8 @@ class Tag < ApplicationRecord
 
 
   validates_presence_of :title
+  validates_length_of   :title, maximum: AppConstants::MAX_TAG_TITLE_LENGTH,
+                                allow_blank: true
   validates_format_of   :title, with: AppConstants::TAG_TITLE_REGEXP,
                                 message: 'You can use only letters & numbers'
 

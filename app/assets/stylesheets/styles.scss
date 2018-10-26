@@ -337,20 +337,22 @@ select:actived {
 }
 .leftPanel {
     float: left;
-    position: absolute;
     min-height: 100%;
     background-color: #fafafa;
     left: 0;
     top: 0;
 }
+.leftPanel { 
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;  // Firefox
+}
+.leftPanel::-webkit-scrollbar { 
+    display: none;  // Safari and Chrome
+}
 .contentPanel {
-    position: relative;
     z-index: 2;
     background:#fff;
-    width: calc(100% - 165px);
-    float: left;
     padding: 39px 37px 37px 27px;
-    margin-left: 162px;
 }
 .brand {
     display: block;
@@ -475,6 +477,8 @@ select:actived {
 .thumbnailCell {
     vertical-align: top;
     width: 106px;
+    height: 66px;
+    overflow:hidden;
 }
 .thumbnail {
     position: relative;
@@ -533,13 +537,16 @@ select:actived {
 .descText {
     line-height: 18px;
     color: #1D1F23;
-    font-weight: 500;
+    font-weight: 400;
 }
 .descText:hover {
     text-decoration: none;
 }
+.homeTitle {
+    font-weight: 500;
+}
 .inTag .descText {
-    font-size: 17px;
+    font-size: 19px;
 }
 .loginBg {
     min-height: 100%;
@@ -1271,7 +1278,7 @@ input[type="text"].asCommentField {
 }
 
 .centerContent {
-    padding: 105px 116px 100px 115px;
+    padding: 105px 50px 100px 50px;
 }
 .postTopLine {
     margin-bottom: 66px;

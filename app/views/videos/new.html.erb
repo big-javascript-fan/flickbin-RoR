@@ -44,7 +44,10 @@
           </div>
           <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
           <div class="validationContent largeTooltip">You can use only letters & numbers</div>
-          <%= f.text_field :tag_name, class: "block hasNumber", placeholder: 'Add and Existing Tag or Create a New One' %>
+          <span class="rightNumber"></span>
+          <%= f.text_field :tag_name, maxlength: AppConstants::MAX_TAG_TITLE_LENGTH,
+                                      placeholder: 'Add and Existing Tag or Create a New One',
+                                      class: "block hasNumber" %>
           <%= f.hidden_field :tag_id %>
         </div>
         <div class="clearfix">

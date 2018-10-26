@@ -40,6 +40,14 @@ $(function() {
     }
   }
 
+  $('#video_tag_name').on('keyup', function(e) {
+    var maxTagTitleLentgh = 15;
+    var tagTitleLentgh = $(this).val().length;
+    if(tagTitleLentgh <= maxTagTitleLentgh) {
+      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - tagTitleLentgh);
+    }
+  });
+
   if($('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }

@@ -68,7 +68,7 @@
       <span>submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
     </div>
 
-    <div class="commentSection">
+    <div class="commentSection" current_user_id="<%= current_user.id %>">
       <h4 class="commentTitle">How does this video make you feel?</h4>
       <div class="labelFields vidioFieldOuter">
         <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
@@ -88,9 +88,11 @@
                   <small><%= "#{time_ago_in_words(root_comment.created_at)} ago" %></small>
                 </div>
                 <p><%= root_comment.message %></p>
-                <div class="commentReplyOption">
-                  <a href="#" class="replyComment">Reply</a>
-                </div>
+                <% if current_user.present? && current_user.id != root_comment.commentator.id %>
+                  <div class="commentReplyOption">
+                    <a href="#" class="replyComment">Reply</a>
+                  </div>
+                <% end %>
               </div>
               <% if child_comments.present? %>
                 <% child_comments.each do |child_comment, grand_child| %>

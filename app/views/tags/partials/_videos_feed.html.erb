@@ -7,10 +7,9 @@
       <% end %>
     </div>
     <% if params[:sort_by] == 'newest' %>
-      <div class="entityCell serialText">&nbsp;</div>
-      <div class="entityCell">
+      <div class="entityCell paddingLeft20">
         <%= link_to video_path(video), class: "descText" do %>
-          <span class="time"><%= "#{time_ago_in_words(video.created_at)} in "%></span>
+          <span class="time"><%= "#{time_ago_in_words(video.created_at)} ago "%></span>
           <%= video.title %>
         <% end %>
       </div>

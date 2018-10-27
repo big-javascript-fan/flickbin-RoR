@@ -4,7 +4,7 @@ a:hover { text-decoration:underline; color:#31B4B0;}
 a:focus,
 a:active { text-decoration:none; outline:none;}
 
-h1, h2, h3, h4, h5, h6 { margin:0 0 20px; font-weight: 500;}
+h1, h2, h3, h4, h5, h6 { margin:0 0 20px; font-weight: 400;}
 h1, .h1 { font-size:22px; line-height:28px;}
 h2, .h2 { font-size:20px; line-height:24px;}
 h3, .h3 { font-size:18px; line-height:24px;}
@@ -37,6 +37,7 @@ p { margin:0 0 20px;}
 .noRightPadding { padding-right:0 !important;}
 .noMargin { margin:0 !important;}
 .noBorder { border:none !important;}
+.paddingLeft20 { padding-left: 20px;}
 
 .textAlignCenter { text-align:center;}
 .textAlignLeft   { text-align:left;}
@@ -45,7 +46,7 @@ p { margin:0 0 20px;}
 .fLeft { float: left;}
 .fRight { float: right;}
 
-.strong { font-weight: 700 !important;}
+.strong { font-weight: 500 !important;}
 
 .noMargin { margin: 0 !important; }
 .noBottomMargin { margin-bottom: 0 !important; }
@@ -164,7 +165,7 @@ p { margin:0 0 20px;}
     padding: 15px;
     white-space: nowrap;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 2px;
     text-transform: capitalize;
@@ -196,7 +197,7 @@ p { margin:0 0 20px;}
 }
 .jq-dropdown .jq-dropdown-menu li > a.current,
 .jq-dropdown .dropdown-menu li > a.current {
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .btn {
@@ -298,7 +299,7 @@ select {
     background-color: #fff;
     background-clip: padding-box;
     border: none;
-    font-weight: 500;
+    font-weight: 400;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -436,7 +437,7 @@ select:actived {
 .seeAllLink {
     display: block;
     float: right;
-    font-weight: 500;
+    font-weight: 400;
     margin-top: 3px;
 }
 
@@ -446,8 +447,8 @@ select:actived {
 .sideTitle {
     display: block;
     float: left;
-    font-size:18px;
-    font-weight: 500;
+    font-size:19px;
+    font-weight: 400;
 }
 .entityList {
     list-style: none;
@@ -459,7 +460,6 @@ select:actived {
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px dashed #E5E7E9;
-    min-width: 100%;
 }
 .entityList.inTag .entityRow {
    border-bottom: 0;
@@ -521,9 +521,9 @@ select:actived {
 .serialText {
     color: #C1C8D6;
     font-size: 35px;
-    font-weight: 500;
-    width: 64px;
+    font-weight: 400;
     text-align: center;
+    padding: 0 20px 0 20px;
 }
 .tagNewest .serialText {
     width: 32px;
@@ -580,7 +580,7 @@ select:actived {
 .loginTitle {
 	color: #1D1F23;
 	font-size: 29px;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 48px;
     margin-bottom: 70px;
 }
@@ -606,7 +606,7 @@ select:actived {
     text-transform: uppercase;
 }
 .forgotLinks {
-    font-weight: 500;
+    font-weight: 400;
     line-height: 42px;
     color: #4E5766;
 }
@@ -703,7 +703,7 @@ select:actived {
     margin-left: 3px;
     color: #1D1F23;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 400;
     display: block;
 }
 .searchOuter {
@@ -790,7 +790,7 @@ input[type="text"].searchField {
     margin: 0 10px 14px 0;
     color: #1D1F23;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
@@ -816,7 +816,7 @@ input[type="text"].searchField {
 .tagGroupTitle {
 	color: #31B4B0;
 	font-size: 42px;
-	font-weight: 500;
+	font-weight: 400;
     line-height: 52px;
     margin: 0 0 5px 5px;
 }
@@ -830,7 +830,7 @@ input[type="text"].searchField {
     float: left;
     color: #C1C8D6;
 	font-size: 15px;
-	font-weight: 500;
+	font-weight: 400;
     line-height: 30px;
     text-align: center;
 }
@@ -858,7 +858,7 @@ input[type="text"].searchField {
 .postTime {
 	color: #C1C8D6;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 400;
     line-height: 20px;
     display: block;
     margin-bottom: 4px;
@@ -929,7 +929,7 @@ input[type="text"].searchField {
     display: table-cell;
     vertical-align: middle;
     height: 70px;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 20px;
     line-height: 24px;
 }
@@ -944,7 +944,7 @@ input[type="text"].searchField {
     float: left;
     color: #868B95;
     font-size: 17px;
-	font-weight: 500;
+	font-weight: 400;
 }
 .underneathPlayer > span:last-child {
     float: right;
@@ -994,12 +994,12 @@ input[type="text"].asCommentField {
 }
 .commentorLine a {
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .commentorLine small {
 	color: #4D5056;
 	font-size: 13px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .commentorLine span {
     margin-left: 14px;
@@ -1066,7 +1066,7 @@ input[type="text"].asCommentField {
 }
 .commentReplyOption {
     margin-top: -10px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .btnReverseTheme .btn {
     border-color: #ffffff;
@@ -1167,14 +1167,14 @@ input[type="text"].asCommentField {
 .userActivity p {
 	color: #D1F4F3;
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: 400;
     line-height: 25px;
     margin-bottom: 0;
 }
 .userActivityLine {
     margin-bottom: 13px;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 400;
 }
 .btnActivity {
     background-color: #4E5766;
@@ -1203,7 +1203,7 @@ input[type="text"].asCommentField {
     position: absolute;
     top: 15px;
     right: 0;
-    font-weight: 500;
+    font-weight: 400;
     visibility: hidden;
 }
 .entityRow:hover .removerBar {
@@ -1262,7 +1262,7 @@ input[type="text"].asCommentField {
 	height: 50px;
 	color: #B5C1D5;
 	font-size: 16px;
-	font-weight: 500;
+	font-weight: 400;
     line-height: 30px;
     padding: 10px;
     text-align: center;
@@ -1285,7 +1285,7 @@ input[type="text"].asCommentField {
     position: relative;
     padding-left: 88px;
     color: #1D1F23;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 29px;
     line-height: 36px;
 }
@@ -1431,7 +1431,7 @@ input[type="text"].hasNumber {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    font-weight: 500;
+    font-weight: 400;
     padding: 0 20px 0 20px;
 }
 .createTagBtn:hover {
@@ -1523,8 +1523,7 @@ input.hasRightNumber {
     margin-bottom: 26px;
 }
 .specificTagList .serialText {
-    width: 70px;
-    font-size: 29px;
+    font-size: 30px;
 }
 .narrowSerialText .serialText {
     width: 34px;

@@ -353,7 +353,7 @@ select:actived {
 .contentPanel {
     z-index: 2;
     background:#fff;
-    padding: 39px 37px 37px 27px;
+    padding: 39px 37px 37px 36px;
 }
 .brand {
     display: block;
@@ -453,7 +453,7 @@ select:actived {
 .entityList {
     list-style: none;
     padding: 0;
-    margin: 0;
+    
 }
 .entityList .entityRow {
     display: table;
@@ -524,7 +524,7 @@ select:actived {
     font-size: 35px;
     font-weight: 400;
     text-align: center;
-    padding: 0 20px 0 20px;
+    width: 65px;
 }
 .tagNewest .serialText {
     width: 32px;
@@ -1101,8 +1101,8 @@ input[type="text"].asCommentField {
     margin-top: 16px;
 }
 .redTopBox {
-    padding: 20px 36px 42px 27px;
-    margin: -39px -37px 28px -27px;
+    padding: 20px 36px 89px 36px;
+    margin: -39px -37px 36px -36px;
     background-color: #31B4B0;
     color: #fff;
 }
@@ -1177,7 +1177,7 @@ input[type="text"].asCommentField {
     font-weight: 400;
 }
 .btnActivity {
-    background-color: #4E5766;
+    background-color: #279693;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -1187,7 +1187,6 @@ input[type="text"].asCommentField {
     padding: 2px 15px;
     text-align: center;
     display: inline-block;
-    vertical-align: top;
     margin-right: 10px;
 }
 .btnActivity strong {
@@ -1356,6 +1355,7 @@ input[type="text"].hasNumber {
 .validationContent,
 .dropdownItemListOuter {
 	max-width: 100%;
+    min-width: 200px;
 	background-color: #2FA9A5;
 	-webkit-border-radius: 6px;
     -moz-border-radius: 6px;
@@ -1370,6 +1370,10 @@ input[type="text"].hasNumber {
     left: 5px;
     top: 72px;
     visibility: hidden;
+}
+.existingTagSelection {
+    float: left;
+    padding: 0 0 11px 0;
 }
 .validationContent a {
     color: #fff;
@@ -1535,8 +1539,7 @@ input.hasRightNumber {
     margin-bottom: 36px;
 }
 .redBoxInProfile {
-    padding-left: 36px;
-    padding-right: 32px;
+    padding: 15px 32px 48px 36px;
 }
 .btn.widthMore {
     width: 188px;

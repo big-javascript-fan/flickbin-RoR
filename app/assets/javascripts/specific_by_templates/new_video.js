@@ -117,7 +117,7 @@ $(function() {
     var newTag = true;
     var createTagBtn = `
       <a href="#" class="createTagBtn" tag_title="${query}">
-        <span class="inlineAddCircle ">+</span> Create Tag ${query}
+        <span class="inlineAddCircle ">+</span> Create Tag "${query}"
       </a>
     `
     if(data.length > 0) {
@@ -127,7 +127,7 @@ $(function() {
         dropdownContent += `
           <li>
             <a href="#" class="chooseTagBtn" tag_title="${tag.title}" tag_id="${tag.id}">
-              ${tag.title} <span class="inlineAddCircle">+</span>
+              <span class="existingTagSuggestion">${tag.title}</span><span class="inlineAddCircle">+</span>
             </a>
           </li>
         `

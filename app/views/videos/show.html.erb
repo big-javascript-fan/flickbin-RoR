@@ -24,7 +24,7 @@
 
   </aside>
 
-  <section class="contentPanel comments scroll">
+  <section class="videoContentPanel comments scroll">
     <section class="videoTop">
       <div class="clearfix bottom-margin-15">
         <% if current_user.present? %>
@@ -54,11 +54,9 @@
         </div>
       </div>
       <div class="videoViewManager">
-        <div class="videoViewManagerInside">
-          <div class='embed-container'>
-            <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" frameborder='0' allow="autoplay" allowfullscreen></iframe>
+        <div class='embed-container'>
+          <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" frameborder='0' allow="autoplay" allowfullscreen></iframe>
           </div>
-        </div>
       </div>
     </section>
     <div class="underneathPlayer clearfix">

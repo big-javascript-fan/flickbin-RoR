@@ -355,6 +355,10 @@ select:actived {
     background:#fff;
     padding: 39px 37px 37px 36px;
 }
+.videoContentPanel {
+    z-index: 2;
+    padding: 39px 37px 37px 27px;
+}
 .brand {
     display: block;
     text-indent: -9999px;
@@ -874,15 +878,14 @@ input[type="text"].searchField {
     float: left;
     line-height: 22px;
     padding: 20px 23px 20px 0;
-    margin-right: 23px;
+    margin-right: 21px;
     font-size: 28px;
     border-right: 1px solid #319491;
 }
 .videoViewManager {
-    background-color: #419996;
-    margin-left: -37px;
+    background-color: #121212;
+    margin-left: -38px;
     margin-right: -37px;
-    margin-left: -37px;
 }
 .videoViewManagerInside {
     margin: 0 auto;
@@ -907,7 +910,7 @@ input[type="text"].searchField {
     height: 100%;
 }
 .reverseThemeHoler {
-    margin-top: 25px;
+    margin-top: 16px;
 }
 .reverseThemeHoler .addCircle {
     color: #fff;
@@ -929,7 +932,7 @@ input[type="text"].searchField {
     display: table-cell;
     vertical-align: middle;
     height: 70px;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 20px;
     line-height: 24px;
 }
@@ -1558,8 +1561,8 @@ input.grayNormal {
     font-style: normal;
 }
 .counterOption {
-    width: 22px;
-    height: 22px;
+    width: 23px;
+    height: 23px;
     background-color: #FFFFFF;
     float: left;
     display: block;

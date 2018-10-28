@@ -175,10 +175,12 @@ p { margin:0 0 20px;}
     color: #090A0B;
 }
 .jq-dropdown .jq-dropdown-menu li > a:hover,
-.jq-dropdown .dropdown-menu li > a:hover,
+.jq-dropdown .dropdown-menu li > a:hover {
+    text-decoration: underline;
+}
 .jq-dropdown .dropdown-menu li > a.current:hover,
 .jq-dropdown .dropdown-menu li > a.current:hover {
-    text-decoration: underline;
+    background-color: #D4F8F7;
 }
 .jq-dropdown .jq-dropdown-menu li > a.current,
 .jq-dropdown .dropdown-menu li > a.current {
@@ -192,8 +194,11 @@ p { margin:0 0 20px;}
 }
 .reverseTheme.jq-dropdown .jq-dropdown-menu li > a.current,
 .reverseTheme.jq-dropdown .dropdown-menu li > a.current {
-    background-color: #31B4B0;
+    background-color: #4E5766;
     color: #fff;
+}
+.reverseTheme.jq-dropdown .dropdown-menu li > a.current:hover {
+    background-color: #343B46;
 }
 .jq-dropdown .jq-dropdown-menu li > a.current,
 .jq-dropdown .dropdown-menu li > a.current {
@@ -557,7 +562,6 @@ select:actived {
 }
 .loginBg {
     min-height: 100%;
-    background: url('/images/login-bg.jpg') no-repeat top center;
     background-size: cover;
     position: relative;
 }

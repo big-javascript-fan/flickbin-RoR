@@ -6,9 +6,9 @@
 
 <% if flash[:notice].to_s == I18n.t('devise.registrations.signed_up_but_unconfirmed') %>
   <div class='flashNotification'>
-    Click
-    <%= link_to 'resend confirmation', new_confirmation_path(:user) %>
-    if didn't receive confirmation instructions
+    You can
+    <%= link_to 'resend the confirmation', new_confirmation_path(:user) %>
+    if you haven't received confirmation instructions.
   </div>
 <% end %>
 

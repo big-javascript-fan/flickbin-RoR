@@ -19,9 +19,9 @@
 }
 
 .flashNotification {
-  color: #B5C1D5;
+  color: #fff;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 30px;
   padding: 10px;
   text-align: center;
@@ -31,7 +31,6 @@
   z-index: 3;
   background-color: #4E5766;
 }
-
 .flashError {
   background-color: #2FA9A5;
   -webkit-border-radius: 6px;

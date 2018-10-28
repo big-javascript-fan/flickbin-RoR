@@ -11,11 +11,11 @@
             <%= link_to 'Post a Video', videos_new_path, class: "current" %>
           </li>
           <li>
-            <%= link_to 'My Account', edit_user_registration_path %>
+            <%= link_to 'My Station', station_path(current_user) %>
           </li>
           <li class="jq-dropdown-divider">&nbsp;</li>
           <li>
-            <%= link_to 'My Station', station_path(current_user) %>
+            <%= link_to 'Account Settings', edit_user_registration_path %>
           </li>
           <li class="jq-dropdown-divider">&nbsp;</li>
           <li>

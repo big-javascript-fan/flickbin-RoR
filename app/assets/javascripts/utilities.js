@@ -25,7 +25,11 @@ $(function(){
         console.log(dropdownData);
     });
 });
-
+$(function() {
+    $('.profileDropdown').mouseover(function() {
+        $('.jq-dropdown').removeClass('fadeOut').addClass('animated fadeIn');
+    });
+});
 $(function() {
 
     $(document).on('click', '.megamenu .dropdown-menu', function(e) {

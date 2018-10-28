@@ -63,7 +63,7 @@
     </section>
     <div class="underneathPlayer clearfix">
       <span>
-        <a href="#">#<%= @video.rank %></a> in <%= link_to @tag.title, tag_path(@tag) %>
+        #<%= @video.rank %> in <%= link_to @tag.title, tag_path(@tag) %>
       </span>
       <span>submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
     </div>

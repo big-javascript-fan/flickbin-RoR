@@ -206,38 +206,40 @@ p { margin:0 0 20px;}
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    padding: 9px 20px;
+    padding: 12px 24px;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 400;
     line-height: 22px;
-    height: 42px;
     color: #fff;
     background-color: #4E5766;
     border:1px solid #4E5766;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    border: none;
 }
 .btn:hover,
 .btn:focus,
 .btn:active,
 .btn.active {
-    color: #4E5766;
-    background-color: #fff;
+    color: #fff;
+    background-color: #31B4B0;
     text-decoration: none;
     outline: none;
+    border: none;
 }
-.btn.noBg {
-    background-color: #fff;
-    color: #4E5766;
-}
-.btn.noBg:hover,
-.btn.noBg:focus,
-.btn.noBg:active,
-.btn.noBg.active {
+.btn.btnSecondary {
+    background-color: #7E889A;
     color: #fff;
-    background-color: #4E5766;
+    border: none;
+}
+.btn.btnSecondary:hover,
+.btn.btnSecondary:focus,
+.btn.btnSecondary:active,
+.btn.btnSecondary.active {
+    color: #fff;
+    background-color: #31B4B0;
 }
 .btn.colorNoBg {
     background:none !important;
@@ -1076,7 +1078,7 @@ input[type="text"].asCommentField {
     background-color: #ffffff;
     color:#31B4B0;
 }
-.btnReverseTheme .btn.noBg {
+.btnReverseTheme .btn.btnSecondary {
     background-color:#31B4B0;
     border-color: #ffffff;
     color: #ffffff;
@@ -1088,10 +1090,10 @@ input[type="text"].asCommentField {
     color: #fff;
     background-color:#31B4B0;
 }
-.btnReverseTheme .btn.noBg:hover,
-.btnReverseTheme .btn.noBg:focus,
-.btnReverseTheme .btn.noBg:active,
-.btnReverseTheme .btn.noBg.active {
+.btnReverseTheme .btn.btnSecondary:hover,
+.btnReverseTheme .btn.btnSecondary:focus,
+.btnReverseTheme .btn.btnSecondary:active,
+.btnReverseTheme .btn.btnSecondary.active {
     color:#31B4B0;
     background-color: #fff;
 }

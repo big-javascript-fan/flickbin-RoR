@@ -89,7 +89,7 @@
               <%= link_to video.tag.title, tag_path(video.tag) %>
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>
-            <% if current_user.id == @user.id %>
+            <% if current_user.present? && current_user.id == @user.id %>
               <div class="removerBar" id="<%= video.id %>">
                 <span class="removerBarTrack">Are you sure?
                   <%= link_to 'Yes', video_path(video), method: :delete, remote: true %>

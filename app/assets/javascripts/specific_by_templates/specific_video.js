@@ -75,28 +75,32 @@ $(function() {
       if(e.which == 13) {
         var commentContent = '';
 
-        $.post(`/api/v1/${videoSlug}/comments`, {
-          message: $(this).val()
-        }).then(function(response) {
-          var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
+        if($(this).attr('loginRequired')) {
+          window.location = '/users/sign_in'
+        } else {
+          $.post(`/api/v1/${videoSlug}/comments`, {
+            message: $(this).val()
+          }).then(function(response) {
+            var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
 
-          commentContent += `
-            <div class="commentEntity" comment_id="${response.id}">
-              <a href="#" class="commentorThumb">
-                <img src="${commentatorAvatar}">
-              </a>
-              <div class="commentorLine clearfix">
-                <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
-                <span>•</span>
-                <small>${response.post_time} ago</small>
+            commentContent += `
+              <div class="commentEntity" comment_id="${response.id}">
+                <a href="#" class="commentorThumb">
+                  <img src="${commentatorAvatar}">
+                </a>
+                <div class="commentorLine clearfix">
+                  <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
+                  <span>•</span>
+                  <small>${response.post_time} ago</small>
+                </div>
+                <p>${response.message}</p>
               </div>
-              <p>${response.message}</p>
-            </div>
-          `
+            `
 
-          $('.comments-feed').prepend(commentContent);
-          $('#message').val('');
-        });
+            $('.comments-feed').prepend(commentContent);
+            $('#message').val('');
+          });
+        }
       }
     });
   }

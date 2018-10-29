@@ -71,7 +71,11 @@
     <div class="commentSection" current_user_id="<%= current_user&.id %>">
       <h4 class="commentTitle">How does this video make you feel?</h4>
       <div class="labelFields vidioFieldOuter">
-        <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
+        <% if current_user.present? %>
+          <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
+        <% else %>
+          <%= text_field_tag :message, nil, placeholder: 'Enter comment', loginRequired: true, class: "block noInsideLabel" %>
+        <% end %>
       </div>
 
       <div class="comments-feed">

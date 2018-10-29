@@ -9,7 +9,7 @@ class VideosController < ApplicationController
     @video = current_user.videos.build(create_params)
 
     if @video.save
-      redirect_to new_video_path, notice: 'Your video has been shared!'
+      redirect_to videos_new_path, notice: 'Your video has been shared!'
     elsif @video.errors.messages[:invalid_url].present?
       @invalid_video_url = true
       render :new

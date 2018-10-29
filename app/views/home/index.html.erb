@@ -58,7 +58,7 @@
             <% @top_1_tag.top_10_videos.each_with_index do |top_video, index| %>
               <li class="entityRow">
                 <div class="entityCell thumbnailCell">
-                  <%= link_to video_path(top_video), class: "thumbnail" do %>
+                  <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                     <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
                     <span class="playerIcon"><i class="fas fa-play"></i></span>
                   <% end %>
@@ -83,7 +83,7 @@
             <% @top_2_tag.top_10_videos.each_with_index do |top_video, index| %>
               <li class="entityRow">
                 <div class="entityCell thumbnailCell">
-                  <%= link_to video_path(top_video), class: "thumbnail" do %>
+                  <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                     <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
                     <span class="playerIcon"><i class="fas fa-play"></i></span>
                   <% end %>

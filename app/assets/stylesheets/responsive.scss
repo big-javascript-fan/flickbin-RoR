@@ -18,17 +18,17 @@
 	.offCanvasBtn {	display: block;	}
 	.colHalf { float: none; width: 100%;}
 
-	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; }
+	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 0; width: 77px; background-size: 80% auto; background-position: right center;}
+	.brand { float: left; margin: 21px 0 0 0; width: 84px; background-size: 80% auto; background-position: right center; background: url('/images/logo_m.png') no-repeat;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
-	.btnGroup { margin-bottom: 15px;}
+	.btnGroup { display: none;}
 
 	/* Off Canvas Menu */
 	.offCanvasBtnStyle {
 		position: relative;
-		float: left;
+		float: right;
 		overflow: hidden;
 		display: block;
 		user-select: none;
@@ -37,10 +37,11 @@
 		height: 42px;
 		color: #4E5766;
 		background-color: #fff;
-		border:1px solid #4E5766;
+		border: 0px;
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
+		margin-top: 8px;
 	}
 	.offCanvasBar {
 		display: block;
@@ -49,7 +50,7 @@
 		font-size: 0;
 		overflow: hidden;
 		position: relative;
-		background-color: #4E5766;
+		background-color: #b9bbbf;
 	}
 	.offCanvasBtnStyle .offCanvasClose {
 		display: none;
@@ -164,7 +165,7 @@
 	.brand.inLogin {
 		float: none;
 		clear: both;
-		margin-bottom: 25px !important;
+		margin: 25px !important;
 	}
 	.loginAside .bottom-margin-70 {
 		margin-bottom: 35px !important;

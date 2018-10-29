@@ -23,7 +23,7 @@
         <a href="#" class="commentorThumb size68">
           <%= image_tag(current_user.avatar.thumb_128x128.url || '/images/avatar_holder.jpg', alt: "User Name") %>
         </a>
-        Post a Video to chanceTV_123
+        <%= "Post a Video to #{current_user.channel_name}" %>
         <span>Follow the two easy steps below and start sharing</span>
       </div>
       <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>

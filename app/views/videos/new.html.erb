@@ -1,3 +1,9 @@
+<% if flash[:notice].present? %>
+  <div class="flashNotification">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <div class="wrapper">
   <div class="offCanvasMask"></div>
   <aside class="leftPanel">

@@ -1,5 +1,9 @@
-class Api::V1::Home::VideosController < Api::V1::BaseController
+class Api::V1::HomeController < Api::V1::BaseController
   def index
+    sidebar_tags = Tag.order(rank: :asc)
+                      .page(params[:page])
+                      .per(28)
+
     left_tag = Tag.order(rank: :asc)
                   .offset(params[:offset]&.to_i)
                   .includes(:top_10_videos)
@@ -9,6 +13,6 @@ class Api::V1::Home::VideosController < Api::V1::BaseController
                    .includes(:top_10_videos)
                    .first
 
-    render json: Api::V1::Home::Videos::IndexSerializer.new(left_tag, right_tag).call
+    render json: Api::V1::Home::Videos::IndexSerializer.new(sidebar_tags, left_tag, right_tag).call
   end
 end

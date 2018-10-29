@@ -2,13 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :home do
-        scope module: :tags do
-          get 'tags', action: :index
-        end
-
-        scope module: :videos do
-          get 'videos', action: :index
-        end
+        get '/', action: :index
       end
 
       namespace :users do

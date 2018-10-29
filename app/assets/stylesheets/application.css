@@ -77,35 +77,41 @@
 
 .hidden { display: none !important; }
 
-.leftTagsOuter.scroll{
+.station.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
 
-.station.scroll{
+.allTags.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
 
-.allTags.scroll{
+.tag.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
 
-.tag.scroll{
+.comments.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
 
-.comments.scroll{
+.contentPanel.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
 
-.contentPanel.scroll{
+.wrapper.scroll {
   overflow-y: scroll;
   height: 100vh;
 }
+
+.leftTagsOuter.scroll {
+  overflow-y: scroll;
+  height: 100vh;
+}
+
 
 .top-margin-25 {
   margin-top: 25px;

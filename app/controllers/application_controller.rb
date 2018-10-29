@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_tending_tags
-    @trending_tags = Tag.order(rank: :asc).limit(25) unless devise_controller?
+    @trending_tags = Tag.order(rank: :asc).limit(28) unless devise_controller?
   end
 end

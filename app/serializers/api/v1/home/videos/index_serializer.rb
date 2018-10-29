@@ -1,17 +1,31 @@
 class Api::V1::Home::Videos::IndexSerializer
-  def initialize(left_tag, right_tag)
+  def initialize(sidebar_tags, left_tag, right_tag)
+    @sidebar_tags = sidebar_tags
     @left_tag = left_tag
     @right_tag = right_tag
   end
 
   def call
     Oj.dump({
+      sidebar_tags: sidebar_tags_to_hash(@sidebar_tags),
       left_tag: tag_to_hash(@left_tag),
       right_tag: tag_to_hash(@right_tag)
     })
   end
 
   private
+
+  def sidebar_tags_to_hash(tags)
+    return [] if tags.blank?
+
+    tags.map do |tag|
+      {
+        id:            tag.id,
+        title:         tag.title,
+        slug:          tag.slug
+      }
+    end
+  end
 
   def tag_to_hash(tag)
     {

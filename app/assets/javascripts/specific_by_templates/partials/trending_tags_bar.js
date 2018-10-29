@@ -23,7 +23,7 @@ $(function() {
     });
 
     function loadNextBatchOfTags() {
-      $.get('/api/v1/home/tags', { page: nextPageNumber + 1}).then(function(response) {
+      $.get('/api/v1/tags', { page: nextPageNumber + 1}).then(function(response) {
         var tagContent = '';
 
         if(response.length > 0) {

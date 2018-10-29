@@ -12,7 +12,13 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def index
-    tags = Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
+    tags =
+      if params[:query].present?
+        Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
+      else
+        Tag.order(rank: :asc).page(params[:page]).per(15)
+      end
+
     render json: tags.to_json(only: [:id, :slug, :title])
   end
 

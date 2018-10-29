@@ -18,6 +18,12 @@ class User < ApplicationRecord
   validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
                                             allow_blank: true
 
+  before_create :set_default_channel_decription
+
+  def set_default_channel_decription
+    self.channel_description = 'This is a station description.'
+  end
+
   def should_generate_new_friendly_id?
     slug.blank? || channel_name_changed?
   end

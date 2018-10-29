@@ -1,8 +1,8 @@
 <% @tag_videos.each_with_index do |video, index| %>
   <li class="entityRow">
     <div class="entityCell thumbnailCell">
-      <%= link_to video_path(video), class: "thumbnail large" do %>
-        <%= image_tag(video.cover.url, alt: video.title, class: "thumbnail large") %>
+      <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
+        <%= image_tag(video.cover.url, alt: video.title, class: "tagThumbnail large") %>
         <span class="playerIcon"><i class="fas fa-play"></i></span>
       <% end %>
     </div>

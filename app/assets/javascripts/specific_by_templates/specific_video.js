@@ -188,13 +188,10 @@ $(function() {
   function infiniteScrollForComments() {
     var loading = false;
     var lastPageReached = false;
-    var nextPageNumber = 1;
+    var nextPageNumber = 2;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
-console.log('=======')
-console.log($('body').height() - $(this).scrollTop())
-console.log($(window).height() + 80)
 
       if(loading || lastPageReached) {
         return false;
@@ -203,9 +200,8 @@ console.log($(window).height() + 80)
         loadNextBatchOfComments();
       }
 
-
       function loadNextBatchOfComments() {
-        $.get(`/api/v1/${videoSlug}/comments`, { page: nextPageNumber + 1 }).then(function(response) {
+        $.get(`/api/v1/${videoSlug}/comments`, { page: nextPageNumber }).then(function(response) {
           var sidbarTags = response.sidebar_tags;
           var commentsTree = response.comments_tree;
           var sidbarTagsContent = '';
@@ -280,14 +276,14 @@ console.log($(window).height() + 80)
 
               $('.comments-feed').append(commentContent);
             });
-
-            if(sidbarTags.length == 0 && response.comments_tree.length == 0) {
-              lastPageReached = true;
-            }
-
-            loading = false;
-            nextPageNumber += 1;
           }
+
+          if(sidbarTags.length == 0 && response.comments_tree.length == 0) {
+            lastPageReached = true;
+          }
+
+          loading = false;
+          nextPageNumber += 1;
         });
       }
     });

@@ -24,7 +24,7 @@ $(function() {
   function infiniteScrollForVideos() {
     var loading = false;
     var lastPageReached = false;
-    var nextPageNumber = 1;
+    var nextPageNumber = 2;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
@@ -38,7 +38,7 @@ $(function() {
 
       function loadNextBatchOfVideos() {
         $.get(`/api/v1/tags/${tagSlug}`, {
-          page: nextPageNumber + 1,
+          page: nextPageNumber,
           sort_by: sortBy
         }).then(function(response) {
           var sidbarTags = response.sidebar_tags;

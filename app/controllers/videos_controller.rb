@@ -51,6 +51,10 @@ class VideosController < ApplicationController
 
   private
 
+  def get_sidebar_tags
+    @sidebar_tags ||= Tag.order(rank: :asc).limit(60)
+  end
+
   def create_params
     params.fetch(:video, {}).permit(:url, :tag_name, :tag_id)
   end

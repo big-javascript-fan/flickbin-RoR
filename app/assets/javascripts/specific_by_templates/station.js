@@ -32,11 +32,11 @@ $(function() {
   function infiniteScrollForVideos() {
     var loading = false;
     var lastPageReached = false;
-    var nextPageNumber = 1;
+    var nextPageNumber = 2;
     var channelSlug = $('ul.stationList').attr('channel_slug');
 
-    $('.wrapper.scroll').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 300;
+    $(window).scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
 
       if(loading || lastPageReached) {
         return false;
@@ -46,13 +46,26 @@ $(function() {
       }
 
       function loadNextBatchOfVideos() {
-        $.get(`/api/v1/users/${channelSlug}/videos`, { page: nextPageNumber + 1}).then(function(response) {
+        $.get(`/api/v1/users/${channelSlug}`, { page: nextPageNumber }).then(function(response) {
+          var sidbarTags = response.sidebar_tags;
+          var stationVideos = response.station_videos;
+          var sidbarTagsContent = '';
           var videosContent = '';
 
-          if($.isEmptyObject(response)) {
-            lastPageReached = true;
-          } else {
-            $.each(response, function(index, video) {
+          if(sidbarTags.length > 0) {
+            $.each(sidbarTags, function(index, tag) {
+              sidbarTagsContent += `
+                <li>
+                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                </li>
+              `
+            });
+
+            $('ul.leftPanelTags').append(sidbarTagsContent)
+          }
+
+          if(stationVideos.length > 0) {
+            $.each(stationVideos, function(index, video) {
               videosContent += `
                 <li class="entityRow" slug="${video.slug}">
                   <div class="entityCell thumbnailCell">
@@ -81,9 +94,14 @@ $(function() {
             });
 
             $('ul.stationList').append(videosContent);
-            loading = false;
-            nextPageNumber += 1;
           }
+
+          if(sidbarTags.length == 0 && stationVideos.length == 0) {
+            lastPageReached = true;
+          }
+
+          loading = false;
+          nextPageNumber += 1;
         });
       }
     });

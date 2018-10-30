@@ -5,13 +5,11 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
-      namespace :users do
+      scope module: :users do
+        get 'users/:channel_slug', action: :show
+
         scope module: :avatars do
           put 'avatars', action: :update
-        end
-
-        scope module: :videos do
-          get ':channel_slug/videos', action: :index
         end
       end
 

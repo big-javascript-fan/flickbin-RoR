@@ -22,7 +22,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @sidebar_tags = get_sidebar_tags
+    @sidebar_tags = get_sidebar_tags(60)
     @video = Video.friendly.find(params[:video_slug])
     @video_owner = @video.user
     @tag = @video.tag
@@ -47,12 +47,6 @@ class VideosController < ApplicationController
     else
       render js: "alert('Video with slug - \"#{params[:video_slug]}\" not found')"
     end
-  end
-
-  private
-
-  def get_sidebar_tags
-    @sidebar_tags ||= Tag.order(rank: :asc).limit(60)
   end
 
   def create_params

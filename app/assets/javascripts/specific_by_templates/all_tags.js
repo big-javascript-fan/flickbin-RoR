@@ -76,12 +76,12 @@ $(function() {
   function infiniteScrollForTags() {
     var loading = false;
     var lastPageReached = false;
-    var nextPageNumber = 1;
+    var nextPageNumber = 2;
     var groupedTagsUrl = `/api/v1/grouped_tags${window.location.search}`;
 
-    $('.wrapper.scroll').scroll(function(e) {
+    $(window).scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
       var lastAlphabetTitle =  $('.tagGroupTitle').last().text();
-      var scrollReachedEndOfDocument = ($('.tags-feed').height() - $(this).scrollTop()) < $(window).height() - 100;
 
       if(loading || lastPageReached) {
         return false;
@@ -91,11 +91,25 @@ $(function() {
       }
 
       function loadNextBatchOfTags() {
-        $.get(groupedTagsUrl, { page: nextPageNumber + 1 }).then(function(response) {
-          if($.isEmptyObject(response)) {
-            lastPageReached = true;
-          } else {
-            $.each(response, function(char, tags) {
+        $.get(groupedTagsUrl, { page: nextPageNumber }).then(function(response) {
+          var sidbarTags = response.sidebar_tags;
+          var groupedTags = response.grouped_tags;
+          var sidbarTagsContent = '';
+
+          if(sidbarTags.length > 0) {
+            $.each(sidbarTags, function(index, tag) {
+              sidbarTagsContent += `
+                <li>
+                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                </li>
+              `
+            });
+
+            $('ul.leftPanelTags').append(sidbarTagsContent)
+          }
+
+          if(!$.isEmptyObject({groupedTags})) {
+            $.each(groupedTags, function(char, tags) {
               var charTagsContent = '';
 
               if(lastAlphabetTitle == char) {
@@ -128,10 +142,14 @@ $(function() {
                 $('.tags-feed').append(charTagsContent);
               }
             });
-
-            loading = false;
-            nextPageNumber += 1;
           }
+
+          if(sidbarTags.length == 0 && groupedTags.length == 0) {
+            lastPageReached = true;
+          }
+
+          loading = false;
+          nextPageNumber += 1;
         });
       }
     });

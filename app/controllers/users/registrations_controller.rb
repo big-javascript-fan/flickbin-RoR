@@ -58,7 +58,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def get_sidebar_tags
-    @sidebar_tags ||= Tag.order(rank: :asc).page(params[:page]).per(25)
+    @sidebar_tags ||= Tag.order(rank: :asc).limit(25)
   end
 
   def get_user_videos

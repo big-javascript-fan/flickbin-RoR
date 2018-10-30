@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def show
-    sidebar_tags = get_sidebar_tags
+    sidebar_tags = get_sidebar_tags(27)
     user = User.friendly.find(params[:channel_slug])
     videos = user.videos
                  .active
@@ -10,11 +10,5 @@ class Api::V1::UsersController < Api::V1::BaseController
                  .per(10)
 
     render json: Api::V1::Users::ShowSerializer.new(sidebar_tags, videos).call
-  end
-
-  private
-
-  def get_sidebar_tags
-    @sidebar_tags ||= Tag.order(rank: :asc).page(params[:page]).per(27)
   end
 end

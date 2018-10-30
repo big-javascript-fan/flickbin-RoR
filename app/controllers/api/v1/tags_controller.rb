@@ -23,7 +23,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def show
-    sidebar_tags = get_sidebar_tags
+    sidebar_tags = get_sidebar_tags(35)
     tag = Tag.friendly.find(params[:tag_slug])
 
     tag_videos =
@@ -39,8 +39,6 @@ class Api::V1::TagsController < Api::V1::BaseController
     tag_videos = tag_videos.page(params[:page]).per(10)
     render json: Api::V1::Tags::IndexSerializer.new(sidebar_tags, tag_videos).call
   end
-
-  private
 
   def create_params
     params.permit(:title)

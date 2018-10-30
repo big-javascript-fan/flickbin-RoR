@@ -286,6 +286,12 @@
 		height: auto;
 		max-width: 100%;
 	}
+	.afterLoginBtns {
+		margin-right: 10px;
+	}
+	.afterLoginBtns li {
+		margin-left: 7px;
+	}
 	.embed-container {
 		height: 0;
 		padding-bottom: 56.25%;
@@ -297,6 +303,7 @@
 	.mobileBtnPosition {
 		float: right;
 		margin: 0;
+		margin-top: 12px;
 	}
 	.mobileBtnPosition .btn {
 		padding: 9px 12px;

@@ -79,7 +79,7 @@ $(function() {
     var nextPageNumber = 1;
     var groupedTagsUrl = `/api/v1/grouped_tags${window.location.search}`;
 
-    $('.contentPanel.allTags').scroll(function(e) {
+    $('.wrapper.scroll').scroll(function(e) {
       var lastAlphabetTitle =  $('.tagGroupTitle').last().text();
       var scrollReachedEndOfDocument = ($('.tags-feed').height() - $(this).scrollTop()) < $(window).height() - 100;
 

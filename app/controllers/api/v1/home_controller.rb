@@ -1,9 +1,6 @@
 class Api::V1::HomeController < Api::V1::BaseController
   def index
-    sidebar_tags = Tag.order(rank: :asc)
-                      .page(params[:page])
-                      .per(28)
-
+    sidebar_tags = get_sidebar_tags
     left_tag = Tag.order(rank: :asc)
                   .offset(params[:offset]&.to_i)
                   .includes(:top_10_videos)

@@ -190,8 +190,11 @@ $(function() {
     var lastPageReached = false;
     var nextPageNumber = 1;
 
-    $('.contentPanel').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.comments-feed').height() - $(this).scrollTop()) < $(window).height() - 500;
+    $(window).scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
+console.log('=======')
+console.log($('body').height() - $(this).scrollTop())
+console.log($(window).height() + 80)
 
       if(loading || lastPageReached) {
         return false;
@@ -203,10 +206,24 @@ $(function() {
 
       function loadNextBatchOfComments() {
         $.get(`/api/v1/${videoSlug}/comments`, { page: nextPageNumber + 1 }).then(function(response) {
-          if($.isEmptyObject(response)) {
-            lastPageReached = true;
-          } else {
-            $.each(response, function(index, root_comment) {
+          var sidbarTags = response.sidebar_tags;
+          var commentsTree = response.comments_tree;
+          var sidbarTagsContent = '';
+
+          if(sidbarTags.length > 0) {
+            $.each(sidbarTags, function(index, tag) {
+              sidbarTagsContent += `
+                <li>
+                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                </li>
+              `
+            });
+
+            $('ul.leftPanelTags').append(sidbarTagsContent)
+          }
+
+          if(commentsTree.length < 0) {
+            $.each(commentsTree, function(index, root_comment) {
               var commentContent = '';
               var commentatorAvatar = root_comment.commentator.avatar || '/images/avatar_holder.jpg';
               var rootCommentClass = 'commentEntity';
@@ -263,6 +280,10 @@ $(function() {
 
               $('.comments-feed').append(commentContent);
             });
+
+            if(sidbarTags.length == 0 && response.comments_tree.length == 0) {
+              lastPageReached = true;
+            }
 
             loading = false;
             nextPageNumber += 1;

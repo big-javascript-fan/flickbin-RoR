@@ -1,4 +1,4 @@
-class Api::V1::Tags::Videos::IndexSerializer < Api::V1::BaseSerializer
+class Api::V1::Tags::IndexSerializer < Api::V1::BaseSerializer
   include ActionView::Helpers::DateHelper
 
   def initialize(sidebar_tags, videos)

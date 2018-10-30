@@ -23,10 +23,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def show
-    sidebar_tags = Tag.order(rank: :asc)
-                      .page(params[:page])
-                      .per(28)
-
+    sidebar_tags = get_sidebar_tags
     tag = Tag.friendly.find(params[:tag_slug])
 
     tag_videos =
@@ -40,7 +37,7 @@ class Api::V1::TagsController < Api::V1::BaseController
       end
 
     tag_videos = tag_videos.page(params[:page]).per(10)
-    render json: Api::V1::Tags::Videos::IndexSerializer.new(sidebar_tags, tag_videos).call
+    render json: Api::V1::Tags::IndexSerializer.new(sidebar_tags, tag_videos).call
   end
 
   private

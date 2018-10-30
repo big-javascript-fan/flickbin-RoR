@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
-  before_action :get_tending_tags
 
   private
 
@@ -9,7 +8,7 @@ class ApplicationController < ActionController::Base
     devise_controller? ? 'devise' : 'application'
   end
 
-  def get_tending_tags
-    @trending_tags = Tag.order(rank: :asc).limit(28) unless devise_controller?
+  def get_sidebar_tags
+    @sidebar_tags ||= Tag.order(rank: :asc).page(params[:page]).per(28)
   end
 end

@@ -1,6 +1,5 @@
 class Api::V1::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
-  skip_before_action :get_tending_tags
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 

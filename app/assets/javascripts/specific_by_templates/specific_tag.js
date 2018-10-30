@@ -26,8 +26,8 @@ $(function() {
     var lastPageReached = false;
     var nextPageNumber = 1;
 
-    $('.wrapper.scroll').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
+    $(window).scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
 
       if(loading || lastPageReached) {
         return false;

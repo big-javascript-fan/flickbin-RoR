@@ -5,7 +5,7 @@
 
   <span class="tagsTitle">Trending Tags</span>
   <ul class="leftPanelTags tag-feed">
-    <% @trending_tags.each do |trending_tag| %>
+    <% @sidebar_tags.each do |trending_tag| %>
       <li>
         <%= link_to trending_tag.title, tag_path(trending_tag) %>
       </li>

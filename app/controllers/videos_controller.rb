@@ -22,6 +22,7 @@ class VideosController < ApplicationController
   end
 
   def show
+    @sidebar_tags = get_sidebar_tags
     @video = Video.friendly.find(params[:video_slug])
     @video_owner = @video.user
     @tag = @video.tag

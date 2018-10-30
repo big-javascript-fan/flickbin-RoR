@@ -18,6 +18,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   end
 
   def index
+    sidebar_tags = get_sidebar_tags
     video = get_video
     comments = video.comments
                     .roots
@@ -26,13 +27,18 @@ class Api::V1::CommentsController < Api::V1::BaseController
                     .page(params[:page])
                     .per(6)
 
+    sidebar_tags_hash = sidebar_tags.map { |tag| {id: tag.id, slug: tag.slug, title: tag.title} }
+
     comments_tree = comments.map do |comment|
       comment.subtree(to_depth: 1).arrange_serializable(order: { created_at: :desc }) do |root_comment, child_comments|
         comments_tree_to_hash(root_comment, child_comments)
       end
     end
 
-    render json: Oj.dump(comments_tree.flatten)
+    render json: Oj.dump(
+      sidebar_tags: sidebar_tags_hash,
+      comments_tree: comments_tree.flatten
+    )
   end
 
   private

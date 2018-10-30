@@ -4,10 +4,11 @@ $(function() {
   function infiniteScrollForVideos() {
     var loading = false;
     var lastPageReached = false;
-    var offset = 2;
+    var offset = 4;
+    var nextSidbarTagsPageNumber = 2;
 
-    $('.wrapper.scroll').scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 100;
+    $(window).scroll(function(e) {
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
 
       if(loading || lastPageReached) {
         return false;
@@ -17,7 +18,10 @@ $(function() {
       }
 
       function loadNextBatchOfVideos() {
-        $.get('/api/v1/home', { offset: offset }).then(function(response) {
+        $.get('/api/v1/home', {
+          page: nextSidbarTagsPageNumber,
+          offset: offset
+        }).then(function(response) {
           var sidbarTags = response.sidebar_tags;
           var leftTag = response.left_tag;
           var rightTag = response.right_tag;
@@ -52,7 +56,7 @@ $(function() {
               leftTagContent += `
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
-                    <a class="thumbnail" href="/videos/${video.slug}">
+                    <a class="thumbnailLink" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
                       <span class="playerIcon"><i class="fas fa-play"></i></span>
                     </a>
@@ -88,7 +92,7 @@ $(function() {
               rightTagContent += `
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
-                    <a class="thumbnail" href="/videos/${video.slug}">
+                    <a class="thumbnailLink" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
                       <span class="playerIcon"><i class="fas fa-play"></i></span>
                     </a>
@@ -110,9 +114,10 @@ $(function() {
           }
 
           loading = false;
-          offset += 2;
+          nextSidbarTagsPageNumber += 1;
+          offset += 4;
 
-          if(leftTag.top_10_videos.length == 0 && rightTag.top_10_videos.length == 0) {
+          if(leftTag.top_10_videos.length == 0 && rightTag.top_10_videos.length == 0 && sidbarTags.length == 0) {
             lastPageReached = true;
           }
         })

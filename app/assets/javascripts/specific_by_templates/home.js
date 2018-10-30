@@ -5,7 +5,7 @@ $(function() {
     var loading = false;
     var lastPageReached = false;
     var offset = 4;
-    var nextSidbarTagsPageNumber = 2;
+    var nextSidbarTagsPageNumber = 3;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;

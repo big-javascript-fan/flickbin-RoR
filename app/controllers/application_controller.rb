@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     devise_controller? ? 'devise' : 'application'
   end
 
-  def get_sidebar_tags(number_of_tags = 28)
-    @sidebar_tags ||= Tag.order(rank: :asc).limit(number_of_tags)
+  def get_sidebar_tags(number_of_tags_per_page = 28)
+    @sidebar_tags ||= Tag.order(rank: :asc).page(params[:page]).per(number_of_tags_per_page)
   end
 end

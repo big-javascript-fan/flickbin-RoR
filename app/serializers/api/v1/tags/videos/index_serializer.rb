@@ -1,12 +1,16 @@
-class Api::V1::Tags::Videos::IndexSerializer
+class Api::V1::Tags::Videos::IndexSerializer < Api::V1::BaseSerializer
   include ActionView::Helpers::DateHelper
 
-  def initialize(videos)
+  def initialize(sidebar_tags, videos)
+    @sidebar_tags = sidebar_tags
     @videos = videos
   end
 
   def call
-    Oj.dump(videos_to_hash(@videos))
+    Oj.dump(
+      sidebar_tags: sidebar_tags_to_hash(@sidebar_tags),
+      tag_videos: videos_to_hash(@videos)
+    )
   end
 
   private

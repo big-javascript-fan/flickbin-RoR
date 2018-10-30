@@ -26,7 +26,7 @@ $(function() {
     var lastPageReached = false;
     var nextPageNumber = 1;
 
-    $('.contentPanel').scroll(function(e) {
+    $('.wrapper.scroll').scroll(function(e) {
       var scrollReachedEndOfDocument = ($('.video-feed').height() - $(this).scrollTop()) < $(window).height() - 80;
 
       if(loading || lastPageReached) {
@@ -41,12 +41,25 @@ $(function() {
           page: nextPageNumber + 1,
           sort_by: sortBy
         }).then(function(response) {
+          var sidbarTags = response.sidebar_tags;
+          var tagVideos = response.tag_videos;
+          var sidbarTagsContent = '';
           var videosContent = '';
 
-          if($.isEmptyObject(response)) {
-            lastPageReached = true;
-          } else {
-            $.each(response, function(index, video) {
+          if(sidbarTags.length > 0) {
+            $.each(sidbarTags, function(index, tag) {
+              sidbarTagsContent += `
+                <li>
+                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                </li>
+              `
+            });
+
+            $('ul.leftPanelTags').append(sidbarTagsContent)
+          }
+
+          if(tagVideos.length > 0) {
+            $.each(tagVideos, function(index, video) {
               videosContent += `
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
@@ -78,9 +91,14 @@ $(function() {
             });
 
             $('ul.video-feed').append(videosContent);
-            loading = false;
-            nextPageNumber += 1;
           }
+
+          if(sidbarTags.length == 0 && tagVideos.length == 0) {
+            lastPageReached = true;
+          }
+
+          loading = false;
+          nextPageNumber += 1;
         });
       }
     });

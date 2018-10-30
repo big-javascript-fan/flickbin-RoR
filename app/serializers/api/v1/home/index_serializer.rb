@@ -1,4 +1,4 @@
-class Api::V1::Home::Videos::IndexSerializer
+class Api::V1::Home::IndexSerializer < Api::V1::BaseSerializer
   def initialize(sidebar_tags, left_tag, right_tag)
     @sidebar_tags = sidebar_tags
     @left_tag = left_tag
@@ -14,18 +14,6 @@ class Api::V1::Home::Videos::IndexSerializer
   end
 
   private
-
-  def sidebar_tags_to_hash(tags)
-    return [] if tags.blank?
-
-    tags.map do |tag|
-      {
-        id:            tag.id,
-        title:         tag.title,
-        slug:          tag.slug
-      }
-    end
-  end
 
   def tag_to_hash(tag)
     {

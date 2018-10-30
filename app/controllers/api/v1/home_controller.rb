@@ -13,6 +13,6 @@ class Api::V1::HomeController < Api::V1::BaseController
                    .includes(:top_10_videos)
                    .first
 
-    render json: Api::V1::Home::Videos::IndexSerializer.new(sidebar_tags, left_tag, right_tag).call
+    render json: Api::V1::Home::IndexSerializer.new(sidebar_tags, left_tag, right_tag).call
   end
 end

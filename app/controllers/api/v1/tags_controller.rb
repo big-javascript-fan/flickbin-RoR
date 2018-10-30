@@ -16,13 +16,17 @@ class Api::V1::TagsController < Api::V1::BaseController
       if params[:query].present?
         Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
       else
-        Tag.order(rank: :asc).page(params[:page]).per(15)
+        Tag.order(rank: :asc).page(params[:page]).per(28)
       end
 
     render json: tags.to_json(only: [:id, :slug, :title])
   end
 
   def show
+    sidebar_tags = Tag.order(rank: :asc)
+                      .page(params[:page])
+                      .per(28)
+
     tag = Tag.friendly.find(params[:tag_slug])
 
     tag_videos =
@@ -36,7 +40,7 @@ class Api::V1::TagsController < Api::V1::BaseController
       end
 
     tag_videos = tag_videos.page(params[:page]).per(10)
-    render json: Api::V1::Tags::Videos::IndexSerializer.new(tag_videos).call
+    render json: Api::V1::Tags::Videos::IndexSerializer.new(sidebar_tags, tag_videos).call
   end
 
   private

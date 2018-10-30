@@ -1,5 +1,5 @@
 $(function() {
-  infiniteScrollForTags();
+  // infiniteScrollForTags();
 
   function infiniteScrollForTags() {
     var loading = false;

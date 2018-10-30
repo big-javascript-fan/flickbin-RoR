@@ -79,3 +79,8 @@
 .top-margin-25 {
   margin-top: 25px;
 }
+
+.scroll {
+  overflow-y: scroll;
+  height: 100vh;
+}

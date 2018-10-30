@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :get_tending_tags, only: [:edit, :update]
+  before_action :get_sidebar_tags, only: [:edit, :update]
   before_action :get_user_videos, only: [:edit, :update]
 
   # GET /resource/sign_up
@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # GET /resource/edit
   # def edit
   #   super
   # end
@@ -58,8 +57,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def get_tending_tags
-    @trending_tags = Tag.order(rank: :asc).limit(25)
+  def get_sidebar_tags
+    @sidebar_tags ||= Tag.order(rank: :asc).page(params[:page]).per(25)
   end
 
   def get_user_videos

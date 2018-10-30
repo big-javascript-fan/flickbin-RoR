@@ -341,28 +341,36 @@ select:actived {
 
 .wrapper {
     position: relative;
-    min-height: 100%;
+    display: flex;
 }
 .leftPanel {
-    float: left;
     min-height: 100%;
     background-color: #fafafa;
-    left: 0;
-    top: 0;
+    padding: 0;
 }
-.leftPanel { 
+@media(max-width: 767px){
+ .wrapper {
+    flex-direction:column;
+  }
+  .leftPanel {
+    min-height: auto;
+  }
+}
+.leftPanel {
     -ms-overflow-style: none;  // IE 10+
     overflow: -moz-scrollbars-none;  // Firefox
 }
-.leftPanel::-webkit-scrollbar { 
+.leftPanel::-webkit-scrollbar {
     display: none;  // Safari and Chrome
 }
 .contentPanel {
     z-index: 2;
     background:#fff;
+    width:100%;
     padding: 39px 37px 37px 36px;
 }
 .videoContentPanel {
+    width: 100%;
     z-index: 2;
     padding: 39px 37px 37px 27px;
 }
@@ -371,8 +379,9 @@ select:actived {
     text-indent: -9999px;
     overflow: hidden;
     height: 41px;
+    width:165px;
     background: url('/images/logo.png') no-repeat center center;
-    margin: 39px 0;
+    margin: 39px auto;
 }
 
 .boldLinks,
@@ -464,7 +473,7 @@ select:actived {
 .entityList {
     list-style: none;
     padding: 0;
-    
+
 }
 .entityList .entityRow {
     display: table;

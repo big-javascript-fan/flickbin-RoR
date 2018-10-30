@@ -76,53 +76,6 @@
 
 .hidden { display: none !important; }
 
-.station.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.allTags.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.tag.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.comments.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.contentPanel.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.wrapper.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-.leftTagsOuter.scroll {
-  overflow-y: scroll;
-  height: 100vh;
-}
-
-
 .top-margin-25 {
   margin-top: 25px;
 }
-
-@media(min-width: 768px){
-  .scroll {
-    overflow-y: scroll;
-    height: 100vh;
-  }
-  .scroll-disable{
-    overflow: hidden;
-  }
-}
-

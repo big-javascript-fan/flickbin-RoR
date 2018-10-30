@@ -2,6 +2,7 @@ class VideosController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def new
+    @sidebar_tags = get_sidebar_tags
     @video = current_user.videos.build
   end
 

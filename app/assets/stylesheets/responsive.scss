@@ -9,6 +9,14 @@
 }
 @media (max-width: 767px) {
 
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	input[type="number"],
+	select {
+	    font-size: 15px;
+	}
+
 	.hideOnMobile { display: none !important;}
 
 	.leftPanel:before,
@@ -20,7 +28,7 @@
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 21px 0 0 0; width: 84px; background-size: 80% auto; background-position: right center; background: url('/images/logo_m.png') no-repeat;}
+	.brand { float: left; margin: 21px 0 0 0; width: 117px; background-size: 80% auto; background-position: right center; background: url('/images/logo.png') no-repeat;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
 	.btnGroup { display: none;}
@@ -41,7 +49,7 @@
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
-		margin-top: 8px;
+		margin-top: 15px;
 	}
 	.offCanvasBar {
 		display: block;
@@ -62,7 +70,7 @@
 		display:block; 
 		position:fixed !important; 
 		width:240px; 
-		left:-240px;
+		right:-240px;
 		top: 0;
 		overflow-x:hidden;
 		overflow-y:auto; 
@@ -71,7 +79,7 @@
 		z-index: 10;
 	}
 	.offCanvasOpen .leftTagsOuter { 
-		left:0;
+		right: 0;
 		padding:20px 10px;
 	}
 	.offCanvasMask { position:fixed; width:100%; height:100%; display:block; visibility:hidden; left:0; top:0; z-index:9;}
@@ -230,7 +238,6 @@
 		width: 190px;
 	}
 	.videoTop {
-		margin: -20px -15px 0 -15px;
 		padding: 20px 15px 0 15px;
 	}
 	.underneathPlayer {
@@ -240,31 +247,47 @@
 		padding: 0 0 25px 0;
 	}
 	.underneathPlayer > span {
-		text-align: center;
-		float: none;
+		text-align: left;
+		float: left;
 		font-size: 16px;
 		line-height: 30px;
 	}
 	.underneathPlayer > span:last-child {
-		float: none;
+		float: right;
 	}
 	.upDownOptions {
-		padding: 20px 0 20px 0;
+		padding: 17px 8px 20px 0;
 		margin-right: 5px;
-		float: none;
-		width: 110px;
-		margin: 0 auto;
+		float: left;
 		border: none;
+	}
+	.counterOption {
+		height: 28px;
+		width: 28px;
+	}
+	.commentTitle {
+		font-size: 15px;
+	}
+	.fas {
+		margin-top: 4px;
 	}
 	.videoTopDesc {
 		float: none;
 		display: block;
 		width: 100%;
-		clear: both;
-		text-align: center;
+	}
+	.commentEntity {
+		margin-bottom: 18px;
+		padding-bottom: 12px;
+	}
+	.commentEntity p {
+		margin-bottom: 0px;
 	}
 	.videoTopDescCell {
 		font-size: 18px;
+		text-align: left;
+		width: 70%;
+		padding: 9px;
 	}
 	.btnReverseTheme .btn:last-child {
 		margin-left: 0;
@@ -303,7 +326,7 @@
 	.mobileBtnPosition {
 		float: right;
 		margin: 0;
-		margin-top: 12px;
+		margin-top: 20px;
 	}
 	.mobileBtnPosition .btn {
 		padding: 9px 12px;

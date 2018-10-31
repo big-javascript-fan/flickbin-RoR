@@ -60,10 +60,10 @@
       </div>
     </section>
     <div class="underneathPlayer clearfix">
-      <span>
+      <span class="tagRankCount">
         #<%= @video.rank %> in <%= link_to @tag.title, tag_path(@tag) %>
       </span>
-      <span>submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
+      <span class="submittedBy">submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
     </div>
 
     <div class="commentSection" current_user_id="<%= current_user&.id %>">

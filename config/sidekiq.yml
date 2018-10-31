@@ -1,7 +1,7 @@
 :schedule:
   recalculate_videos_rank_job:
-    every: 1m
+    every: 1h
     class: RecalculateVideosRankJob
   recalculate_tags_rank_job:
-    every: 2m
+    every: 12h
     class: RecalculateTagsRankJob

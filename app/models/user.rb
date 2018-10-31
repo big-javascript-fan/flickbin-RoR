@@ -17,8 +17,13 @@ class User < ApplicationRecord
   validates_uniqueness_of :channel_name, allow_blank: true
   validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
                                             allow_blank: true
+  validates_inclusion_of :role, in: ['client', 'admin']
 
   before_create :set_default_channel_decription
+
+  def admin?
+    self.role == 'admin'
+  end
 
   def set_default_channel_decription
     self.channel_description = 'This is a station description.'

@@ -27,7 +27,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = '';
           counterOptionElement.removeClass('voted');
-          $('.counterValueHolder').text(response.new_rank);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video);
           $('.upDownOptions').removeAttr('voted');
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -41,7 +41,7 @@ $(function() {
           votedValue = newVoteValue;
           $('.counterOption').removeClass('voted');
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_rank);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video);
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -53,7 +53,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = newVoteValue;
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_rank);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video);
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);

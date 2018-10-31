@@ -115,7 +115,7 @@ $(function() {
 
           loading = false;
           nextSidbarTagsPageNumber += 1;
-          offset += 4;
+          offset += 2;
 
           if(leftTag.top_10_videos.length == 0 && rightTag.top_10_videos.length == 0 && sidbarTags.length == 0) {
             lastPageReached = true;

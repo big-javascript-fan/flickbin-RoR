@@ -1,0 +1,7 @@
+:schedule:
+  recalculate_videos_rank_job:
+    every: 1m
+    class: RecalculateVideosRankJob
+  recalculate_tags_rank_job:
+    every: 2m
+    class: RecalculateTagsRankJob

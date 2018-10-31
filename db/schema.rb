@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031131718) do
+ActiveRecord::Schema.define(version: 20181031152443) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20181031131718) do
     t.text "channel_description"
     t.string "avatar"
     t.integer "rank", default: 0
+    t.string "role", default: "client"
     t.index ["channel_name"], name: "index_users_on_channel_name", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

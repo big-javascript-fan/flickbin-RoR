@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031130911) do
+ActiveRecord::Schema.define(version: 20181031131718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20181031130911) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "first_character", default: ""
+    t.integer "votes_amount", default: 0
     t.index ["first_character"], name: "index_tags_on_first_character"
     t.index ["rank"], name: "index_tags_on_rank"
     t.index ["slug"], name: "index_tags_on_slug", unique: true

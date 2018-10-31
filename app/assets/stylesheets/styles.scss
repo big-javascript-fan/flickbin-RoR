@@ -61,6 +61,11 @@ p { margin:0 0 20px;}
 
 .relative { position:relative;}
 
+/* Change the white to any color ;) */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 white inset;
+}
+
 /* End Tools ----------------- */
 
 /* Components ------------------------- */
@@ -500,11 +505,11 @@ select:actived {
     height: 66px;
     overflow:hidden;
 }
-.thumbnail, .tagThumbnail {
+.thumbnail, .tagThumbnail, .stationThumbnail {
     position: relative;
     display: block;
 }
-.tagThumbnail {
+.tagThumbnail, .stationThumbnail {
     width: 197px;
     height: 123px;
     margin-top: -20px;
@@ -514,7 +519,7 @@ select:actived {
     height: 93px;
     margin-top: -13px;
 }
-.thumbnailLink, .tagThumbnailLink {
+.thumbnailLink, .tagThumbnailLink, .stationThumbnailLink {
     position: relative;
     display: block;
     overflow: hidden;
@@ -523,7 +528,7 @@ select:actived {
     width: 106px;
     height: 66px;
 }
-.tagThumbnailLink {
+.tagThumbnailLink, .stationThumbnailLink {
     width: 136px;
     height: 85px;
 }
@@ -945,6 +950,7 @@ input[type="text"].searchField {
 }
 .reverseThemeHoler {
     margin-top: 16px;
+    padding-bottom: 15px;
 }
 .reverseThemeHoler .addCircle {
     color: #fff;
@@ -960,15 +966,15 @@ input[type="text"].searchField {
 .videoTopDesc {
     float: left;
     display: table;
-    width: 53%;
+    width: 53%; 
 }
 .videoTopDescCell {
     display: table-cell;
     vertical-align: middle;
-    height: 70px;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
+    padding-top: 10px;
 }
 .underneathPlayer {
     margin: 0 0 43px 12px;

@@ -164,4 +164,10 @@ $(function() {
       });
     });
   }
+  function setPageHeight() {
+    var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var pageContainerStyles = "overflow: hidden;";
+    $('.newVideoPageContainer').css({'height': viewPortHeight + "px", 'overflow': 'hidden'});
+  };
+  setPageHeight();
 });

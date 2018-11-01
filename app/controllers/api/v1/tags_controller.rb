@@ -26,14 +26,16 @@ class Api::V1::TagsController < Api::V1::BaseController
     sidebar_tags = get_sidebar_tags(35)
     tag = Tag.friendly.find(params[:tag_slug])
 
+    tag_videos = Video.active.tagged.where(tag_id: tag.id)
+
     tag_videos =
       case params[:sort_by]
       when 'newest'
-        Video.where(tag_id: tag.id).order(created_at: :desc)
+        tag_videos.order(created_at: :desc)
       when 'top_charts'
-        Video.where(tag_id: tag.id).order(rank: :asc)
+        tag_videos.order(rank: :asc)
       else
-        Video.where(tag_id: tag.id).order(rank: :asc)
+        tag_videos.order(rank: :asc)
       end
 
     tag_videos = tag_videos.page(params[:page]).per(10)

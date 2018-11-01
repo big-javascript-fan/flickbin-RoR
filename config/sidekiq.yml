@@ -5,3 +5,6 @@
   recalculate_tags_rank_job:
     every: 12h
     class: RecalculateTagsRankJob
+  update_untagged_video_job:
+    every: 1h
+    class: UpdateUntaggedVideoJob

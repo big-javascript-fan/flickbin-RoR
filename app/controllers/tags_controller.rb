@@ -26,11 +26,13 @@ class TagsController < ApplicationController
   def show
     @sidebar_tags = get_sidebar_tags
     @tag = Tag.friendly.find(params[:tag_slug])
+    @tag_videos = Video.active.tagged.where(tag_id: @tag.id)
 
-    if params[:sort_by] == 'newest'
-      @tag_videos = Video.where(tag_id: @tag.id).order(created_at: :desc).limit(10)
-    else
-      @tag_videos = Video.where(tag_id: @tag.id).order(rank: :asc).limit(10)
-    end
+    @tag_videos =
+      if params[:sort_by] == 'newest'
+        @tag_videos = @tag_videos.order(created_at: :desc).limit(10)
+      else
+        @tag_videos = @tag_videos.order(rank: :asc).limit(10)
+      end
   end
 end

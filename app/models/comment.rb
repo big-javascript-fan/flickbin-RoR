@@ -8,7 +8,7 @@ class Comment < ApplicationRecord
 
   before_validation :check_ancestry_depth
 
-  validate :reply_comment
+  # validate :reply_comment
   validates_presence_of :message
   validates_length_of   :message, maximum: AppConstants::MAX_COMMENT_MESSAGE_LENGTH,
                                   allow_blank: true

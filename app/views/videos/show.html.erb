@@ -90,11 +90,9 @@
                   <small><%= "#{time_ago_in_words(root_comment.created_at)} ago" %></small>
                 </div>
                 <p><%= root_comment.message %></p>
-                <% if current_user.present? && current_user.id != root_comment.commentator.id %>
-                  <div class="commentReplyOption">
-                    <a href="#" class="replyComment">Reply</a>
-                  </div>
-                <% end %>
+                <div class="commentReplyOption">
+                  <a href="#" class="replyComment">Reply</a>
+                </div>
               </div>
               <% if child_comments.present? %>
                 <% child_comments.each do |child_comment, grand_child| %>

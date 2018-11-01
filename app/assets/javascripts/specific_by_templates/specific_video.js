@@ -94,6 +94,9 @@ $(function() {
                   <small>${response.post_time} ago</small>
                 </div>
                 <p>${response.message}</p>
+                <div class="commentReplyOption">
+                  <a href="#" class="replyComment">Reply</a>
+                </div>
               </div>
             `
 
@@ -242,18 +245,22 @@ $(function() {
                     <small>${root_comment.post_time} ago</small>
                   </div>
                   <p>${root_comment.message}</p>
+                  <div class="commentReplyOption">
+                    <a href="#" class="replyComment">Reply</a>
+                  </div>
+                </div>
               `
 
-              if(currentUserId && currentUserId != root_comment.commentator.id) {
-                commentContent += `
-                    <div class="commentReplyOption">
-                      <a href="#" class="replyComment">Reply</a>
-                    </div>
-                  </div>
-                `
-              } else {
-                commentContent += '</div>'
-              }
+              // if(currentUserId && currentUserId != root_comment.commentator.id) {
+              //   commentContent += `
+              //       <div class="commentReplyOption">
+              //         <a href="#" class="replyComment">Reply</a>
+              //       </div>
+              //     </div>
+              //   `
+              // } else {
+              //   commentContent += '</div>'
+              // }
 
               if(root_comment.child_comments.length > 0) {
                 $.each(root_comment.child_comments, function(index, child_comment) {

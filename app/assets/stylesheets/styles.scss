@@ -209,6 +209,27 @@ input:-webkit-autofill {
     font-weight: 400;
 }
 
+.sidebarBtn {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    margin: 10px 0px;
+    padding: 7px 12px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 400;
+    line-height: 22px;
+    color: #fff;
+    background-color: #4E5766;
+    border:1px solid #4E5766;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: none;
+}
+
 .btn {
     display: inline-block;
     text-align: center;

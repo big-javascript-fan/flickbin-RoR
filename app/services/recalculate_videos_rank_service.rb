@@ -3,7 +3,7 @@ class RecalculateVideosRankService
     Tag.find_each do |tag|
       rank = 1
 
-      Video.where(tag_id: tag.id).active.tagged.order(votes_amount: :desc).find_each do |video|
+      Video.where(tag_id: tag.id).active.tagged.order(votes_amount: :desc).each do |video|
         video.update_attribute(:rank, rank)
         rank += 1
       end

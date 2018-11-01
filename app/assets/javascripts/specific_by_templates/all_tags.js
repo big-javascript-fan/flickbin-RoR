@@ -75,15 +75,16 @@ $(function() {
 
   function infiniteScrollForTags() {
     var loading = false;
-    var lastPageReached = false;
+    var lastPageForSideBarReached = false;
+    var lastPageForBodyReached = false;
     var nextPageNumber = 2;
     var groupedTagsUrl = `/api/v1/grouped_tags${window.location.search}`;
 
     $(window).scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
+      var scrollReachedEndOfDocument = ($('.tags-feed').height() - $(this).scrollTop()) < $(this).height();
       var lastAlphabetTitle =  $('.tagGroupTitle').last().text();
 
-      if(loading || lastPageReached) {
+      if(loading || lastPageForBodyReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
         loading = true;
@@ -106,9 +107,11 @@ $(function() {
             });
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
+          } else {
+            lastPageForSideBarReached = true;
           }
 
-          if(!$.isEmptyObject({groupedTags})) {
+          if(!$.isEmptyObject(groupedTags)) {
             $.each(groupedTags, function(char, tags) {
               var charTagsContent = '';
 
@@ -142,10 +145,8 @@ $(function() {
                 $('.tags-feed').append(charTagsContent);
               }
             });
-          }
-
-          if(sidbarTags.length == 0 && groupedTags.length == 0) {
-            lastPageReached = true;
+          } else {
+            lastPageForBodyReached = true;
           }
 
           loading = false;

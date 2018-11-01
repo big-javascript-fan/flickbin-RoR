@@ -1,6 +1,6 @@
 class Api::V1::GroupedTagsController < Api::V1::BaseController
   def index
-    sidebar_tags = get_sidebar_tags(30)
+    sidebar_tags = get_sidebar_tags(60)
     tags = Tag.order(first_character: :asc)
 
     if params[:first_char].present?

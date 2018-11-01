@@ -187,13 +187,14 @@ $(function() {
 
   function infiniteScrollForComments() {
     var loading = false;
-    var lastPageReached = false;
+    var lastPageForSideBarReached = false;
+    var lastPageForBodyReached = false;
     var nextPageNumber = 2;
 
     $(window).scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
+      var scrollReachedEndOfDocument = ($('.comments-feed').height() - $(this).scrollTop()) < $(this).height() + 80;
 
-      if(loading || lastPageReached) {
+      if(loading || lastPageForBodyReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
         loading = true;
@@ -216,6 +217,8 @@ $(function() {
             });
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
+          } else {
+            lastPageForSideBarReached = true;
           }
 
           if(commentsTree.length < 0) {
@@ -276,10 +279,8 @@ $(function() {
 
               $('.comments-feed').append(commentContent);
             });
-          }
-
-          if(sidbarTags.length == 0 && response.comments_tree.length == 0) {
-            lastPageReached = true;
+          } else {
+            lastPageForBodyReached = true;
           }
 
           loading = false;

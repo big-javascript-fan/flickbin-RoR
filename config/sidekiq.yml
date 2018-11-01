@@ -8,3 +8,6 @@
   update_untagged_video_job:
     every: 1h
     class: UpdateUntaggedVideoJob
+:queues:
+  - default
+  - mailers

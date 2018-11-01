@@ -3,7 +3,7 @@ class Tag < ApplicationRecord
   friendly_id :title, use: [:sequentially_slugged, :finders]
 
   has_many :videos, -> { order(rank: :asc) }, dependent: :destroy
-  has_many :top_10_videos, -> { active.order(rank: :asc).limit(10) }, class_name: 'Video'
+  has_many :top_10_videos, -> { active.tagged.order(rank: :asc).limit(10) }, class_name: 'Video'
   has_many :users, through: :videos
 
 

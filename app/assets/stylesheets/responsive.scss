@@ -80,7 +80,7 @@
 	}
 	.offCanvasOpen .leftTagsOuter { 
 		right: 0;
-		padding:20px 10px;
+		padding:20px 8px;
 	}
 	.offCanvasMask { position:fixed; width:100%; height:100%; display:block; visibility:hidden; left:0; top:0; z-index:9;}
 	.offCanvasOpen .offCanvasMask { visibility:visible;}
@@ -94,14 +94,18 @@
 	}
 	.offCanvasBtnClose {
 		display: block;
+		margin: 36px 26px;
+		color: #31B4B0;
 	}
 	.boldBlockLinks {
-		float: left;
 		margin-bottom: 15px;
 		margin-top:-10px;
 	}
 	.tagsTitle {
 		clear: both;
+		text-align: center;
+		background: none;
+		padding: 0px;
 	}
 	.serialText {
 		font-size: 28px;
@@ -138,6 +142,9 @@
 		font-size: 26px;
 		line-height: 30px;
 	}
+	.leftPanelTags {
+		text-align: center;
+	}
 	.hasNumberInside {
 		margin-bottom: 25px;
 	}
@@ -151,13 +158,34 @@
 	.dropdownItemListOuter {
 		left: 10px;
 	}
-
+	.commentReplyOption {
+		margin-top: 5px;
+	}
 	.loginAside {
 		width: 100%;
 		position: absolute;
 		background-color: #fff;
 		padding: 20px 15px 20px 15px;
 		width: 100%;
+	}
+	.sidebarBtn {
+		display: inline-block;
+	    text-align: center;
+	    white-space: nowrap;
+	    vertical-align: middle;
+	    user-select: none;
+	    margin: 63px 0px 36px 0;
+	    padding: 7px 12px;
+	    font-size: 14px;
+	    text-transform: uppercase;
+	    line-height: 22px;
+	    color: #fff;
+	    background: none;
+	    border: 1px solid #4E5766;
+	    -webkit-border-radius: 6px;
+	    -moz-border-radius: 6px;
+	    border-radius: 6px;
+	    border: none;
 	}
 	.loginTitle {
 		font-size: 26px;
@@ -246,6 +274,7 @@
 	.commentSection {
 		padding: 0 0 25px 0;
 	}
+
 	.underneathPlayer > span {
 		text-align: left;
 		float: left;
@@ -338,5 +367,8 @@
 	}
 	.videoLoginBtns {
 		margin-top: 7px;
+	}
+	.btn {
+		margin-right: 4px;
 	}
 }

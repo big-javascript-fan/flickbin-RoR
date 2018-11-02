@@ -10,9 +10,15 @@ class Api::V1::VotesController < Api::V1::BaseController
       video_owner = video.user
 
       video.votes.create!(voter_id: current_user.id, value: vote_value)
-      video.update!(votes_amount: video.votes_amount + vote_value)
-      video_tag.update!(votes_amount: video_tag.votes_amount + vote_value)
-      video_owner.update!(rank: video_owner.rank + vote_value)
+
+      if vote_value.positive?
+        video.increment!(:positive_votes_amount)
+        video_tag.increment!(:positive_votes_amount)
+        video_owner.increment!(:rank)
+      else
+        video.decrement!(:negative_votes_amount)
+        video_tag.decrement!(:negative_votes_amount)
+      end
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }
@@ -29,14 +35,22 @@ class Api::V1::VotesController < Api::V1::BaseController
       video_owner = video.user
       prev_vote = Vote.find_by!(voter_id: current_user.id, video_id: video.id)
 
-      new_votes_amount_for_video = video.votes_amount - prev_vote.value + new_vote_value
-      new_votes_amount_for_tag = video_tag.votes_amount - prev_vote.value + new_vote_value
-      new_rank_for_video_owner = video_owner.rank - prev_vote.value + new_vote_value
+      return if new_vote_value == prev_vote.value
 
       prev_vote.update!(value: new_vote_value)
-      video.update!(votes_amount: new_votes_amount_for_video)
-      video_tag.update!(votes_amount: new_votes_amount_for_tag)
-      video_owner.update!(rank: new_rank_for_video_owner)
+      if new_vote_value.positive?
+        video.increment!(:positive_votes_amount)
+        video.increment!(:negative_votes_amount)
+        video_tag.increment!(:positive_votes_amount)
+        video_tag.increment!(:negative_votes_amount)
+        video_owner.increment!(:rank)
+      else
+        video.decrement!(:positive_votes_amount)
+        video.decrement!(:negative_votes_amount)
+        video_tag.decrement!(:positive_votes_amount)
+        video_tag.decrement!(:negative_votes_amount)
+        video_owner.decrement!(:rank)
+      end
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }
@@ -52,14 +66,17 @@ class Api::V1::VotesController < Api::V1::BaseController
       video_owner = video.user
       prev_vote = Vote.find_by!(voter_id: current_user.id, video_id: video.id)
 
-      new_votes_amount_for_video = video.votes_amount - prev_vote.value
-      new_votes_amount_for_tag = video_tag.votes_amount - prev_vote.value
-      new_rank_for_video_owner = video_owner.rank - prev_vote.value
+
+      if prev_vote.value.positive?
+        video.decrement!(:positive_votes_amount)
+        video_tag.decrement!(:positive_votes_amount)
+        video_owner.decrement!(:rank)
+      else
+        video.increment!(:negative_votes_amount)
+        video_tag.increment!(:negative_votes_amount)
+      end
 
       prev_vote.destroy!
-      video.update!(votes_amount: new_votes_amount_for_video)
-      video_tag.update!(votes_amount: new_votes_amount_for_tag)
-      video_owner.update!(rank: new_rank_for_video_owner)
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }

@@ -41,6 +41,10 @@ class Video < ApplicationRecord
     errors.add(:invalid_url, 'Video url invalid')
   end
 
+  def votes_amount
+    self.positive_votes_amount + self.negative_votes_amount
+  end
+
   def set_init_rank
     self.update(rank: self.id)
   end

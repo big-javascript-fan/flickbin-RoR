@@ -404,11 +404,12 @@ select:actived {
     text-indent: -9999px;
     overflow: hidden;
     height: 41px;
-    width:165px;
     background: url('/images/logo.png') no-repeat center center;
-    margin: 39px auto;
+    margin: 39px 0 37px 0;
 }
+.sidebarBrand {
 
+}
 .boldLinks,
 .boldBlockLinks {
     color: #090A0B;
@@ -418,10 +419,10 @@ select:actived {
 .boldBlockLinks {
     display: block;
     text-align: center;
-    margin-bottom: 27px;
+    margin-bottom: 32px;
 }
 .leftTagsOuter {
-    padding: 31px 15px 15px 19px;
+    padding: 32px 15px 15px 19px;
     border-top: 1px solid #EBEEF0;
 }
 .tagsTitle {
@@ -619,19 +620,19 @@ select:actived {
     min-height: 100vh;
     background-size: cover;
     position: relative;
-    background-image: url('/images/login-bg.jpg');
-    background-repeat: no-repeat;
-
 }
 .loginBg::after {
     position: absolute;
     z-index: 1;
-    background-color: rgba(49, 180, 176, 0.8);
+    background-color: #31B4B0;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     content: "";
+}
+.loginSignupButtons {
+    margin-top: 75px;
 }
 .loginAside {
     position: absolute;
@@ -650,6 +651,8 @@ select:actived {
     font-weight: 400;
     line-height: 48px;
     margin-bottom: 70px;
+    margin-top: 40px;
+
 }
 .loginTitle span {
 	color: #868B95;
@@ -688,6 +691,9 @@ select:actived {
     margin-left: 17px;
     position: relative;
 }
+.afterLoginBtns > li:first-of-type {
+    margin-left: 7px;
+}
 .profileDropdownHolder {
     margin-top: -7px;
 }
@@ -695,6 +701,12 @@ select:actived {
 .afterLoginBtns > li:focus .jq-dropdown,
 .afterLoginBtns > li:active .jq-dropdown {
     display: block;
+}
+.postHoverTip {
+    float: left;
+    margin-top: 6px;
+    color: #31B4B0;
+    display: none;
 }
 .addCircle {
     width: 34px;

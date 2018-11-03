@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181031152443) do
+ActiveRecord::Schema.define(version: 20181102094849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,8 @@ ActiveRecord::Schema.define(version: 20181031152443) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "first_character", default: ""
-    t.integer "votes_amount", default: 0
+    t.integer "positive_votes_amount", default: 0
+    t.integer "negative_votes_amount", default: 0
     t.index ["first_character"], name: "index_tags_on_first_character"
     t.index ["rank"], name: "index_tags_on_rank"
     t.index ["slug"], name: "index_tags_on_slug", unique: true
@@ -94,7 +95,8 @@ ActiveRecord::Schema.define(version: 20181031152443) do
     t.boolean "removed", default: false
     t.boolean "untagged", default: false
     t.string "youtube_id"
-    t.integer "votes_amount", default: 0
+    t.integer "positive_votes_amount", default: 0
+    t.integer "negative_votes_amount", default: 0
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["tag_id"], name: "index_videos_on_tag_id"

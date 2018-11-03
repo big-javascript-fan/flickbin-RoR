@@ -8,6 +8,7 @@ class VideosController < ApplicationController
 
   def create
     @video = current_user.videos.build(create_params)
+    @sidebar_tags = get_sidebar_tags
 
     if @video.save
       redirect_to videos_new_path, notice: 'Your video has been shared!'
@@ -15,7 +16,9 @@ class VideosController < ApplicationController
       @invalid_video_url = true
       render :new
     else
-      @existing_video = Video.includes(:tag)
+      @existing_video = Video.active
+                             .tagged
+                             .includes(:tag)
                              .where(tag_id: create_params[:tag_id], url: create_params[:url])
                              .first
       render :new

@@ -13,7 +13,7 @@ class Video < ApplicationRecord
 
   validates :url, presence: true, format: { with: AppConstants::YOUTUBE_URL_REGEXP }
   validates :title, presence: true
-  validates_uniqueness_of :url, scope: :tag_id
+  validates_uniqueness_of :url, scope: :tag_id, conditions: -> { where(untagged: false, removed: false) }
 
   before_validation :upload_data_from_youtube_api, if: :will_save_change_to_url?
   after_create :set_init_rank
@@ -41,8 +41,20 @@ class Video < ApplicationRecord
     errors.add(:invalid_url, 'Video url invalid')
   end
 
+  def votes_amount
+    self.positive_votes_amount + self.negative_votes_amount
+  end
+
   def set_init_rank
     self.update(rank: self.id)
+  end
+
+  def tagged?
+    !untagged?
+  end
+
+  def not_removed?
+    !removed?
   end
 
   def remaining_days

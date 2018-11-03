@@ -6,7 +6,7 @@
     every: 12h
     class: RecalculateTagsRankJob
   update_untagged_video_job:
-    every: 1h
+    every: 30m
     class: UpdateUntaggedVideoJob
 :queues:
   - default

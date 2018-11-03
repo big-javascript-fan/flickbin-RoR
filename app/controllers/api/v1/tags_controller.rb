@@ -16,7 +16,7 @@ class Api::V1::TagsController < Api::V1::BaseController
       if params[:query].present?
         Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
       else
-        Tag.order(rank: :asc).page(params[:page]).per(60)
+        Tag.order(rank: :asc, id: :asc).page(params[:page]).per(60)
       end
 
     render json: tags.to_json(only: [:id, :slug, :title])
@@ -33,9 +33,9 @@ class Api::V1::TagsController < Api::V1::BaseController
       when 'newest'
         tag_videos.order(created_at: :desc)
       when 'top_charts'
-        tag_videos.order(rank: :asc)
+        tag_videos.order(rank: :asc, id: :asc)
       else
-        tag_videos.order(rank: :asc)
+        tag_videos.order(rank: :asc, id: :asc)
       end
 
     tag_videos = tag_videos.page(params[:page]).per(10)

@@ -19,10 +19,9 @@ $(function() {
   function videoPageInfoWidth() {
     var vidTopWidth = $('.videoTop').width();
     var upVoteWidth = $('.upDownOptions').width();
-    var loginSignupBtnSetWidth = $('.btnReverseTheme').width();
     var windowSize = $(window).width();
     if(windowSize >= 768) {
-     var elementsWidth = ((vidTopWidth - 70) - (upVoteWidth + loginSignupBtnSetWidth));
+     var elementsWidth = ((vidTopWidth - 70) - (upVoteWidth + 200));
      $('.videoTopDesc').css('width', elementsWidth);
     } else if(windowSize <= 768) {
       var elementsWidth = ((vidTopWidth - 65) - (upVoteWidth));

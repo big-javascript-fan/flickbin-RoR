@@ -1,5 +1,7 @@
 @media (max-width: 992px) {
-	
+	.videoInfoControls {
+		width: 55%;
+	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
 	
@@ -28,7 +30,7 @@
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 21px 0 0 0; width: 117px; background-size: 80% auto; background-position: right center; background: url('/images/logo.png') no-repeat;}
+	.brand { float: left; margin: 19px 0 0 0; width: 117px; background-size: 80% auto; background-position: right center; background: url('/images/logo.png') no-repeat;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
 	.btnGroup { display: none;}
@@ -49,7 +51,7 @@
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
-		margin-top: 15px;
+		margin-top: 11px;
 	}
 	.offCanvasBar {
 		display: block;
@@ -113,6 +115,9 @@
 		font-size: 28px;
 		vertical-align: top;
 		line-height: 66px;
+	}
+	.videoInfoControls {
+		width: 100%;
 	}
 	.mobileColBottom {
 		margin-bottom: 20px;
@@ -290,7 +295,6 @@
 	.upDownOptions {
 		padding: 17px 8px 20px 0;
 		margin-right: 5px;
-		float: left;
 		border: none;
 	}
 	.counterOption {
@@ -305,8 +309,6 @@
 	}
 	.videoTopDesc {
 		float: none;
-		display: block;
-		width: 100%;
 	}
 	.commentEntity {
 		margin-bottom: 18px;
@@ -358,7 +360,7 @@
 	.mobileBtnPosition {
 		float: right;
 		margin: 0;
-		margin-top: 20px;
+		margin-top: 14px;
 	}
 	.mobileBtnPosition .btn {
 		padding: 9px 12px;

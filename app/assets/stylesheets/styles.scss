@@ -14,6 +14,13 @@ p { margin:0 0 20px;}
 
 :focus { outline:none;}
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+}
+
 .clearfix:before,
 .clearfix:after,
 .wrapper:before,
@@ -404,9 +411,11 @@ select:actived {
     display: block;
     text-indent: -9999px;
     overflow: hidden;
-    height: 41px;
+    width: 117px;
+    height: 26px;
     background: url('/images/logo.png') no-repeat center center;
-    margin: 39px 0 37px 0;
+    margin: 36px auto;
+    background-size: contain;
 }
 .sidebarBrand {
 
@@ -645,6 +654,8 @@ select:actived {
 }
 .brand.inLogin {
     background: url('/images/logo.png') no-repeat top left;
+    background-size: contain;
+    margin: 100px 0 0 0;
 }
 .loginTitle {
 	color: #1D1F23;

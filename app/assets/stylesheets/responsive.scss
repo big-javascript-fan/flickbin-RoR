@@ -39,7 +39,7 @@
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 19px 0 0 0; width: 117px; background-size: 80% auto; background-position: right center; background: url('/images/logo.png') no-repeat;}
+	.brand { float: left; margin: 19px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
 	.btnGroup { display: none;}
@@ -200,22 +200,26 @@
 	    -moz-border-radius: 6px;
 	    border-radius: 6px;
 	    border: none;
+	    width: 100%;
 	}
 	.loginTitle {
 		font-size: 26px;
 		line-height: 32px;
-		margin-bottom: 30px !important;
+		margin-bottom: 60px !important;
+		span {
+			margin-top: 10px;
+			line-height: 25px;
+		}
 	}
 	.forgotLinks {
 		display: block;
-		float: none;
+		float: right;
 		text-align: left;
-		clear: both;
 	}
 	.brand.inLogin {
 		float: none;
 		clear: both;
-		margin: 25px !important;
+		margin: 25px 0 25px 0 !important;
 	}
 	.loginAside .bottom-margin-70 {
 		margin-bottom: 35px !important;

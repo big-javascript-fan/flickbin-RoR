@@ -39,7 +39,7 @@
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 19px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
+	.brand { float: left; margin: 13px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
 	.btnGroup { display: none;}
@@ -60,7 +60,7 @@
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
-		margin-top: 11px;
+		margin-top: 7px;
 	}
 	.offCanvasBar {
 		display: block;
@@ -105,7 +105,7 @@
 	}
 	.offCanvasBtnClose {
 		display: block;
-		margin: 25px 13px 0px 0px;
+		margin: 17px 13px 0px 0px;
 		color: #31B4B0;
 		float: right;
 	}
@@ -327,6 +327,8 @@
 	}
 	.commentEntity p {
 		margin-bottom: 0px;
+		font-size: 14px;
+		line-height: 21px;
 	}
 	.videoTopDescCell {
 		font-size: 18px;
@@ -371,7 +373,7 @@
 	.mobileBtnPosition {
 		float: right;
 		margin: 0;
-		margin-top: 14px;
+		margin-top: 8px;
 	}
 	.mobileBtnPosition .btn {
 		padding: 9px 12px;
@@ -386,5 +388,25 @@
 	}
 	.btn {
 		margin-right: 4px;
+	}
+	.siteFooter {
+    	text-align: center;
+    	padding: 10px 0 10px 0;
+	}
+	.footerText {
+	    padding: 0px;
+	    margin: 0 0 5px 0;
+	    text-align: center;
+	    width: 100%;
+	    float: left;
+	}
+	.footerMenu {
+	    margin: 0px;
+	    width: 100%;
+	    text-align: center;
+	    float: left;
+	    li {
+	    	padding-left: 0px;
+	    }
 	}
 }

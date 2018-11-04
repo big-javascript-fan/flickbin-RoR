@@ -82,6 +82,7 @@ input:-webkit-autofill {
     display: none;
     margin-top: 18px;
     left: -185px;
+    animation-duration: 1s;
 }
 .jq-dropdown.onRightSide {
     left: -185px;
@@ -215,7 +216,37 @@ input:-webkit-autofill {
 .jq-dropdown .dropdown-menu li > a.current {
     font-weight: 400;
 }
-
+.siteFooter {
+    position:fixed;
+    display: table;
+    width: 100%;
+    left: 0;
+    bottom: -50;
+    height: 50px;
+    background: #F3F4F5;
+    z-index: 111;
+}
+.siteFooterShow {
+    bottom: 0;
+}
+.footerText {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 25px;
+    color: #7D8188;
+}
+.footerMenu {
+    display: table-cell;
+    list-style-type: none;
+    vertical-align: middle;
+    text-align: right;
+    padding-right: 25px;
+    li {
+        display: inline;
+        padding-left: 15px;
+    }
+}
 .sidebarBtn {
     display: inline-block;
     text-align: center;

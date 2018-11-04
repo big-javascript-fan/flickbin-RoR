@@ -1,6 +1,15 @@
-@media (max-width: 992px) {
-	.videoInfoControls {
-		width: 55%;
+@media (max-width: 1190px) {
+	.upDownOptions {
+		font-size: 18px;
+		line-height: 24px;
+	}
+	.videoTopDesc {
+		font-size: 18px;
+	}
+}
+@media (max-width: 1090px) {
+	.btn {
+		padding: 8px 15px;
 	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -115,9 +124,6 @@
 		font-size: 28px;
 		vertical-align: top;
 		line-height: 66px;
-	}
-	.videoInfoControls {
-		width: 100%;
 	}
 	.mobileColBottom {
 		margin-bottom: 20px;
@@ -296,6 +302,7 @@
 		padding: 17px 8px 20px 0;
 		margin-right: 5px;
 		border: none;
+		line-height: 28px;
 	}
 	.counterOption {
 		height: 28px;

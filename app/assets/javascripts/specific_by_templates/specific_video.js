@@ -10,6 +10,27 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
 
+  $(document).ready(function () {
+    videoPageInfoWidth();
+    $(window).resize(function() {
+      videoPageInfoWidth();
+    });
+  });
+  function videoPageInfoWidth() {
+    var vidTopWidth = $('.videoTop').width();
+    var upVoteWidth = $('.upDownOptions').width();
+    var loginSignupBtnSetWidth = $('.btnReverseTheme').width();
+    var windowSize = $(window).width();
+    if(windowSize >= 768) {
+     var elementsWidth = ((vidTopWidth - 70) - (upVoteWidth + loginSignupBtnSetWidth));
+     $('.videoTopDesc').css('width', elementsWidth);
+    } else if(windowSize <= 768) {
+      var elementsWidth = ((vidTopWidth - 65) - (upVoteWidth));
+      $('.videoTopDesc').css('width', elementsWidth);
+    }
+  }
+
+
   $('.jq-dropdown-anchor-right').addClass('reverseTheme');
 
   function votesHandler() {

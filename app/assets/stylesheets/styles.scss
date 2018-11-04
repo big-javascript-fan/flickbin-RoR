@@ -372,6 +372,7 @@ select:actived {
     min-height: 100%;
     background-color: #fafafa;
     padding: 0;
+    min-width: 166px;
 }
 @media(max-width: 767px){
  .wrapper {
@@ -949,13 +950,20 @@ input[type="text"].searchField {
     background-color: #31B4B0;
     color: #fff;
 }
-.upDownOptions {
+.videoInfoControls {
     float: left;
-    line-height: 22px;
-    padding: 20px 23px 20px 0;
-    margin-right: 21px;
+    height: 71px;
+    display: table;
+    width: 65%;
+}
+.upDownOptions {
+    width: 100px;
+    line-height: 23px;
     font-size: 28px;
     border-right: 1px solid #319491;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 20px;
 }
 .videoViewManager {
     background-color: #121212;
@@ -1000,17 +1008,11 @@ input[type="text"].searchField {
     background-color: #fff;
 }
 .videoTopDesc {
-    float: left;
-    display: table;
-    width: 53%;
-}
-.videoTopDescCell {
     display: table-cell;
     vertical-align: middle;
     font-weight: 400;
     font-size: 20px;
-    line-height: 24px;
-    padding-top: 10px;
+    padding-left: 20px;
 }
 .underneathPlayer {
     margin: 0 0 43px 12px;
@@ -1174,7 +1176,7 @@ input[type="text"].asCommentField {
 .btnGroup.btnReverseTheme,
 .btnGroup.btnGroupNoReverse {
     margin-bottom: 0;
-    margin-top: 10px;
+    margin-top: 13px;
 }
 .btnGroup.btnGroupTopSpace {
     margin-top: 16px;
@@ -1662,9 +1664,6 @@ input.grayNormal {
 }
 .offCanvasBtnClose {
     display: none;
-    position: absolute;
-    top: 5px;
-    right: 10px;
     font-size: 36px;
     line-height: 28px;
     font-weight: 400;

@@ -26,32 +26,36 @@
 
   <section class="videoContentPanel comments">
     <section class="videoTop">
-      <div class="clearfix bottom-margin-15">
+      <div class="clearfix bottom-margin-20">
         <% if current_user.present? %>
-          <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
-            <span class="counterOption upVote <%= 'voted' if @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
-            <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
-            <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
+          <div class="videoInfoControls">
+            <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
+              <span class="counterOption upVote <%= 'voted' if @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
+              <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
+              <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
+            </div>
+            <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
+              <%= @video.title %>
+            </div>
           </div>
-
           <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">
             <%= render 'partials/logged_in_right_header' %>
           </div>
         <% else %>
-          <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
-            <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
-            <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
-            <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
+          <div class="videoInfoControls">
+            <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
+              <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
+              <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
+              <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
+            </div>
+            <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
+              <%= @video.title %>
+            </div>
           </div>
-
           <div class="clearfix btnGroup btnReverseTheme fRight hideOnMobile">
             <%= render 'partials/right_header' %>
           </div>
         <% end %>
-
-        <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
-          <div class="videoTopDescCell"><%= @video.title %></div>
-        </div>
       </div>
       <div class="videoViewManager">
         <div class='embed-container'>

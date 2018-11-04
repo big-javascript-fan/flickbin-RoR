@@ -1,11 +1,12 @@
 <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnMobile" %>
 <div class="leftTagsOuter">
+  <a href="#" class="offCanvasBtn offCanvasBtnClose">&times;</a>
   <% unless current_user.present? %>
     <div class="hideOnDesktop sidebarBtn">
       <%= render 'partials/right_header' %>
     </div>
   <% end %>
-  <a href="#" class="offCanvasBtn offCanvasBtnClose">&times;</a>
+  
   <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnDesktop" %>
 
   <span class="tagsTitle">Trending Tags</span>

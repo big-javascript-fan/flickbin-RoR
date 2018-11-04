@@ -1,6 +1,15 @@
-@media (max-width: 992px) {
-	.videoInfoControls {
-		width: 55%;
+@media (max-width: 1190px) {
+	.upDownOptions {
+		font-size: 18px;
+		line-height: 24px;
+	}
+	.videoTopDesc {
+		font-size: 18px;
+	}
+}
+@media (max-width: 1090px) {
+	.btn {
+		padding: 8px 15px;
 	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
@@ -30,7 +39,7 @@
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
-	.brand { float: left; margin: 19px 0 0 0; width: 117px; background-size: 80% auto; background-position: right center; background: url('/images/logo.png') no-repeat;}
+	.brand { float: left; margin: 13px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
 
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%;}
 	.btnGroup { display: none;}
@@ -51,7 +60,7 @@
 		-webkit-border-radius: 6px;
 		-moz-border-radius: 6px;
 		border-radius: 6px;
-		margin-top: 11px;
+		margin-top: 7px;
 	}
 	.offCanvasBar {
 		display: block;
@@ -96,7 +105,7 @@
 	}
 	.offCanvasBtnClose {
 		display: block;
-		margin: 25px 13px 0px 0px;
+		margin: 17px 13px 0px 0px;
 		color: #31B4B0;
 		float: right;
 	}
@@ -115,9 +124,6 @@
 		font-size: 28px;
 		vertical-align: top;
 		line-height: 66px;
-	}
-	.videoInfoControls {
-		width: 100%;
 	}
 	.mobileColBottom {
 		margin-bottom: 20px;
@@ -194,22 +200,26 @@
 	    -moz-border-radius: 6px;
 	    border-radius: 6px;
 	    border: none;
+	    width: 100%;
 	}
 	.loginTitle {
 		font-size: 26px;
 		line-height: 32px;
-		margin-bottom: 30px !important;
+		margin-bottom: 60px !important;
+		span {
+			margin-top: 10px;
+			line-height: 25px;
+		}
 	}
 	.forgotLinks {
 		display: block;
-		float: none;
+		float: right;
 		text-align: left;
-		clear: both;
 	}
 	.brand.inLogin {
 		float: none;
 		clear: both;
-		margin: 25px !important;
+		margin: 25px 0 25px 0 !important;
 	}
 	.loginAside .bottom-margin-70 {
 		margin-bottom: 35px !important;
@@ -296,6 +306,7 @@
 		padding: 17px 8px 20px 0;
 		margin-right: 5px;
 		border: none;
+		line-height: 28px;
 	}
 	.counterOption {
 		height: 28px;
@@ -316,6 +327,8 @@
 	}
 	.commentEntity p {
 		margin-bottom: 0px;
+		font-size: 14px;
+		line-height: 21px;
 	}
 	.videoTopDescCell {
 		font-size: 18px;
@@ -360,7 +373,7 @@
 	.mobileBtnPosition {
 		float: right;
 		margin: 0;
-		margin-top: 14px;
+		margin-top: 8px;
 	}
 	.mobileBtnPosition .btn {
 		padding: 9px 12px;
@@ -375,5 +388,25 @@
 	}
 	.btn {
 		margin-right: 4px;
+	}
+	.siteFooter {
+    	text-align: center;
+    	padding: 10px 0 10px 0;
+	}
+	.footerText {
+	    padding: 0px;
+	    margin: 0 0 5px 0;
+	    text-align: center;
+	    width: 100%;
+	    float: left;
+	}
+	.footerMenu {
+	    margin: 0px;
+	    width: 100%;
+	    text-align: center;
+	    float: left;
+	    li {
+	    	padding-left: 0px;
+	    }
 	}
 }

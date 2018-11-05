@@ -63,7 +63,7 @@ $(function() {
                   </div>
                   <div class="entityCell serialText">${video.rank}</div>
                   <div class="entityCell">
-                    <a class="descText homeTitle" href=href="/videos/${video.slug}">${video.title}</a>
+                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
                   </div>
                 </li>
               `
@@ -99,7 +99,7 @@ $(function() {
                   </div>
                   <div class="entityCell serialText">${video.rank}</div>
                   <div class="entityCell">
-                    <a class="descText homeTitle" href=href="/videos/${video.slug}">${video.title}</a>
+                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
                   </div>
                 </li>
               `

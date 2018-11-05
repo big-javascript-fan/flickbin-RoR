@@ -69,15 +69,16 @@ $(function() {
               videosContent += `
                 <li class="entityRow" slug="${video.slug}">
                   <div class="entityCell thumbnailCell">
-                    <a class="thumbnail large" href="/videos/"${video.slug}">
-                      <img alt="${video.title}" class="thumbnail large" src="${video.cover_url}">
+                    <a class="stationThumbnailLink large" href="/videos/"${video.slug}">
+                      <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
                   <div class="entityCell cellSpace24">&nbsp;</div>
                   <div class="entityCell hasRemover">
                     <span class="postTime">
-                      ${video.post_time} in
+                      posted
+                      ${video.post_time} ago in
                       <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
                     </span>
                     <a class="descText" href="/videos/${video.slug}">${video.title}</a>

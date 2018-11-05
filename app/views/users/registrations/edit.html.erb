@@ -82,9 +82,9 @@
             <%= f.text_field :channel_description, maxlength: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH, class: "block hasRightNumber grayNormal" %>
             <%= f.error :channel_description %>
           </div>
-          <div class="clearfix btnGroup btnGroupNoReverse">
-            <%= f.submit "Update Info", class: "btn medium border2x strong noMargin" %>
-            <%= link_to "Cancel", station_path(current_user), class: "btn medium strong noBorder colorNoBg" %>
+          <div class="clearfix btnGroup btnReverseTheme">
+            <%= f.submit "Update Info", class: "btn" %>
+            <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
           </div>
         <% end %>
       </div>

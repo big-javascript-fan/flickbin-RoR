@@ -94,15 +94,16 @@
       <% @user_videos.each do |video| %>
         <li class="entityRow" slug="<%= video.slug %>">
           <div class="entityCell thumbnailCell">
-            <%= link_to video_path(video), class: "thumbnail large" do %>
-              <%= image_tag(video.cover.url, alt: video.title, class: "thumbnail large") %>
+            <%= link_to video_path(video), class: "stationThumbnailLink large" do %>
+              <%= image_tag(video.cover.url, alt: video.title, class: "stationThumbnail large") %>
               <span class="playerIcon"><i class="fas fa-play"></i></span>
             <% end %>
           </div>
           <div class="entityCell cellSpace24">&nbsp;</div>
           <div class="entityCell hasRemover">
             <span class="postTime">
-              <%= "#{time_ago_in_words(video.created_at)} in "%>
+              posted
+              <%= "#{time_ago_in_words(video.created_at)} ago to "%>
               <%= link_to video.tag.title, tag_path(video.tag) %>
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
         get 'users/:channel_slug', action: :show
 
         scope module: :avatars do
-          put 'avatars', action: :update
+          put 'users/avatars', action: :update
         end
       end
 

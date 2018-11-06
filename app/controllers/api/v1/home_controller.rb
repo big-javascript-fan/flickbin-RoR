@@ -1,11 +1,11 @@
 class Api::V1::HomeController < Api::V1::BaseController
   def index
     sidebar_tags = get_sidebar_tags
-    left_tag = Tag.order(rank: :asc, id: :asc)
+    left_tag = Tag.order(rank: :asc, created_at: :desc)
                   .offset(params[:offset]&.to_i)
                   .includes(:top_10_videos)
                   .first
-    right_tag = Tag.order(rank: :asc, id: :asc)
+    right_tag = Tag.order(rank: :asc, created_at: :desc)
                    .offset(params[:offset].next&.to_i)
                    .includes(:top_10_videos)
                    .first

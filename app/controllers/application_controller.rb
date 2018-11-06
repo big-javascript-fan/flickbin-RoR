@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_sidebar_tags(number_of_tags_per_page = 28)
-    @sidebar_tags ||= Tag.order(rank: :asc, id: :asc).page(params[:page]).per(number_of_tags_per_page)
+    @sidebar_tags ||= Tag.order(rank: :asc, created_at: :desc).page(params[:page]).per(number_of_tags_per_page)
   end
 end

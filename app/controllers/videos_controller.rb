@@ -12,7 +12,7 @@ class VideosController < ApplicationController
 
     if @video.save
       redirect_to videos_new_path, notice: 'Your video has been shared!'
-    elsif @video.errors.messages[:invalid_url].present? || @video.errors.messages[:url].present?
+    elsif @video.errors.messages[:invalid_url].present? || @video.errors.details[:url].first[:error] == :invalid
       @invalid_video_url = true
       render :new
     else

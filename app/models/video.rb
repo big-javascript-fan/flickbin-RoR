@@ -30,7 +30,7 @@ class Video < ApplicationRecord
   end
 
   def upload_data_from_youtube_api
-    youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1]
+    youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1] || self.url.split('/').last
     return errors.add(:invalid_url, 'Video url invalid') if youtube_video_id.blank?
 
     youtube_video = Yt::Video.new id: youtube_video_id

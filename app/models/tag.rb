@@ -26,7 +26,8 @@ class Tag < ApplicationRecord
   end
 
   def set_init_rank
-    self.update(rank: self.id)
+    max_rank = Tag.maximum(:rank) || 0
+    self.update(rank: max_rank + 1)
   end
 
   def convert_to_lowercase_title_and_set_first_character

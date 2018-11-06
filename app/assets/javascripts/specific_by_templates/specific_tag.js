@@ -7,17 +7,23 @@ $(function() {
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
-    $(`a.filter[filter=${sortBy}]`).addClass('current');
+    $(`a.filter[sort_by=${sortBy}]`).addClass('current');
 
-    $('.filter').on('click', function() {
-      sortBy = $(this).attr('filter');
+    $('a.filter').on('click', function(e) {
+      e.preventDefault();
+
+      sortBy = $(this).attr('sort_by');
       $('.filter').removeClass('current');
       $(this).addClass('current');
 
       var newUrl = `${window.location.origin}/tags/${tagSlug}?sort_by=${sortBy}`;
       window.history.pushState({path: newUrl}, '', newUrl);
 
-      infiniteScrollForVideos();
+      $.ajax({
+        dataType: 'script',
+        url: newUrl,
+        cache: false
+      });
     });
   }
 

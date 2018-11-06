@@ -34,8 +34,8 @@
 
         <ul class="pillNav clearfix">
           <li>sort by</li>
-          <li><%= link_to 'top charts', tag_path(@tag, sort_by: :top_charts), filter: 'top_charts', class: "top_charts filter", remote: true %></li>
-          <li> <%= link_to 'newest', tag_path(@tag, sort_by: :newest), filter: 'newest', class: "filter", remote: true %></li>
+          <li><%= link_to 'top charts', tag_path(@tag), sort_by: 'top_charts', class: "top_charts filter", remote: true %></li>
+          <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>
         </ul>
       </div>
       <ul class="entityList inTag specificTagList tagListHasNumber video-feed">

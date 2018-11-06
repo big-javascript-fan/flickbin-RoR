@@ -47,7 +47,7 @@ class Video < ApplicationRecord
 
   def set_init_rank
     max_rank = Video.where(tag_id: self.tag.id).maximum(:rank) || 0
-    self.update(rank: max_rank + 1, positive_votes_amount: 1)
+    self.update(rank: max_rank + 1)
   end
 
   def tagged?

@@ -41,7 +41,7 @@ $(function() {
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
 
-          if(leftTag.top_10_videos.length > 0) {
+          if(leftTag.top_10_videos.length >= 10) {
             leftTagContent += `
               <div id="${leftTag.id}" class="colHalf colTitle clearfix mobileColBottom left_tag top-margin-25">
                 <div class="clearfix bottom-margin-15">
@@ -77,7 +77,7 @@ $(function() {
             $('.video-feed').append(leftTagContent)
           }
 
-          if(rightTag.top_10_videos.length > 0) {
+          if(rightTag.top_10_videos.length >= 10) {
             rightTagContent += `
               <div id="${rightTag.id}" class="colHalf clearfix right_tag top-margin-25">
                 <div class="clearfix bottom-margin-15">

@@ -43,7 +43,7 @@
     <% end %>
 
     <div class="row video-feed">
-      <% if @top_1_tag.present? %>
+      <% if @top_1_tag.present? && @top_1_tag.top_10_videos.size == 10 %>
         <div id="<%= @top_1_tag.id %>" class="colHalf colTitle clearfix mobileColBottom left_tag">
           <div class="clearfix bottom-margin-15">
             <span class="sideTitle"><%= @top_1_tag.title %></span>
@@ -68,7 +68,7 @@
           </ul>
         </div>
       <% end %>
-      <% if @top_2_tag.present? %>
+      <% if @top_2_tag.present? && @top_2_tag.top_10_videos.size == 10 %>
         <div id="<%= @top_2_tag.id %>" class="colHalf clearfix right_tag">
           <div class="clearfix bottom-margin-15">
               <span class="sideTitle"><%= @top_2_tag.title %></span>
@@ -93,7 +93,7 @@
           </ul>
         </div>
       <% end %>
-      <% if @top_3_tag.present? %>
+      <% if @top_3_tag.present? && @top_3_tag.top_10_videos.size == 10 %>
         <div id="<%= @top_3_tag.id %>" class="colHalf colTitle clearfix mobileColBottom left_tag">
           <div class="clearfix bottom-margin-15">
             <span class="sideTitle"><%= @top_3_tag.title %></span>
@@ -118,7 +118,7 @@
           </ul>
         </div>
       <% end %>
-      <% if @top_4_tag.present? %>
+      <% if @top_4_tag.present? && @top_4_tag.top_10_videos.size == 10 %>
         <div id="<%= @top_4_tag.id %>" class="colHalf clearfix right_tag">
           <div class="clearfix bottom-margin-15">
               <span class="sideTitle"><%= @top_4_tag.title %></span>

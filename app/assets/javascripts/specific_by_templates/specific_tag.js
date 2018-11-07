@@ -77,8 +77,7 @@ $(function() {
               `
               if(sortBy == 'newest') {
                 videosContent += `
-                  <div class="entityCell serialText">&nbsp;</div>
-                  <div class="entityCell">
+                  <div class="entityCell paddingLeft20">
                     <a class="descText" href="/videos/${video.slug}">
                       <span class="time">${video.post_time} in</span>
                       ${video.title}

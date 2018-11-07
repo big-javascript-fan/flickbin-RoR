@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def get_sidebar_tags(number_of_tags_per_page = 25)
+  def get_sidebar_tags(number_of_tags_per_page = 35)
     @sidebar_tags ||= Tag.order(rank: :asc, created_at: :desc).page(params[:page]).per(number_of_tags_per_page)
   end
 

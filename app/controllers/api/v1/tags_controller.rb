@@ -23,7 +23,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   end
 
   def show
-    sidebar_tags = get_sidebar_tags(35)
+    sidebar_tags = get_sidebar_tags
     tag = Tag.friendly.find(params[:tag_slug])
 
     tag_videos = Video.active.tagged.where(tag_id: tag.id)

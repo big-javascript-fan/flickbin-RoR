@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def show
-    sidebar_tags = get_sidebar_tags(27)
+    sidebar_tags = get_sidebar_tags
     user = User.friendly.find(params[:channel_slug])
     videos = user.videos
                  .active

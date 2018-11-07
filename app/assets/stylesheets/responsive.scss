@@ -37,7 +37,12 @@
 	.offCanvasBtn {	display: block;	}
 	.colHalf { float: none; width: 100%;}
 
-	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
+	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; -webkit-overflow-scrolling: touch; }
+	.leftPanel::-webkit-scrollbar {
+		display: none;
+		height: 0;
+		width: 0;
+	}
 
 	.brand { float: left; margin: 13px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
 

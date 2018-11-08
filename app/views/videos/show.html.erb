@@ -22,6 +22,17 @@
 
   <section class="videoContentPanel comments">
     <section class="videoTop">
+      <div class='one_column'>
+        <span class="technical_info counterValueHolder">
+          <%= "Sum of positive and negative votes = #{@video.votes_amount}" %>
+        </span>
+        <span class="technical_info counterValueHolder">
+          <%= "Upvotes for all time = #{@video.positive_votes_amount}" %>
+        </span>
+        <span class="technical_info counterValueHolder">
+          <%= "Upvotes in the last hour = #{@last_hour_upvotes}" %>
+        </span>
+      </div>
       <div class="clearfix bottom-margin-20">
         <% if current_user.present? %>
           <div class="videoInfoControls">

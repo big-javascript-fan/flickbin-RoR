@@ -22,26 +22,30 @@
 
   <section class="videoContentPanel comments">
     <section class="videoTop">
-      <div class='one_column'>
-        <span class="technical_info counterValueHolder">
-          <%= "Sum of Upvotes and Downvotes for all time = #{@video.votes_amount}" %>
-        </span>
-        <span class="technical_info counterValueHolder">
-          <%= "Upvotes for all time = #{@video.positive_votes_amount}" %>
-        </span>
-        <span class="technical_info counterValueHolder">
-          <%= "Downvotes for all time = #{@video.negative_votes_amount}" %>
-        </span>
-        <span class="technical_info counterValueHolder">
-          <%= "Upvotes in the last hour = #{@last_hour_upvotes}" %>
-        </span>
-      </div>
+      <% unless Rails.env.production? %>
+        <div class='technical_info'>
+          <span class="technical_info_item counterValueHolder">
+            <%= "Sum of Upvotes and Downvotes for all time = #{@video.positive_votes_amount + @video.negative_votes_amount}" %>
+          </span>
+          <span class="technical_info_item counterValueHolder">
+            <%= "Upvotes for all time = #{@video.positive_votes_amount}" %>
+          </span>
+          <span class="technical_info_item counterValueHolder">
+            <%= "Downvotes for all time = #{@video.negative_votes_amount}" %>
+          </span>
+          <span class="technical_info_item counterValueHolder">
+            <%= "Upvotes in the last hour = #{@last_hour_upvotes}" %>
+          </span>
+        </div>
+      <% end %>
       <div class="clearfix bottom-margin-20">
         <% if current_user.present? %>
           <div class="videoInfoControls">
             <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
               <span class="counterOption upVote <%= 'voted' if @vote&.value&.positive? %>"><i class="fas fa-caret-up"></i></span>
-              <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
+              <span class="counterNumber counterValueHolder">
+                <%= number_with_delimiter(@video.votes_amount) %>
+              </span>
               <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
             </div>
             <div class="videoTopDesc" videoSlug="<%= @video.slug %>">

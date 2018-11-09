@@ -42,7 +42,8 @@ class Video < ApplicationRecord
   end
 
   def votes_amount
-    self.positive_votes_amount + self.negative_votes_amount
+    votes_sum = self.positive_votes_amount + self.negative_votes_amount
+    votes_sum.negative? ? 0 : votes_sum
   end
 
   def set_init_rank

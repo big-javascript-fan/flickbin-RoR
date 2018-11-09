@@ -18,13 +18,13 @@
   color:#31b4b0;
 }
 
-.one_column {
+.technical_info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.technical_info {
+.technical_info_item {
   color:#191717;
   font-size: 18px;
   font-weight: bold;

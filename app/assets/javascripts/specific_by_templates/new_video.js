@@ -69,12 +69,16 @@ $(function() {
     $(this).attr("placeholder", 'https://www.youtube.com/watch?v=ABuQA13l-229')
   });
 
-  $('#video_url').on('keyup', function() {
+  $(document).on('keyup', '#video_url', function(e) {
     if($(this).val().length > 0) {
       videoUrlInput.filled = true;
     } else {
       videoUrlInput.filled = false;
     }
+  });
+
+  $(document).on('paste', '#video_url', function(e) {
+    videoUrlInput.filled = true;
   });
 
   $('#video_tag_name').on('click', function() {
@@ -169,5 +173,6 @@ $(function() {
     var pageContainerStyles = "overflow: hidden;";
     $('.newVideoPageContainer').css({'height': viewPortHeight + "px", 'overflow': 'hidden'});
   };
+
   setPageHeight();
 });

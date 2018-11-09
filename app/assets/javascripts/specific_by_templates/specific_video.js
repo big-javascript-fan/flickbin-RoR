@@ -212,7 +212,7 @@ $(function() {
     var loading = false;
     var lastPageForSideBarReached = false;
     var lastPageForBodyReached = false;
-    var nextPageNumber = 2;
+    var nextPageNumber = 3;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('.comments-feed').height() - $(this).scrollTop()) < $(this).height() + 80;

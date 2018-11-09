@@ -26,7 +26,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    @sidebar_tags = get_sidebar_tags(60)
+    @sidebar_tags = get_sidebar_tags(70)
     @video = Video.friendly.find(params[:video_slug])
     @last_hour_upvotes = @video.votes
                                .where("votes.value = 1 AND votes.created_at BETWEEN '#{1.hour.ago.to_s}' AND '#{Time.now}'")

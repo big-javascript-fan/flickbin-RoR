@@ -7,7 +7,7 @@ class TagsController < ApplicationController
   end
 
   def index
-    @sidebar_tags = get_sidebar_tags(60)
+    @sidebar_tags = get_sidebar_tags(70)
     tags = Tag.order(first_character: :asc)
 
     if params[:first_char].present?

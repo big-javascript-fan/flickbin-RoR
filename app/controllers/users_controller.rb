@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @sidebar_tags = get_sidebar_tags(30)
+    @sidebar_tags = get_sidebar_tags
     @user = User.friendly.find(params[:channel_slug])
     @user_videos = Video.includes(:tag)
                         .active

@@ -8,7 +8,7 @@ $(function() {
     var nextSidbarTagsPageNumber = 3;
 
     $(window).scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 800;
 
       if(loading || lastPageReached) {
         return false;

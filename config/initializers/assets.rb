@@ -20,5 +20,5 @@ Rails.application.config.assets.precompile += %w(
   specific_by_templates/all_tags.js
   specific_by_templates/specific_tag.js
   specific_by_templates/specific_video.js
-  specific_by_templates/partials/trending_tags_bar
+  specific_by_templates/trending_tags_bar.js
 )

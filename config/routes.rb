@@ -63,6 +63,10 @@ Rails.application.routes.draw do
     delete 'videos/:video_slug', action: :destroy
   end
 
+  namespace :statics do
+    get '/:page/', action: :show
+  end
+
   get  'stations/:channel_slug' => 'users#show', as: :station
 
   root 'home#index'

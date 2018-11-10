@@ -16,7 +16,7 @@ class Api::V1::TagsController < Api::V1::BaseController
       if params[:query].present?
         Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
       else
-        Tag.order(rank: :asc, created_at: :desc).page(params[:page]).per(60)
+        get_sidebar_tags(params[:number_of_tags_per_page])
       end
 
     render json: tags.to_json(only: [:id, :slug, :title])

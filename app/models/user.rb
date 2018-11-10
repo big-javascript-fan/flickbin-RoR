@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :validatable, :confirmable
 
   mount_uploader :avatar, UserAvatarUploader
+  validates :avatar, allow_blank: false, format: { with: %r{\.(gif|jpg|png)\Z}i, message: 'must be a URL for GIF, JPG or PNG image.' }
 
   has_many :videos, dependent: :destroy
   has_many :tags, through: :videos

@@ -216,6 +216,10 @@ input:-webkit-autofill {
 .jq-dropdown .dropdown-menu li > a.current {
     font-weight: 400;
 }
+.vidRowContainer {
+    float: left;
+    margin-bottom: 40px;
+}
 .siteFooter {
     position:fixed;
     display: table;
@@ -540,10 +544,10 @@ select:actived {
 .entityList {
     list-style: none;
     padding: 0;
+    display: table;
 
 }
 .entityList .entityRow {
-    display: table;
     margin-bottom: 15px;
     padding-bottom: 15px;
     border-bottom: 1px dashed #E5E7E9;

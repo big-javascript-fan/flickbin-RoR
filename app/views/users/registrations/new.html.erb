@@ -25,6 +25,7 @@
         <%= f.password_field :password, placeholder: 'Enter your password', class: 'block' %>
         <%= f.error :password, class: 'error' %>
       </div>
+      <span>By signing up, you agree to the flickbin, LLC <%= link_to 'User Agreement', statics_path('user_agreement') %> and <%= link_to 'Privacy Policy', statics_path('privacy_policy') %>, including <%= link_to 'Cookie Use', statics_path('cookies_policy') %>.</span>
 
       <div class="clearfix btnFromLeft loginSignupButtons">
         <%= f.submit "Sign up", class: 'btn' %>

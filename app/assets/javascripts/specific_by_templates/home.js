@@ -73,8 +73,6 @@ $(function() {
                 </ul>
               </div>
             `
-
-            $('.video-feed').append(leftTagContent)
           }
 
           if(rightTag.top_10_videos.length >= 10) {
@@ -109,8 +107,16 @@ $(function() {
                 </ul>
               </div>
             `
-
-            $('.video-feed').append(rightTagContent)
+          }
+          if(leftTag && rightTag != 0) {
+            function createScrollRow () {
+              var vidScrollRow = document.createElement('div');
+              vidScrollRow.className = "vidRowContainer";
+              $('.video-feed').append(vidScrollRow)
+              $(vidScrollRow).append(leftTagContent)
+              $(vidScrollRow).append(rightTagContent)
+            }
+            createScrollRow();
           }
 
           loading = false;

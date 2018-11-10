@@ -565,9 +565,13 @@ select:actived {
 .entityCell {
     display: table-cell;
     vertical-align: middle;
+}
+.entityCellStation {
+    display: table-cell;
+    vertical-align: middle;
     width: 100%;
 }
-.entityCell:nth-of-type(2n) {
+.entityCellStation:nth-of-type(2n) {
     padding-left: 20px;
 }
 .thumbnailCell {

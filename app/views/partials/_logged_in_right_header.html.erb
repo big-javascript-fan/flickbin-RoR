@@ -3,7 +3,7 @@
   <li><%= link_to '+', videos_new_path, class: "addCircle" %></li>
   <li class="profileDropdownHolder">
     <div class='profileDropdown'>
-      <%= image_tag(current_user.avatar.url || '/images/avatar_holder.jpg', class: 'avatarHolder') %>
+      <%= image_tag(current_user.avatar.thumb_44x44.url || '/images/avatar_holder.jpg', class: 'avatarHolder') %>
     </div>
     <div class="jq-dropdown push-left jq-dropdown-tip jq-dropdown-anchor-right">
       <div class="jq-dropdown-panel">

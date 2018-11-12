@@ -69,7 +69,7 @@ $(function() {
               videosContent += `
                 <li class="entityRow" slug="${video.slug}">
                   <div class="entityCell thumbnailCell">
-                    <a class="stationThumbnailLink large" href="/videos/"${video.slug}">
+                    <a class="stationThumbnailLink large" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon"><i class="fas fa-play"></i></span>
                     </a>

@@ -2,6 +2,10 @@
   <div class="flashNotification">
     <%= flash[:notice] %>
   </div>
+<% elsif @user_videos.blank? %>
+  <div class="flashNotification">
+    <span>You haven't posted any videos.<%= link_to 'Post a Video', videos_new_path %>!</span>
+  </div>
 <% end %>
 
 <div class="wrapper scroll">

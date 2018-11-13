@@ -17,6 +17,7 @@ class Video < ApplicationRecord
 
   before_validation :upload_data_from_youtube_api, if: :will_save_change_to_url?
   after_create :set_init_rank
+  after_save :recalculate_videos_rank, if: :saved_change_to_removed?
 
   scope :active, -> { where(removed: false) }
   scope :tagged, -> { where(untagged: false) }
@@ -49,6 +50,10 @@ class Video < ApplicationRecord
   def set_init_rank
     max_rank = Video.where(tag_id: self.tag.id).maximum(:rank) || 0
     self.update(rank: max_rank + 1)
+  end
+
+  def recalculate_videos_rank
+    RecalculateVideosRankForSpecificTagJob.perform_later(self.tag)
   end
 
   def tagged?

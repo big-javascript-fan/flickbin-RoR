@@ -3,7 +3,7 @@ class User < ApplicationRecord
   friendly_id :channel_name, use: [:sequentially_slugged, :finders]
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :validatable#, :confirmable
+         :validatable, :confirmable
 
   mount_uploader :avatar, UserAvatarUploader
 

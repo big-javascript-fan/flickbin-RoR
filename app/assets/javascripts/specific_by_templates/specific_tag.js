@@ -26,7 +26,6 @@ $(function() {
       });
     });
   }
-
   function infiniteScrollForVideos() {
     var loading = false;
     var lastPageReached = false;

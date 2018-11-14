@@ -18,6 +18,11 @@
   color:#31b4b0;
 }
 
+.inactiveDownVote {
+  opacity: .5;
+  pointer-events: none;
+}
+
 .technical_info {
   display: flex;
   flex-direction: column;

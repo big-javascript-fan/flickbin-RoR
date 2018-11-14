@@ -52,7 +52,15 @@
               <span class="counterNumber counterValueHolder">
                 <%= number_with_delimiter(@video.votes_amount) %>
               </span>
-              <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>"><i class="fas fa-caret-down"></i></span>
+              <% if @video.votes_amount.zero? %>
+                <span class="counterOption downVote inactiveDownVote <%= 'voted' if @vote&.value&.negative? %>">
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              <% else %>
+                <span class="counterOption downVote <%= 'voted' if @vote&.value&.negative? %>">
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              <% end %>
             </div>
             <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
               <%= @video.title %>
@@ -66,7 +74,15 @@
             <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
               <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
               <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
-              <span class="counterOption downVote" loginRequired='true'><i class="fas fa-caret-down"></i></span>
+              <% if @video.votes_amount.zero? %>
+                <span class="counterOption downVote inactiveDownVote" loginRequired='true'>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              <% else %>
+                <span class="counterOption downVote" loginRequired='true'>
+                  <i class="fas fa-caret-down"></i>
+                </span>
+              <% end %>
             </div>
             <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
               <%= @video.title %>

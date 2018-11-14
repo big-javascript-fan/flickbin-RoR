@@ -1,9 +1,3 @@
-<% if current_user&.videos&.active.blank? %>
-  <div class="flashNotification">
-    <span>You haven't posted any videos.<%= link_to 'Post a Video', videos_new_path %>!</span>
-  </div>
-<% end %>
-
 <div class="wrapper scroll">
   <div class="offCanvasMask"></div>
   <aside class="leftPanel">
@@ -153,6 +147,10 @@
               <% end %>
             <% end %>
           <% end %>
+        <% else %>
+          <div class='blankComments'>
+            <span>This video doesn't have any comments.</span>
+          </div>
         <% end %>
       </div>
   </section>

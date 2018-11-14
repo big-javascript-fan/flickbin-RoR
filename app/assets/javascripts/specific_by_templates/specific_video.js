@@ -134,6 +134,7 @@ $(function() {
 
             $('.comments-feed').prepend(commentContent);
             $('#message').val('');
+            $('.blankComments').remove();
           });
         }
       }

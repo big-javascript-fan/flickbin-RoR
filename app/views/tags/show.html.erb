@@ -38,9 +38,18 @@
           <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>
         </ul>
       </div>
-      <ul class="entityList inTag specificTagList tagListHasNumber video-feed">
-        <%= render 'tags/partials/videos_feed' %>
-      </ul>
+
+      <% if @tag_videos.present? %>
+        <ul class="entityList inTag specificTagList tagListHasNumber video-feed">
+          <%= render 'tags/partials/videos_feed' %>
+        </ul>
+      <% else %>
+        <div class='blankVideos'>
+          <span>
+            This tag is empty. Be the first to <%= link_to 'post a video', videos_new_path %>!
+          </span>
+        </div>
+      <% end %>
     </div>
   </section>
 </div>

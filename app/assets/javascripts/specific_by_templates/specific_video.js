@@ -6,6 +6,7 @@ $(function() {
   currentUserAvatarUrl = $('img.avatarHolder ').attr('src');
 
   votesHandler();
+  votesCountHandler();
   commentFieldHandler();
   replyCommentHandler();
   infiniteScrollForComments();
@@ -47,7 +48,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = '';
           counterOptionElement.removeClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
           $('.upDownOptions').removeAttr('voted');
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -61,7 +62,7 @@ $(function() {
           votedValue = newVoteValue;
           $('.counterOption').removeClass('voted');
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -73,11 +74,22 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = newVoteValue;
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video);
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
         });
+      }
+    });
+  }
+
+  function votesCountHandler() {
+    $('.counterNumber').on('change',function(e) {
+      var countNumber = parseInt($(this).text());
+      if(countNumber <= 0) {
+        $('.downVote').addClass('inactiveDownVote');
+      } else {
+        $('.downVote').removeClass('inactiveDownVote');
       }
     });
   }
@@ -122,6 +134,7 @@ $(function() {
 
             $('.comments-feed').prepend(commentContent);
             $('#message').val('');
+            $('.blankComments').remove();
           });
         }
       }

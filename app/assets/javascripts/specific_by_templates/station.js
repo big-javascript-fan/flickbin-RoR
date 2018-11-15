@@ -116,7 +116,7 @@ $(function() {
       var formData = new FormData();
       formData.append('user[avatar]', $('#user_avatar')[0].files[0])
 
-      if(file) {
+      if(file && isImage(file.name)) {
         $.ajax({
           url: '/api/v1/users/avatars',
           type: 'PUT',
@@ -130,7 +130,32 @@ $(function() {
           preview.src = reader.result;
         }
         reader.readAsDataURL(file);
+      } else if(!isImage(file.name)) {
+        $('.userThumbnailHolder').append(
+          `
+            <div class='simpleFormErrorMsg' style='width: 500px;'>
+              Oops! Avatar must be in an image file.
+            </div>
+          `
+        )
       }
     })
+  }
+
+  function isImage(filename) {
+    var ext = getExtension(filename);
+    switch (ext.toLowerCase()) {
+    case 'jpg':
+    case 'gif':
+    case 'jpeg':
+    case 'png':
+      return true;
+    }
+    return false;
+  }
+
+  function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
   }
 });

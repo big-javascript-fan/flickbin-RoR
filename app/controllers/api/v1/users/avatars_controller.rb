@@ -2,8 +2,11 @@ class Api::V1::Users::AvatarsController < Api::V1::BaseController
   before_action :authenticate_user!
 
   def update
-    current_user.update_attribute(:avatar, update_params[:avatar])
-    head :ok
+    if current_user.update(avatar: update_params[:avatar])
+      head :ok
+    else
+      render_error(422, 'NotValid', current_user.errors.messages)
+    end
   end
 
   private

@@ -18,6 +18,25 @@
   color:#31b4b0;
 }
 
+.inactiveDownVote {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.blankVideos {
+  width: 100%;
+  text-align: center;
+  color: #989AA5;
+  font-size: 18px;
+}
+
+.blankComments {
+  width: 100%;
+  text-align: center;
+  color: #989AA5;
+  font-size: 18px;
+}
+
 .technical_info {
   display: flex;
   flex-direction: column;

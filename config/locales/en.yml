@@ -44,3 +44,4 @@ en:
       other_than: "must be other than %{count}"
       odd: "must be odd"
       even: "must be even"
+      extension_whitelist_error: Oops! Avatar must be in an image file.

@@ -73,6 +73,15 @@
         </div>
       </div>
     </div>
+
+    <div class='blankVideos'>
+      <% if current_user.present? && current_user.id == @user.id && @user_videos.blank? %>
+        <span>You haven't posted any videos. <%= link_to 'Post a Video', videos_new_path %>!</span>
+      <% elsif @user_videos.blank? %>
+        <span>This station hasn't posted any videos.</span>
+      <% end %>
+    </div>
+
     <ul class="entityList inTag tagNewest stationList video-feed" channel_slug="<%= @user.slug %>">
       <% @user_videos.each do |video| %>
         <li class="entityRow" slug="<%= video.slug %>">

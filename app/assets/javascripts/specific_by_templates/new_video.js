@@ -169,10 +169,15 @@ $(function() {
     });
   }
   function setPageHeight() {
+    var mediaQuery = 768;
     var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var viewPortWidth = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
     var pageContainerStyles = "overflow: hidden;";
-    $('.newVideoPageContainer').css({'height': viewPortHeight + "px", 'overflow': 'hidden'});
+    if (viewPortWidth > mediaQuery) {
+      $('.newVideoPageContainer').css({'height': viewPortHeight + "px", 'overflow': 'hidden'});
+    } else {
+      $('.siteFooter').css({'display': 'none'});
+    }
   };
-
   setPageHeight();
 });

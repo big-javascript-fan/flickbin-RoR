@@ -14,7 +14,7 @@ class Api::V1::TagsController < Api::V1::BaseController
   def index
     tags =
       if params[:query].present?
-        Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(10)
+        Tag.where('title ILIKE ?', "%#{params[:query]}%").limit(5)
       else
         get_sidebar_tags(params[:number_of_tags_per_page])
       end

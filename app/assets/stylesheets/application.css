@@ -28,6 +28,8 @@
   text-align: center;
   color: #989AA5;
   font-size: 18px;
+  float: left;
+  margin-top: 20px;
 }
 
 .blankComments {

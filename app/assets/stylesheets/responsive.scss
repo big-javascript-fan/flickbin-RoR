@@ -12,6 +12,30 @@
 		padding: 8px 15px;
 	}
 }
+@media (max-width: 940px) {
+	.contributorLineItem {
+		margin: 0 5px 0 5px;
+	}
+	.topContributorStation {
+		font-size: 15px;
+	}
+	.topContributorAvatar {
+		height: 40px;
+		width: 40px;
+		img {
+			height: 40px;
+			width: 40px;
+		}
+	}
+	.topContributorRank, .topContributorRankFirst {
+		height: 35px;
+		width: 35px;
+	}
+	.topContributorRankFirst span, .topContributorRank span {
+    font-size: 18px;
+    margin: 0 0 0 9px;
+}
+}
 @media (min-width: 768px) and (max-width: 979px) {
 	
 }
@@ -265,6 +289,7 @@
 	}
 	.pillNav {
 		float: right;
+		clear: none;
 	}
 	.tagNavBar {
 		position: relative;
@@ -292,6 +317,19 @@
 		display: block;
 		padding: 0 10px;
 		line-height: 24px;
+	}
+	.topContributorHeadline {
+		float: none;
+		padding-top: 36px;
+		text-align: center;
+		span {
+			float: none;
+			margin: 0;
+		}
+	}
+	.contributorLineItem {
+		float: none;
+		margin: 23px 22px 0 23px;
 	}
 	.searchActivated input[type="text"].searchField {
 		width: 190px;

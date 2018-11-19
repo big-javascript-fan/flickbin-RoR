@@ -29,7 +29,40 @@
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
-
+    <div class="topContributorHeadline">
+      <span>Top contributors in food</span>
+    </div>
+    <div class="topContributorWrapper">
+      <ul class="contributorList clearfix">
+        <li class="contributorLineItem">
+          <div class="topContributorRankFirst">
+            <span>1</span>
+          </div>
+          <div class="topContributorAvatar">
+            <img src="/images/avatar_holder_large.jpg" />
+          </div>
+          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
+        </li>
+        <li class="contributorLineItem">
+          <div class="topContributorRank">
+            <span>2</span>
+          </div>
+          <div class="topContributorAvatar">
+            <img src="/images/avatar_holder_large.jpg" />
+          </div>
+          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
+        </li>
+        <li class="contributorLineItem">
+          <div class="topContributorRank">
+            <span>3</span>
+          </div>
+          <div class="topContributorAvatar">
+            <img src="/images/avatar_holder_large.jpg" />
+          </div>
+          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
+        </li>
+      </ul>
+    </div>
     <div class="tagSpecificWrapper">
       <div class="clearfix tagHeadingBottomGap">
         <span class="sideTitle titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><%= @tag.title %></span>

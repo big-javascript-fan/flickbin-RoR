@@ -670,7 +670,7 @@ select:actived {
     font-size: 19px;
 }
 .loginBg {
-    min-height: 100vh;
+    min-height: 110vh;
     background-size: cover;
     position: relative;
 }
@@ -685,7 +685,7 @@ select:actived {
     content: "";
 }
 .loginSignupButtons {
-    margin-top: 75px;
+    margin-top: 45px;
 }
 .loginAside {
     position: absolute;
@@ -698,7 +698,7 @@ select:actived {
 .brand.inLogin {
     background: url('/images/logo.png') no-repeat top left;
     background-size: contain;
-    margin: 100px 0 0 0;
+    margin: 15px 0 0 0;
 }
 .loginTitle {
 	color: #1D1F23;
@@ -706,7 +706,7 @@ select:actived {
     font-weight: 400;
     line-height: 48px;
     margin-bottom: 70px;
-    margin-top: 40px;
+    margin-top: 30px;
 
 }
 .loginTitle span {

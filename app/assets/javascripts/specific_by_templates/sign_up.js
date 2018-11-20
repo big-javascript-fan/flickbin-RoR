@@ -4,7 +4,7 @@ $(function() {
   });
 
   $('#user_channel_name').on('focusout', function() {
-    $(this).attr("placeholder", 'Enter your channel name')
+    $(this).attr("placeholder", 'Enter your station name')
   });
 
   $('#user_email').on('click', function() {

@@ -37,7 +37,7 @@ class Video < ApplicationRecord
     youtube_video = Yt::Video.new id: youtube_video_id
     self.title = youtube_video.title
     self.youtube_id = youtube_video_id
-    self.remote_cover_url = youtube_video.thumbnail_url
+    self.remote_cover_url = youtube_video&.snippet&.data.dig('thumbnails', 'medium', 'url')
   rescue => e
     errors.add(:invalid_url, 'Video url invalid')
   end

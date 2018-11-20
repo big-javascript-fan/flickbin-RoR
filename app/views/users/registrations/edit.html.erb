@@ -54,7 +54,7 @@
             </div>
             <div class="colHalf">
               <div class="labelFields">
-                <%= f.label :channel_name %>
+                <%= f.label :channel_name, 'station name' %>
                 <%= f.text_field :channel_name, class: 'block grayNormal' %>
                 <%= f.error :channel_name %>
               </div>
@@ -77,7 +77,7 @@
             </div>
           </div>
           <div class="labelFields lastFieldInProfile">
-            <%= f.label :channel_description %>
+            <%= f.label :channel_description, 'station description' %>
             <span class="rightNumber"></span>
             <%= f.text_field :channel_description, maxlength: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH, class: "block hasRightNumber grayNormal" %>
             <%= f.error :channel_description %>

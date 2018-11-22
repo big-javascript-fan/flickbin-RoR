@@ -19,21 +19,42 @@
 
   <section class="contentPanel leftSpace36 tag">
     <% if current_user.present? %>
-      <div class="clearfix bottom-margin-40 mobileThemeBtn hideOnMobile">
+      <div class="clearfix bottom-margin-20 mobileThemeBtn hideOnMobile">
+        <span class="sideTitle titleSpecific" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
+        <span class="sideTitle titleSpecific" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
-
+    <% if @top_3_contribution_points.size == 3 %>
+      <div class="topContributorHeadline">
+        <span>Top contributors in food</span>
+      </div>
+      <div class="topContributorWrapper">
+        <ul class="contributorList clearfix">
+          <% @top_3_contribution_points.each_with_index do |cp, index| %>
+            <li class="contributorLineItem">
+              <div class="topContributorRankFirst">
+                <span><%= index + 1 %></span>
+              </div>
+              <div class="topContributorAvatar">
+                <%= image_tag(cp.user.avatar.thumb_128x128.url || '/images/avatar_holder_large.jpg') %>
+              </div>
+              <span class="topContributorStation">
+                <%= link_to "(#{cp.amount}) #{cp.user.channel_name}", station_path(cp.user) %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="tagSpecificWrapper">
       <div class="clearfix tagHeadingBottomGap">
-        <span class="sideTitle titleSpecific" slug="<%= @tag.slug %>"><%= @tag.title %></span>
-
+        <span class="sideTitle titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <ul class="pillNav clearfix">
-          <li>sort by</li>
           <li><%= link_to 'top charts', tag_path(@tag), sort_by: 'top_charts', class: "top_charts filter", remote: true %></li>
           <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>
         </ul>

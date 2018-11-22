@@ -27,7 +27,10 @@ class TagsController < ApplicationController
     @sidebar_tags = get_sidebar_tags
     @tag = Tag.friendly.find(params[:tag_slug])
     @tag_videos = Video.active.tagged.where(tag_id: @tag.id)
-    @top_3_contribution_points = @tag.contribution_points.order(amount: :desc).limit(3)
+    @top_3_contribution_points = @tag.contribution_points
+                                     .includes(:user)
+                                     .order(amount: :desc)
+                                     .limit(3)
 
     @tag_videos =
       if params[:sort_by] == 'newest'

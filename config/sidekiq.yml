@@ -5,6 +5,9 @@
   recalculate_tags_rank_job:
     every: 2m
     class: RecalculateTagsRankJob
+  recalculate_top_contributors_job:
+    every: 2m
+    class: RecalculateTopContributorsJob
   update_untagged_video_job:
     every: 30m
     class: UpdateUntaggedVideoJob

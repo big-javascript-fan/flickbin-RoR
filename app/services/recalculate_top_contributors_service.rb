@@ -2,8 +2,12 @@ class RecalculateTopContributorsService
   def call
     Tag.find_each do |tag|
       User.includes(accounting_videos: :tag).where(tags: { id: tag.id }).each do |user|
-        amount = 0
+        if AppConstants::NOT_RATED_USER_EMAILS.include?(user.email)
+          user.contribution_points.destroy_all
+          next
+        end
 
+        amount = 0
         user.accounting_videos.each do |video|
           amount += (video.positive_votes_amount + 1)
         end

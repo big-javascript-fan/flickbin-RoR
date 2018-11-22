@@ -531,7 +531,6 @@ select:actived {
     font-weight: 400;
     margin-top: 3px;
 }
-
 .colTitle {
     line-height: 24px;
 }
@@ -573,6 +572,26 @@ select:actived {
 }
 .entityCellStation:nth-of-type(2n) {
     padding-left: 20px;
+}
+.homeOnboardingContainer {
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    border: 3px solid #FAFAFA;
+    margin-bottom: 40px;
+    .homeOnboardingCopy {
+        margin: 0 auto;
+        width: 705px;
+        img {
+            width: 48px;
+            height: 43px;
+            float: left;
+        }
+        span {
+            vertical-align: middle;
+            float: left;
+        }
+    }
 }
 .thumbnailCell {
     vertical-align: top;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120225608) do
+ActiveRecord::Schema.define(version: 20181122100355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,18 @@ ActiveRecord::Schema.define(version: 20181120225608) do
     t.index ["commentator_id"], name: "index_comments_on_commentator_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["video_id", "commentator_id"], name: "index_comments_on_video_id_and_commentator_id"
+  end
+
+  create_table "contribution_points", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "user_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amount"], name: "index_contribution_points_on_amount"
+    t.index ["tag_id", "amount"], name: "index_contribution_points_on_tag_id_and_amount"
+    t.index ["tag_id"], name: "index_contribution_points_on_tag_id"
+    t.index ["user_id", "tag_id"], name: "index_contribution_points_on_user_id_and_tag_id"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

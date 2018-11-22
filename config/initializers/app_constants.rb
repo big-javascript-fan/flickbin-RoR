@@ -5,4 +5,7 @@ module AppConstants
   MAX_TAG_TITLE_LENGTH = 15
   MAX_CHANNEL_DESCRIPTION_LENGTH = 160
   MAX_COMMENT_MESSAGE_LENGTH = 1000
+  NOT_RATED_USER_EMAILS = %w(
+    bleachtree@gmail.com
+  )
 end

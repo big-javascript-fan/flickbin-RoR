@@ -3,11 +3,12 @@ class Tag < ApplicationRecord
   friendly_id :title, use: [:sequentially_slugged, :finders]
 
   has_many :videos, -> { order(rank: :asc, created_at: :desc) }, dependent: :destroy
+  has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :top_10_videos, -> { active.tagged.order(rank: :asc, created_at: :desc).limit(10) }, class_name: 'Video'
   has_many :users, through: :videos
   has_many :votes, through: :videos
   has_many :contribution_points, dependent: :destroy
-  has_many :contributors, through: :contribution_points, source: :user
+  has_many :contributors, -> { where(videos: { removed: false, untagged: false }) }, through: :videos, source: :user
 
   validates_presence_of :title
   validates_length_of   :title, maximum: AppConstants::MAX_TAG_TITLE_LENGTH,

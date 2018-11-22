@@ -8,6 +8,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, UserAvatarUploader
 
   has_many :videos, dependent: :destroy
+  has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :tags, through: :videos
   has_many :votes, dependent: :destroy, class_name: 'Vote', foreign_key: :voter_id
   has_many :voters, through: :votes

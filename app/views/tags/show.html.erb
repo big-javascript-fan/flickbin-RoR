@@ -29,40 +29,28 @@
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
-    <div class="topContributorHeadline">
-      <span>Top contributors in food</span>
-    </div>
-    <div class="topContributorWrapper">
-      <ul class="contributorList clearfix">
-        <li class="contributorLineItem">
-          <div class="topContributorRankFirst">
-            <span>1</span>
-          </div>
-          <div class="topContributorAvatar">
-            <img src="/images/avatar_holder_large.jpg" />
-          </div>
-          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
-        </li>
-        <li class="contributorLineItem">
-          <div class="topContributorRank">
-            <span>2</span>
-          </div>
-          <div class="topContributorAvatar">
-            <img src="/images/avatar_holder_large.jpg" />
-          </div>
-          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
-        </li>
-        <li class="contributorLineItem">
-          <div class="topContributorRank">
-            <span>3</span>
-          </div>
-          <div class="topContributorAvatar">
-            <img src="/images/avatar_holder_large.jpg" />
-          </div>
-          <span class="topContributorStation"><a href="#">(168) emily764</a></span>
-        </li>
-      </ul>
-    </div>
+    <% if @top_3_contribution_points.size == 3 %>
+      <div class="topContributorHeadline">
+        <span>Top contributors in food</span>
+      </div>
+      <div class="topContributorWrapper">
+        <ul class="contributorList clearfix">
+          <% @top_3_contribution_points.each_with_index do |cp, index| %>
+            <li class="contributorLineItem">
+              <div class="topContributorRankFirst">
+                <span><%= index + 1 %></span>
+              </div>
+              <div class="topContributorAvatar">
+                <%= image_tag(cp.user.avatar.thumb_128x128.url || '/images/avatar_holder_large.jpg') %>
+              </div>
+              <span class="topContributorStation">
+                <%= link_to "(#{cp.amount}) #{cp.user.channel_name}", station_path(cp.user) %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="tagSpecificWrapper">
       <div class="clearfix tagHeadingBottomGap">
         <span class="sideTitle titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><%= @tag.title %></span>

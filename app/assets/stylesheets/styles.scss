@@ -539,7 +539,6 @@ select:actived {
     float: left;
     font-size:19px;
     font-weight: 400;
-    margin-left: 10px;
 }
 .entityList {
     list-style: none;
@@ -1799,6 +1798,9 @@ input.hasRightNumber {
 .titleSpecific {
     font-size: 22px;
     line-height: 30px;
+}
+.titleSpecificMargin {
+    margin-left: 10px;
 }
 .tagHeadingBottomGap {
     margin-bottom: 26px;

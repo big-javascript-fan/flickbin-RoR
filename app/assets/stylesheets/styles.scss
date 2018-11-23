@@ -574,22 +574,58 @@ select:actived {
     padding-left: 20px;
 }
 .homeOnboardingContainer {
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    border-radius: 12px;
-    border: 3px solid #FAFAFA;
-    margin-bottom: 40px;
+    float: left;
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-bottom: 60px;
+
+    .homeOngoardingButtonContainer {
+        float: left;
+        width: 100%;
+    }
+    a {
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            padding: 20px 30px 20px 30px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #fff;
+            background-color: #31B4B0;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+            border: none;
+            margin: 10px 0 31px 0;
+        }
+    a:hover {
+        text-decoration: none;
+        background-color: #4E5766;
+    }
     .homeOnboardingCopy {
-        margin: 0 auto;
-        width: 705px;
+        float: left;
+        margin-top: 27px;
+        text-align: center;
+        width: 100%;
+        display: block;
+        line-height: 3px;
         img {
             width: 48px;
             height: 43px;
-            float: left;
+            margin-right: 10px;
         }
-        span {
-            vertical-align: middle;
-            float: left;
+        p {
+            font-size: 18px;
+            line-height: 22px;
+            margin-top: 18px;
+            span {
+                text-decoration: underline;
+                font-style: italic;
+            }
         }
     }
 }

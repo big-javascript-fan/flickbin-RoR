@@ -44,10 +44,14 @@
     <div class="homeOnboardingContainer">
       <div class="homeOnboardingCopy">
         <%= image_tag("/images/flickbear_homeOnboarding.png", alt: 'flickbear', class: 'flickbearHomeOnboarding') %>
-        <h3 class="homeOnboardingTitleCopy">Welcome! Flickbin is a collection of the best videos on the web, ranked by upvotes.</span>
+        <p><strong>Welcome!</strong> flickbin is a collection of the best videos on the web, submitted and ranked by our <span>community</span>.</p>
       </div>
       <div class="homeOngoardingButtonContainer">
-        <%= link_to 'Start Contributing, Post a Video!', videos_new_path, class: "btn" %>
+        <% if current_user.present? %>
+          <%= link_to 'Start Contributing, Post a Video!', videos_new_path, class: "homeOnboardingButton" %>
+        <% else %>
+          <%= link_to 'Sign Up and Join the Community', new_user_registration_path, class: "homeOnboardingButton" %>
+        <% end %>
       </div>
     </div>
     <div class="row video-feed">

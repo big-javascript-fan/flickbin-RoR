@@ -70,7 +70,7 @@ $(function() {
                   <div class="entityCell thumbnailCell">
                     <a class="tagThumbnailLink large" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
               `

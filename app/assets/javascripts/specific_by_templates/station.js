@@ -71,7 +71,7 @@ $(function() {
                   <div class="entityCell thumbnailCell">
                     <a class="stationThumbnailLink large" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
                   <div class="entityCell cellSpace24">&nbsp;</div>

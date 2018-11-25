@@ -58,7 +58,7 @@ $(function() {
                   <div class="entityCell thumbnailCell">
                     <a class="thumbnailLink" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
                   <div class="entityCell serialText">${video.rank}</div>
@@ -92,7 +92,7 @@ $(function() {
                   <div class="entityCell thumbnailCell">
                     <a class="thumbnailLink" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
                   <div class="entityCell serialText">${video.rank}</div>

@@ -35,6 +35,9 @@ input:-webkit-autofill:active {
 .row:after {
   clear: both;
 }
+.displayNone {
+    display: none;
+}
 
 /* Tools ------------------- */
 
@@ -672,7 +675,6 @@ select:actived {
     height: 85px;
 }
 .playerIcon {
-    display: none;
     position: absolute;
     left: 0;
     right: 0;

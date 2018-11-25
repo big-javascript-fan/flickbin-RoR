@@ -44,7 +44,7 @@
     <div class="homeOnboardingContainer">
       <div class="homeOnboardingCopy">
         <%= image_tag("/images/flickbear_homeOnboarding.png", alt: 'flickbear', class: 'flickbearHomeOnboarding') %>
-        <p><strong>Welcome!</strong> flickbin is a collection of the best videos from around the web, submitted and ranked by our community.</p>
+        <p><strong>Welcome!</strong> flickbin is a collection of the best videos from around the web, submitted, organized and ranked by our community.</p>
       </div>
       <div class="homeOngoardingButtonContainer">
         <% if current_user.present? %>
@@ -69,7 +69,7 @@
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                       <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>
                   <div class="entityCell serialText"><%= index + 1 %></div>
@@ -94,7 +94,7 @@
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                       <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>
                   <div class="entityCell serialText"><%= index + 1 %></div>
@@ -121,7 +121,7 @@
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                       <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>
                   <div class="entityCell serialText"><%= index + 1 %></div>
@@ -146,7 +146,7 @@
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
                       <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon"><i class="fas fa-play"></i></span>
+                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>
                   <div class="entityCell serialText"><%= index + 1 %></div>

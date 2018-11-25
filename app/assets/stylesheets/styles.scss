@@ -227,8 +227,12 @@ input:-webkit-autofill {
     left: 0;
     bottom: -50;
     height: 50px;
-    background: #F3F4F5;
+    background: #fff;
     z-index: 111;
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+    -moz-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+    box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+
 }
 .siteFooterShow {
     bottom: 0;
@@ -1051,7 +1055,6 @@ input[type="text"].searchField {
     text-decoration: none;
 }
 .topContributorWrapper {
-    margin-left: 10px;
     display: table;
     width: 100%;
     text-align: center;
@@ -1060,7 +1063,6 @@ input[type="text"].searchField {
     font-size: 19px;
     color: #1D1F23;
     float: left;
-    margin: 0 0 0 10px;
     width: 100%;
     border-top: 1px dashed #E5E7E9;
     span {

@@ -44,7 +44,7 @@
                 <%= image_tag(cp.user.avatar.thumb_128x128.url || '/images/avatar_holder_large.jpg') %>
               </div>
               <span class="topContributorStation">
-                <%= link_to "(#{cp.amount}) #{cp.user.channel_name}", station_path(cp.user) %>
+                <%= link_to "(#{cp.user.rank}) #{cp.user.channel_name}", station_path(cp.user) %>
               </span>
             </li>
           <% end %>

@@ -16,6 +16,8 @@ class Tag < ApplicationRecord
   validates_format_of   :title, with: AppConstants::TAG_TITLE_REGEXP,
                                 message: 'You can use only letters & numbers'
 
+  validates_uniqueness_of :title, case_sensitive: false
+
   before_save :convert_to_lowercase_title_and_set_first_character
   after_create :set_init_rank
   after_touch :save

@@ -117,3 +117,6 @@
   margin-top: 25px;
 }
 
+#video_tag_name {
+  text-transform: lowercase;
+}

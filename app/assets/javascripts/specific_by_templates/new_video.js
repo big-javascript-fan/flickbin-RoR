@@ -120,18 +120,18 @@ $(function() {
     var dropdownContent = '';
     var newTag = true;
     var createTagBtn = `
-      <a href="#" class="createTagBtn" tag_title="${query}">
-        <span class="inlineAddCircle ">+</span> Create Tag "${query}"
+      <a href="#" class="createTagBtn" tag_title="${query.toLowerCase()}">
+        <span class="inlineAddCircle ">+</span> Create Tag "${query.toLowerCase()}"
       </a>
     `
     if(data.length > 0) {
       $.each(data, function(index, tag) {
-        if(newTag == true && tag.title == query) newTag = false;
+        if(newTag == true && tag.title == query.toLowerCase()) newTag = false;
 
         dropdownContent += `
           <li>
-            <a href="#" class="chooseTagBtn" tag_title="${tag.title}" tag_id="${tag.id}">
-              <span class="existingTagSuggestion">${tag.title}</span><span class="inlineAddCircle">+</span>
+            <a href="#" class="chooseTagBtn" tag_title="${tag.title.toLowerCase()}" tag_id="${tag.id}">
+              <span class="existingTagSuggestion">${tag.title.toLowerCase()}</span><span class="inlineAddCircle">+</span>
             </a>
           </li>
         `

@@ -3,7 +3,7 @@ $(function() {
   infiniteScrollForVideos();
   avatarHandler();
 
-  $('#user_channel_description').on('keyup', function(e) {
+  $('#user_channel_description').on('keydown', function(e) {
     var maxDescriptionLentgh = 160;
     var descriptionLentgh = $(this).val().length;
     if(descriptionLentgh <= maxDescriptionLentgh) {

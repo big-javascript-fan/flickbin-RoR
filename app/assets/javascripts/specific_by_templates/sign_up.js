@@ -22,4 +22,12 @@ $(function() {
   $('#user_password').on('focusout', function() {
     $(this).attr("placeholder", 'Enter your password')
   });
+
+  $('#user_channel_name').on('keydown', function(e) {
+    var maxDescriptionLentgh = 30;
+    var descriptionLentgh = $(this).val().length;
+    if(descriptionLentgh <= maxDescriptionLentgh) {
+      $('.rightNumber').text(maxDescriptionLentgh - descriptionLentgh);
+    }
+  });
 });

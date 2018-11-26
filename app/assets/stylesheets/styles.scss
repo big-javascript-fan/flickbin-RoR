@@ -35,6 +35,9 @@ input:-webkit-autofill:active {
 .row:after {
   clear: both;
 }
+.displayNone {
+    display: none;
+}
 
 /* Tools ------------------- */
 
@@ -227,8 +230,12 @@ input:-webkit-autofill {
     left: 0;
     bottom: -50;
     height: 50px;
-    background: #F3F4F5;
+    background: #fff;
     z-index: 111;
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+    -moz-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+    box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.21);
+
 }
 .siteFooterShow {
     bottom: 0;
@@ -531,7 +538,6 @@ select:actived {
     font-weight: 400;
     margin-top: 3px;
 }
-
 .colTitle {
     line-height: 24px;
 }
@@ -574,6 +580,58 @@ select:actived {
 .entityCellStation:nth-of-type(2n) {
     padding-left: 20px;
 }
+.homeOnboardingContainer {
+    float: left;
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin-bottom: 60px;
+
+    .homeOngoardingButtonContainer {
+        float: left;
+        width: 100%;
+    }
+    a {
+            display: inline-block;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            padding: 20px 30px 20px 30px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #fff;
+            background-color: #31B4B0;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+            border: none;
+            margin: 10px 0 31px 0;
+        }
+    a:hover {
+        text-decoration: none;
+        background-color: #4E5766;
+    }
+    .homeOnboardingCopy {
+        float: left;
+        margin-top: 27px;
+        text-align: center;
+        width: 100%;
+        display: block;
+        line-height: 3px;
+        img {
+            width: 48px;
+            height: 43px;
+            margin-right: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 22px;
+            margin-top: 18px;
+        }
+    }
+}
 .thumbnailCell {
     vertical-align: top;
     width: 106px;
@@ -586,13 +644,14 @@ select:actived {
 }
 .tagThumbnail, .stationThumbnail {
     width: 197px;
-    height: 123px;
+    height: auto;
     margin-top: -20px;
+    margin-left: -30px;
 }
 .thumbnail {
     width: 149px;
-    height: 93px;
-    margin-top: -13px;
+    height: auto;
+    margin-top: -18px;
 }
 .thumbnailLink, .tagThumbnailLink, .stationThumbnailLink {
     position: relative;
@@ -616,7 +675,6 @@ select:actived {
     height: 85px;
 }
 .playerIcon {
-    display: table-cell;
     position: absolute;
     left: 0;
     right: 0;
@@ -955,10 +1013,11 @@ input[type="text"].searchField {
     margin: 0 0 5px 5px;
 }
 .pillNav {
-    float: right;
+    float: left;
     list-style: none;
-    padding: 0;
+    padding: 20px 0 20px 0;
     margin: 0;
+    clear: both;
 }
 .pillNav > li {
     float: left;
@@ -974,19 +1033,104 @@ input[type="text"].searchField {
 .pillNav > li > a {
     color: #707681;
     display: block;
-    padding: 0 10px;
+    padding: 0 18px 0 18px;
 }
-.pillNav > li > a:hover,
+.pillNav > li > a:hover {
+    border: 2px solid #219D99;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #219D99;
+    line-height: 28px;
+    padding: 0 16px 0 16px;
+    color: #fff;
+    text-decoration: none;
+}
 .pillNav > li > a.current {
-    border: 1px solid #E5E7E9;
+    border: 2px solid #31B4B0;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     background-color: #FFFFFF;
     line-height: 28px;
-    padding: 0 9px;
-    color: #1D1F23;
+    padding: 0 16px 0 16px;
+    color: #219D99;
     text-decoration: none;
+}
+.topContributorWrapper {
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+.topContributorHeadline {
+    font-size: 19px;
+    color: #1D1F23;
+    float: left;
+    width: 100%;
+    border-top: 1px dashed #E5E7E9;
+    span {
+        margin-top: 36px;
+        float: left;
+    }
+}
+.contributorList {
+    list-style-type: none;
+    display: inline-block;
+    clear: both;
+    padding: 0px;
+    margin: 23px 0 36px 0;
+    text-align:center;
+}
+.contributorLineItem {
+    float: left;
+    display: table;
+    margin: 0 22px 0 22px;
+}
+.topContributorStation {
+    font-size: 17px;
+    display: table-cell;
+    vertical-align: middle;
+    a {
+        color: #1D1F23;
+    }
+}
+.topContributorAvatar, .topContributorRankFirst, .topContributorRank {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.topContributorAvatar {
+    height: 53px;
+    width: 53px;
+    background: #cceae1;
+    margin-right: 16px;
+    overflow: hidden;
+    img {
+        height: 55px;
+        width: 55px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.topContributorRank, .topContributorRankFirst {
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    margin: -17px 0 0 -17px;
+    border: 4px solid #fff;
+}
+.topContributorRankFirst {
+    background: #31B4B0;
+}
+.topContributorRank {
+    background: #C1C8D6;
+}
+.topContributorRankFirst span, .topContributorRank span {
+    font-weight: bold;
+    color: #fff;
+    font-size: 21px;
+    float: left;
+    margin: 3px 0 0 11px;
 }
 .descText .time,
 .postTime {
@@ -1465,6 +1609,27 @@ input[type="text"].hasNumber {
     font-style: normal;
     color: #31B4B0;
 }
+.wannaBeFeatured {
+    width: 100%;
+    border: 3px solid #FAFAFA;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    padding: 0 30px 0 30px;
+    margin-bottom: 32px;
+    p {
+        margin: 18px 0 15px 0;
+        font-size: 17px;
+        .flickBearWannaBeFeatured {
+            width: 35px;
+            height: 31px;
+            margin-right: 13px;
+        }
+        a {
+            margin-left: 15px;
+        }
+    }
+}
 .errorIcon {
     display: block;
     position: absolute;
@@ -1653,11 +1818,16 @@ input.hasRightNumber {
     margin-bottom: 25px;
 }
 .titleSpecific {
-    font-size: 22px;
+    font-size: 32px;
     line-height: 30px;
+}
+.titleSpecificMargin {
+    margin-left: 10px;
 }
 .tagHeadingBottomGap {
     margin-bottom: 26px;
+    border-top: 1px dashed #E5E7E9;
+    border-bottom: 1px dashed #E5E7E9;
 }
 .specificTagList .serialText {
     font-size: 30px;

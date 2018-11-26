@@ -53,7 +53,7 @@ $(function() {
         if ($(document).scrollTop() > 100) {
             $('.siteFooter').addClass("siteFooterShow animated slideInUp").removeClass("slideOutDown");
         } else {
-            $('.siteFooter').removeClass("siteFooterShow slideInUp").addClass("slideOutDown");
+            $('.siteFooter').removeClass("slideInUp").addClass("slideOutDown");
 
         }
     });

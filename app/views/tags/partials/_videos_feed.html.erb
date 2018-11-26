@@ -3,7 +3,7 @@
     <div class="entityCell thumbnailCell">
       <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
         <%= image_tag(video.cover.url, alt: video.title, class: "tagThumbnail large") %>
-        <span class="playerIcon"><i class="fas fa-play"></i></span>
+        <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
       <% end %>
     </div>
     <% if params[:sort_by] == 'newest' %>

@@ -3,15 +3,20 @@ class Tag < ApplicationRecord
   friendly_id :title, use: [:sequentially_slugged, :finders]
 
   has_many :videos, -> { order(rank: :asc, created_at: :desc) }, dependent: :destroy
+  has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :top_10_videos, -> { active.tagged.order(rank: :asc, created_at: :desc).limit(10) }, class_name: 'Video'
   has_many :users, through: :videos
   has_many :votes, through: :videos
+  has_many :contribution_points, dependent: :destroy
+  has_many :contributors, -> { where(videos: { removed: false, untagged: false }) }, through: :videos, source: :user
 
   validates_presence_of :title
   validates_length_of   :title, maximum: AppConstants::MAX_TAG_TITLE_LENGTH,
                                 allow_blank: true
   validates_format_of   :title, with: AppConstants::TAG_TITLE_REGEXP,
                                 message: 'You can use only letters & numbers'
+
+  validates_uniqueness_of :title, case_sensitive: false
 
   before_save :convert_to_lowercase_title_and_set_first_character
   after_create :set_init_rank

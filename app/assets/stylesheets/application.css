@@ -13,6 +13,10 @@
   color: #31B4B0;
 }
 
+.contributorList > li:first-child > div.topContributorRank {
+  background: #31B4B0;
+}
+
 .voted {
   background-color: #4e5766;
   color:#31b4b0;
@@ -28,6 +32,8 @@
   text-align: center;
   color: #989AA5;
   font-size: 18px;
+  float: left;
+  margin-top: 20px;
 }
 
 .blankComments {
@@ -111,3 +117,6 @@
   margin-top: 25px;
 }
 
+#video_tag_name {
+  text-transform: lowercase;
+}

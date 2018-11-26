@@ -29,9 +29,9 @@
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
-    <% if @top_3_contribution_points.size == 3 %>
+    <% if @top_3_contribution_points.present? %>
       <div class="topContributorHeadline">
-        <span>Top contributors in <%= @tag.title %></span>
+        <span>Top <%= "contributor".pluralize(@top_3_contribution_points.size) %> in <%= @tag.title %></span>
       </div>
       <div class="topContributorWrapper">
         <ul class="contributorList clearfix">

@@ -95,7 +95,7 @@
     </section>
     <div class="underneathPlayer clearfix">
       <span class="tagRankCount">
-        #<%= @video.rank %> in <%= link_to @tag.title, tag_path(@tag) %>
+        <%= 'Reached ' if @video.untagged %>#<%= @video.rank %> in <%= link_to @tag.title, tag_path(@tag) %>
       </span>
       <span class="submittedBy">submitted by <%= link_to @video_owner.channel_name, station_path(@video_owner) %></span>
     </div>

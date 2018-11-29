@@ -8,7 +8,7 @@ class RecalculateTopContributorsService
         end
 
         amount = 0
-        user.accounting_videos.where(tag_id: tag.id).each do |video|
+        user.videos.where(tag_id: tag.id, removed: false).each do |video|
           amount += (video.positive_votes_amount + 1)
         end
 

@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates_length_of     :channel_name, maximum: AppConstants::MAX_CHANNEL_NAME_LENGTH
   validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
                                             allow_blank: true
-  validates_inclusion_of :role, in: ['client', 'admin']
+  validates_inclusion_of :role, in: ['client', 'admin', 'dummy']
 
   before_create :set_default_channel_decription
 

@@ -79,16 +79,16 @@ namespace :fake_data do
 
     args[:amount].to_i.times do
       rand_user = JSON.parse(open('https://randomuser.me/api/').read)
-      remote_avatar_url = rand_user['results'].first.dig('picture', 'medium')
+      remote_avatar_url = rand_user['results'].first.dig('picture', 'large')
       channel_name = Faker::FunnyName.two_word_name.downcase.gsub!(' ', '')
 
       while User.exists?(channel_name: channel_name)
         channel_name = Faker::FunnyName.two_word_name.downcase.gsub!(' ', '')
       end
 
-      while User.find_each.any? { |u| u.remote_avatar_url == remote_avatar_url }
+      while User.exists?(fake_avatar_url: remote_avatar_url)
         rand_user = JSON.parse(open('https://randomuser.me/api/').read)
-        remote_avatar_url = rand_user['results'].first.dig('picture', 'medium')
+        remote_avatar_url = rand_user['results'].first.dig('picture', 'large')
       end
 
       email = "teamflickbin.#{channel_name}@gmail.com"

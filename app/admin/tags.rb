@@ -13,4 +13,5 @@ ActiveAdmin.register Tag do
   end
 
   filter :wasp_post
+  filter :title
 end

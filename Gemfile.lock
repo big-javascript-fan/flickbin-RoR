@@ -9,6 +9,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    ace-rails-ap (4.1.5)
     actioncable (5.1.6)
       actionpack (= 5.1.6)
       nio4r (~> 2.0)
@@ -52,6 +53,9 @@ GEM
       sass-rails
       select2-rails (~> 4.0)
       xdan-datetimepicker-rails (~> 2.5.1)
+    activeadmin_json_editor (0.0.9)
+      ace-rails-ap
+      railties (>= 3.0)
     activejob (5.1.6)
       activesupport (= 5.1.6)
       globalid (>= 0.3.6)
@@ -360,6 +364,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   activeadmin_addons
+  activeadmin_json_editor (~> 0.0.7)
   ancestry
   awesome_print
   babosa

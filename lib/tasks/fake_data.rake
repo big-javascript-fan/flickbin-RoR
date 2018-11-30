@@ -97,6 +97,7 @@ namespace :fake_data do
         channel_name: channel_name,
         password: "password#{channel_name}",
         remote_avatar_url: remote_avatar_url,
+        confirmed_at: DateTime.now,
         role: 'dummy'
       }
 

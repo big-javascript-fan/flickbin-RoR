@@ -1,3 +1,4 @@
+:dynamic: true
 :schedule:
   recalculate_videos_rank_job:
     every: 2m
@@ -11,6 +12,9 @@
   update_untagged_video_job:
     every: 30m
     class: UpdateUntaggedVideoJob
+  wasp_post_job:
+    every: 60m
+    class: WaspPostJob
 :queues:
   - default
   - mailers

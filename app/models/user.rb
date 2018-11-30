@@ -21,12 +21,12 @@ class User < ApplicationRecord
   validates_length_of     :channel_name, maximum: AppConstants::MAX_CHANNEL_NAME_LENGTH
   validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
                                             allow_blank: true
-  validates_inclusion_of :role, in: ['client', 'admin', 'dummy']
+  validates_inclusion_of :role, in: ['client', 'sidekiq_manager', 'dummy']
 
   before_create :set_default_channel_decription
 
-  def admin?
-    self.role == 'admin'
+  def sidekiq_manager?
+    self.role == 'sidekiq_manager'
   end
 
   def set_default_channel_decription

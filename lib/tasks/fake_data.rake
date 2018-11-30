@@ -78,8 +78,8 @@ namespace :fake_data do
     return 'Please enter the number of users.'.red if args[:amount].blank?
 
     args[:amount].to_i.times do
-      rand_users = JSON.parse(open('https://tinyfac.es/api/users/').read) # returns array with 15 users
-      remote_avatar_url = rand_users.sample(1)[0]['avatars'][0]['url']
+      rand_user = JSON.parse(open('https://randomuser.me/api/').read)
+      remote_avatar_url = rand_user['results'].first.dig('picture', 'medium')
       channel_name = Faker::FunnyName.two_word_name.downcase.gsub!(' ', '')
 
       while User.exists?(channel_name: channel_name)
@@ -87,8 +87,8 @@ namespace :fake_data do
       end
 
       while User.find_each.any? { |u| u.remote_avatar_url == remote_avatar_url }
-        rand_users = JSON.parse(open('https://tinyfac.es/api/users/').read)
-        remote_avatar_url = rand_users.sample(1)[0]['avatars'][0]['url']
+        rand_user = JSON.parse(open('https://randomuser.me/api/').read)
+        remote_avatar_url = rand_user['results'].first.dig('picture', 'medium')
       end
 
       email = "teamflickbin.#{channel_name}@gmail.com"

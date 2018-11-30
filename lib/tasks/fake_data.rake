@@ -71,4 +71,40 @@ namespace :fake_data do
       end
     end
   end
+
+  desc "Create dummy users"
+  # example of task launch - rake fake_data:create_dummy_users\[100\]
+  task :create_dummy_users, [:amount] => :environment do |t, args|
+    return 'Please enter the number of users.'.red if args[:amount].blank?
+
+    args[:amount].to_i.times do
+      rand_users = JSON.parse(open('https://tinyfac.es/api/users/').read) # returns array with 15 users
+      remote_avatar_url = rand_users.sample(1)[0]['avatars'][0]['url']
+      channel_name = Faker::FunnyName.two_word_name.downcase.gsub!(' ', '')
+
+      while User.exists?(channel_name: channel_name)
+        channel_name = Faker::FunnyName.two_word_name.downcase.gsub!(' ', '')
+      end
+
+      while User.find_each.any? { |u| u.remote_avatar_url == remote_avatar_url }
+        rand_users = JSON.parse(open('https://tinyfac.es/api/users/').read)
+        remote_avatar_url = rand_users.sample(1)[0]['avatars'][0]['url']
+      end
+
+      email = "teamflickbin.#{channel_name}@gmail.com"
+      user = User.find_or_initialize_by(email: email)
+      params = {
+        channel_name: channel_name,
+        password: "password#{channel_name}",
+        remote_avatar_url: remote_avatar_url,
+        role: 'dummy'
+      }
+
+      if user.update(params)
+        puts "Create dummy user with email - #{user.email}".green
+      else
+        puts "#{user.errors.full_messages}".red
+      end
+    end
+  end
 end

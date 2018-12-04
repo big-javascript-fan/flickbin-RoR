@@ -9,7 +9,8 @@ class WaspPostService
 
       youtube_videos['items'].each do |item|
         youtube_id = item.dig('id', 'videoId')
-        next if Video.exists?(tag_id: tag.id, youtube_id: youtube_id)
+        title = item.dig('snippet', 'title')
+        next if invalid_video?(tag.id, youtube_id, title)
 
         Video.create!(
           tag_id: tag.id,
@@ -23,6 +24,11 @@ class WaspPostService
   end
 
   private
+
+  def invalid_video?(tag_id, youtube_id, title)
+    Video.exists?(tag_id: tag_id, youtube_id: youtube_id) ||
+      Video.exists?(tag_id: tag_id, title: title)
+  end
 
   def get_youtube_videos(query)
     params = {

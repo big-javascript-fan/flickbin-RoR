@@ -32,6 +32,8 @@ class WaspPostService
   end
 
   def wasp_post_video(tag, youtube_videos)
+    return if youtube_videos.blank?
+
     youtube_videos['items'].each do |item|
       youtube_id = item.dig('id', 'videoId')
       title = item.dig('snippet', 'title')

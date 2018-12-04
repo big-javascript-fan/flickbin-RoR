@@ -7,13 +7,12 @@ class WaspOutreachService
   end
 
   def call
-    dummy_votes_handler
     top_1_video = Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).first
-
     if top_1_video.present? && top_1_video.positive_votes_amount > MAX_TOP_1_VIDEO_UPVOTES
       Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).limit(3).update_all(untagged: true)
     end
 
+    dummy_votes_handler
     votes_amount = rand(20..30)
     Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).each_with_index do |video, index|
       break if votes_amount < 2 || @dummy_user_ids.length < 2
@@ -37,9 +36,9 @@ class WaspOutreachService
   def dummy_votes_handler
     dummy_votes = Vote.joins(:tag, :voter).where(users: { role: 'dummy' }, tags: { id: @video.tag_id }).distinct
     dummy_votes.each do |vote|
-      vote.destroy
       vote.video.decrement!(:positive_votes_amount)
-      vote.voter.decrement!(:rank)
+      vote.video.user.decrement!(:rank)
+      vote.destroy
     end
   end
 

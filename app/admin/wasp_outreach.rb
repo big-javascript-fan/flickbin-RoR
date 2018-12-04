@@ -24,6 +24,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
         @resource = Video.new(permitted_params[:video].merge(additional_params))
 
         if @resource.save
+          WaspOutreachJob.perform_later(@resource.id)
           flash[:notice] = "Video was successfully added!"
           redirect_to admin_wasp_outreach_path(@resource)
         else

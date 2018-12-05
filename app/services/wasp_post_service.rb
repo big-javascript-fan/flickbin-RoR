@@ -49,8 +49,10 @@ class WaspPostService
     end
 
     nextPageToken = youtube_videos['nextPageToken']
-    youtube_videos = get_youtube_videos(tag.title, nextPageToken)
-    wasp_post_video(tag, youtube_videos)
+    if nextPageToken.present?
+      youtube_videos = get_youtube_videos(tag.title, nextPageToken)
+      wasp_post_video(tag, youtube_videos)
+    end
   end
 
   def invalid_video?(tag_id, youtube_id, title)

@@ -20,9 +20,7 @@ class WaspPostService
       maxResults: 50,
       order: 'relevance',
       publishedAfter: 7.days.ago.rfc3339,
-      relevanceLanguage: 'en',
-      pregionCode: 'US',
-      eventType: 'completed',
+      videoEmbeddable: true,
       q: query
     }
 

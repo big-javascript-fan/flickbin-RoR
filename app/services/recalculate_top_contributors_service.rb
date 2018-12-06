@@ -2,7 +2,7 @@ class RecalculateTopContributorsService
   def call
     Tag.find_each do |tag|
       tag.users.each do |user|
-        if AppConstants::NOT_RATED_USER_EMAILS.include?(user.email)
+        if AppConstants::NOT_RATED_USER_EMAILS.include?(user.email) || user.role == 'dummy'
           user.contribution_points.destroy_all
           next
         end

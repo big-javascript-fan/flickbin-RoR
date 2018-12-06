@@ -29,6 +29,7 @@ class TagsController < ApplicationController
     @tag_videos = Video.active.tagged.where(tag_id: @tag.id)
     @top_3_contribution_points = @tag.contribution_points
                                      .includes(:user)
+                                     .where.not(users: { role: 'dummy' })
                                      .where('contribution_points.amount > ?', 0)
                                      .order(amount: :desc)
                                      .limit(3)

@@ -1,5 +1,5 @@
 ActiveAdmin.register Video, as: 'WASP Outreach' do
-  permit_params :url, :tag_id
+  permit_params :url, :tag_id, :twitter_handle
   menu label: 'WASP Outreach'
 
   controller do
@@ -25,6 +25,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
 
         if @resource.save
           WaspOutreachJob.perform_later(@resource.id)
+          TwitterPostingJob.perform_later(@resource.id)
           flash[:notice] = "Video was successfully added!"
           redirect_to admin_wasp_outreach_path(@resource)
         else
@@ -57,6 +58,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
       f.input :tag_id, as: :search_select, url: admin_tags_path,
                     fields: [:title], display_name: 'title', minimum_input_length: 2,
                     order_by: 'title_asc'
+      f.input :twitter_handle
     end
     f.actions
   end

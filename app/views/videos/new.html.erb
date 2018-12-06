@@ -36,7 +36,7 @@
           <% elsif @invalid_video_url.present? %>
             <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
             <div class="validationContent largeTooltip">
-              Oops, try a YouTube link instead.
+              <%= @video.errors.messages[:invalid_url].first %>
             </div>
           <% end %>
           <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l-229' %>

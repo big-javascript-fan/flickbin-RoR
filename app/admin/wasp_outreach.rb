@@ -28,7 +28,8 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
           flash[:notice] = "Video was successfully added!"
           redirect_to admin_wasp_outreach_path(@resource)
         else
-          render :new
+          flash[:error] = @resource.errors.messages[:invalid_url].first
+          redirect_to new_admin_wasp_outreach_path
         end
       else
         tag_title = Tag.find(permitted_params[:video][:tag_id]).title

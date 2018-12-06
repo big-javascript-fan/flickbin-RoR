@@ -32,9 +32,11 @@ class Video < ApplicationRecord
 
   def upload_data_from_youtube_api
     youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1] || self.url.split('/').last
-    return errors.add(:invalid_url, 'Video url invalid') if youtube_video_id.blank?
+    return errors.add(:invalid_url, 'Oops, try a YouTube link instead.') if youtube_video_id.blank?
 
     youtube_video = Yt::Video.new id: youtube_video_id
+    return errors.add(:invalid_url, 'This video cannot be embedded.') unless youtube_video.embeddable?
+
     self.title = youtube_video.title
     self.youtube_id = youtube_video_id
     self.remote_cover_url = youtube_video&.snippet&.data.dig('thumbnails', 'medium', 'url')

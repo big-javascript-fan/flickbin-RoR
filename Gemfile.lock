@@ -1,4 +1,18 @@
 GIT
+  remote: https://github.com/bufferapp/buffer-ruby.git
+  revision: 10edfe62d4d90b34e19f4356d797580cefdf0720
+  specs:
+    buffer (0.1.2)
+      addressable
+      environs
+      faraday
+      faraday_middleware
+      hashie
+      multi_json
+      rake
+      yajl-ruby
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: d8fa7294f5410bc949e75c6d52524ed289b3a7a3
   branch: master
@@ -126,11 +140,16 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
+    environs (1.1.0)
     erubi (1.7.1)
     et-orbi (1.1.6)
       tzinfo
     excon (0.62.0)
     execjs (2.7.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.12.2)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
     fog-aws (2.0.1)
       fog-core (~> 1.38)
@@ -161,6 +180,7 @@ GEM
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
+    hashie (3.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.1.0)
@@ -210,6 +230,7 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.11.3)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.8.4)
@@ -355,6 +376,7 @@ GEM
       rails (>= 3.2.16)
     xpath (3.1.0)
       nokogiri (~> 1.8)
+    yajl-ruby (1.4.1)
     yt (0.28.5)
       activesupport
 
@@ -370,6 +392,7 @@ DEPENDENCIES
   babosa
   better_errors
   binding_of_caller
+  buffer!
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)

@@ -15,16 +15,17 @@ class WaspOutreachService
     dummy_votes_handler
     votes_amount = rand(20..30)
     Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).each_with_index do |video, index|
-      break if votes_amount < 2 || @dummy_user_ids.length < 2
+      break if votes_amount < 2
 
       next if video.id == @video.id && index != 2
 
-      votes_amount = rand(15..20) if index == 1
-      existing_video_handler(video, votes_amount)
-
       if index == 1
+        votes_amount = rand(15..20)
+        existing_video_handler(video, votes_amount)
         votes_amount -= 1
         outreach_video_handler(votes_amount)
+      else
+        existing_video_handler(video, votes_amount)
       end
 
       votes_amount -= 2
@@ -45,7 +46,6 @@ class WaspOutreachService
   def existing_video_handler(video, votes_amount)
     video_owner = video.user
     voter_ids = @dummy_user_ids.sample(votes_amount)
-    @dummy_user_ids -= voter_ids
 
     voter_ids.each do |voter_id|
       video.votes.create!(voter_id: voter_id, value: 1)
@@ -57,7 +57,6 @@ class WaspOutreachService
   def outreach_video_handler(votes_amount)
     video_owner = @video.user
     voter_ids = @dummy_user_ids.sample(votes_amount)
-    @dummy_user_ids -= voter_ids
 
     voter_ids.each do |voter_id|
       @video.votes.create!(voter_id: voter_id, value: 1)

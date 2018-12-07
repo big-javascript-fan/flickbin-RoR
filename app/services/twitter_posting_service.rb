@@ -1,5 +1,8 @@
 class TwitterPostingService
+  include Rails.application.routes.url_helpers
+
   def initialize(video_id)
+    default_url_options[:host] = ActionMailer::Base.asset_host
     @video = Video.find(video_id)
     @tag = @video.tag
   end
@@ -20,6 +23,13 @@ class TwitterPostingService
   private
 
   def message_builder
-    "Currently Trending in #{@tag.title.capitalize} on flickbin - Upvote Now!: \"#{@video.title}\" video by: @#{@video.twitter_handle} #{@video.url}"
+    case Rails.env
+    when 'production', 'staging'
+      video_url = video_url(@video)
+    else
+      video_url = video_url(@video.id)
+    end
+
+    "Currently Trending in #{@tag.title.capitalize} on flickbin - Upvote Now!: \"#{@video.title}\" video by: @#{@video.twitter_handle} #{video_url}"
   end
 end

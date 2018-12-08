@@ -59,6 +59,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
                     fields: [:title], display_name: 'title', minimum_input_length: 2,
                     order_by: 'title_asc'
       f.input :twitter_handle
+    end
     f.actions
   end
 

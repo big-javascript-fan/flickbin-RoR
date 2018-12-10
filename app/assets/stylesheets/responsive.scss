@@ -209,6 +209,26 @@
 	.postVideoLastField {
 		margin-bottom: 30px;
 	}
+	.videoOnboarding {
+		div {
+			padding: 10px 48px 8px 19px;
+			p {
+				font-size: 18px;
+				line-height: 19px;
+			}
+			div {
+				height: 50px;
+				width: 50px;
+				img {
+					height: 36px;
+					margin: 10px 0 0 5px;
+				}
+			}
+		}
+	}
+	.videoOnboarding .closeVideoOnboarding {
+		top: 93px;
+	}
 	.validationContent.largeTooltip {
 		min-width: 1px;
 		right: 7px;
@@ -354,6 +374,7 @@
 	}
 	.videoTop {
 		padding: 20px 15px 0 15px;
+		margin: -20px -37px 0 -27px;
 	}
 	.underneathPlayer {
 		margin: 0 0 25px 0;
@@ -474,8 +495,8 @@
 	.footerMenu {
 	    float: right;
 	    font-size: 12px;
-	    magin: 0px;
-	    padding-right: 10px;
+	    margin: 0px;
+	    padding: 0 10px 0 0;
 	    margin-bottom: 0px;
 	    li {
 	    	padding-left: 0px;

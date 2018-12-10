@@ -19,8 +19,18 @@
     </div>
 
   </aside>
-
   <section class="videoContentPanel specificVideo comments">
+    <div class="videoOnboarding displayNone">
+        <div class="closeVideoOnboarding">
+          <a href="#" class="closeOnboardLink">&times;</a>
+        </div>
+        <div class="vidOnboardContent">
+          <div class="vidOnboardFlickbear">
+            <%= image_tag("/images/flickBearOnboarding.png", alt: 'flickbear') %>
+          </div>
+          <p><span>Welcome!</span> flickbin is a collection of the best videos from around the web, submitted, organized and ranked by our community.</p>
+        </div>
+      </div>
     <section class="videoTop">
       <% unless Rails.env.production? %>
         <div class='technical_info'>

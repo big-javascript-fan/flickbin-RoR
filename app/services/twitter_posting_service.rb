@@ -30,6 +30,6 @@ class TwitterPostingService
       video_url = video_url(@video.id)
     end
 
-    "Currently \#3 and rising in #{@tag.title.capitalize} on flickbin - RT/Upvote Now!: \"#{@video.title}\" video by: @#{@video.twitter_handle} #{video_url}"
+    "Currently \#3 and rising in \##{@tag.title.capitalize} on flickbin - RT/Upvote Now!: \"#{@video.title}\" video by: @#{@video.twitter_handle} #{video_url} - \#video \#youtube \#videos \#youtubers"
   end
 end

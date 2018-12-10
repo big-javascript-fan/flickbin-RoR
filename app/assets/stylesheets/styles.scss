@@ -449,6 +449,60 @@ select:actived {
     z-index: 2;
     padding: 39px 37px 37px 27px;
 }
+.videoOnboarding {
+    background: #279693;
+    margin: -40px -37px 20px -27px;
+    .closeVideoOnboarding {
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        top: 15px;
+        right: 30px;
+            a {
+                font-size: 30px;
+                font-weight: 300;
+                color: #fff;
+            }
+            a:hover {
+                text-decoration: none;
+                color: #D1F4F3;
+            }
+        }
+    div {
+        padding: 60px 90px 60px 90px;
+        div, div img {
+            float: left;
+        }
+        p {
+            font-size: 20px;
+            line-height: 24px;
+            margin-top: 20px;
+            font-weight: 300;
+            color: #81CECC;
+            span {
+                color: #fff;
+                font-weight: 400;
+            }
+        }
+        div {
+            height: 63px;
+            width: 63px;
+            background: #fff;
+            padding: 0px;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 13px;
+            img {
+                height: 42px;
+                width: auto;
+                margin: 12px 0 0 8px;
+            }
+
+        }
+    }
+}
 .brand {
     display: block;
     text-indent: -9999px;
@@ -1209,6 +1263,7 @@ input[type="text"].searchField {
     font-weight: 400;
     font-size: 20px;
     padding-left: 20px;
+    line-height: 22px;
 }
 .underneathPlayer {
     margin: 0 0 43px 12px;

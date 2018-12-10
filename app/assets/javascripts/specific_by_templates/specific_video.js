@@ -10,11 +10,15 @@ $(function() {
   commentFieldHandler();
   replyCommentHandler();
   infiniteScrollForComments();
+  onboardCloseClick();
 
   $(document).ready(function () {
     videoPageInfoWidth();
+    centerVidOnboardContent();
+    vidOnboardHandler();
     $(window).resize(function() {
       videoPageInfoWidth();
+      centerVidOnboardContent();
     });
   });
   function videoPageInfoWidth() {
@@ -29,7 +33,40 @@ $(function() {
       $('.videoTopDesc').css('width', elementsWidth);
     }
   }
-
+  function centerVidOnboardContent() {
+    var containerHeight = $('.vidOnboardContent').height();
+    var avatarHeight = $('.vidOnboardFlickbear').height();
+    var margin = (containerHeight - avatarHeight)/2;
+    $('.vidOnboardFlickbear').css({'margin-top': margin, 'margin-bottom': margin});
+  }
+  function onboardCloseClick() {
+    $('.closeOnboardLink').click(function() {
+      localStorage.setItem('vidPageLoadCount', 3);
+      vidOnboardHandler();
+    });
+  }
+  function vidOnboardHandler() {
+    var loadCount = 1;
+    if (localStorage.getItem ('vidPageLoadCount') === null) {
+      parseInt(localStorage.setItem('vidPageLoadCount', loadCount));
+      $('.videoOnboarding').removeClass('displayNone');
+      centerVidOnboardContent();
+    } else {
+      localStorage.setItem('vidPageLoadCount', parseInt(localStorage.getItem('vidPageLoadCount')) +1);
+      var localStorageValue = localStorage.getItem('vidPageLoadCount');
+      if (localStorageValue >= 4) {
+        $('.vidOnboardContent').addClass('animated fadeOut');
+        function hideVidOnboardContainer() {
+          $('.videoOnboarding').css({'display': 'none'})
+          $('.videoTop').css({'margin-top': '-40px'});
+        }
+        setInterval(hideVidOnboardContainer, 700);
+      } else {
+        $('.videoOnboarding').removeClass('displayNone');
+        centerVidOnboardContent();
+      }
+    }
+  };
 
   $('.jq-dropdown-anchor-right').addClass('reverseTheme');
 

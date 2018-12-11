@@ -11,30 +11,30 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
       user_id = User.where(role: 'dummy').sample.id
       tag_id = permitted_params[:video][:tag_id]
       video_url = permitted_params[:video][:url]
+      youtube_video_id = YoutubeVideoHelper.get_video_id_form_youtube_url(video_url)
 
-      if tag_id.blank? || video_url.blank?
+      if tag_id.blank? || youtube_video_id.blank?
         flash[:error] = "Tag and video url must be present"
-        redirect_to new_admin_wasp_outreach_path
-      elsif !Video.exists?(url: video_url, tag_id: tag_id)
+        return redirect_to new_admin_wasp_outreach_path
+      elsif Video.active.tagged.exists?(youtube_id: youtube_video_id, tag_id: tag_id)
+        @resource = Video.active.tagged.where(youtube_id: youtube_video_id, tag_id: tag_id).first
+        @resource.wasp_outreach = true
+      else
         additional_params = {
           user_id: user_id,
           wasp_outreach: true
         }
 
         @resource = Video.new(permitted_params[:video].merge(additional_params))
+      end
 
-        if @resource.save
-          WaspOutreachJob.perform_later(@resource.id)
-          TwitterPostingJob.perform_later(@resource.id)
-          flash[:notice] = "Video was successfully added!"
-          redirect_to admin_wasp_outreach_path(@resource)
-        else
-          flash[:error] = @resource.errors.messages[:invalid_url].first
-          redirect_to new_admin_wasp_outreach_path
-        end
+      if @resource.save
+        WaspOutreachJob.perform_later(@resource.id)
+        TwitterPostingJob.perform_later(@resource.id)
+        flash[:notice] = "Video was successfully added!"
+        redirect_to admin_wasp_outreach_path(@resource)
       else
-        tag_title = Tag.find(permitted_params[:video][:tag_id]).title
-        flash[:error] = "This video has already been added to the tag - '#{tag_title}'"
+        flash[:error] = @resource.errors.messages[:invalid_url].first
         redirect_to new_admin_wasp_outreach_path
       end
     end

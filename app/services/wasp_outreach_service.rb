@@ -14,21 +14,25 @@ class WaspOutreachService
 
     dummy_votes_handler
     votes_amount = rand(20..30)
-    Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).each_with_index do |video, index|
-      break if votes_amount < 2
+    videos = Video.active.tagged.where(tag_id: @video.tag_id).order(rank: :asc).to_a
+    reordered_videos = videos.insert(2, videos.delete_at(videos.index(@video)))
+    reordered_videos.each_with_index do |video, index|
+      break if votes_amount < 1
 
-      next if video.id == @video.id && index != 2
-
-      if index == 1
+      case index
+      when 0
+        existing_video_handler(video, votes_amount)
+      when 1
         votes_amount = rand(15..20)
         existing_video_handler(video, votes_amount)
         votes_amount -= 1
+      when 2
         outreach_video_handler(votes_amount)
+        votes_amount -= 2
       else
         existing_video_handler(video, votes_amount)
+        votes_amount -= 2
       end
-
-      votes_amount -= 2
     end
   end
 

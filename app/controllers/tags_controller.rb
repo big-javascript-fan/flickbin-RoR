@@ -38,7 +38,8 @@ class TagsController < ApplicationController
       if params[:sort_by] == 'newest'
         @tag_videos = @tag_videos.order(created_at: :desc).limit(10)
       else
-        @tag_videos = @tag_videos.order(rank: :asc, created_at: :desc).limit(10)
+
+        @tag_videos = @tag_videos.order(positive_votes_amount: :desc, rank: :asc, created_at: :desc).limit(10)
       end
   end
 end

@@ -20,12 +20,12 @@
   <section class="contentPanel leftSpace36 tag">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-20 mobileThemeBtn hideOnMobile">
-        <span class="sideTitle titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
-        <span class="sideTitle titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
@@ -60,7 +60,7 @@
     <% end %>
     <div class="tagSpecificWrapper">
       <div class="clearfix tagHeadingBottomGap">
-        <span class="sideTitle titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><%= @tag.title %></span>
         <ul class="pillNav clearfix">
           <li><%= link_to 'top charts', tag_path(@tag), sort_by: 'top_charts', class: "top_charts filter", remote: true %></li>
           <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>

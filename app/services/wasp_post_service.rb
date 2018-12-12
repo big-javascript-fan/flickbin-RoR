@@ -40,7 +40,8 @@ class WaspPostService
       Video.create!(
         tag_id: tag.id,
         user_id: @dummy_users.sample.id,
-        url: "https://www.youtube.com/watch?v=#{youtube_id}"
+        url: "https://www.youtube.com/watch?v=#{youtube_id}",
+        wasp_post: true
       )
 
       return

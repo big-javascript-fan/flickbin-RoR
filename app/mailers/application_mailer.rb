@@ -8,4 +8,11 @@ class ApplicationMailer < ActionMailer::Base
     @comment = comment
     mail(to: @user.email, subject: 'Your video has been commented')
   end
+
+  def after_reply_comment(video, comment)
+    @video = video
+    @user = video.user
+    @comment = comment
+    mail(to: @user.email, subject: 'Your video has been commented')
+  end
 end

@@ -11,6 +11,13 @@ class Api::V1::CommentsController < Api::V1::BaseController
     )
 
     if comment.save
+      Notification.create!(
+        user_id: current_user.id,
+        message: comment.message,
+        category: :after_comment,
+        event_object: { comment: comment.id }
+      )
+      ApplicationMailer.after_comment(video, comment).deliver_later
       render json: Api::V1::Comments::ShowSerializer.new(comment).call
     else
       render json: comment.errors.messages, status: 422

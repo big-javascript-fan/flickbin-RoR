@@ -2,8 +2,8 @@ class Notification < ApplicationRecord
   belongs_to :user
 
   CATEGORIES = [
-    :comment,
-    :reply_comment,
+    :after_comment,
+    :after_reply_comment,
     :top_1_contributor,
     :top_3_contributors,
     :top_5_contributors,

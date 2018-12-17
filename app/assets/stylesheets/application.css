@@ -174,3 +174,18 @@
     background: transparent;
   }
 }
+
+.notificationBadge {
+  height: 15px;
+  width: 15px;
+  display: block;
+  border: 3px solid #4E5766;
+  text-align: center;
+  font-weight: 700;
+  color: #4E5766;
+  font-size: 28px;
+  line-height: 28px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}

@@ -1,5 +1,15 @@
 <ul class="afterLoginBtns">
   <span class="postHoverTip">Post a Video</span>
+
+  <li>
+    <% if current_user.present? && current_user.notifications.not_read.present? %>
+      <span class="addCircle bell active collapsed">N</span>
+      <div class="notificationBadge"></div>
+    <% else %>
+      <span class="addCircle bell">N</span>
+    <% end %>
+  </li>
+
   <li><%= link_to '+', videos_new_path, class: "addCircle" %></li>
   <li class="profileDropdownHolder">
     <div class='profileDropdown'>

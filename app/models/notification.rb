@@ -13,4 +13,7 @@ class Notification < ApplicationRecord
   ]
 
   validates_inclusion_of :category, in: CATEGORIES
+
+  scope :not_read, -> { where(read: false) }
+  scope :read, -> { where(read: true) }
 end

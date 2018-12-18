@@ -75,7 +75,7 @@ class RecalculateTopContributorsService
         end
 
       if notification.present? && notification.save!
-        ApplicationMailer.send(notification.category, cp.tag, cp.user).deliver_now
+        ApplicationMailer.send(notification.category, cp.tag, cp.user).deliver_later
       end
     end
   end

@@ -40,4 +40,18 @@ class ApplicationMailer < ActionMailer::Base
     @contributor = contributor
     mail(to: @contributor.email, subject: "You're now one of the top 10 contributors")
   end
+
+  def top_1_video_in_tag(video)
+    @video = video
+    @tag = video.tag
+    @user = video.user
+    mail(to: @user.email, subject: "Your Video is #1 on #{@tag.title}.")
+  end
+
+  def top_10_videos_in_tag(video)
+    @video = video
+    @tag = video.tag
+    @user = video.user
+    mail(to: @user.email, subject: "Your Video is now in the top ten in the #{@tag.title} tag.")
+  end
 end

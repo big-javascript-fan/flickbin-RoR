@@ -11,8 +11,33 @@ class ApplicationMailer < ActionMailer::Base
 
   def after_reply_comment(video, comment)
     @video = video
-    @user = video.user
     @comment = comment
-    mail(to: @user.email, subject: 'Your video has been commented')
+    @parent_comment = comment.parent
+    @user = @parent_comment.commentator
+    mail(to: @user.email, subject: 'Someone reply to your comment')
+  end
+
+  def top_1_contributor(tag, contributor)
+    @tag = tag
+    @contributor = contributor
+    mail(to: @contributor.email, subject: "You're now the top contributor")
+  end
+
+  def top_3_contributors(tag, contributor)
+    @tag = tag
+    @contributor = contributor
+    mail(to: @contributor.email, subject: "You're now one of the top 3 contributors")
+  end
+
+  def top_5_contributors(tag, contributor)
+    @tag = tag
+    @contributor = contributor
+    mail(to: @contributor.email, subject: "You're now one of the top 5 contributors")
+  end
+
+  def top_10_contributors(tag, contributor)
+    @tag = tag
+    @contributor = contributor
+    mail(to: @contributor.email, subject: "You're now one of the top 10 contributors")
   end
 end

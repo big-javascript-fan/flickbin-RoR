@@ -16,12 +16,23 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
     return [] if notifications.blank?
 
     notifications.map do |notification|
-      {
-        id:           notification.id,
-        message:      notification.message,
-        category:     notification.category,
-        event_object: notification.event_object
-      }
+      notification_to_hash(notification)
     end
+  end
+
+  def notification_to_hash(notification)
+    notification_hash = {
+      id:           notification.id,
+      category:     notification.category,
+      event_object: notification.event_object,
+    }
+
+    case notification.category
+    when 'comment_video', 'reply_video_comment'
+      comment = Comment.find(notification.event_object['comment'])
+      notification_hash.update(comment_message: comment.message)
+    end
+
+    notification_hash
   end
 end

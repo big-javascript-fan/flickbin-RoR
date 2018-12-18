@@ -11,7 +11,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
     )
 
     if comment.save
-      Notifications::AfterCommentService.new(comment.id, is_reply_comment: params[:parent_id].present?).call
+      ::Notifications::AfterCommentService.new(comment.id, is_reply_comment: params[:parent_id].present?).call
       render json: Api::V1::Comments::ShowSerializer.new(comment).call
     else
       render json: comment.errors.messages, status: 422

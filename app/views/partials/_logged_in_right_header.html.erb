@@ -3,11 +3,65 @@
 
   <li>
     <% if current_user.present? && current_user.notifications.not_read.present? %>
-      <span class="addCircle bell active collapsed">N</span>
-      <div class="notificationBadge"></div>
+      <span class="addCircle bell active collapsed icon-bell"> <span class="notificationBadge"></span></span>
+      <div class="jq-dropdown jq-dropdown-medium push-left jq-dropdown-tip jq-dropdown-anchor-right">
+        <div class="jq-dropdown-panel jq-dropdown-panel-medium">
+          <div class="dropdown-menu dropdown-menu-medium">
+            <h2 class="heading-notification">9 New Notification</h2>
+            <div class="notification">
+              <div class="notification-header">
+                <p class="notification-title"><span class="icon icon-message"></span>johnsmith112 replied:</p>
+                <a href="#" class="notification-button">see reply</a>
+              </div>
+              <div class="notification-body">
+                <p class="notification-description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur, cupiditate eius maiores mollitia suscipit!
+                </p>
+              </div>
+            </div>
+            <div class="notification">
+              <div class="notification-header">
+                <p class="notification-title"><span class="icon icon-message"></span>justAndrew commented:</p>
+                <a href="#" class="notification-button">see comments</a>
+              </div>
+              <div class="notification-body">
+                <p class="notification-description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur, cupiditate eius maiores mollitia suscipit!
+                </p>
+              </div>
+            </div>
+            <div class="notification">
+              <div class="notification-header">
+                <p class="notification-title"><span class="icon icon-star"></span>You`re top 10 in a food!</p>
+                <a href="#" class="notification-button">post a video</a>
+              </div>
+              <div class="notification-body">
+                <p class="notification-description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur consequatur, cupiditate eius maiores mollitia suscipit!
+                </p>
+              </div>
+            </div>
+            <div class="notification notification-pagination">
+              <a href="#" class="prev disabled"><span class="icon icon-play_arrow"></span></a>
+              <ul class="pagination-steps" >
+                <li class="active">
+                  <a href="#" class="pagination-step"></a>
+                </li>
+                <li>
+                  <a href="#" class="pagination-step"></a>
+                </li>
+                <li>
+                  <a href="#" class="pagination-step"></a>
+                </li>
+              </ul>
+              <a href="#" class="next"><span class="icon icon-play_arrow"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
     <% else %>
-      <span class="addCircle bell">N</span>
-    <% end %>
+      <span class="addCircle bell icon-bell"></span>
+  <% end %>
   </li>
 
   <li><%= link_to '+', videos_new_path, class: "addCircle" %></li>

@@ -1,6 +1,7 @@
 class RecalculateTopContributorsService
   def call
     Tag.find_each do |tag|
+      next if tag.title != 'music'
       recalculate_contributors_rank(tag)
 
       top_11_contribution_points = get_contribution_points_for_tag(tag, 11)
@@ -28,12 +29,20 @@ class RecalculateTopContributorsService
   end
 
   def get_contribution_points_for_tag(tag, limit)
-    tag.contribution_points
-       .includes(:user)
-       .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
-       .where('contribution_points.amount > ?', 0)
-       .order(amount: :desc)
-       .limit(limit)
+    if Rails.env.development?
+      tag.contribution_points
+         .includes(:user)
+         .where('contribution_points.amount > ?', 0)
+         .order(amount: :desc)
+         .limit(limit)
+    else
+      tag.contribution_points
+         .includes(:user)
+         .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
+         .where('contribution_points.amount > ?', 0)
+         .order(amount: :desc)
+         .limit(limit)
+    end
   end
 
   def contributors_notification_handler(contribution_points)
@@ -51,13 +60,13 @@ class RecalculateTopContributorsService
             category: 'top_3_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif index == 4 && top_11_contributors.size == 11
+        elsif index == 4 && contribution_points.size > 10
           Notification.new(
             user_id: cp.user_id,
             category: 'top_5_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif index == 9 && top_11_contributors.size == 11
+        elsif index == 9 && contribution_points.size > 10
           Notification.new(
             user_id: cp.user_id,
             category: 'top_10_contributors',
@@ -65,8 +74,8 @@ class RecalculateTopContributorsService
           )
         end
 
-      if notification.present? && notification.save
-        ApplicationMailer.send(notification.category, cp.tag, cp.user).deliver_later
+      if notification.present? && notification.save!
+        ApplicationMailer.send(notification.category, cp.tag, cp.user).deliver_now
       end
     end
   end

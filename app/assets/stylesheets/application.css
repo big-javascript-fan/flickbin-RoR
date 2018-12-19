@@ -136,14 +136,14 @@
   border-radius: 6px;
 }
 
-.commentorThumb {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    display: block;
-    top: 30px;
-    left: 30px;
-}
+/*.commentorThumb {*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*position: absolute;*/
+    /*display: block;*/
+    /*top: 30px;*/
+    /*left: 30px;*/
+/*}*/
 
 .commentorLine a,
 .replyComment {

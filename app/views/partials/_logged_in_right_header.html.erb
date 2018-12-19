@@ -1,7 +1,7 @@
 <ul class="afterLoginBtns">
   <span class="postHoverTip">Post a Video</span>
 
-  <li>
+  <li class="notificationDropdown">
     <% if current_user.present? && current_user.notifications.not_read.present? %>
       <span class="addCircle bell active collapsed icon-bell"> <span class="notificationBadge"></span></span>
       <div class="jq-dropdown jq-dropdown-medium push-left jq-dropdown-tip jq-dropdown-anchor-right">

@@ -2207,10 +2207,10 @@ input.grayNormal {
         align-items: center;
         > .icon{
             font-size: 20px;
-            color: #4E5766;
+            color: #fff;
         }
         &:hover{
-            background: #4E5766;
+            background: #00ACA7;
             > .icon{
                 color: #fff;
             }
@@ -2287,7 +2287,7 @@ input.grayNormal {
     }
     .prev, .next{
       > .icon{
-        color: #fff;
+        color: #4E5766;
       }
       &:hover{
         background: #4E5766;
@@ -2300,8 +2300,6 @@ input.grayNormal {
       transform: rotate(180deg);
     }
     .prev.disabled, .next.disabled{
-      background: transparent;
-      pointer-events: none;
       > .icon{
         color: #4E5766;
       }

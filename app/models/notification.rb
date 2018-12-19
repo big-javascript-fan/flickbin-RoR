@@ -22,6 +22,12 @@ class Notification < ApplicationRecord
   scope :read, -> { where(read: true) }
 
   def leave_only_15_unread_notifications
-    byebug
+    unread_notifications = self.user.notifications.unread.order(created_at: :desc)
+    obsolete_notifications = unread_notifications - unread_notifications.first(3)
+    if obsolete_notifications.present?
+      obsolete_notifications.each do |obsolete_notificatio|
+        obsolete_notificatio.update(read: true)
+      end
+    end
   end
 end

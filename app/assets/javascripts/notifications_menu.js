@@ -102,7 +102,7 @@ function notificationTemplateBuilder(notification) {
 
   if(notification.category == 'comment_video') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -119,7 +119,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'reply_video_comment') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -136,7 +136,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_1_contributor') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -152,7 +152,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_3_contributors') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -169,7 +169,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_5_contributors') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -186,7 +186,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_10_contributors') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -203,7 +203,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_1_video_in_tag') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -220,7 +220,7 @@ function notificationTemplateBuilder(notification) {
     `
   } else if(notification.category == 'top_10_videos_in_tag') {
     notificationsMenuContent += `
-      <div class="notification">
+      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>

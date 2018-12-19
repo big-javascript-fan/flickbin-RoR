@@ -26,6 +26,7 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
       id:           notification.id,
       category:     notification.category,
       event_object: notification.event_object,
+      read: notification.read
     }
 
     case notification.category

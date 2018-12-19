@@ -222,7 +222,7 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             Congratulations!
           </p>
-          <a href="/videos/${notification.video.slug}" class="notification-button">post a video</a>
+          <a href="/videos/${notification.video.slug}" class="notification-button">check it out</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">

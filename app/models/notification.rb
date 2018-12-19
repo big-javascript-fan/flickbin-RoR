@@ -1,4 +1,6 @@
 class Notification < ApplicationRecord
+  max_pages 5
+
   belongs_to :user
 
   CATEGORIES = [
@@ -14,6 +16,12 @@ class Notification < ApplicationRecord
 
   validates_inclusion_of :category, in: CATEGORIES
 
-  scope :not_read, -> { where(read: false) }
+  after_create :leave_only_15_unread_notifications
+
+  scope :unread, -> { where(read: false) }
   scope :read, -> { where(read: true) }
+
+  def leave_only_15_unread_notifications
+    byebug
+  end
 end

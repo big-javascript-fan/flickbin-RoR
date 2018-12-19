@@ -1,10 +1,9 @@
 class Api::V1::NotificationsController < Api::V1::BaseController
   def index
     notifications = current_user.notifications
-                                .not_read
-                                .order(created_at: :desc)
+                                .order(:read, created_at: :desc)
                                 .page(params[:page])
-                                .per(1)
+                                .per(3)
 
     render json: Api::V1::Notifications::IndexSerializer.new(notifications).call
   end

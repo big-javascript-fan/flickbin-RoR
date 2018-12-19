@@ -6,6 +6,7 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
   def call
     Oj.dump(
       notifications: notifications_to_hash(@notifications),
+      total_unread_notifications: @notifications.unread.total_count,
       total_pages: @notifications.total_pages
     )
   end
@@ -30,7 +31,20 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
     case notification.category
     when 'comment_video', 'reply_video_comment'
       comment = Comment.find(notification.event_object['comment'])
-      notification_hash.update(comment_message: comment.message)
+      notification_hash.update(
+        video: comment.video,
+        commentator: comment.commentator,
+        comment: comment
+      )
+    when 'top_1_contributor', 'top_3_contributors', 'top_5_contributors', 'top_10_contributors'
+      tag = Tag.find(notification.event_object['tag'])
+      notification_hash.update(tag: tag)
+    when 'top_1_video_in_tag', 'top_10_videos_in_tag'
+      video = Video.find(notification.event_object['video'])
+      notification_hash.update(
+        tag: video.tag,
+        video: video
+      )
     end
 
     notification_hash

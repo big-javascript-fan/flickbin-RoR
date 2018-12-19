@@ -2201,17 +2201,16 @@ input.grayNormal {
         width: 25px;
         height: 25px;
         border-radius: 6px;
-        background: #fff;
-        border:1px solid transparent;
         display: flex;
+        background: transparent;
         justify-content: center;
         align-items: center;
         > .icon{
             font-size: 20px;
+            color: #4E5766;
         }
         &:hover{
-            background: transparent;
-            border-color:#fff;
+            background: #4E5766;
             > .icon{
                 color: #fff;
             }
@@ -2281,53 +2280,19 @@ input.grayNormal {
     }
   }
   .notification-pagination{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     .pagination-steps{
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-      display: flex;
-      align-items: center;
-      > *{
-        margin: 4px;
-      }
       .pagination-step{
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin: 0;
-        padding: 0;
-        border-radius:50%;
         background: #4E5766;
-        opacity: 0.5;
-        &:hover{
-          opacity: 1;
-        }
-      }
-      .active > .pagination-step{
-        opacity: 1;
       }
     }
     .prev, .next{
-      width: 25px;
-      height: 25px;
-      border-radius: 6px;
-      background: #4E5766;
-      border:1px solid transparent;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       > .icon{
-        font-size: 20px;
         color: #fff;
       }
       &:hover{
-        background: transparent;
-        border-color:#4E5766;
+        background: #4E5766;
         > .icon{
-          color: #4E5766;
+          color: #fff;
         }
       }
     }
@@ -2339,7 +2304,6 @@ input.grayNormal {
       pointer-events: none;
       > .icon{
         color: #4E5766;
-        opacity: 0.6;
       }
     }
     a:hover{text-decoration: none;}

@@ -1,16 +1,9 @@
 $(function() {
-  $(document).on('click', '.bell', function() {
-    if($(this).hasClass('collapsed')) {
-      $(this).removeClass('collapsed')
-      $('.notifications.dropdown-menu').empty();
-      getNotifications(1);
-    } else {
-      $(this).addClass('collapsed');
-    }
-  });
+  window.getNotifications = getNotifications;
 
   $(document).on('click', '.bell', function(e){
     e.stopPropagation();
+    getNotifications(1);
     $(this).parent().toggleClass('bell-dropdown-open');
   });
   $(document).on('click', function() {
@@ -23,39 +16,42 @@ $(function() {
     $('.bell-dropdown-open').removeClass('bell-dropdown-open');
   })
 
-  function getNotifications(page) {
+  function getNotifications(currentPage) {
     var ids = [];
 
-    $.get('/api/v1/notifications', { page: page }, function(response) {
+    $.get('/api/v1/notifications', { page: currentPage }, function(response) {
       var notificationsMenuHeader = '';
       var notificationsMenuContent = '';
       var notificationsMenuPagination = '';
+      var totalPages = Array.from(Array(response.total_pages + 1).keys()).slice(1);
 
       notificationsMenuHeader = notificationHeaderBuilder(response);
 
       if(response.notifications.length > 0) {
         $.each(response.notifications, function(index, notification) {
           ids.push(notification.id);
-          notificationsMenuContent += notificationTemplateBuilder(notification);
+          notificationsMenuContent += notificationBodyBuilder(notification);
         });
       }
 
-      if(response.total_pages > 2) {
+      if(response.total_pages > 1) {
         notificationsMenuPagination += `
           <div class="notification notification-pagination">
-            <a href="#" class="prev disabled"><span class="icon icon-play_arrow"></span></a>
+            <a href="#" class="prev ${currentPage < 2 ? 'disabled' : ''}" onclick="getNotifications(${currentPage - 1})"><span class="icon icon-play_arrow"></span></a>
             <ul class="pagination-steps" >
-              <li class="active">
-                <a href="#" class="pagination-step"></a>
-              </li>
-              <li>
-                <a href="#" class="pagination-step"></a>
-              </li>
-              <li>
-                <a href="#" class="pagination-step"></a>
-              </li>
+        `
+
+        $.each(totalPages, function(index, page) {
+          notificationsMenuPagination += `
+            <li class="${currentPage == page ? 'active' : ''}">
+              <a href="#" class="pagination-step"></a>
+            </li>
+          `
+        })
+
+        notificationsMenuPagination += `
             </ul>
-            <a href="#" class="next"><span class="icon icon-play_arrow"></span></a>
+            <a href="#" class="next ${currentPage == response.total_pages ? 'disabled' : ''}" onclick="getNotifications(${currentPage + 1})"><span class="icon icon-play_arrow"></span></a>
           </div>
         `
       }
@@ -63,7 +59,7 @@ $(function() {
       if(response.total_unread_notifications < 4) {
         $('.notificationBadge').hide();
       }
-
+      $('.notifications.dropdown-menu').empty();
       $('.notifications.dropdown-menu').append(notificationsMenuHeader);
       $('.notifications.dropdown-menu').append(notificationsMenuContent);
       $('.notifications.dropdown-menu').append(notificationsMenuPagination);
@@ -97,7 +93,7 @@ function notificationHeaderBuilder(response) {
   return notificationsMenuHeader;
 }
 
-function notificationTemplateBuilder(notification) {
+function notificationBodyBuilder(notification) {
   var notificationsMenuContent = '';
 
   if(notification.category == 'comment_video') {
@@ -108,7 +104,7 @@ function notificationTemplateBuilder(notification) {
             <span class="icon icon-message"></span>
             ${notification.commentator.channel_name} commented:
           </p>
-          <a href="/videos/${notification.video.title}?all_comments=true" class="notification-button">see comments</a>
+          <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">see comments</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
@@ -125,11 +121,11 @@ function notificationTemplateBuilder(notification) {
             <span class="icon icon-message"></span>
             ${notification.commentator.channel_name} replied:
           </p>
-          <a href="<a href="/videos/${notification.video.title}?all_comments=true#comment_${notification.comment.id}" class="notification-button">see comments</a>" class="notification-button">see reply</a>
+          <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">see reply</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            ${notification.comment_message}
+            ${notification.comment.message}
           </p>
         </div>
       </div>

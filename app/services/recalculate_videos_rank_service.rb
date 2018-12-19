@@ -28,7 +28,7 @@ class RecalculateVideosRankService
   private
 
   def top_1_video_in_tag_notification_handler(video)
-    notification = Notification.new(
+    notification = Notification.create!(
       user_id: video.user_id,
       category: 'top_1_video_in_tag',
       event_object: { video: video.id }
@@ -38,7 +38,7 @@ class RecalculateVideosRankService
   end
 
   def top_10_videos_in_tag_notification_handler(video)
-    notification = Notification.new(
+    notification = Notification.create!(
       user_id: video.user_id,
       category: 'top_10_videos_in_tag',
       event_object: { video: video.id }

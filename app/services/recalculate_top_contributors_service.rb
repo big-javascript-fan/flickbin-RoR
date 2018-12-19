@@ -49,24 +49,32 @@ class RecalculateTopContributorsService
     contribution_points.each_with_index do |cp, index|
       notification =
         if index == 0
+          next unless allowed_to_create_new_notification?(cp.user, 'top_1_contributor')
+
           Notification.new(
             user_id: cp.user_id,
             category: 'top_1_contributor',
             event_object: { tag: cp.tag_id }
           )
-        elsif index == 2
+        elsif [1, 2].include?(index)
+          next unless allowed_to_create_new_notification?(cp.user, 'top_3_contributors')
+
           Notification.new(
             user_id: cp.user_id,
             category: 'top_3_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif index == 4 && contribution_points.size > 10
+        elsif [4, 5].include?(index) && contribution_points.size > 10
+          next unless allowed_to_create_new_notification?(cp.user, 'top_5_contributors')
+
           Notification.new(
             user_id: cp.user_id,
             category: 'top_5_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif index == 9 && contribution_points.size > 10
+        elsif (6..10).include?(index) && contribution_points.size > 10
+          next unless allowed_to_create_new_notification?(cp.user, 'top_10_contributors')
+
           Notification.new(
             user_id: cp.user_id,
             category: 'top_10_contributors',
@@ -78,5 +86,13 @@ class RecalculateTopContributorsService
         ApplicationMailer.send(notification.category, cp.tag, cp.user).deliver_later
       end
     end
+  end
+
+  def allowed_to_create_new_notification?(user, category)
+    not_outdated_notifications_in_category = user.notifications
+                                                 .where(category: category)
+                                                 .where("notifications.created_at BETWEEN '#{1.week.ago.to_s}' AND '#{Time.now}'")
+
+    not_outdated_notifications_in_category.present? ? false : true
   end
 end

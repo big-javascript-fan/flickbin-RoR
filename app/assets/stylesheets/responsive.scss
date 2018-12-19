@@ -509,3 +509,22 @@
 	    }
 	}
 }
+
+@media(max-width: 640px){
+  .notificationDropdown{
+    .jq-dropdown-medium{
+      left: -270px;
+    }
+  }
+}
+@media(max-width: 480px){
+  .notificationDropdown{
+    .jq-dropdown-medium{
+      left: -102px;
+			right: inherit;
+    }
+    .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::after, .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::before{
+      right: 175px;
+    }
+  }
+}

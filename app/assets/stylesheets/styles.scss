@@ -87,6 +87,10 @@ input:-webkit-autofill {
     left: -185px;
     animation-duration: 1s;
 }
+.jq-dropdown-medium{
+    left: -400px;
+    right: -20px;
+}
 .jq-dropdown.onRightSide {
     left: -185px;
 }
@@ -107,6 +111,11 @@ input:-webkit-autofill {
     overflow: visible;
     padding: 25px 15px 5px 15px;
     margin: 0;
+}
+.jq-dropdown .jq-dropdown-menu-medium,
+.jq-dropdown .jq-dropdown-panel-medium {
+    max-width: 450px;
+    padding: 0;
 }
 .jq-dropdown .jq-dropdown-panel {
     -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,0.15);
@@ -870,9 +879,9 @@ select:actived {
 .profileDropdownHolder {
     margin-top: -7px;
 }
-.afterLoginBtns > li:hover .jq-dropdown,
-.afterLoginBtns > li:focus .jq-dropdown,
-.afterLoginBtns > li:active .jq-dropdown {
+.profileDropdownHolder:hover .jq-dropdown,
+.profileDropdownHolder:focus .jq-dropdown,
+.profileDropdownHolder:active .jq-dropdown {
     display: block;
 }
 .postHoverTip {
@@ -882,6 +891,7 @@ select:actived {
     display: none;
 }
 .addCircle {
+    position: relative;
     width: 34px;
     height: 34px;
     display: block;
@@ -1377,7 +1387,7 @@ input[type="text"].asCommentField {
 }
 .nestedComment {
     position: relative;
-    padding-left: 47px;
+    padding-left: 80px;
     min-height: 48px;
 }
 .commentSendIcon {
@@ -2051,7 +2061,7 @@ input.grayNormal {
     color: #ffffff;
 }
 .tagStepText {
-    color: #1D1F23; 
+    color: #1D1F23;
     font-size: 22px;
     font-weight: 500;
     line-height: 25px;
@@ -2061,7 +2071,7 @@ input.grayNormal {
 .stepsPara {
     margin: 0 0 25px;
     text-align: center;
-    color: #A0A7B6; 
+    color: #A0A7B6;
     font-size: 17px;
     font-weight: 500;
     line-height: 25px;
@@ -2070,4 +2080,230 @@ input.grayNormal {
 .stepBrandFinal {
     margin-bottom: 60px;
     margin-top: 50px;
+}
+
+.notificationDropdown{
+    .jq-dropdown.jq-dropdown-tip{
+        margin-top: 22px;
+    }
+    .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::after, .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::before{
+        right: 30px;
+    }
+    .jq-dropdown .jq-dropdown-panel {
+        box-shadow: 0 5px 20px 0 rgba(0,0,0,0.40);
+    }
+}
+
+.bell-dropdown-open .bell{
+    color: #2FA9A5;
+    border-color: #2FA9A5;
+}
+.bell-dropdown-open .jq-dropdown{
+    display: block;
+}
+.bell{
+    font-size: 20px;
+}
+.notificationBadge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+    background:#4E5766;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+}
+.heading-notification{
+    color: #fff;
+    padding: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+.notification{
+    color: #fff;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255, 0.4);
+    &-read{
+        background: #00A29C;
+    }
+    &-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    &-title{
+        display: flex;
+        align-items: center;
+        margin: 0;
+        font-weight: bold;
+        .icon{
+            opacity: 0.8;
+            margin-right: 8px;
+            font-size: 22px;
+        }
+    }
+    &-button{
+        white-space: nowrap;
+        margin-left: 16px;
+        padding:0 16px;
+        border-radius:6px;
+        line-height: 28px;
+        border:1px solid transparent;
+        &:hover{
+            text-decoration: none;
+            background-color: transparent;
+            color: #fff;
+            border-color: #fff;
+        }
+    }
+    &-button{
+        background: #fff;
+    }
+    &-description{
+        opacity: 0.7;
+        margin: 0;
+    }
+}
+.notification-pagination{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .pagination-steps{
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        > *{
+            margin: 4px;
+        }
+        .pagination-step{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            padding: 0;
+            border-radius:50%;
+            background: #fff;
+            opacity: 0.5;
+            &:hover{
+                opacity: 1;
+            }
+        }
+        .active > .pagination-step{
+            opacity: 1;
+        }
+    }
+    .prev, .next{
+        width: 25px;
+        height: 25px;
+        border-radius: 6px;
+        display: flex;
+        background: transparent;
+        justify-content: center;
+        align-items: center;
+        > .icon{
+            font-size: 20px;
+            color: #fff;
+        }
+        &:hover{
+            background: #00ACA7;
+            > .icon{
+                color: #fff;
+            }
+        }
+    }
+    .prev > .icon{
+        transform: rotate(180deg);
+    }
+    .prev.disabled, .next.disabled{
+        background: transparent;
+        pointer-events: none;
+        > .icon{
+            color: #fff;
+            opacity: 0.6;
+        }
+    }
+    a:hover{text-decoration: none;}
+}
+
+.reverseThemeHoler{
+    .bell-dropdown-open .bell{
+        color: #4E5766;
+        border-color: #4E5766;
+    }
+    .notificationBadge {
+        background:#ffffff;
+        border: 3px solid #31B4B0;
+    }
+}
+.reverseTheme{
+  .heading-notification{
+    color: #4F5057;
+    padding: 20px;
+    margin: 0;
+  }
+  .notification{
+    color: #fff;
+    padding:20px;
+    border-top:1px solid rgba(78, 87, 102, 0.4);
+    &-read{
+        background: #F4F4F4;
+    }
+    &-header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    &-title{
+        color: #4E5766;
+      .icon{
+        color: #00B7B2;
+      }
+    }
+    &-button{
+      background-color: #4E5766;
+      color: #fff;
+      &:hover{
+        background-color: #343B46;
+        border-color: #343B46;
+      }
+    }
+    &-description{
+      color: #4E5766;
+      opacity: 0.7;
+      margin: 0;
+    }
+  }
+  .notification-pagination{
+    .pagination-steps{
+      .pagination-step{
+        background: #4E5766;
+      }
+    }
+    .prev, .next{
+      > .icon{
+        color: #4E5766;
+      }
+      &:hover{
+        background: #4E5766;
+        > .icon{
+          color: #fff;
+        }
+      }
+    }
+    .prev > .icon{
+      transform: rotate(180deg);
+    }
+    .prev.disabled, .next.disabled{
+      > .icon{
+        color: #4E5766;
+      }
+    }
+    a:hover{text-decoration: none;}
+  }
 }

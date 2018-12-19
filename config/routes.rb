@@ -41,6 +41,11 @@ Rails.application.routes.draw do
         get  ':video_slug/comments', action: :index
         post ':video_slug/comments', action: :create, as: :create_comment
       end
+
+      scope module: :notifications do
+        get 'notifications', action: :index
+        put 'notifications', action: :update
+      end
     end
   end
 

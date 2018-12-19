@@ -1,0 +1,194 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <style>
+    .btn {
+      display: inline-block;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      padding: 16px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 600;
+      line-height: 22px;
+      background-color: #4E5766;
+      border:1px solid #4E5766;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body style="padding: 30px; background: #F8F8F8; position: relative;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
+        <tbody>
+        <tr>
+          <td height="45"></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="padding: 10px 0;" class="logo">
+            <a href="#website_url" target="_blank">
+              <img alt="flickbin" src="<%= ActionMailer::Base.asset_host %>/images/logo.png" width="160" height="35" style="display: block; font-family: Helvetica, Arial, sans-serif; color: #31B4B0; font-size: 22px;" border="0">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td bgcolor="#ffffff" align="center">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 540px;">
+              <tbody>
+              <tr>
+                <td height="45"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 10px 20px 10px 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
+                  Your Video <span style="font-weight: 400; font-style: italic;">"<%= @video.title %>"</span> is #1 on <%= @tag.title %>
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 20px 10px 20px;">
+                  <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0" style="background: #F8F8F8; padding:30px 20px 30px 20px;">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                          <tbody>
+                          <tr>
+                            <td align="center" style="padding:0 0 15px 0;">
+                              <img alt="flickbin" src="<%= ActionMailer::Base.asset_host %>/images/party.png" width="66" height="66" border="0">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center" width="100%" style="font-size: 20px; color: #090A0B; font-weight: bold;">
+                              It's time to <span style="color: #31B4B0;">celebrate</span>!
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="45"></td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td style="border-bottom: 1px solid #EAE4E4;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tbody>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="center" style="padding: 10px 0 10px 0; font-size: 15px; font-weight: bold; line-height: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #868B95;"> If you have any questions, feel free to simply reply to this email and someone from our team will reach out.
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center" style="padding: 15px;" class="padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td style="padding: 10px 0 0px 0;">
+            <!-- TWO COLUMNS -->
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tbody>
+              <tr>
+                <td valign="top" class="mobile-wrapper">
+                  <!-- LEFT COLUMN -->
+                  <table cellpadding="0" cellspacing="0" border="0" width="67%" style="width: 67%;" align="left">
+                    <tbody>
+                    <tr>
+                      <td style="padding: 0 0 10px 0;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                          <tbody>
+                          <tr>
+                            <td align="left" style="font-size: 13px; line-height: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#868B95; font-weight:normal; font-style: italic;">
+                              flickbin, LLC
+                              2443 Fillmore St #380-8920
+                              San Francisco, CA 94115
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <!-- RIGHT COLUMN -->
+                  <table cellpadding="0" cellspacing="0" border="0" width="27%" style="width: 27%;" align="right">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                          <tbody>
+                          <tr>
+                            <td align="right" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #31B4B0; font-size: 14px; line-height: 20px; text-decoration: none; font-style: italic;">
+                              <!-- <a href="unsubscribe_url" style="color:#31B4B0; text-decoration: none;"> Unsubscribe </a> -->
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

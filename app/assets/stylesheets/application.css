@@ -1,5 +1,6 @@
 /*
  *= require reset.scss
+ *= require icons/style.scss
  *= require styles.scss
  *= require responsive.scss
  *= require_self
@@ -120,3 +121,58 @@
 #video_tag_name {
   text-transform: lowercase;
 }
+
+
+
+.commentEntity {
+  position: relative;
+  margin: -30px;
+  border: 2px solid transparent;
+  padding: 30px;
+  padding-left: 90px;
+  margin-bottom: 28px;
+  padding-bottom: 25px;
+  border-bottom: 2px dotted #E5E7E9;
+  border-radius: 6px;
+}
+
+/*.commentorThumb {*/
+    /*width: 40px;*/
+    /*height: 40px;*/
+    /*position: absolute;*/
+    /*display: block;*/
+    /*top: 30px;*/
+    /*left: 30px;*/
+/*}*/
+
+.commentorLine a,
+.replyComment {
+  font-weight: 500;
+}
+
+.nestedComment {
+  padding-left: 60px
+}
+
+.nestedComment .commentorThumb {
+  top: 6px;
+  left: 0px;
+}
+
+.is-fade {
+  animation-name: comment-fade;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes comment-fade {
+  0% {
+    border: 2px solid transparent;
+    background: tomato;
+  }
+  100% {
+    border: 2px solid #ccc;
+    background: transparent;
+  }
+}
+

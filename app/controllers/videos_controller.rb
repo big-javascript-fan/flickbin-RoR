@@ -37,8 +37,8 @@ class VideosController < ApplicationController
                      .roots
                      .includes(:commentator)
                      .order(created_at: :desc)
-                     .limit(6)
 
+    comments = comments.limit(6) unless params[:all_comments].present?
     @comments_tree = comments.map { |comment| comment.subtree(to_depth: 1).arrange }
 
     if current_user.present?

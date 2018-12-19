@@ -14,6 +14,7 @@ class TwitterPostingService
     client.create_update(
       body: {
         text: message_builder,
+        media: { photo: @video.cover.url },
         profile_ids: [ENV['BUFFER_TWITTER_PROFILE_ID']]
       }
     )

@@ -31,7 +31,7 @@ class Video < ApplicationRecord
   end
 
   def upload_data_from_youtube_api
-    youtube_video_id = self.url[/\/watch\?v=([^&.]+)/, 1] || self.url.split('/').last
+    youtube_video_id = YoutubeVideoHelper.get_video_id_form_youtube_url(self.url)
     return errors.add(:invalid_url, 'Oops, try a YouTube link instead.') if youtube_video_id.blank?
 
     youtube_video = Yt::Video.new id: youtube_video_id

@@ -99,7 +99,7 @@
       </div>
       <div class="videoViewManager">
         <div class='embed-container'>
-          <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" frameborder='0' allow="autoplay" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" frameborder='0' allowfullscreen></iframe>
           </div>
       </div>
     </section>
@@ -124,7 +124,7 @@
         <% if @comments_tree.present? %>
           <% @comments_tree.each do |root_comment_node|%>
             <% root_comment_node.each do |root_comment, child_comments| %>
-              <div class="commentEntity <%='hasNestedComment' if child_comments.present? %>" comment_id="<%= root_comment.id %>">
+              <div id="comment_<%= root_comment.id %>" class="commentEntity <%='hasNestedComment' if child_comments.present? %>" comment_id="<%= root_comment.id %>">
                 <%= link_to station_path(root_comment.commentator), class: 'commentorThumb' do %>
                   <%= image_tag(root_comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>
                 <% end %>
@@ -140,7 +140,7 @@
               </div>
               <% if child_comments.present? %>
                 <% child_comments.each do |child_comment, grand_child| %>
-                  <div class="commentEntity" comment_id="<%= child_comment.id %>">
+                  <div id="comment_<%= child_comment.id %>" class="commentEntity" comment_id="<%= child_comment.id %>">
                     <div class="nestedComment nestedCommented">
                       <%= link_to station_path(child_comment.commentator), class: 'commentorThumb' do %>
                         <%= image_tag(child_comment.commentator.avatar.thumb_44x44.url || '/images/avatar_holder.jpg') %>

@@ -24,20 +24,12 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128985749-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'UA-128985749-1');
-    </script>
-    <script src="//rum-static.pingdom.net/pa-5be765c87e84eb0016000452.js" async></script>
 
   </head>
 
   <body>
     <%= yield %>
-    <%= render 'partials/site_footer' %>
+
   </body>
 </html>

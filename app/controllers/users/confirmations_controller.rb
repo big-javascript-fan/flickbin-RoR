@@ -17,9 +17,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      ApplicationMailer::three_days_after_confirmation(resource).deliver_later(wait: 5.minutes)
-      ApplicationMailer::four_days_after_confirmation(resource).deliver_later(wait: 6.minutes)
-      ApplicationMailer::five_days_after_confirmation(resource).deliver_later(wait: 7.minutes)
+      ApplicationMailer::three_days_after_confirmation(resource).deliver_later(wait: 3.days)
+      ApplicationMailer::four_days_after_confirmation(resource).deliver_later(wait: 4.days)
+      ApplicationMailer::five_days_after_confirmation(resource).deliver_later(wait: 5.days)
       set_flash_message!(:notice, :confirmed)
       respond_with_navigational(resource){ redirect_to after_confirmation_path_for(resource_name, resource) }
     else

@@ -15,6 +15,10 @@
   wasp_post_job:
     every: 60m
     class: WaspPostJob
+  once_a_week_on_fridays_job:
+    cron: '0 12 * * 4'
+    class: OnceAWeekOnFridaysJob
+
 :queues:
   - default
   - mailers

@@ -70,8 +70,9 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Hello #{@user.channel_name}.")
   end
 
-  def once_a_week_on_fridays(user)
-    @user = user
+  def once_a_week_on_fridays(user, top_5_tags)
+    user = @user
+    @top_5_tags = top_5_tags
     mail(to: @user.email, subject: "There have been some whoppers this week.")
   end
 end

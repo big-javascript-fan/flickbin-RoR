@@ -1,5 +1,4 @@
 CarrierWave.configure do |config|
-  config.asset_host = ApplicationMailer.asset_host
   config.fog_provider = 'fog/aws'                        # required
   config.fog_credentials = {
     provider:              'AWS',                        # required

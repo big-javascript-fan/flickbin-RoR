@@ -1,5 +1,4 @@
 CarrierWave.configure do |config|
-  config.asset_host = ActionController::Base.asset_host
   config.fog_provider = 'fog/aws'                        # required
   config.fog_credentials = {
     provider:              'AWS',                        # required
@@ -17,6 +16,7 @@ CarrierWave.configure do |config|
   if Rails.env.staging? || Rails.env.production?
     config.storage = :fog
   else
+    config.asset_host = ApplicationMailer.asset_host
     config.storage = :file
   end
 end

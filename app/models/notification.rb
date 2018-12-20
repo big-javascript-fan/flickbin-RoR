@@ -23,7 +23,7 @@ class Notification < ApplicationRecord
 
   def leave_only_15_unread_notifications
     unread_notifications = self.user.notifications.unread.order(created_at: :desc)
-    obsolete_notifications = unread_notifications - unread_notifications.first(3)
+    obsolete_notifications = unread_notifications - unread_notifications.first(15)
     if obsolete_notifications.present?
       obsolete_notifications.each do |obsolete_notificatio|
         obsolete_notificatio.update(read: true)

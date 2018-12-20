@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'flickbin.team@gmail.com'
   layout 'mailer'
 
   def after_comment(video, comment)
@@ -53,5 +53,26 @@ class ApplicationMailer < ActionMailer::Base
     @tag = video.tag
     @user = video.user
     mail(to: @user.email, subject: "Your Video is now in the top ten in the #{@tag.title} tag.")
+  end
+
+  def three_days_after_confirmation(user)
+    @user = user
+    mail(to: @user.email, subject: "Hello #{@user.channel_name}.")
+  end
+
+  def four_days_after_confirmation(user)
+    @user = user
+    mail(to: @user.email, subject: "Hello #{@user.channel_name}.")
+  end
+
+  def five_days_after_confirmation(user)
+    @user = user
+    mail(to: @user.email, subject: "Hello #{@user.channel_name}.")
+  end
+
+  def once_a_week_on_fridays(user, top_5_tags)
+    @user = user
+    @top_5_tags = top_5_tags
+    mail(to: @user.email, subject: "There have been some whoppers this week.")
   end
 end

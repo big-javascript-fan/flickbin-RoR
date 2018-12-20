@@ -2210,9 +2210,9 @@ input.grayNormal {
             color: #fff;
         }
         &:hover{
-            background: #00ACA7;
+            background: #fff;
             > .icon{
-                color: #fff;
+                color: #00ACA7;
             }
         }
     }
@@ -2243,6 +2243,7 @@ input.grayNormal {
 .reverseTheme{
   .heading-notification{
     color: #4F5057;
+    background:#ffffff;
     padding: 20px;
     margin: 0;
   }
@@ -2279,7 +2280,13 @@ input.grayNormal {
       margin: 0;
     }
   }
+  .jq-dropdown-tip{
+    &:before, &:after{
+        border-bottom-color:#ffffff;
+    }
+  }
   .notification-pagination{
+background:#ffffff;
     .pagination-steps{
       .pagination-step{
         background: #4E5766;

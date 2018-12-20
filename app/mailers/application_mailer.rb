@@ -71,7 +71,7 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def once_a_week_on_fridays(user, top_5_tags)
-    user = @user
+    @user = user
     @top_5_tags = top_5_tags
     mail(to: @user.email, subject: "There have been some whoppers this week.")
   end

@@ -1,20 +1,24 @@
 $(function() {
   window.getNotifications = getNotifications;
 
-  $(document).on('click', '.bell', function(e){
-    e.stopPropagation();
-    getNotifications(1);
-    $(this).parent().toggleClass('bell-dropdown-open');
+  $(document).on('mouseenter', '.notificationDropdown', function(e){
+    if(!$(this).hasClass('.bell-dropdown-open')){
+      e.stopPropagation();
+      getNotifications(1);
+      $(this).addClass('bell-dropdown-open');
+    }
   });
-  $(document).on('click', function() {
-    $('.bell-dropdown-open').removeClass('bell-dropdown-open');
+  $(document).on('mouseleave', '.notificationDropdown', function(e){
+    if(e.target !== $('.jq-dropdown')){
+      $(this).removeClass('bell-dropdown-open');
+    }
   });
-  $(document).on('click', '.bell-dropdown-open .jq-dropdown', function(e){
+  $(document).on('mouseenter', '.bell-dropdown-open .jq-dropdown', function(e){
     e.stopPropagation();
   });
   $('.profileDropdownHolder').mouseenter( function(){
     $('.bell-dropdown-open').removeClass('bell-dropdown-open');
-  })
+  });
 
   function getNotifications(currentPage) {
     var ids = [];

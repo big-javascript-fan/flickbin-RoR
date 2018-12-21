@@ -2086,11 +2086,14 @@ input.grayNormal {
 }
 
 .notificationDropdown{
+  position: relative;
     .jq-dropdown.jq-dropdown-tip{
-        margin-top: 22px;
+        padding-top: 22px;
+        margin-top: 0;
     }
     .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::after, .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::before{
         right: 30px;
+        top: 15px;
     }
     .jq-dropdown .jq-dropdown-panel {
         box-shadow: 0 5px 20px 0 rgba(0,0,0,0.40);

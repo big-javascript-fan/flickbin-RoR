@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super do
-      ThreeDaysAfterSignupJob.set(wait: 3.days).perform_later(resource.id)
+      ThreeDaysAfterSignupJob.set(wait: 3.minutes).perform_later(resource.id)
     end
   end
 

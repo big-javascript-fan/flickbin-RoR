@@ -162,7 +162,7 @@
                 </tr>
                 <tr>
                   <td align="left" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:0 20px 0 20px; font-size:17px; color:#4E5766; line-height: 25px; font-weight: 500;">
-                    popular in <span style="color: #31B4B0;"><%= top_5_tag.title %></span>
+                    popular in <a href="<%= tag_url(top_5_tag) %>" style="color: #31B4B0; text-decoration: none;"><%= top_5_tag.title %></a>
                   </td>
                 </tr>
                 <tr>
@@ -178,7 +178,10 @@
                               <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; border-spacing:0px; width:100%;">
                                 <tbody>
                                 <tr>
-                                  <td style="width:130px;" align="center"><img alt="" width="100%" src="<%= top_3_video.cover.url %>" style="border:0; display:block; height:85px;" /> </td>
+                                  <td style="width:130px;" align="center">
+                                    <%= link_to video_url(top_3_video), style: 'color: inherit; text-decoration: none;' do %>
+                                      <img alt="" width="100%" src="<%= top_3_video.cover.url %>" style="border:0; display:block; height:85px;" /> </td>
+                                    <% end %>
                                 </tr>
                                 </tbody>
                               </table>
@@ -191,7 +194,7 @@
                           <tr>
                             <td align="left" style="color: #C1C8D6;	font-size: 14px;	font-weight: 500;	line-height: 21px; padding:0 20px 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
                               posted by
-                              <span style="color: #31B4B0;	font-size: 14px;"><%= top_3_video.user.channel_name %> (<%= top_3_video.user.rank %>)</span>
+                              <a href="<%= station_url(top_3_video.user) %>" style="color: #31B4B0; text-decoration: none;	font-size: 14px;"><%= top_3_video.user.channel_name %> (<%= top_3_video.user.rank %>)</a>
                             </td>
                           </tr>
                           <tr>
@@ -199,7 +202,7 @@
                           </tr>
                           <tr>
                             <td style="font-size:17px;line-height:1;text-align:left;color:#1D1F23; padding:0 0 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                              <%= top_3_video.title %>
+                              <%= link_to top_3_video.title, video_url(top_3_video), style: 'color: inherit; text-decoration: none;' %>
                             </td>
                           </tr>
                         </table>

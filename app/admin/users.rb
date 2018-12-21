@@ -1,15 +1,28 @@
 ActiveAdmin.register User do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+  permit_params :allowed_to_send_notifications
 
+  index do
+    selectable_column
+    id_column
+    column :email
+    toggle_bool_column :allowed_to_send_notifications
+    column :role do |user|
+      case user.role
+      when 'dummy'
+        status_tag(user.role, :orange)
+      when 'client'
+        status_tag(user.role, :yes)
+      else
+        status_tag(user.role, :gray)
+      end
+    end
+    column :channel_name
+    column :rank
+    column :confirmation_token
+    column :confirmed_at
+    column :confirmation_sent_at
+    column :created_at
+    column :updated_at
+    actions
+  end
 end

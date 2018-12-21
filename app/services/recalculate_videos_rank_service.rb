@@ -55,6 +55,6 @@ class RecalculateVideosRankService
                                                  .where(category: category)
                                                  .where("notifications.created_at BETWEEN '#{1.week.ago.to_s}' AND '#{Time.now}'")
 
-    not_outdated_notifications_in_category.present? ? false : true
+    user.role == 'dummy' || not_outdated_notifications_in_category.present? ? false : true
   end
 end

@@ -12,6 +12,8 @@ ActiveAdmin.register User do
         status_tag(user.role, :orange)
       when 'client'
         status_tag(user.role, :yes)
+      when 'sidekiq_manager'
+        status_tag(user.role, :red)
       else
         status_tag(user.role, :gray)
       end

@@ -15,7 +15,7 @@ class Notifications::AfterCommentService
       ApplicationMailer.after_reply_comment(@video, @comment).deliver_later
     else
       Notification.create!(
-        user_id: @comment.parent,
+        user_id: @video.user_id,
         category: 'comment_video',
         event_object: { comment: @comment.id }
       )

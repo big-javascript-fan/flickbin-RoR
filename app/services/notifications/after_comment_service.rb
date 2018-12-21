@@ -7,21 +7,19 @@ class Notifications::AfterCommentService
 
   def call
     if @options[:is_reply_comment].present?
-      save_notification('reply_video_comment')
+      Notification.create!(
+        user_id: @comment.parent&.commentator&.id,
+        category: 'reply_video_comment',
+        event_object: { comment: @comment.id }
+      )
       ApplicationMailer.after_reply_comment(@video, @comment).deliver_later
     else
-      save_notification('comment_video')
+      Notification.create!(
+        user_id: comment.parent,
+        category: 'comment_video',
+        event_object: { comment: @comment.id }
+      )
       ApplicationMailer.after_comment(@video, @comment).deliver_later
     end
-  end
-
-  private
-
-  def save_notification(category)
-    Notification.create!(
-      user_id: @video.user_id,
-      category: category,
-      event_object: { comment: @comment.id }
-    )
   end
 end

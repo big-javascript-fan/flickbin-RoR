@@ -20,10 +20,10 @@
     class: OnceAWeekOnFridaysJob
 
 :queues:
-  - default
-  - mailers
   - rank_calculation
   - video_tag_expiration
   - wasp_outreach
   - wasp_post
   - twitter_posting
+  - default
+  - mailers

@@ -6,8 +6,6 @@ class Notifications::AfterCommentService
   end
 
   def call
-    return in not_outdated_notifications_in_category
-
     if @options[:is_reply_comment].present?
       save_notification('reply_video_comment')
       ApplicationMailer.after_reply_comment(@video, @comment).deliver_later

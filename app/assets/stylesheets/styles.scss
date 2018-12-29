@@ -2131,7 +2131,7 @@ input.grayNormal {
 }
 .notification{
     color: #fff;
-    padding:40px 30px 40px 30px;
+    padding:30px 30px 40px 30px;
     border-top:1px solid #3ABCB8;
     &-read{
         background: #00A29C;
@@ -2146,7 +2146,6 @@ input.grayNormal {
         display: flex;
         align-items: center;
         margin: 0;
-        font-weight: bold;
         .icon{
             opacity: 0.8;
             margin-right: 8px;
@@ -2252,13 +2251,13 @@ input.grayNormal {
   .heading-notification{
     color: #4F5057;
     background:#ffffff;
-    padding: 20px;
+    padding: 45px 0 35px 30px;
     margin: 0;
   }
   .notification{
     color: #fff;
-    padding:20px;
-    border-top:1px solid rgba(78, 87, 102, 0.4);
+    padding:30px 30px 40px 30px;
+    border-top:1px solid #E5E7E9;
     &-read{
         background: #F4F4F4;
     }

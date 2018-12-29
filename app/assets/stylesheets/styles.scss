@@ -86,6 +86,9 @@ input:-webkit-autofill {
     margin-top: 18px;
     left: -185px;
     animation-duration: 1s;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 .jq-dropdown-medium{
     left: -400px;
@@ -212,9 +215,9 @@ input:-webkit-autofill {
     color: #31B4B0;
     cursor: pointer;
     text-decoration: none;
-    -webkit-border-radius: 6px;
+    /*-webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-    border-radius: 6px;
+    border-radius: 6px;*/
 }
 .reverseTheme.jq-dropdown .jq-dropdown-menu li > a.current,
 .reverseTheme.jq-dropdown .dropdown-menu li > a.current {

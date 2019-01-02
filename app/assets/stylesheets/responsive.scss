@@ -515,12 +515,21 @@
     .jq-dropdown-medium{
       left: -270px;
     }
+    .heading-notification{
+			padding: 25px 15px 15px 15px;
+		}
+		.notification{
+			padding: 15px 15px 20px 15px;
+		}
   }
 }
 @media(max-width: 480px){
   .notificationDropdown{
+		.jq-dropdown{
+			max-width: 280px;
+		}
     .jq-dropdown-medium{
-      left: -102px;
+      left: -90px;
 			right: inherit;
     }
     .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::after, .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::before{

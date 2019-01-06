@@ -108,11 +108,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-message"></span>
             ${notification.commentator.channel_name} commented:
           </p>
-          <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">see comments</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            ${notification.comment.message}
+            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">${notification.comment.message}</a>
           </p>
         </div>
       </div>
@@ -125,11 +124,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-message"></span>
             ${notification.commentator.channel_name} replied:
           </p>
-          <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">see reply</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            ${notification.comment.message}
+            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification-button">${notification.comment.message}</a>
           </p>
         </div>
       </div>
@@ -158,11 +156,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             You're top 3 in a ${notification.tag.title}!
           </p>
-          <a href="/videos/new" class="notification-button">post a video</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            You are now in the top 3 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top #1!
+            <a href="/videos/new" class="notification-button">You are now in the top 3 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top #1!</a>
           </p>
         </div>
       </div>
@@ -175,11 +172,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             You're top 10 in a ${notification.tag.title}!
           </p>
-          <a href="/videos/new" class="notification-button">post a video</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            You are now in the top 5 contributors on the ${notification.tag.title} tag. Keep up the good work and maybe soon, you'll be number one!
+            <a href="/videos/new" class="notification-button">You are now in the top 5 contributors on the ${notification.tag.title} tag. Keep up the good work and maybe soon, you'll be number one!</a>
           </p>
         </div>
       </div>
@@ -192,11 +188,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             You're top 10 in a ${notification.tag.title}!
           </p>
-          <a href="/videos/new" class="notification-button">post a video</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            You are now in the top 10 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top 3!
+            <a href="/videos/new" class="notification-button">You are now in the top 10 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top 3!</a>
           </p>
         </div>
       </div>
@@ -209,11 +204,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             Congratulations!
           </p>
-          <a href="/videos/${notification.video.slug}" class="notification-button">check it out</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            Your Video "${notification.video.title}" is #1 on ${notification.tag.title}.
+            <a href="/videos/${notification.video.slug}" class="notification-button">Your Video "${notification.video.title}" is #1 on ${notification.tag.title}.</a>
           </p>
         </div>
       </div>
@@ -226,11 +220,10 @@ function notificationBodyBuilder(notification) {
             <span class="icon icon-star"></span>
             Congratulations!
           </p>
-          <a href="/videos/${notification.video.slug}" class="notification-button">check it out</a>
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            Your Video "${notification.video.title}" is climbing the charts and is now in the top ten in the ${notification.tag.title} tag.
+            <a href="/videos/${notification.video.slug}" class="notification-button">Your Video "${notification.video.title}" is climbing the charts and is now in the top ten in the ${notification.tag.title} tag.</a>
           </p>
         </div>
       </div>

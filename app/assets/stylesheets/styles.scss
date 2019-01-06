@@ -2126,7 +2126,7 @@ input.grayNormal {
 }
 .heading-notification{
     color: #fff;
-    padding: 25px 0 15px 25px;
+    padding: 25px 0 20px 25px;
     margin: 0;
     font-weight: 400;
     font-size: 19px;
@@ -2174,7 +2174,10 @@ input.grayNormal {
     }
     &-description{
         opacity: 0.7;
-        margin: 0;
+        margin: 10px 0 10px 0;
+        font-size: 17px;
+        line-height: 23px;
+        font-style: italic;
     }
 }
 .notification-pagination{
@@ -2254,7 +2257,7 @@ input.grayNormal {
   .heading-notification{
     color: #4F5057;
     background:#ffffff;
-    padding: 25px 0 15px 25px;
+    padding: 25px 0 20px 25px;
     margin: 0;
   }
   .notification{
@@ -2287,7 +2290,10 @@ input.grayNormal {
     &-description{
       color: #4E5766;
       opacity: 0.7;
-      margin: 0;
+      margin: 10px 0 10px 0;
+      font-size: 17px;
+      line-height: 23px;
+      font-style: italic;
     }
   }
   .jq-dropdown{

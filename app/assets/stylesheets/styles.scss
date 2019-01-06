@@ -2178,8 +2178,8 @@ input.grayNormal {
         font-size: 17px;
         line-height: 23px;
         font-style: italic;
-        a {
-            color: #868B95;
+        a, a:hover; {
+            color: #D1F4F3;
         }
     }
 }
@@ -2297,8 +2297,8 @@ input.grayNormal {
       font-size: 17px;
       line-height: 23px;
       font-style: italic;
-      a {
-        color: #D1F4F3;
+      a, a:hover; {
+        color: #868B95;
       }
     }
   }

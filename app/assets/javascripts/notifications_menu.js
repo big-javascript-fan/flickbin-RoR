@@ -1,6 +1,5 @@
 $(function() {
   window.getNotifications = getNotifications;
-
   $(document).on('mouseenter', '.notificationDropdown', function(e){
     if(!$(this).hasClass('.bell-dropdown-open')){
       e.stopPropagation();
@@ -19,7 +18,9 @@ $(function() {
   $('.profileDropdownHolder').mouseenter( function(){
     $('.bell-dropdown-open').removeClass('bell-dropdown-open');
   });
-
+  $(document).on('click', '.notificationDropdown', function(e){
+    $('.jq-dropdown-mobile').toggle('jq-mobile-open');
+  });
   function getNotifications(currentPage) {
     var ids = [];
 

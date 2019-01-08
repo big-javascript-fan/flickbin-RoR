@@ -2110,6 +2110,9 @@ input.grayNormal {
 .bell-dropdown-open .jq-dropdown{
     display: block;
 }
+.jq-dropdown-mobile{
+    display: none;
+}
 .bell{
     font-size: 20px;
 }
@@ -2130,6 +2133,7 @@ input.grayNormal {
     margin: 0;
     font-weight: 400;
     font-size: 19px;
+    background: #00A29C;
 
 }
 .notification{
@@ -2187,6 +2191,8 @@ input.grayNormal {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #00A29C;
+
     .pagination-steps{
         margin: 0;
         padding: 0;
@@ -2341,4 +2347,9 @@ input.grayNormal {
     }
     a:hover{text-decoration: none;}
   }
+}
+.jq-dropdown-mobile{
+    .heading-notification{
+        border-top:1px solid #E5E7E9;
+    }
 }

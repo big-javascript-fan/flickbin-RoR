@@ -509,9 +509,16 @@
 	    }
 	}
 }
-
+@media(min-width: 641px){
+	.jq-dropdown-mobile{
+		display: none !important;
+	}
+}
 @media(max-width: 640px){
   .notificationDropdown{
+		.jq-dropdown{
+			display: none !important;
+		}
     .jq-dropdown-medium{
       left: -270px;
     }

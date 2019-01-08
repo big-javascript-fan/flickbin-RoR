@@ -81,18 +81,14 @@ $(function() {
     $(this).attr("placeholder", 'Add and Existing Tag or Create a New One')
   });
 
-  $('#video_tag_name').on('keyup', function(e) {
-
-  });
-
-  $('#video_tag_name').on('keydown', function() {
+  $('#video_tag_name').on('keyup', function() {
+    console.log($(this).val());
     var maxTagTitleLentgh = 15;
-    var tagTitleLentgh = $(this).val().length;
-    var query = $(this).val();
     var regex = new RegExp("^[a-zA-Z0-9]+$");
+    var query = $(this).val();
 
-    if(tagTitleLentgh <= maxTagTitleLentgh) {
-      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - tagTitleLentgh);
+    if(query.length <= maxTagTitleLentgh) {
+      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - query.length);
     }
 
     if(regex.test(query)) {

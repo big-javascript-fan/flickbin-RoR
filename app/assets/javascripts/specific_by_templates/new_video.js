@@ -40,14 +40,6 @@ $(function() {
     }
   }
 
-  $('#video_tag_name').on('keyup', function(e) {
-    var maxTagTitleLentgh = 15;
-    var tagTitleLentgh = $(this).val().length;
-    if(tagTitleLentgh <= maxTagTitleLentgh) {
-      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - tagTitleLentgh);
-    }
-  });
-
   if($('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }
@@ -89,9 +81,19 @@ $(function() {
     $(this).attr("placeholder", 'Add and Existing Tag or Create a New One')
   });
 
-  $('#video_tag_name').on('keyup', function() {
+  $('#video_tag_name').on('keyup', function(e) {
+
+  });
+
+  $('#video_tag_name').on('keydown', function() {
+    var maxTagTitleLentgh = 15;
+    var tagTitleLentgh = $(this).val().length;
     var query = $(this).val();
     var regex = new RegExp("^[a-zA-Z0-9]+$");
+
+    if(tagTitleLentgh <= maxTagTitleLentgh) {
+      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - tagTitleLentgh);
+    }
 
     if(regex.test(query)) {
       $('.postVideoLastField').removeClass('errorMsg')

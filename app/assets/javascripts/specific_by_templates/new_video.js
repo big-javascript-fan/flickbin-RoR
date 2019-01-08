@@ -82,7 +82,6 @@ $(function() {
   });
 
   $('#video_tag_name').on('keyup', function() {
-    console.log($(this).val());
     var maxTagTitleLentgh = 15;
     var regex = new RegExp("^[a-zA-Z0-9]+$");
     var query = $(this).val();
@@ -114,7 +113,8 @@ $(function() {
     }
   });
 
-  function dropdownBuilder(data, query) {
+  function dropdownBuilder(data) {
+    var query = $('#video_tag_name').val();
     var dropdownContent = '';
     var newTag = true;
     var createTagBtn = `

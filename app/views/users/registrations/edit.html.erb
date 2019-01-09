@@ -14,18 +14,11 @@
       </button>
 
       <%= link_to "flickbin", root_path, class: "brand" %>
-
-      <!-- show button in mobile -->
+      <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <ul class="afterLoginBtns reverseThemeHoler">
-          <li>
-            <span class="addCircle dblBorder edit">
-              <i class="fas fa-pen"></i>
-            </span>
-          </li>
-        </ul>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
-      <!-- end mobile btn -->
+    <% end %>
 
       <%= render 'partials/trending_tags_bar' %>
   </aside>
@@ -35,8 +28,22 @@
     </div>
   </div>
   <section class="contentPanel station">
-    <div class="redTopBox redBoxInProfile">
-      <div class="clearfix topBtnBottomGap hideOnMobile">
+  
+    <% if current_user.present? %>
+      <div class="header bottom-margin-40 mobileThemeBtn hideOnMobile">
+        <div class='header-title'>Account Settings</div>
+        <%= render 'partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="header btnGroup hideOnMobile">
+        <div class='header-title'>Account Settings</div>
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+    
+    <div>
+    <%# <div class="redTopBox redBoxInProfile"> %>
+      <%# <div class="clearfix topBtnBottomGap hideOnMobile">
         <ul class="afterLoginBtns reverseThemeHoler">
           <li>
             <span class="addCircle dblBorder edit">
@@ -44,10 +51,15 @@
             </span>
           </li>
         </ul>
-      </div>
+      </div> %>
 
       <div class="redBoxInsideContent">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-account', method: :put }) do |f| %>
+          <div class="form-account-heading">
+            <div class="form-account-heading-title">
+              General Information
+            </div>
+          </div> 
           <div class="row">
             <div class="colHalf">
               <div class="labelFields">
@@ -86,22 +98,29 @@
             <%= f.text_field :channel_description, maxlength: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH, class: "block hasRightNumber grayNormal" %>
             <%= f.error :channel_description %>
           </div>
-          <div class="colHalf">
-            <div class="labelFields">
-              <%= f.label :receive_notification_emails, 'RECEIVE FLICKBIN SYSTEM MESSAGES AND NOTIFICATIONS THROUGH EMAIL' %>
-              <%= f.input_field :receive_notification_emails, as: :boolean, class: 'block grayNormal' %>
+
+          <div class="form-account-heading">
+            <div class="form-account-heading-title">
+              Email Preferences
             </div>
           </div>
-          <div class="colHalf">
-            <div class="labelFields">
-              <%= f.label :receive_promotional_emails, 'RECEIVE FLICKBIN PROMOTIONAL AND MARKETING EMAILS' %>
-              <%= f.input_field :receive_promotional_emails, as: :boolean, class: 'block grayNormal' %>
+          <div class="form-checkbox-group">
+          <div class="labelControl">
+              <%= f.input_field :receive_promotional_emails, as: :boolean, class: 'uk-checkbox' %>
+              <%= f.label :receive_promotional_emails, 'RECEIVE FLICKBIN SYSTEM MESSAGES AND NOTIFICATIONS THROUGH EMAIL' %>
             </div>
+          <div class="labelControl">
+          <%= f.input_field :receive_notification_emails, as: :boolean, class: 'uk-checkbox' %>
+            <%= f.label :receive_notification_emails, 'RECEIVE FLICKBIN PROMOTIONAL AND MARKETING EMAILS' %>
           </div>
-          <div class="clearfix btnGroup btnReverseTheme">
-            <%= f.submit "Update Info", class: "btn" %>
-            <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
           </div>
+          <div class="form-account-heading"></div>
+          <div class="form-button-group">
+            <div class="clearfix btnGroup">
+              <%= f.submit "Update Info", class: "btn btnSecondary" %>
+              <%# <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
+            </div>
+          </div>  
         <% end %>
       </div>
     </div>

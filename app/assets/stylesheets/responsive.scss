@@ -513,12 +513,8 @@
 	    }
 	}
 }
-@media(min-width: 641px){
-	.jq-dropdown-mobile{
-		display: none !important;
-	}
-}
-@media(max-width: 640px){
+
+@media(max-width: 639px){
   .notificationDropdown{
 		.jq-dropdown{
 			display: none !important;
@@ -533,6 +529,19 @@
 			padding: 15px 15px 20px 15px;
 		}
   }
+  .bell-dropdown-close-mobile .bell{
+    color: #4E5766 !important;
+    border-color: #4E5766 !important;
+	}
+	.bell-dropdown-open-mobile .bell{
+    color: #2FA9A5 !important;
+    border-color: #2FA9A5 !important;
+	}
+}
+@media(min-width: 640px){
+	.jq-dropdown-mobile{
+		display: none !important;
+	}
 }
 @media(max-width: 480px){
   .notificationDropdown{
@@ -547,4 +556,21 @@
       right: 175px;
     }
   }
+}
+
+@media(max-width: 360px){
+  .leftPanel{
+		.brand{
+			margin-top: 16px;
+			width: 95px;
+		}
+		.afterLoginBtns{
+			li:first-of-type{
+				margin-left: 0;
+			}
+			li{
+				margin-left: 10px;
+			}
+		}
+  }	
 }

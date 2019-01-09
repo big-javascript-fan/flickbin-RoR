@@ -9,7 +9,7 @@ $(function() {
   });
   $(document).on('mouseleave', '.notificationDropdown', function(e){
     if(e.target !== $('.jq-dropdown')){
-      $(this).removeClass('bell-dropdown-open');
+      $(this).removeClass('bell-dropdown-open');        
     }
   });
   $(document).on('mouseenter', '.bell-dropdown-open .jq-dropdown', function(e){
@@ -19,7 +19,18 @@ $(function() {
     $('.bell-dropdown-open').removeClass('bell-dropdown-open');
   });
   $(document).on('click', '.notificationDropdown', function(e){
-    $('.jq-dropdown-mobile').toggle('jq-mobile-open');
+    if(window.innerWidth <= 640){
+      $('.jq-dropdown-mobile').toggle('');
+      $('.jq-dropdown-mobile').toggleClass('jq-mobile-open');
+
+      if($('.jq-dropdown-mobile').hasClass('jq-mobile-open')){
+        $('.notificationDropdown').removeClass('bell-dropdown-close-mobile');
+        $('.notificationDropdown').addClass('bell-dropdown-open-mobile');
+      }else{
+        $('.notificationDropdown').removeClass('bell-dropdown-open-mobile');
+        $('.notificationDropdown').addClass('bell-dropdown-close-mobile');
+      }
+    }
   });
   function getNotifications(currentPage) {
     var ids = [];

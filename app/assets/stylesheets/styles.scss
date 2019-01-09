@@ -429,6 +429,7 @@ select:actived {
 .wrapper {
     position: relative;
     display: flex;
+    overflow: hidden;
 }
 .leftPanel {
     min-height: 100%;
@@ -912,10 +913,12 @@ select:actived {
     -moz-border-radius: 50%;
     border-radius: 50%;
 }
-.addCircle:hover {
+.afterLoginBtns li:not(.notificationDropdown){
+  .addCircle:hover{
     text-decoration: none;
     color: #31B4B0;
-    border-color: #31B4B0;
+    border-color: #31B4B0;  
+  }
 }
 .profileDropdown {
     position: relative;
@@ -1464,10 +1467,83 @@ input[type="text"].asCommentField {
 .redBoxInsideContent {
     display: table;
     min-width: 100%;
+  form.form-account{
+    .form-account-heading{
+      &:before{
+        content: '';
+        border-top: 1px dashed #A0A7B6;
+        display: block;
+        margin:0 -37px 0 -36px;  
+      }
+      &-title{
+        font-size: 17px;
+        color: #A0A7B6;
+        padding: 30px 0 33px;
+      }
+    }
+    .form-checkbox-group{
+      margin-bottom: 30px;
+      .labelControl{
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        label{
+          margin-bottom: 0;
+          font-size: 12px;
+          color: #4E5766;
+          font-weight: bold;
+          line-height: 15px;
+        }
+        label input{
+          margin-right: 10px;
+        }
+      }
+    }
+    .form-button-group{
+      margin: 30px 0;
+      .btnSecondary{
+        background: #4E5766;
+        &:hover{
+          background: #31B4B0;
+        }
+      }
+      // background-color: #4E5766;
+    }
+  }
 }
 .redBoxInsideContent > div {
     display: table-cell;
     vertical-align: middle;
+}
+.uk-radio, .uk-checkbox{
+  display: inline-block;
+  height: 26px;
+  width: 26px;
+  overflow: hidden;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border: 2px solid #31B4B0;
+  border-radius: 6px;
+}
+
+.uk-radio:focus, .uk-checkbox:focus {
+  outline: none;
+}
+
+.uk-radio:checked, .uk-checkbox:checked {
+  background-color: #fff;
+}
+
+.uk-radio:checked:focus, .uk-checkbox:focus{
+  background-color: #fff;
+}
+
+.uk-radio:checked, .uk-checkbox:checked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath fill='%2331B4B0' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
 }
 .cellSpace20 {
     width: 20px;
@@ -1872,6 +1948,7 @@ input.hasRightNumber {
 }
 .addCircle.dblBorder {
     position: relative;
+    
 }
 .addCircle.dblBorder::before {
     position: absolute;
@@ -2108,6 +2185,7 @@ input.grayNormal {
     color: #2FA9A5;
     border-color: #2FA9A5;
 }
+
 .bell-dropdown-open .jq-dropdown{
     display: block;
 }
@@ -2134,7 +2212,6 @@ input.grayNormal {
     margin: 0;
     font-weight: 400;
     font-size: 19px;
-    background: #00A29C;
 
 }
 .notification{
@@ -2192,7 +2269,6 @@ input.grayNormal {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #00A29C;
 
     .pagination-steps{
         margin: 0;
@@ -2343,9 +2419,38 @@ input.grayNormal {
 }
 .jq-dropdown-mobile{
     .heading-notification{
-        border-top:1px solid #E5E7E9;
+        background-color: #2FA9A5;
     }
     &:after{
         display: none;
     }
+    .notification-pagination{
+      background-color: #2FA9A5;
+    }
+}
+
+.jq-dropdown-mobile.reverseTheme{
+  .heading-notification{
+      border-top:1px solid #E5E7E9;
+      background-color: #fff;
+  }
+  &:after{
+      display: none;
+  }
+  .notification-pagination{
+    background-color: #fff;
+  }
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+    .header-title{
+			display: inline-block;
+			font-size: 22px;
+			color: #1D1F23;
+			line-height: 27px;
+			font-weight: 500;
+		}
 }

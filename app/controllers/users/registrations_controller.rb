@@ -89,7 +89,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:channel_name, :channel_description])
+    devise_parameter_sanitizer.permit(:account_update, keys: [
+      :channel_name, :channel_description, :receive_notification_emails, :receive_promotional_emails
+    ])
   end
 
   def after_update_path_for(resource)

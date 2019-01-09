@@ -474,6 +474,10 @@
 	.mobileBtnPosition .reverseThemeHoler .addCircle {
 		color: #4E5766;
 		border-color: #4E5766;
+		&:hover{
+			color: #31B4B0;
+			border-color: #31B4B0;
+		}
 	}
 	.videoLoginBtns {
 		margin-top: 7px;

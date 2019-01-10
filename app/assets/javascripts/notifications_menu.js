@@ -9,7 +9,7 @@ $(function() {
   });
   $(document).on('mouseleave', '.notificationDropdown', function(e){
     if(e.target !== $('.jq-dropdown')){
-      $(this).removeClass('bell-dropdown-open');        
+      $(this).removeClass('bell-dropdown-open');
     }
   });
   $(document).on('mouseenter', '.bell-dropdown-open .jq-dropdown', function(e){

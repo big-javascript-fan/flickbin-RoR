@@ -30,7 +30,7 @@
   <section class="contentPanel station">
   
     <% if current_user.present? %>
-      <div class="header bottom-margin-40 mobileThemeBtn hideOnMobile">
+      <div class="header mobileThemeBtn hideOnMobile">
         <div class='header-title'>Account Settings</div>
         <%= render 'partials/logged_in_right_header' %>
       </div>
@@ -117,49 +117,13 @@
           <div class="form-account-heading"></div>
           <div class="form-button-group">
             <div class="clearfix btnGroup">
-              <%= f.submit "Update Info", class: "btn btnSecondary" %>
+              <%= f.submit "Update Settings", class: "btn btnSecondary" %>
               <%# <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
             </div>
           </div>  
         <% end %>
       </div>
     </div>
-
-    <% if @user_videos.present? %>
-      <ul class="entityList inTag tagNewest stationList video-feed" channel_slug="<%= current_user.slug %>">
-        <% @user_videos.each do |video| %>
-          <li class="entityRow" slug="<%= video.slug %>">
-            <div class="entityCellStation thumbnailCell">
-              <%= link_to video_path(video), class: "stationThumbnailLink large" do %>
-                <%= image_tag(video.cover.url, alt: video.title, class: "stationThumbnail large") %>
-                <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-              <% end %>
-            </div>
-            <div class="entityCellStation hasRemover">
-              <span class="postTime">
-                posted
-                <%= "#{time_ago_in_words(video.created_at)} ago to "%>
-                <%= link_to video.tag.title, tag_path(video.tag) %>
-              </span>
-              <%= link_to video.title, video_path(video), class: "descText" %>
-              <div class="removerBar" id="<%= video.id %>">
-                <span class="removerBarTrack">Are you sure?
-                  <%= link_to 'Yes', video_path(video), method: :delete, remote: true %>
-                  <a href="#" class="rejectDestroyVideo">No</a>
-                </span>
-                <a href="#" class="removeIcon">&times;</a>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-      <% else %>
-        <div class='blankVideos'>
-          <span>
-            You haven't posted any videos. <%= link_to 'Post a Video', videos_new_path %>!
-          </span>
-        </div>
-      <% end %>
   </section>
 </div>
 

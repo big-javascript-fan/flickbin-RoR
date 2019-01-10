@@ -60,28 +60,25 @@ $(function() {
 });
 
 $(function(){
-$('.form-account .grayNormal').on('keyup', function(e) {
-    var query = $(this).val();
-    if(query) {
-        if(query.length > 0) {
-        $(this).addClass('hasBorder');
-        } else {
-        $(this).removeClass('hasBorder')
-        }
-    }else{
-        $(this).removeClass('hasBorder')
-    }
-    });
-    $(".form-account .grayNormal").on('focus', function(e){
-    var query = $(this).val();
-    if(query.length > 0){
-        $(this).addClass('hasBorder');
-    }
-    })
-    $(".form-account .grayNormal").focusout(function(){
-    $(this).removeClass('hasBorder');
-    })
+	$('.form-account .grayNormal').on('keyup', function(e) {
+		var query = $(this).val();
+			if(query) {
+				if(query.length > 0) {
+          $(this).siblings('.simpleFormErrorMsg').hide();
+					// $(this).addClass('hasBorder');
+					// } else {
+					// $(this).removeClass('hasBorder')
+					}
+			  }else{
+          // $(this).removeClass('hasBorder')
+			}
+		});
+		
+		$(".form-account .grayNormal").on('focus', function(e){
+      $(this).addClass('hasBorder');
+		})
+		$(".form-account .grayNormal").on('blur', function(){
+		  $(this).removeClass('hasBorder');
+		})
 });
-  
-
   

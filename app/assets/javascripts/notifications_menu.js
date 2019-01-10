@@ -114,7 +114,7 @@ function notificationBodyBuilder(notification) {
 
   if(notification.category == 'comment_video') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -123,14 +123,14 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message}</a>
+            ${notification.comment.message}
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'reply_video_comment') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -139,10 +139,10 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message}</a>
+            ${notification.comment.message}
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'top_1_contributor') {
     notificationsMenuContent += `

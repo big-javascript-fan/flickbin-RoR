@@ -850,7 +850,7 @@ select:actived {
 
 .labelFields {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 23px;
 }
 .form-control{
     position: relative;
@@ -1377,8 +1377,8 @@ input[type="text"].asCommentField {
     height: 40px;
     position: absolute;
     display: block;
-    top: -4px;
-    left: 0;
+    // top: -4px;
+    left: 35px;
 }
 .commentorThumb img {
     display: block;
@@ -1468,10 +1468,23 @@ input[type="text"].asCommentField {
     display: table;
     min-width: 100%;
   form.form-account{
+      .row{
+          margin-right: -12px;
+          margin-left: -12px;
+          .colHalf{
+            padding-left: 12px;
+            padding-right: 12px; 
+            .labelFields{
+                .simpleFormErrorMsg{
+                    position: absolute;
+                }
+            }
+          }
+      }
     .form-account-heading{
       &:before{
         content: '';
-        border-top: 1px dashed #A0A7B6;
+        border-top: 1px dashed #E5E7E9;
         display: block;
         margin:0 -37px 0 -36px;  
       }
@@ -1944,7 +1957,7 @@ input.hasRightNumber {
     margin-bottom: 28px;
 }
 .lastFieldInProfile {
-    margin-bottom: 32px;
+    margin-bottom: 41px;
 }
 .addCircle.dblBorder {
     position: relative;
@@ -2215,9 +2228,11 @@ input.grayNormal {
 
 }
 .notification{
+    display: block;
     color: #fff;
     padding:15px 25px 15px 25px;
     border-top:1px solid #3ABCB8;
+
     &-read{
         background: #00A29C;
     }
@@ -2260,8 +2275,16 @@ input.grayNormal {
         font-size: 17px;
         line-height: 23px;
         font-style: italic;
-        a {
-            color: #D1F4F3;
+        color: #D1F4F3;
+    }
+    &:hover{
+        text-decoration: none;
+
+        .notification-description{
+            text-decoration: underline;
+        }
+        .notification-title{
+            color: #fff;
         }
     }
 }
@@ -2380,9 +2403,7 @@ input.grayNormal {
       font-size: 17px;
       line-height: 23px;
       font-style: italic;
-      a {
-        color: #868B95;
-      }
+      color: #868B95;
     }
   }
   .jq-dropdown-panel{
@@ -2416,6 +2437,12 @@ input.grayNormal {
     }
     a:hover{text-decoration: none;}
   }
+  &:hover{
+    text-decoration: none;
+    .notification-title{
+        color: #4E5766;
+    }
+}
 }
 .jq-dropdown-mobile{
     .heading-notification{
@@ -2445,7 +2472,8 @@ input.grayNormal {
 .header{
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+    align-items: center;
+    margin-bottom: 23px;
     .header-title{
 			display: inline-block;
 			font-size: 22px;

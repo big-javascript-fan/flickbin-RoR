@@ -12,6 +12,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
 
   def update
     Notification.where(id: params[:ids]).update_all(read: true)
-    head :ok
+    no_unread_notifications = current_user.notifications.unread.blank?
+    render json: { no_unread_notifications: no_unread_notifications }
   end
 end

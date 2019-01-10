@@ -91,7 +91,7 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (9.4.4)
+    autoprefixer-rails (7.1.6)
       execjs
     awesome_print (1.8.0)
     babosa (1.0.2)
@@ -390,7 +390,7 @@ DEPENDENCIES
   activeadmin_addons
   activeadmin_json_editor (~> 0.0.7)
   ancestry
-  autoprefixer-rails
+  autoprefixer-rails (~> 7.1, >= 7.1.6)
   awesome_print
   babosa
   better_errors

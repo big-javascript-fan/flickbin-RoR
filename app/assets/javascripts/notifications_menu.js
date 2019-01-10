@@ -72,15 +72,11 @@ $(function() {
         `
       }
 
-      if(response.total_unread_notifications < 4) {
-        $('.notificationBadge').hide();
-      }
       $('.notifications.dropdown-menu').empty();
       $('.notifications.dropdown-menu').append(notificationsMenuHeader);
       $('.notifications.dropdown-menu').append(notificationsMenuContent);
       $('.notifications.dropdown-menu').append(notificationsMenuPagination);
       $('a.comment-scroll-down').on('click', function(e) {
-        // e.preventDefault();
         var url = $(this).attr('href')
         var anchor = url.match(/#(.*)/)[1]
 
@@ -93,6 +89,10 @@ $(function() {
         type: 'PUT',
         url: '/api/v1/notifications',
         data: { ids: ids }
+      }).done(function(response) {
+        if(response.no_unread_notifications) {
+          $('.notificationBadge').hide();
+        }
       });
     });
   }

@@ -4,7 +4,6 @@ $(function() {
   votedValue = $('.upDownOptions').attr('voted');
   currentUserId = $('.commentSection').attr('current_user_id');
   currentUserAvatarUrl = $('img.avatarHolder ').attr('src');
-  var elementForScrollDown = $(window.location.hash);
 
   votesHandler();
   votesCountHandler();
@@ -12,14 +11,7 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
   onboardCloseClick();
-
-  if(elementForScrollDown.length > 0) {
-    $('html, body').animate({
-      scrollTop: elementForScrollDown.offset().top - 300
-    }, 250);
-    elementForScrollDown.addClass('is-fade');
-    history.replaceState(null, null, ' ');
-  }
+  window.scrollDownAnimation();
 
   $(document).ready(function () {
     videoPageInfoWidth();
@@ -30,6 +22,7 @@ $(function() {
       centerVidOnboardContent();
     });
   });
+
   function videoPageInfoWidth() {
     var vidTopWidth = $('.videoTop').width();
     var upVoteWidth = $('.upDownOptions').width();

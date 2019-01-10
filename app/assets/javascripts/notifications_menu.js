@@ -79,6 +79,15 @@ $(function() {
       $('.notifications.dropdown-menu').append(notificationsMenuHeader);
       $('.notifications.dropdown-menu').append(notificationsMenuContent);
       $('.notifications.dropdown-menu').append(notificationsMenuPagination);
+      $('a.comment-scroll-down').on('click', function(e) {
+        // e.preventDefault();
+        var url = $(this).attr('href')
+        var anchor = url.match(/#(.*)/)[1]
+
+        $('.is-fade').removeClass('is-fade');
+        window.location.hash = anchor;
+        window.scrollDownAnimation();
+      });
     }).done(function() {
       $.ajax({
         type: 'PUT',
@@ -114,7 +123,7 @@ function notificationBodyBuilder(notification) {
 
   if(notification.category == 'comment_video') {
     notificationsMenuContent += `
-      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message comment-scroll-down ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -130,7 +139,7 @@ function notificationBodyBuilder(notification) {
     `
   } else if(notification.category == 'reply_video_comment') {
     notificationsMenuContent += `
-      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}" class="notification message comment-scroll-down ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-message"></span>
@@ -244,7 +253,6 @@ function notificationBodyBuilder(notification) {
 
   return notificationsMenuContent;
 }
-
 
 class Dropdown {
   constructor(selector) {

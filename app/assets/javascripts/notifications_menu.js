@@ -9,7 +9,7 @@ $(function() {
   });
   $(document).on('mouseleave', '.notificationDropdown', function(e){
     if(e.target !== $('.jq-dropdown')){
-      $(this).removeClass('bell-dropdown-open');        
+      $(this).removeClass('bell-dropdown-open');
     }
   });
   $(document).on('mouseenter', '.bell-dropdown-open .jq-dropdown', function(e){
@@ -123,7 +123,7 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message}</a>
+            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message} onClick="window.location.reload()"</a>
           </p>
         </div>
       </div>
@@ -139,7 +139,7 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message}</a>
+            <a href="/videos/${notification.video.slug}?all_comments=true#comment_${notification.comment.id}">${notification.comment.message} onClick="window.location.reload()"</a>
           </p>
         </div>
       </div>

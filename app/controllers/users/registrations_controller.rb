@@ -12,9 +12,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super do
+      ThreeDaysAfterSignupJob.set(wait: 3.minutes).perform_later(resource.id)
+    end
+  end
 
   # def edit
   #   super
@@ -87,7 +89,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:channel_name, :channel_description])
+    devise_parameter_sanitizer.permit(:account_update, keys: [
+      :channel_name, :channel_description, :receive_notification_emails, :receive_promotional_emails
+    ])
   end
 
   def after_update_path_for(resource)

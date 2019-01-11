@@ -78,7 +78,7 @@ $(function() {
                 videosContent += `
                   <div class="entityCell paddingLeft20">
                     <a class="descText" href="/videos/${video.slug}">
-                      <span class="time">${video.post_time} in</span>
+                      <span class="time">${video.post_time} ago</span>
                       ${video.title}
                     </a>
                   </div>

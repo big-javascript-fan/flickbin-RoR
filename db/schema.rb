@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181212112651) do
+ActiveRecord::Schema.define(version: 20190109100749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20181212112651) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "category"
+    t.json "event_object"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "system_settings", force: :cascade do |t|
     t.json "data"
     t.datetime "created_at", null: false
@@ -119,6 +129,9 @@ ActiveRecord::Schema.define(version: 20181212112651) do
     t.integer "rank", default: 0
     t.string "role", default: "client"
     t.string "fake_avatar_url", default: ""
+    t.boolean "allowed_to_send_notifications", default: true
+    t.boolean "receive_notification_emails", default: true
+    t.boolean "receive_promotional_emails", default: true
     t.index ["channel_name"], name: "index_users_on_channel_name", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

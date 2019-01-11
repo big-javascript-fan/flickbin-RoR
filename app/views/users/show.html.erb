@@ -25,11 +25,15 @@
 
     <%= render 'partials/trending_tags_bar' %>
   </aside>
-
+  <div class="jq-dropdown-mobile jq-dropdown-medium push-left jq-dropdown-anchor-right reverseTheme">
+    <div class="jq-dropdown-panel jq-dropdown-panel-medium">
+      <div class="dropdown-menu notifications dropdown-menu-medium"></div>
+    </div>
+  </div>
   <section class="contentPanel station">
     <div class="redTopBox">
       <!-- show button in desktop -->
-      <div class="clearfix bottom-margin-10 hideOnMobile">
+      <div class="clearfix bottom-margin-10 hideOnMobile reverseThemeHoler reverseTheme">
         <% if current_user.present? %>
           <%= render 'users/partials/logged_in_right_header' %>
         <% else %>
@@ -87,11 +91,10 @@
               <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
             <% end %>
           </div>
-          <div class="entityCellStation cellSpace24">&nbsp;</div>
           <div class="entityCellStation hasRemover">
             <span class="postTime">
               posted
-              <%= "#{time_ago_in_words(video.created_at)} ago in "%>
+              <%= "#{time_ago_in_words(video.created_at)} ago"%>
               <%= link_to video.tag.title, tag_path(video.tag) %>
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>

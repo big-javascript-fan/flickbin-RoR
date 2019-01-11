@@ -74,8 +74,7 @@ $(function() {
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     </a>
                   </div>
-                  <div class="entityCell cellSpace24">&nbsp;</div>
-                  <div class="entityCell hasRemover">
+                  <div class="entityCellStation hasRemover">
                     <span class="postTime">
                       posted
                       ${video.post_time} ago in

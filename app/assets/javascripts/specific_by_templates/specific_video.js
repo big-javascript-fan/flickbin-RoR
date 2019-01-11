@@ -11,6 +11,7 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
   onboardCloseClick();
+  window.scrollDownAnimation();
 
   $(document).ready(function () {
     videoPageInfoWidth();
@@ -21,6 +22,7 @@ $(function() {
       centerVidOnboardContent();
     });
   });
+
   function videoPageInfoWidth() {
     var vidTopWidth = $('.videoTop').width();
     var upVoteWidth = $('.upDownOptions').width();

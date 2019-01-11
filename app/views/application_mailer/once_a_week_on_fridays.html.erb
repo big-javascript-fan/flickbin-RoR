@@ -1,0 +1,328 @@
+<html>
+<head>
+  <!--[if !mso]>-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    #outlook a {
+      padding: 0;
+    }
+
+    .ReadMsgBody {
+      width: 100%;
+    }
+
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass * {
+      line-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+
+    table,
+    td {
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+      -ms-interpolation-mode: bicubic;
+    }
+
+    p {
+      display: block;
+      margin: 13px 0;
+    }
+    .mj-column-per-100 {
+      width: 100% !important;
+      max-width: 100%;
+    }
+    .mj-column-per-30 {
+      width: 40% !important;
+      max-width: 40%;
+    }
+    .mj-column-per-70 {
+      width: 60% !important;
+      max-width: 60%;
+    }
+  </style>
+  <!--[if !mso]><!-->
+  <style type="text/css">
+    @media only screen and (max-width:480px) {
+      @-ms-viewport {
+        width: 320px;
+      }
+      @viewport {
+        width: 320px;
+      }
+    }
+  </style>
+  <!--<![endif]-->
+  <!--[if mso]>
+  <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml>
+  <![endif]-->
+  <!--[if lte mso 11]>
+  <style type="text/css">
+    .outlook-group-fix { width:100% !important; }
+  </style>
+  <![endif]-->
+  <!--[if !mso]><!-->
+  <!--<![endif]-->
+  <style type="text/css">
+    @media only screen and (min-width:480px) {
+      .mj-column-per-100 {
+        width: 100% !important;
+        max-width: 100%;
+      }
+      .mj-column-per-30 {
+        width: 30% !important;
+        max-width: 30%;
+      }
+      .mj-column-per-70 {
+        width: 70% !important;
+        max-width: 70%;
+      }
+    }
+  </style>
+</head>
+
+
+<body style="padding: 30px; background: #F8F8F8; position: relative;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="wrapper">
+        <tbody>
+        <tr>
+          <td height="45"></td>
+        </tr>
+        <tr>
+          <td align="center" valign="top" style="padding: 10px 0;" class="logo">
+            <a href="#website_url" target="_blank">
+              <img alt="flickbin" src="<%= ActionMailer::Base.asset_host %>/images/logo.png" width="160" height="35" border="0">
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td bgcolor="#ffffff" align="center">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+              <tr>
+                <td height="45"></td>
+              </tr>
+              <tr>
+                <td align="center" style="font-size:20px; padding: 0 20px 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;	line-height: 25px; color:#090A0B;">
+                  There have been some whoppers this week.
+                </td>
+              </tr>
+              <% @top_5_tags.each do |top_5_tag| %>
+                <% next if top_5_tag.top_3_videos.blank? %>
+
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td height="1" width="100%" style="background:#f5f5f5;"></td>
+                </tr>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td align="left" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:0 20px 0 20px; font-size:17px; color:#4E5766; line-height: 25px; font-weight: 500;">
+                    popular in <a href="<%= tag_url(top_5_tag) %>" style="color: #31B4B0; text-decoration: none;"><%= top_5_tag.title %></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td height="10"></td>
+                </tr>
+                <% top_5_tag.top_3_videos.each do |top_3_video| %>
+                  <tr>
+                    <td style="font-size:0; padding:0 20px 0 20px;">
+                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                          <tr>
+                            <td >
+                              <table >
+                                <tbody>
+                                <tr>
+                                  <td class="mj-column-per-30" style="vertical-align:top;" >
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" class="outlook-group-fix" style="display:inline-block;  padding:10px 0 10px 0;">
+                                      <tr>
+                                        <td align="center">
+                                          <table align="center"  border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse; border-spacing:0px; width:100%; ">
+                                            <tbody>
+                                            <tr>
+                                              <td>
+                                                <%= link_to video_url(top_3_video), style: 'color: inherit; text-decoration: none;' do %>
+                                                  <img alt="" width="100%" src="<%= top_3_video.cover.url %>" style="border:0; display:block;" /> </td>
+                                                <% end %>
+                                            </tr>
+                                            </tbody>
+                                          </table>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                  <td class="mj-column-per-70" style="vertical-align:top;" >
+                                    <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block; padding:10px 0 10px 0;">
+                                      <tr>
+                                        <td align="left" style="color: #C1C8D6;	font-size: 14px;	font-weight: 500;	line-height: 21px; padding:0 20px 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                          posted by
+                                          <a href="<%= station_url(top_3_video.user) %>" style="color: #31B4B0; text-decoration: none;	font-size: 14px;"><%= top_3_video.user.channel_name %> (<%= top_3_video.user.rank %>)</a>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td height="7"></td>
+                                      </tr>
+                                      <tr>
+                                        <td style="font-size:17px;line-height:1;text-align:left;color:#1D1F23; padding:0 0 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                          <%= link_to top_3_video.title, video_url(top_3_video), style: 'color: inherit; text-decoration: none;' %>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      
+                      
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+              <tr>
+                <td height="40"></td>
+              </tr>
+              <tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td style="border-bottom: 1px solid #EAE4E4;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tbody>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="center" style="padding: 10px 0 10px 0;font-weight: 500; font-size: 15px; line-height: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #868B95;"> If you have any questions, feel free to simply reply to this email and someone from our team will reach out.
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#f8f8f8" align="center" style="padding: 15px;" class="padding">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;" class="responsive-table">
+        <tbody>
+        <tr>
+          <td style="padding: 10px 0 0px 0;">
+            <!-- TWO COLUMNS -->
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tbody>
+              <tr>
+                <td valign="top" class="mobile-wrapper">
+                  <!-- LEFT COLUMN -->
+                  <table cellpadding="0" cellspacing="0" border="0" width="67%" style="width: 67%;" align="left">
+                    <tbody>
+                    <tr>
+                      <td style="padding: 0 0 10px 0;">
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                          <tbody>
+                          <tr>
+                            <td align="left" style="font-size: 13px; line-height: 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color:#868B95; font-weight:normal; font-style: italic;">
+                              flickbin, LLC
+                              2443 Fillmore St #380-8920
+                              San Francisco, CA 94115
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <!-- RIGHT COLUMN -->
+                  <table cellpadding="0" cellspacing="0" border="0" width="27%" style="width: 27%;" align="right">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                          <tbody>
+                          <tr>
+                            <td align="right" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #31B4B0; font-size: 14px; line-height: 20px; text-decoration: none; font-style: italic;">
+                              <%= link_to 'Unsubscribe', edit_user_registration_url, style: 'color:#31B4B0; text-decoration: none;' %>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -15,6 +15,15 @@
   wasp_post_job:
     every: 60m
     class: WaspPostJob
+  once_a_week_on_fridays_job:
+    cron: '0 12 * * 5'
+    class: OnceAWeekOnFridaysJob
+
 :queues:
+  - rank_calculation
+  - video_tag_expiration
+  - wasp_outreach
+  - wasp_post
+  - twitter_posting
   - default
   - mailers

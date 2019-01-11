@@ -474,6 +474,10 @@
 	.mobileBtnPosition .reverseThemeHoler .addCircle {
 		color: #4E5766;
 		border-color: #4E5766;
+		&:hover{
+			color: #31B4B0;
+			border-color: #31B4B0;
+		}
 	}
 	.videoLoginBtns {
 		margin-top: 7px;
@@ -508,4 +512,65 @@
 	    	padding: 0 3px 0 5px;
 	    }
 	}
+}
+
+@media(max-width: 639px){
+  .notificationDropdown{
+		.jq-dropdown{
+			display: none !important;
+		}
+    .jq-dropdown-medium{
+      left: -270px;
+    }
+    .heading-notification{
+			padding: 25px 15px 15px 15px;
+		}
+		.notification{
+			padding: 15px 15px 20px 15px;
+		}
+  }
+  .bell-dropdown-close-mobile .bell{
+    color: #4E5766 !important;
+    border-color: #4E5766 !important;
+	}
+	.bell-dropdown-open-mobile .bell{
+    color: #2FA9A5 !important;
+    border-color: #2FA9A5 !important;
+	}
+}
+@media(min-width: 640px){
+	.jq-dropdown-mobile{
+		display: none !important;
+	}
+}
+@media(max-width: 480px){
+  .notificationDropdown{
+		.jq-dropdown{
+			max-width: 280px;
+		}
+    .jq-dropdown-medium{
+      left: -90px;
+			right: inherit;
+    }
+    .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::after, .jq-dropdown.jq-dropdown-tip.jq-dropdown-anchor-right::before{
+      right: 175px;
+    }
+  }
+}
+
+@media(max-width: 360px){
+  .leftPanel{
+		.brand{
+			margin-top: 16px;
+			width: 95px;
+		}
+		.afterLoginBtns{
+			li:first-of-type{
+				margin-left: 0;
+			}
+			li{
+				margin-left: 10px;
+			}
+		}
+  }	
 }

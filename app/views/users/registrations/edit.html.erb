@@ -14,25 +14,36 @@
       </button>
 
       <%= link_to "flickbin", root_path, class: "brand" %>
-
-      <!-- show button in mobile -->
+      <% if current_user.present? %>
       <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <ul class="afterLoginBtns reverseThemeHoler">
-          <li>
-            <span class="addCircle dblBorder edit">
-              <i class="fas fa-pen"></i>
-            </span>
-          </li>
-        </ul>
+        <%= render 'partials/logged_in_right_header' %>
       </div>
-      <!-- end mobile btn -->
+    <% end %>
 
       <%= render 'partials/trending_tags_bar' %>
   </aside>
-
+  <div class="jq-dropdown-mobile jq-dropdown-medium push-left jq-dropdown-anchor-right">
+    <div class="jq-dropdown-panel jq-dropdown-panel-medium">
+      <div class="dropdown-menu notifications dropdown-menu-medium"></div>
+    </div>
+  </div>
   <section class="contentPanel station">
-    <div class="redTopBox redBoxInProfile">
-      <div class="clearfix topBtnBottomGap hideOnMobile">
+  
+    <% if current_user.present? %>
+      <div class="header mobileThemeBtn hideOnMobile">
+        <div class='header-title'>Account Settings</div>
+        <%= render 'partials/logged_in_right_header' %>
+      </div>
+    <% else %>
+      <div class="header btnGroup hideOnMobile">
+        <div class='header-title'>Account Settings</div>
+        <%= render 'partials/right_header' %>
+      </div>
+    <% end %>
+    
+    <div>
+    <%# <div class="redTopBox redBoxInProfile"> %>
+      <%# <div class="clearfix topBtnBottomGap hideOnMobile">
         <ul class="afterLoginBtns reverseThemeHoler">
           <li>
             <span class="addCircle dblBorder edit">
@@ -40,10 +51,15 @@
             </span>
           </li>
         </ul>
-      </div>
+      </div> %>
 
       <div class="redBoxInsideContent">
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-account', method: :put }) do |f| %>
+          <div class="form-account-heading">
+            <div class="form-account-heading-title">
+              General Information
+            </div>
+          </div> 
           <div class="row">
             <div class="colHalf">
               <div class="labelFields">
@@ -82,50 +98,32 @@
             <%= f.text_field :channel_description, maxlength: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH, class: "block hasRightNumber grayNormal" %>
             <%= f.error :channel_description %>
           </div>
-          <div class="clearfix btnGroup btnReverseTheme">
-            <%= f.submit "Update Info", class: "btn" %>
-            <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
+
+          <div class="form-account-heading">
+            <div class="form-account-heading-title">
+              Email Preferences
+            </div>
           </div>
+          <div class="form-checkbox-group">
+          <div class="labelControl">
+              <%= f.input_field :receive_promotional_emails, as: :boolean, class: 'uk-checkbox' %>
+              <%= f.label :receive_promotional_emails, 'RECEIVE FLICKBIN SYSTEM MESSAGES AND NOTIFICATIONS THROUGH EMAIL' %>
+            </div>
+          <div class="labelControl">
+          <%= f.input_field :receive_notification_emails, as: :boolean, class: 'uk-checkbox' %>
+            <%= f.label :receive_notification_emails, 'RECEIVE FLICKBIN PROMOTIONAL AND MARKETING EMAILS' %>
+          </div>
+          </div>
+          <div class="form-account-heading"></div>
+          <div class="form-button-group">
+            <div class="clearfix btnGroup">
+              <%= f.submit "Update Settings", class: "btn btnSecondary" %>
+              <%# <%= link_to "Cancel", station_path(current_user), class: "btn btnSecondary" %>
+            </div>
+          </div>  
         <% end %>
       </div>
     </div>
-
-    <% if @user_videos.present? %>
-      <ul class="entityList inTag tagNewest stationList video-feed" channel_slug="<%= current_user.slug %>">
-        <% @user_videos.each do |video| %>
-          <li class="entityRow" slug="<%= video.slug %>">
-            <div class="entityCellStation thumbnailCell">
-              <%= link_to video_path(video), class: "stationThumbnailLink large" do %>
-                <%= image_tag(video.cover.url, alt: video.title, class: "stationThumbnail large") %>
-                <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-              <% end %>
-            </div>
-            <div class="entityCellStation cellSpace24">&nbsp;</div>
-            <div class="entityCellStation hasRemover">
-              <span class="postTime">
-                posted
-                <%= "#{time_ago_in_words(video.created_at)} ago to "%>
-                <%= link_to video.tag.title, tag_path(video.tag) %>
-              </span>
-              <%= link_to video.title, video_path(video), class: "descText" %>
-              <div class="removerBar" id="<%= video.id %>">
-                <span class="removerBarTrack">Are you sure?
-                  <%= link_to 'Yes', video_path(video), method: :delete, remote: true %>
-                  <a href="#" class="rejectDestroyVideo">No</a>
-                </span>
-                <a href="#" class="removeIcon">&times;</a>
-              </div>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-      <% else %>
-        <div class='blankVideos'>
-          <span>
-            You haven't posted any videos. <%= link_to 'Post a Video', videos_new_path %>!
-          </span>
-        </div>
-      <% end %>
   </section>
 </div>
 

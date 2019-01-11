@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy, class_name: 'Comment', foreign_key: :commentator_id
   has_many :contribution_points, dependent: :destroy
   has_many :contributed_tags, through: :contribution_points, source: :tag
+  has_many :notifications, dependent: :destroy
 
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true

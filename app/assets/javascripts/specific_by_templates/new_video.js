@@ -40,14 +40,6 @@ $(function() {
     }
   }
 
-  $('#video_tag_name').on('keyup', function(e) {
-    var maxTagTitleLentgh = 15;
-    var tagTitleLentgh = $(this).val().length;
-    if(tagTitleLentgh <= maxTagTitleLentgh) {
-      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - tagTitleLentgh);
-    }
-  });
-
   if($('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }
@@ -90,8 +82,13 @@ $(function() {
   });
 
   $('#video_tag_name').on('keyup', function() {
-    var query = $(this).val();
+    var maxTagTitleLentgh = 15;
     var regex = new RegExp("^[a-zA-Z0-9]+$");
+    var query = $(this).val();
+
+    if(query.length <= maxTagTitleLentgh) {
+      $(this).siblings('span.rightNumber').text(maxTagTitleLentgh - query.length);
+    }
 
     if(regex.test(query)) {
       $('.postVideoLastField').removeClass('errorMsg')
@@ -116,7 +113,8 @@ $(function() {
     }
   });
 
-  function dropdownBuilder(data, query) {
+  function dropdownBuilder(data) {
+    var query = $('#video_tag_name').val();
     var dropdownContent = '';
     var newTag = true;
     var createTagBtn = `

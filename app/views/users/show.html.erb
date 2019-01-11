@@ -94,7 +94,7 @@
           <div class="entityCellStation hasRemover">
             <span class="postTime">
               posted
-              <%= "#{time_ago_in_words(video.created_at)} ago in "%>
+              <%= "#{time_ago_in_words(video.created_at)} ago"%>
               <%= link_to video.tag.title, tag_path(video.tag) %>
             </span>
             <%= link_to video.title, video_path(video), class: "descText" %>

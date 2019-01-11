@@ -18,7 +18,7 @@ $(function() {
   $('.profileDropdownHolder').mouseenter( function(){
     $('.bell-dropdown-open').removeClass('bell-dropdown-open');
   });
-  $(document).on('click', '.notificationDropdown', function(e){
+  $('.notificationDropdown').click(function(e){
     if(window.innerWidth <= 640){
       $('.jq-dropdown-mobile').toggle('');
       $('.jq-dropdown-mobile').toggleClass('jq-mobile-open');
@@ -171,7 +171,7 @@ function notificationBodyBuilder(notification) {
     `
   } else if(notification.category == 'top_3_contributors') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/new" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -180,14 +180,14 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/new">You are now in the top 3 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top #1!</a>
+            You are now in the top 3 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top #1!
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'top_5_contributors') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/new" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -196,14 +196,14 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/new">You are now in the top 5 contributors on the ${notification.tag.title} tag. Keep up the good work and maybe soon, you'll be number one!</a>
+            You are now in the top 5 contributors on the ${notification.tag.title} tag. Keep up the good work and maybe soon, you'll be number one!
           </p>
         </div>
       </div>
     `
   } else if(notification.category == 'top_10_contributors') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/new" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -212,14 +212,14 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/new">You are now in the top 10 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top 3!</a>
+            You are now in the top 10 contributors on the ${notification.tag.title} tag. Keep posting and you could be in the top 3!
           </p>
         </div>
       </div>
     `
   } else if(notification.category == 'top_1_video_in_tag') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -228,14 +228,14 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}">Your Video "${notification.video.title}" is #1 on ${notification.tag.title}.</a>
+            Your Video "${notification.video.title}" is #1 on ${notification.tag.title}.
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'top_10_videos_in_tag') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/videos/${notification.video.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -244,10 +244,10 @@ function notificationBodyBuilder(notification) {
         </div>
         <div class="notification-body">
           <p class="notification-description">
-            <a href="/videos/${notification.video.slug}">Your Video "${notification.video.title}" is climbing the charts and is now in the top ten in the ${notification.tag.title} tag.</a>
+            Your Video "${notification.video.title}" is climbing the charts and is now in the top ten in the ${notification.tag.title} tag.
           </p>
         </div>
-      </div>
+      </a>
     `
   }
 

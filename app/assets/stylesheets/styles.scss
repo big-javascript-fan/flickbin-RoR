@@ -1731,6 +1731,10 @@ input[type="text"].asCommentField {
     font-weight: 400;
     font-size: 29px;
     line-height: 36px;
+  .commentorThumb{
+    top: -4px;
+    left: 0;
+  }
 }
 .postTopLine span {
     display: block;
@@ -2128,6 +2132,7 @@ input.grayNormal {
     right: 30px;
     top: 28px;
     z-index: 1;
+  
     height: 0;
     border-bottom: 1px dashed #CAD0D5;
 }
@@ -2182,6 +2187,7 @@ input.grayNormal {
 }
 
 .notificationDropdown{
+  cursor: pointer;
   position: relative;
     .jq-dropdown.jq-dropdown-tip{
         padding-top: 22px;
@@ -2206,6 +2212,9 @@ input.grayNormal {
 }
 .jq-dropdown-mobile{
     display: none;
+}
+.jq-mobile-open{
+  display: block;
 }
 .bell{
     font-size: 20px;

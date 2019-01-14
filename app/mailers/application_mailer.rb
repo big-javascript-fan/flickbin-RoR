@@ -24,7 +24,7 @@ class ApplicationMailer < ActionMailer::Base
   def top_1_contributor(tag, contributor)
     @tag = tag
     @contributor = contributor
-    return if @contributor.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if @contributor.allowed_to_send_notifications.blank? || @contributor.receive_notification_emails.blank?
 
     mail(to: @contributor.email, subject: "You're now the top contributor")
   end
@@ -32,7 +32,7 @@ class ApplicationMailer < ActionMailer::Base
   def top_3_contributors(tag, contributor)
     @tag = tag
     @contributor = contributor
-    return if @contributor.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if @contributor.allowed_to_send_notifications.blank? || @contributor.receive_notification_emails.blank?
 
     mail(to: @contributor.email, subject: "You're now one of the top 3 contributors")
   end
@@ -40,7 +40,7 @@ class ApplicationMailer < ActionMailer::Base
   def top_5_contributors(tag, contributor)
     @tag = tag
     @contributor = contributor
-    return if @contributor.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if @contributor.allowed_to_send_notifications.blank? || @contributor.receive_notification_emails.blank?
 
     mail(to: @contributor.email, subject: "You're now one of the top 5 contributors")
   end
@@ -48,7 +48,7 @@ class ApplicationMailer < ActionMailer::Base
   def top_10_contributors(tag, contributor)
     @tag = tag
     @contributor = contributor
-    return if @contributor.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if @contributor.allowed_to_send_notifications.blank? || @contributor.receive_notification_emails.blank?
 
     mail(to: @contributor.email, subject: "You're now one of the top 10 contributors")
   end

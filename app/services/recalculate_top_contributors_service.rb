@@ -1,7 +1,6 @@
 class RecalculateTopContributorsService
   def call
     Tag.find_each do |tag|
-      next if tag.title != 'music'
       recalculate_contributors_rank(tag)
 
       top_11_contribution_points = get_contribution_points_for_tag(tag, 11)
@@ -49,7 +48,7 @@ class RecalculateTopContributorsService
     contribution_points.each_with_index do |cp, index|
       notification =
         if index == 0
-          next unless allowed_to_create_new_notification?(cp.user, 'top_1_contributor')
+          next unless allowed_to_create_new_notification?(cp.user, 'top_1_contributor', cp.tag_id)
 
           Notification.new(
             user_id: cp.user_id,
@@ -57,7 +56,7 @@ class RecalculateTopContributorsService
             event_object: { tag: cp.tag_id }
           )
         elsif [1, 2].include?(index)
-          next unless allowed_to_create_new_notification?(cp.user, 'top_3_contributors')
+          next unless allowed_to_create_new_notification?(cp.user, 'top_3_contributors', cp.tag_id)
 
           Notification.new(
             user_id: cp.user_id,
@@ -65,7 +64,7 @@ class RecalculateTopContributorsService
             event_object: { tag: cp.tag_id }
           )
         elsif [4, 5].include?(index) && contribution_points.size > 10
-          next unless allowed_to_create_new_notification?(cp.user, 'top_5_contributors')
+          next unless allowed_to_create_new_notification?(cp.user, 'top_5_contributors', cp.tag_id)
 
           Notification.new(
             user_id: cp.user_id,
@@ -73,7 +72,7 @@ class RecalculateTopContributorsService
             event_object: { tag: cp.tag_id }
           )
         elsif (6..10).include?(index) && contribution_points.size > 10
-          next unless allowed_to_create_new_notification?(cp.user, 'top_10_contributors')
+          next unless allowed_to_create_new_notification?(cp.user, 'top_10_contributors', cp.tag_id)
 
           Notification.new(
             user_id: cp.user_id,
@@ -88,9 +87,10 @@ class RecalculateTopContributorsService
     end
   end
 
-  def allowed_to_create_new_notification?(user, category)
+  def allowed_to_create_new_notification?(user, category, tag_id)
     not_outdated_notifications_in_category = user.notifications
                                                  .where(category: category)
+                                                 .where("event_object ->> 'tag' = '#{tag_id}'")
                                                  .where("notifications.created_at BETWEEN '#{1.week.ago.to_s}' AND '#{Time.now}'")
 
     not_outdated_notifications_in_category.present? ? false : true

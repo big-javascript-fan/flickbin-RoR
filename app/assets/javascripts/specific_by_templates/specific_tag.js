@@ -66,34 +66,47 @@ $(function() {
           if(tagVideos.length > 0) {
             $.each(tagVideos, function(index, video) {
               videosContent += `
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
+                <li class="card card-video-tags">
+                  <div class="card-media">
                     <a class="tagThumbnailLink large" href="/videos/${video.slug}">
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
+                      <div class="card-cover">
+                        <span ><img src="https://fakeimg.pl/34x34/"></span>${video.title}
+                       </div>
                     </a>
+                    </div>
                   </div>
-              `
+                  <div class="card-body card-body-newest">
+                `
               if(sortBy == 'newest') {
                 videosContent += `
-                  <div class="entityCell paddingLeft20">
-                    <a class="descText" href="/videos/${video.slug}">
-                      <span class="time">${video.post_time} ago</span>
-                      ${video.title}
-                    </a>
-                  </div>
-                `
+                      <a class="descText" href="/videos/${video.slug}">
+                        <span class="time">${video.post_time} ago</span>
+                        ${video.title}
+                      </a>
+                  `
               } else {
                 videosContent += `
-                  <div class="entityCell serialText">${video.rank}</div>
-                  <div class="entityCell">
-                    <a class="descText" href="/videos/${video.slug}">${video.title}</a>
+                      <div class="card-description">
+                        <a class="descText" href="/videos/${video.slug}">${video.title}</a>
+                      </div>
+                      <div class="card-info">
+                        <div class="card-tags">
+                          <div class="card-tags-id"> #${video.rank} </div>
+                          <div class="card-tags-like"><span class="icon fas fa-caret-up"></span> 63</div>
+                          <div class="card-tags-comment"><span class="icon fas fa-comment-alt"></span> 9</div>
+                        </div>
+                        <div class="card-posted">posted by <span>matt (1,567)</span></div>
+                      </div>
+                  
+                  `
+              }
+              `
                   </div>
                 </li>
                 `
-              }
             });
-
             $('ul.video-feed').append(videosContent);
           }
 

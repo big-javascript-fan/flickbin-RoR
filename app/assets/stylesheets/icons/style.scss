@@ -26,24 +26,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-play_arrow {
+.icon-playlist_add {
   &:before {
-    content: $icon-play_arrow; 
+    content: $icon-playlist_add;
   }
 }
 .icon-message {
   &:before {
-    content: $icon-message; 
+    content: $icon-message;
   }
 }
 .icon-bell {
   &:before {
-    content: $icon-bell; 
+    content: $icon-bell;
   }
 }
 .icon-star {
   &:before {
-    content: $icon-star; 
+    content: $icon-star;
+  }
+}
+.icon-play_arrow {
+  &:before {
+    content: $icon-play_arrow;
   }
 }
 

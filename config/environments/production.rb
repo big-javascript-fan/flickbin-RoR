@@ -95,7 +95,6 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:        'smtp.gmail.com',
     port:           587,
-    domain:         'www.flickbin.tv',
     user_name:      ENV["SMTP_USER_NAME"],
     password:       ENV["SMTP_PASSWORD"],
     authentication: :plain

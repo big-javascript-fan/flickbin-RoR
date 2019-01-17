@@ -73,9 +73,9 @@ $(function() {
   $('.jq-dropdown-anchor-right').addClass('reverseTheme');
 
   function votesHandler() {
-    $('span.counterOption').on('click', function(e) {
+    $('.counter-wrapper').on('click', function(e) {
       var counterOptionElement = $(this);
-      var newVoteValue = $(this).hasClass('upVote') ? 1 : -1;
+      var newVoteValue = $(".counterOption").hasClass('upVote') ? 1 : -1;
 
       if($(this).attr('loginRequired')) {
         window.location = '/users/sign_in'

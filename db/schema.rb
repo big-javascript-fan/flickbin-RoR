@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190117111743) do
+ActiveRecord::Schema.define(version: 20190118122051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,19 +151,20 @@ ActiveRecord::Schema.define(version: 20190117111743) do
     t.string "cover"
     t.boolean "removed", default: false
     t.boolean "untagged", default: false
-    t.string "youtube_id"
+    t.string "source_id"
     t.integer "positive_votes_amount", default: 0
     t.integer "negative_votes_amount", default: 0
     t.boolean "wasp_outreach", default: false
     t.string "twitter_handle"
     t.boolean "wasp_post", default: false
     t.integer "comments_count", default: 0
+    t.string "source", default: ""
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
+    t.index ["source_id"], name: "index_videos_on_source_id"
     t.index ["tag_id"], name: "index_videos_on_tag_id"
     t.index ["url", "tag_id"], name: "index_videos_on_url_and_tag_id"
     t.index ["user_id", "tag_id"], name: "index_videos_on_user_id_and_tag_id"
-    t.index ["youtube_id"], name: "index_videos_on_youtube_id"
   end
 
   create_table "votes", force: :cascade do |t|

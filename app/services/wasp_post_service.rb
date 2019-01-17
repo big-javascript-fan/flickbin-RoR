@@ -33,14 +33,14 @@ class WaspPostService
     return if youtube_videos['items'].blank?
 
     youtube_videos['items'].each do |item|
-      youtube_id = item.dig('id', 'videoId')
+      source_id = item.dig('id', 'videoId')
       title = item.dig('snippet', 'title')
-      next if invalid_video?(tag.id, youtube_id, title)
+      next if invalid_video?(tag.id, source_id, title)
 
       Video.create!(
         tag_id: tag.id,
         user_id: @dummy_users.sample.id,
-        url: "https://www.youtube.com/watch?v=#{youtube_id}",
+        url: "https://www.youtube.com/watch?v=#{source_id}",
         wasp_post: true
       )
 
@@ -54,8 +54,8 @@ class WaspPostService
     end
   end
 
-  def invalid_video?(tag_id, youtube_id, title)
-    Video.exists?(tag_id: tag_id, youtube_id: youtube_id) ||
+  def invalid_video?(tag_id, source_id, title)
+    Video.exists?(tag_id: tag_id, source_id: source_id) ||
       Video.exists?(tag_id: tag_id, title: title)
   end
 end

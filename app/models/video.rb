@@ -6,16 +6,19 @@ class Video < ApplicationRecord
 
   mount_uploader :cover, VideoCoverUploader
 
+  SOURCES = %w(youtube facebook twitch daily_motion)
+
   belongs_to :user
   belongs_to :tag
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :url, presence: true, format: { with: AppConstants::YOUTUBE_URL_REGEXP }
+  validates :url, presence: true
   validates :title, presence: true
+  validates_inclusion_of :source, in: SOURCES
   validates_uniqueness_of :url, scope: :tag_id, conditions: -> { where(untagged: false, removed: false) }
 
-  before_validation :upload_data_from_youtube_api, if: :will_save_change_to_url?
+  before_validation :download_additional_data_from_api, if: :will_save_change_to_url?
   after_create :set_init_rank
   after_save :recalculate_videos_rank, if: :saved_change_to_removed?
 
@@ -30,18 +33,19 @@ class Video < ApplicationRecord
     text.to_slug.transliterate.normalize.to_s
   end
 
-  def upload_data_from_youtube_api
-    youtube_video_id = YoutubeVideoHelper.get_video_id_form_youtube_url(self.url)
-    return errors.add(:invalid_url, 'Oops, try a YouTube link instead.') if youtube_video_id.blank?
-
-    youtube_video = Yt::Video.new id: youtube_video_id
-    return errors.add(:invalid_url, 'This video cannot be embedded.') unless youtube_video.embeddable?
-
-    self.title = youtube_video.title
-    self.youtube_id = youtube_video_id
-    self.remote_cover_url = youtube_video&.snippet&.data.dig('thumbnails', 'medium', 'url')
-  rescue => e
-    errors.add(:invalid_url, 'Video url invalid')
+  def download_additional_data_from_api
+    case self.url
+    when AppConstants::YOUTUBE_URL_REGEXP
+      YoutubeAdditionalDataService.new(self).call
+    when AppConstants::FACEBOOK_URL_REGEXP
+      FacebookAdditionalDataService.new(self).call
+    when AppConstants::TWITCH_URL_REGEXP
+      TwitchAdditionalDataService.new(self).call
+    when AppConstants::DAILY_MOTION_URL_REGEXP
+      DailyMotionAdditionalDataService.new(self).call
+    else
+      self.errors.add(:invalid_url, 'Video url invalid')
+    end
   end
 
   def votes_amount

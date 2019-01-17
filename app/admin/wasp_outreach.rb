@@ -11,13 +11,13 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
       user_id = User.where(role: 'dummy').sample.id
       tag_id = permitted_params[:video][:tag_id]
       video_url = permitted_params[:video][:url]
-      youtube_video_id = YoutubeVideoHelper.get_video_id_form_youtube_url(video_url)
+      youtube_video_id = VideoHelper.get_video_id_form_youtube_url(video_url)
 
       if tag_id.blank? || youtube_video_id.blank?
         flash[:error] = "Tag and video url must be present"
         return redirect_to new_admin_wasp_outreach_path
-      elsif Video.active.tagged.exists?(youtube_id: youtube_video_id, tag_id: tag_id)
-        @resource = Video.active.tagged.where(youtube_id: youtube_video_id, tag_id: tag_id).first
+      elsif Video.active.tagged.exists?(source_id: youtube_video_id, tag_id: tag_id)
+        @resource = Video.active.tagged.where(source_id: youtube_video_id, tag_id: tag_id).first
         @resource.wasp_outreach = true
       else
         additional_params = {

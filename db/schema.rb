@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190109100749) do
+ActiveRecord::Schema.define(version: 20190117111743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20190109100749) do
     t.boolean "wasp_outreach", default: false
     t.string "twitter_handle"
     t.boolean "wasp_post", default: false
+    t.integer "comments_count", default: 0
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["tag_id"], name: "index_videos_on_tag_id"

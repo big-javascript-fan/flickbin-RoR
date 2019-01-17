@@ -1,31 +1,3 @@
-<%# @tag_videos.each_with_index do |video, index| %>
-<!--  <li class="entityRow">-->
-<!--    <div class="entityCell thumbnailCell">-->
-      <%#= link_to video_path(video), class: "tagThumbnailLink large" do %>
-        <%#= image_tag(video.cover.url, alt: video.title, class: "tagThumbnail large") %>
-<!--        <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>-->
-      <%# end %>
-<!--    </div>-->
-    <%# if params[:sort_by] == 'newest' %>
-<!--      <div class="entityCell paddingLeft20">-->
-        <%#= link_to video_path(video), class: "descText" do %>
-<!--          <span class="time"><%#= "#{time_ago_in_words(video.created_at)} ago"%></span>-->
-          <%#= video.title %>
-        <%# end %>
-<!--      </div>-->
-    <%# else %>
-<!--      <div class="entityCell">-->
-<!--        <div class="entityCell-wrap">-->
-          <%#= link_to video.title, video_path(video), class: "descText" %>
-
-<!--          <div class="serialText"><%#= index + 1 %></div>-->
-<!--        </div>-->
-<!--      </div>-->
-    <%# end %>
-<!--  </li>-->
-<%# end %>
-
-
 <% @tag_videos.each_with_index do |video, index| %>
   <li class="card card-video-tags">
     <div class="card-media">
@@ -52,10 +24,27 @@
         <div class="card-info">
            <div class="card-tags">
              <div class="card-tags-id">#<%= index + 1 %></div>
-             <div class="card-tags-like"><span class="icon fas fa-caret-up"></span> 63</div>
-             <div class="card-tags-comment"><span class="icon fas fa-comment-alt"></span> 9</div>
+             <% if current_user.present? %>
+               <div class="card-tags-like counter-wrapper <%= 'voted' if @current_user_voted_video_ids.include?(video.id) %>">
+                <span class="icon fas fa-caret-up"></span>
+                <%= number_with_delimiter(video.votes_amount) %>
+              </div>
+            <% else %>
+               <div class="card-tags-like">
+                <span class="icon fas fa-caret-up"></span>
+                <%= number_with_delimiter(video.votes_amount) %>
+              </div>
+            <% end %>
+            <%= link_to video_path(video), class: 'card-tags-comment' do %>
+              <span class="icon fas fa-comment-alt"></span>
+              <%= video.comments_count %>
+            <% end %>
            </div>
-          <div class="card-posted">posted by <span>matt (1,567)</span></div>
+          <div class="card-posted">posted by
+            <span>
+              <%= link_to "#{video.user.channel_name} (#{video.user.rank})", station_path(video.user) %>
+            </span>
+          </div>
         </div>
       </div>
     <% end %>

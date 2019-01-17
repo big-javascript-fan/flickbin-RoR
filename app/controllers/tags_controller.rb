@@ -26,7 +26,10 @@ class TagsController < ApplicationController
   def show
     @sidebar_tags = get_sidebar_tags
     @tag = Tag.friendly.find(params[:tag_slug])
-    @tag_videos = Video.active.tagged.where(tag_id: @tag.id)
+    @tag_videos = Video.active
+                       .tagged
+                       .includes(:user)
+                       .where(tag_id: @tag.id)
     @top_3_contribution_points = @tag.contribution_points
                                      .includes(:user)
                                      .where.not(users: { role: 'dummy' })
@@ -34,6 +37,7 @@ class TagsController < ApplicationController
                                      .order(amount: :desc)
                                      .limit(3)
 
+    @current_user_voted_video_ids = current_user.votes.map(&:video_id)
     @tag_videos =
       if params[:sort_by] == 'newest'
         @tag_videos = @tag_videos.order(created_at: :desc).limit(10)

@@ -28,7 +28,7 @@
               <span class="icon fas fa-caret-up"></span>
               <%= number_with_delimiter(video.votes_amount) %>
             </div>
-            <%= link_to video_path(video), class: 'card-tags-comment' do %>
+            <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
               <span class="icon fas fa-comment-alt"></span>
               <%= video.comments_count %>
             <% end %>

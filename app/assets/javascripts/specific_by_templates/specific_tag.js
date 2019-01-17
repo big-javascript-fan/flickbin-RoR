@@ -4,6 +4,7 @@ $(function() {
 
   sortingHandler();
   infiniteScrollForVideos();
+  votesHandler();
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
@@ -99,7 +100,7 @@ $(function() {
                         </div>
                         <div class="card-posted">posted by <span>matt (1,567)</span></div>
                       </div>
-                  
+
                   `
               }
               `
@@ -116,6 +117,46 @@ $(function() {
 
           loading = false;
           nextPageNumber += 1;
+        });
+      }
+    });
+  }
+
+  function votesHandler() {
+    $('.card-tags-like').on('click', function(e) {
+      var voteBox = $(this);
+      var votesAmountElement = $(this).find('votes_amount')
+      var videoSlug = $(this).attr('video_slug');
+      var newVoteValue = 1;
+
+      if($(this).attr('loginRequired')) {
+        window.location = '/users/sign_in'
+      } else if($(this).hasClass('voted')) {
+        $.ajax({
+          type: 'DELETE',
+          url: `/api/v1/${videoSlug}/votes`,
+          data: { value: newVoteValue }
+        }).done(function(response, statusText, xhr) {
+          voteBox.removeClass('voted');
+          voteBox.html(`
+            <span class="icon fas fa-caret-up"></span>
+            ${response.new_votes_amount_for_video}
+          `).trigger('change');
+        }).fail(function(response, statusText, xhr) {
+          console.log(response.responseJSON.messages);
+        });
+      } else {
+        $.post({
+          url: `/api/v1/${videoSlug}/votes`,
+          data: { value: newVoteValue }
+        }).done(function(response, statusText, xhr) {
+          voteBox.addClass('voted');
+          voteBox.html(`
+            <span class="icon fas fa-caret-up"></span>
+            ${response.new_votes_amount_for_video}
+          `).trigger('change');
+        }).fail(function(response, statusText, xhr) {
+          console.log(response.responseJSON.messages);
         });
       }
     });

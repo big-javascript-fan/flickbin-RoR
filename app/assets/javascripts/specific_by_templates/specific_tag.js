@@ -100,7 +100,7 @@ $(function() {
                             <span class="icon fas fa-caret-up"></span>
                             ${video.votes_amount}
                           </div>
-                          <a href="/videos/${video.slug}" class="card-tags-comment" %>
+                          <a href="/videos/${video.slug}#message" class="card-tags-comment" %>
                             <span class="icon fas fa-comment-alt"></span>
                             ${video.comments_count}
                           </a>

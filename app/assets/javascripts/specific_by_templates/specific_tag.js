@@ -96,7 +96,7 @@ $(function() {
                       <div class="card-info">
                         <div class="card-tags">
                           <div class="card-tags-id"> #${video.rank} </div>
-                          <div class="card-tags-like counter-wrapper ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'voted' : '' }" video_slug=${video.slug}>
+                          <div class="card-tags-like  ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
                             <span class="icon fas fa-caret-up"></span>
                             ${video.votes_amount}
                           </div>
@@ -142,13 +142,13 @@ $(function() {
 
       if($(this).attr('loginRequired')) {
         window.location = '/users/sign_in'
-      } else if($(this).hasClass('voted')) {
+      } else if($(this).hasClass('active')) {
         $.ajax({
           type: 'DELETE',
           url: `/api/v1/${videoSlug}/votes`,
           data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
-          voteBox.removeClass('voted');
+          voteBox.removeClass('active');
           voteBox.html(`
             <span class="icon fas fa-caret-up"></span>
             ${response.new_votes_amount_for_video}
@@ -161,7 +161,7 @@ $(function() {
           url: `/api/v1/${videoSlug}/votes`,
           data: { value: newVoteValue }
         }).done(function(response, statusText, xhr) {
-          voteBox.addClass('voted');
+          voteBox.addClass('active');
           voteBox.html(`
             <span class="icon fas fa-caret-up"></span>
             ${response.new_votes_amount_for_video}

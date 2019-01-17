@@ -2628,7 +2628,6 @@ input.grayNormal {
       font-size: 17px;
       font-weight: 500;
       line-height: 21px;
-      cursor: pointer;
     }
     &-like{cursor: pointer;}
     &-like, &-comment{
@@ -2643,11 +2642,22 @@ input.grayNormal {
         margin-right: 4px;
         margin-top: 0;
       }
+      &:hover{
+        text-decoration: none;
+      }
     }
     &-id.active{
       background: #31B4B0;
     }
-    &-like.active{
+    &-like.active, &-like:hover{
+      background: #4E5766;
+      border-color: #4E5766;
+      color: #fff;
+      .icon{
+        color: #768296;
+      }
+    }
+    &-comment:hover{
       background: #4E5766;
       border-color: #4E5766;
       color: #fff;

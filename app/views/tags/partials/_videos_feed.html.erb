@@ -24,7 +24,7 @@
         <div class="card-info">
            <div class="card-tags">
             <div class="card-tags-id">#<%= index + 1 %></div>
-            <div class="card-tags-like counter-wrapper <%= 'voted' if @current_user_voted_video_ids.include?(video.id) %>" video_slug="<%= video.slug%>" >
+            <div class="card-tags-like <%= 'active' if @current_user_voted_video_ids.include?(video.id) %>" video_slug="<%= video.slug%>" >
               <span class="icon fas fa-caret-up"></span>
               <%= number_with_delimiter(video.votes_amount) %>
             </div>

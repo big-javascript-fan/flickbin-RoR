@@ -1,6 +1,7 @@
 $(function() {
   tagSlug = $('.titleSpecific').attr('slug');
   sortBy = '';
+  window.currentUserVotedVideoIds = $.parseJSON($('.video-feed').attr('video_ids'));
 
   sortingHandler();
   infiniteScrollForVideos();
@@ -95,10 +96,20 @@ $(function() {
                       <div class="card-info">
                         <div class="card-tags">
                           <div class="card-tags-id"> #${video.rank} </div>
-                          <div class="card-tags-like"><span class="icon fas fa-caret-up"></span> 63</div>
-                          <div class="card-tags-comment"><span class="icon fas fa-comment-alt"></span> 9</div>
+                          <div class="card-tags-like counter-wrapper ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'voted' : '' }" video_slug=${video.slug}>
+                            <span class="icon fas fa-caret-up"></span>
+                            ${video.votes_amount}
+                          </div>
+                          <a href="/videos/${video.slug}" class="card-tags-comment" %>
+                            <span class="icon fas fa-comment-alt"></span>
+                            ${video.comments_count}
+                          </a>
                         </div>
-                        <div class="card-posted">posted by <span>matt (1,567)</span></div>
+                        <div class="card-posted">posted by
+                          <span>
+                            <a href="/stations/${video.channel_slug}">${video.channel_name} (${video.user_rank})</a>
+                          </span>
+                        </div>
                       </div>
 
                   `
@@ -123,7 +134,7 @@ $(function() {
   }
 
   function votesHandler() {
-    $('.card-tags-like').on('click', function(e) {
+    $(document).on('click', '.card-tags-like', function(e) {
       var voteBox = $(this);
       var votesAmountElement = $(this).find('votes_amount')
       var videoSlug = $(this).attr('video_slug');

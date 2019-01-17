@@ -71,7 +71,7 @@
       </div>
 
       <% if @tag_videos.present? %>
-        <ul class="entityList inTag specificTagList tagListHasNumber video-feed">
+        <ul class="entityList inTag specificTagList tagListHasNumber video-feed" video_ids="<%= @current_user_voted_video_ids %>">
           <%= render 'tags/partials/videos_feed' %>
         </ul>
       <% else %>

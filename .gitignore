@@ -26,6 +26,7 @@ doc/app
 .yardoc
 .yardopts
 coverage
+.DS_Store
 
 # Public Uploads
 public/system/*

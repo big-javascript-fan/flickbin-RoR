@@ -97,7 +97,7 @@ $(function() {
                         <div class="card-tags">
                           <div class="card-tags-id"> #${video.rank} </div>
                           <div class="card-tags-like  ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
-                            <span class="icon fas fa-caret-up"></span>
+                            <span class="icon icon-arrow_drop_up"></span>
                             ${video.votes_amount}
                           </div>
                           <a href="/videos/${video.slug}#message" class="card-tags-comment" %>
@@ -150,7 +150,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           voteBox.removeClass('active');
           voteBox.html(`
-            <span class="icon fas fa-caret-up"></span>
+            <span class="icon icon-arrow_drop_up"></span>
             ${response.new_votes_amount_for_video}
           `).trigger('change');
         }).fail(function(response, statusText, xhr) {
@@ -163,7 +163,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           voteBox.addClass('active');
           voteBox.html(`
-            <span class="icon fas fa-caret-up"></span>
+            <span class="icon icon-arrow_drop_up"></span>
             ${response.new_votes_amount_for_video}
           `).trigger('change');
         }).fail(function(response, statusText, xhr) {

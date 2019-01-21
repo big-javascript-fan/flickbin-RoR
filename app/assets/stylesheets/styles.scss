@@ -2083,6 +2083,9 @@ input.grayNormal {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  > .icon{
+    font-size: 18px;
+  }
 }
 //.counterOption:hover {
 //  background-color: #4e5766;
@@ -2638,8 +2641,8 @@ input.grayNormal {
       line-height: 18px;
       .icon{
         color: #4E5766;
-        font-size: 16px;
-        margin-right: 4px;
+        font-size: 15px;
+        margin-right: 8px;
         margin-top: 0;
       }
       &:hover{

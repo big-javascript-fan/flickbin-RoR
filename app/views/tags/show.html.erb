@@ -23,12 +23,12 @@
   <section class="contentPanel leftSpace36 tag">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-20 mobileThemeBtn hideOnMobile">
-        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><span class="icon icon-playlist_add"></span><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><!--<span class="icon icon-playlist_add"></span>--><%= @tag.title %></span>
         <%= render 'partials/logged_in_right_header' %>
       </div>
     <% else %>
       <div class="clearfix btnGroup btnGroupSpecific hideOnMobile">
-        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><span class="icon icon-playlist_add"></span><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><!--<span class="icon icon-playlist_add"></span>--><%= @tag.title %></span>
         <%= render 'partials/right_header' %>
       </div>
     <% end %>

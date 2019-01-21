@@ -61,7 +61,7 @@
                 <span class="counterNumber counterValueHolder">
                   <%= number_with_delimiter(@video.votes_amount) %>
                 </span>
-                <span class="counterOption upVote"><i class="fas fa-caret-up"></i></span>
+                <span class="counterOption upVote"><span class="icon icon-arrow_drop_up"></span></span>
                 <%# if @video.votes_amount.zero? %>
 <!--                <span class="counterOption downVote inactiveDownVote <%#= 'voted' if @vote&.value&.negative? %>">-->
 <!--                  <i class="fas fa-caret-down"></i>-->
@@ -84,7 +84,7 @@
           <div class="videoInfoControls">
             <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
               <div class="counter-wrapper">
-                <span class="counterOption upVote" loginRequired='true'><i class="fas fa-caret-up"></i></span>
+                <span class="counterOption upVote" loginRequired='true'><span class="icon icon-arrow_drop_up"></span></span>
                 <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
                 <% if @video.votes_amount.zero? %>
                 <span class="counterOption downVote inactiveDownVote" loginRequired='true'>
@@ -108,7 +108,7 @@
       </div>
       <div class="videoViewManager">
         <div class='embed-container'>
-          <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" frameborder='0' allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/<%= @video.youtube_id %>?autoplay=1" allow='autoplay' frameborder='0' allowfullscreen></iframe>
           </div>
       </div>
     </section>

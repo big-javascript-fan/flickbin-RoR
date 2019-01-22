@@ -63,7 +63,7 @@
     <% end %>
     <div class="tagSpecificWrapper">
       <div class="clearfix tagHeadingBottomGap">
-        <span class="sideTitleTagSpecific titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><span class="icon icon-playlist_add"></span><%= @tag.title %></span>
+        <span class="sideTitleTagSpecific titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><!--<span class="icon icon-playlist_add"></span>--><%= @tag.title %></span>
         <ul class="pillNav clearfix">
           <li><%= link_to 'top charts', tag_path(@tag), sort_by: 'top_charts', class: "top_charts filter", remote: true %></li>
           <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>

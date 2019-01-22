@@ -37,7 +37,7 @@ class TagsController < ApplicationController
                                      .order(amount: :desc)
                                      .limit(3)
 
-    @current_user_voted_video_ids = current_user.votes.map(&:video_id)
+    @current_user_voted_video_ids = current_user.votes.map(&:video_id) if current_user.present?
     @tag_videos =
       if params[:sort_by] == 'newest'
         @tag_videos = @tag_videos.order(created_at: :desc).limit(10)

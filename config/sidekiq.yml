@@ -1,10 +1,10 @@
 :dynamic: true
 :schedule:
   recalculate_videos_rank_job:
-    every: 2m
+    every: 60m
     class: RecalculateVideosRankJob
   recalculate_tags_rank_job:
-    every: 2m
+    every: 30m
     class: RecalculateTagsRankJob
   recalculate_top_contributors_job:
     every: 2m

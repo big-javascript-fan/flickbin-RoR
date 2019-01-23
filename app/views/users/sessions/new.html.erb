@@ -14,6 +14,10 @@
     <% end %>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% if params[:video_id].present? %>
+        <%= hidden_field_tag('video_id', params[:video_id]) %>
+      <% end %>
+
       <div class="labelFields">
         <%= f.label :email, 'Email Address' %>
         <%= f.email_field :email, placeholder: 'Enter your email', class: 'block' %>

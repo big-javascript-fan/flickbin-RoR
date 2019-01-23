@@ -40,7 +40,7 @@
                 <%= video.comments_count %>
               <% end %>
             <% else %>
-              <%= link_to new_user_session_path, class: 'card-tags-comment' do %>
+              <%= link_to new_user_session_path(video_id: video.id), class: 'card-tags-comment' do %>
                 <span class="icon fas fa-comment-alt"></span>
                 <%= video.comments_count %>
               <% end %>

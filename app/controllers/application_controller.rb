@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
   def get_sidebar_tags(number_of_tags_per_page = 35)
     @sidebar_tags ||= Tag.order(rank: :asc, created_at: :desc).page(params[:page]).per(number_of_tags_per_page)
   end
+
+  def after_sign_in_path_for(resource)
+    if params[:video_id].present?
+      video_path(params[:video_id], anchor: 'message')
+    else
+      root_path
+    end
+  end
 end

@@ -1,7 +1,9 @@
 $(function() {
   tagSlug = $('.titleSpecific').attr('slug');
   sortBy = '';
-  window.currentUserVotedVideoIds = $.parseJSON($('.video-feed').attr('video_ids'));
+  if($('.video-feed').attr('video_ids').lenght > 0) {
+    window.currentUserVotedVideoIds = $.parseJSON($('.video-feed').attr('video_ids'));
+  }
 
   sortingHandler();
   infiniteScrollForVideos();

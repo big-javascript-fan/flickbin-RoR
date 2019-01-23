@@ -7,7 +7,7 @@ class FacebookAdditionalDataService
 
   def call
     return if ENV['FACEBOOK_APP_ID'].blank? || ENV['FACEBOOK_APP_SECRET'].blank?
-byebug
+
     facebook_video_id = VideoHelper.get_video_id_form_facebook_url(@video.url)
     return @video.errors.add(:invalid_url, 'Oops, try a Facebook video link instead.') if facebook_video_id.blank?
 

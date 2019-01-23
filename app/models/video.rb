@@ -7,6 +7,7 @@ class Video < ApplicationRecord
   mount_uploader :cover, VideoCoverUploader
 
   SOURCES = %w(youtube facebook twitch daily_motion)
+  KINDS_OF = %w(video clip stream)
 
   belongs_to :user
   belongs_to :tag
@@ -16,6 +17,7 @@ class Video < ApplicationRecord
   validates :url, presence: true
   validates :title, presence: true
   validates_inclusion_of :source, in: SOURCES
+  validates_inclusion_of :kind_of, in: KINDS_OF
   validates_uniqueness_of :url, scope: :tag_id, conditions: -> { where(untagged: false, removed: false) }
 
   before_validation :download_additional_data_from_api, if: :will_save_change_to_url?

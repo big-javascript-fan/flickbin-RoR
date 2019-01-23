@@ -1,7 +1,7 @@
 module AppConstants
   YOUTUBE_URL_REGEXP = /\Ahttps:\/\/(www\.)?(youtube|m.youtube|youtu.be)(\.com)?.+/
   FACEBOOK_URL_REGEXP = /\Ahttps:\/\/(www\.)?(facebook)(\.com)?.+/
-  TWITCH_URL_REGEXP = /\Ahttps:\/\/(www\.)?(twitch)(\.com)?.+/
+  TWITCH_URL_REGEXP = /\Ahttps:\/\/(www\.)?(twitch)(\.tv)?.+/
   DAILY_MOTION_URL_REGEXP = /\Ahttps:\/\/(www\.)?(dailymotion)(\.com)?.+/
   TAG_TITLE_REGEXP = /\A[a-z\d]*\Z/i
   LIFETIME_IN_DAYS_OF_TAGGED_VIDEO = 10

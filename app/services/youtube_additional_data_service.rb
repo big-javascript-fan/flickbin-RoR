@@ -10,6 +10,7 @@ class YoutubeAdditionalDataService
     youtube_video = Yt::Video.new id: youtube_video_id
     return @video.errors.add(:invalid_url, 'This video cannot be embedded.') unless youtube_video.embeddable?
 
+    @video.kind_of = 'video'
     @video.source = 'youtube'
     @video.title = youtube_video.title
     @video.source_id = youtube_video_id

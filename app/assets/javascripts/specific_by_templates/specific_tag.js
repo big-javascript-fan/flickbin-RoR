@@ -3,6 +3,8 @@ $(function() {
   sortBy = '';
   if($('.video-feed').attr('video_ids').lenght > 0) {
     window.currentUserVotedVideoIds = $.parseJSON($('.video-feed').attr('video_ids'));
+  } else {
+    window.currentUserVotedVideoIds = [];
   }
 
   sortingHandler();

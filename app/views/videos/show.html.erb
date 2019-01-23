@@ -112,6 +112,10 @@
             <%= render 'videos/partials/youtube_player' %>
           <% elsif @video.source == 'facebook' %>
             <%= render 'videos/partials/facebook_player' %>
+          <% elsif @video.source == 'twitch' %>
+            <%= render 'videos/partials/twitch_player' %>
+          <% elsif @video.source == 'daily_motion' %>
+            <%= render 'videos/partials/daily_motion_player' %>
           <% end %>
         </div>
       </div>

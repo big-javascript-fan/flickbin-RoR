@@ -1,0 +1,19 @@
+<% if @video.kind_of == 'video' %>
+  <iframe
+    src="https://player.twitch.tv/?video=v<%= @video.source_id %>"
+    height="600"
+    width="800"
+    frameborder="<frameborder>"
+    scrolling="false"
+    allowfullscreen="false">
+  </iframe>
+<% elsif @video.kind_of == 'clip' %>
+  <iframe
+    src="https://player.twitch.tv/?clip=<%= @video.source_id %>"
+    height="600"
+    width="800"
+    frameborder="<frameborder>"
+    scrolling="false"
+    allowfullscreen="false">
+  </iframe>
+<% end %>

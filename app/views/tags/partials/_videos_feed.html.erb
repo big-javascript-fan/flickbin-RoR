@@ -23,6 +23,7 @@
         </div>
         <div class="card-info">
            <div class="card-tags">
+
             <div class="card-tags-id">#<%= index + 1 %></div>
             <% if current_user.present? %>
               <div class="card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
@@ -32,9 +33,17 @@
               <span class="icon icon-arrow_drop_up"></span>
               <%= number_with_delimiter(video.votes_amount) %>
             </div>
-            <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
-              <span class="icon fas fa-comment-alt"></span>
-              <%= video.comments_count %>
+
+            <% if current_user.present? %>
+              <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
+                <span class="icon fas fa-comment-alt"></span>
+                <%= video.comments_count %>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path, class: 'card-tags-comment' do %>
+                <span class="icon fas fa-comment-alt"></span>
+                <%= video.comments_count %>
+              <% end %>
             <% end %>
            </div>
           <div class="card-posted">posted by

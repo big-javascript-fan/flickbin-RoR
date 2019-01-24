@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'flickbin.team@flickbin.tv'
+  default from: 'noreply@flickbin.tv'
   layout 'mailer'
 
   def after_comment(video, comment)

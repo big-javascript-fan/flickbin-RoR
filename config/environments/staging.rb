@@ -94,7 +94,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:        'smtp.sendgrid.net',
     port:           587,
-    domain:         'flickbin.tv'
+    domain:         'flickbin.tv',
     user_name:      ENV["SENDGRID_USER_NAME"],
     password:       ENV["SENDGRID_PASSWORD"],
     authentication: :plain,

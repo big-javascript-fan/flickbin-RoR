@@ -63,6 +63,16 @@ Rails.application.configure do
       password:       ENV["SMTP_PASSWORD"],
       authentication: :plain
     }
+  elsif ENV["SENDGRID_USER_NAME"].present? && ENV["SENDGRID_PASSWORD"].present?
+    config.action_mailer.smtp_settings = {
+    address:        'smtp.sendgrid.net',
+    port:           587,
+    domain:         'flickbin.tv',
+    user_name:      ENV["SENDGRID_USER_NAME"],
+    password:       ENV["SENDGRID_PASSWORD"],
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
   else # use settings for gem mailcatcher
     config.action_mailer.smtp_settings = {
       address: 'localhost',

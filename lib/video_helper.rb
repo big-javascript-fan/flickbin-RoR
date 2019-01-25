@@ -15,7 +15,11 @@ module VideoHelper
     url[/clip\/(\w+)/, 1]
   end
 
+  def self.get_channel_id_form_twitch_url(url)
+    url[/twitch.tv\/(\w+)/, 1]
+  end
+
   def self.get_video_id_form_daily_motion_url(url)
-    url[/videos\/(\d+)/, 1]
+    url[/video\/(\w+)/, 1]
   end
 end

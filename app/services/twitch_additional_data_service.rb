@@ -35,21 +35,22 @@ class TwitchAdditionalDataService
       @video.title = parsed_body['title']
       @video.source_id = twitch_video_id
       @video.remote_cover_url = parsed_body['preview']
-    when /\/streams\//
-      twitch_video_id = VideoHelper.get_video_id_form_twitch_url(@video.url)
-      return @video.errors.add(:invalid_url, 'Oops, try a Twitch video link instead.') if twitch_video_id.blank?
+    else
+      base_twitch_api_url = 'https://api.twitch.tv/kraken/streams'
+      twitch_channel_id = VideoHelper.get_channel_id_form_twitch_url(@video.url)
+      return @video.errors.add(:invalid_url, 'Oops, try a Twitch video link instead.') if twitch_channel_id.blank?
 
-      video_url = "#{BASE_TWITCH_API_URL}/kraken/videos/#{twitch_video_id}"
+      video_url = "#{base_twitch_api_url}/#{twitch_channel_id}"
       response_body = RestClient.get(video_url, { params: { client_id: ENV['TWITCH_APP_ID'] }}).body
       parsed_body = JSON.parse(response_body)
 
       @video.kind_of = 'stream'
       @video.source = 'twitch'
-      @video.title = parsed_body['title']
-      @video.source_id = twitch_video_id
-      @video.remote_cover_url = parsed_body['preview']
-    else
-      @video.errors.add(:invalid_url, 'Video url invalid')
+      @video.title = parsed_body['stream']['game']
+      @video.source_id = twitch_channel_id
+      @video.remote_cover_url = parsed_body['stream']['preview']['medium']
+    # else
+    #   @video.errors.add(:invalid_url, 'Video url invalid')
     end
   rescue => e
     @video.errors.add(:invalid_url, 'Video url invalid')

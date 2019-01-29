@@ -6,13 +6,13 @@
         <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
       <% end %>
       <div class="card-cover">
-        <span ><img src="https://fakeimg.pl/34x34/"></span><%= link_to video.title, video_path(video), class: "descText" %>
+        <span class="icon youtube-icon"></span><%= link_to video.title, video_path(video), class: "descText" %>
       </div>
     </div>
     <% if params[:sort_by] == 'newest' %>
       <div class="card-body card-body-newest">
+        <div><span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span></div>
         <%= link_to video_path(video), class: "descText" do %>
-          <span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span>
           <%= video.title %>
         <% end %>
       </div>

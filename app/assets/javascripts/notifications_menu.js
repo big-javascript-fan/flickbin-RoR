@@ -254,44 +254,5 @@ function notificationBodyBuilder(notification) {
   return notificationsMenuContent;
 }
 
-class Dropdown {
-  constructor(selector) {
-    this.selector = selector;
-  }
-
-  init() {
-    let data = document.querySelectorAll(this.selector);
-    let self = this;
-
-    data.forEach( (item, index) => {
-      document.addEventListener('click',function (e) {
-      if ( e.target === item ) {
-        self.toggle(item)
-      } else if(e.target.parentElement == item.nextElementSibling || e.target == item.nextElementSibling){
-        e.stopPropagation();
-      } else {
-        self.hide(item)
-      }
-    })
-  })
-  }
-
-  toggle(item) {
-    item.parentElement.classList.toggle('show');
-    item.nextElementSibling.classList.toggle('show');
-  }
-  hide(item) {
-    item.parentElement.classList.remove('show');
-    item.nextElementSibling.classList.remove('show');
-  }
-}
-
-let dropdown = new Dropdown('[data-toggle]');
-
-dropdown.init();
-
-
-
-
 
 

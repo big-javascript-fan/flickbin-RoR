@@ -26,6 +26,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.icon-chevron-down {
+  &:before {
+    content: $icon-chevron-down;
+  }
+}
+.icon-flag {
+  &:before {
+    content: $icon-flag;
+  }
+}
+.icon-check {
+  &:before {
+    content: $icon-check;
+  }
+}
+.icon-dailymotion {
+  &:before {
+    content: $icon-dailymotion;
+  }
+}
 .icon-arrow_drop_up {
   &:before {
     content: $icon-arrow_drop_up;
@@ -56,4 +77,3 @@
     content: $icon-play_arrow;
   }
 }
-

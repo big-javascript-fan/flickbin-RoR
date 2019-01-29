@@ -59,6 +59,20 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+.flashNotification {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+  padding: 10px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  background-color: #4E5766;
+}
 .flashError {
   background-color: #2FA9A5;
   -webkit-border-radius: 6px;

@@ -87,8 +87,8 @@ $(function() {
                 `
               if(sortBy == 'newest') {
                 videosContent += `
+                      <span class="time">${video.post_time} ago</span>
                       <a class="descText" href="/videos/${video.slug}">
-                        <span class="time">${video.post_time} ago</span>
                         ${video.title}
                       </a>
                   `

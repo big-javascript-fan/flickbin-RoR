@@ -25,7 +25,7 @@ class Api::V1::SocialNetworksController < Api::V1::BaseController
         else
           { error: 'invalid twitch video url'}
         end
-      when 'daily_motion'
+      when 'dailymotion'
         video_id = VideoHelper.get_video_id_form_daily_motion_url(params[:video_url])
         if video_id.present?
           SocialNetworks::DailyMotionApiService.new(video_id).call

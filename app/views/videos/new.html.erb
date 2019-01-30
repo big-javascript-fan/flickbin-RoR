@@ -34,14 +34,14 @@
             <span class="ovalShape ovalShapeCheked icon-check"></span>
             <% if @existing_video.present? %>
               <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-              <div class="validationContent largeTooltip">Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.</div>
+              <div class="validationContent largeTooltip" existing_video='true'>Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.</div>
             <% elsif @invalid_video_url.present? %>
               <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
               <div class="validationContent largeTooltip">
                 <%= @video.errors.messages[:invalid_url].first %>
               </div>
             <% end %>
-            <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l-229' %>
+            <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l29' %>
             <div id="nextstep" class="button-video button-video-nextstep disabled">NEXT STEP</div>
           </div>
           <div class="section-hint">

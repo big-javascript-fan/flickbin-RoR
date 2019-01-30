@@ -56,48 +56,27 @@ $(function() {
   });
 
   $('#video_url').on('click', function() {
+    var existingVideo = $("div[existing_video='true']");
     $(this).removeAttr('placeholder');
     $(this).closest("div.videoUrlField").removeClass('errorMsg');
+    var existingVideo = $("div[existing_video='true']");
+    if(existingVideo.length > 0) {
+
+    }
   });
 
   $('#video_url').on('input keyup', function() {
     var self = this;
     var videoUrl = $(this).val();
-    var videoPlayers = ['youtube.', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
-    var findSubstring = function(str, substr) {
-      if (str.indexOf(substr) != -1) {
-        return substr;
-      }
-    };
-
-    var videoPlayer = videoPlayers.reduce(function (acum, item) {
-      switch (findSubstring($(self).val(), item)) {
-        case 'youtube.':
-          acum = 'youtube';
-          break;
-        case 'youtu.be':
-          acum = 'youtube';
-          break;
-        case 'facebook.':
-          acum = 'facebook';
-          break;
-        case 'dailymotion.':
-          acum = 'dailymotion';
-          break;
-        case 'twitch.':
-          acum = 'twitch';
-          break;
-      }
-      return acum
-    }, '');
+    var videoSource = getVideoSource(videoUrl);
 
     if(videoUrl.length > 10 && !apiRequestInProgress) {
       apiRequestInProgress = true;
-      getVideoPreview(videoPlayer, videoUrl);
+      getVideoPreview(videoSource, videoUrl);
     }
 
     $('.video-players-list .list-item').each(function (i, elem) {
-      if (elem.dataset.media === videoPlayer) {
+      if (elem.dataset.media === videoSource) {
         $(elem).addClass('active');
         $('.video-players-list').addClass('active');
         $('#nextstep').removeClass('disabled');
@@ -174,6 +153,38 @@ $(function() {
       $('.dropdownItemListOuter').hide();
     }
   });
+
+  function getVideoSource(videoUrl) {
+    var domains = ['youtube.', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
+    var findSubstring = function(str, substr) {
+      if (str.indexOf(substr) != -1) {
+        return substr;
+      }
+    };
+
+    var source = domains.reduce(function (acum, item) {
+      switch (findSubstring(videoUrl, item)) {
+        case 'youtube.':
+          acum = 'youtube';
+          break;
+        case 'youtu.be':
+          acum = 'youtube';
+          break;
+        case 'facebook.':
+          acum = 'facebook';
+          break;
+        case 'dailymotion.':
+          acum = 'dailymotion';
+          break;
+        case 'twitch.':
+          acum = 'twitch';
+          break;
+      }
+      return acum
+    }, '');
+
+    return source;
+  }
 
   function getVideoPreview(source, video_url) {
     $.ajax({

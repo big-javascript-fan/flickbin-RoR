@@ -73,6 +73,9 @@
                 <%# end %>
               </div>
             </div>
+            <div>
+              <%= "via #{@video.source.capitalize.gsub('_', '')}" %>
+            </div>
             <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
               <%= @video.title %>
             </div>

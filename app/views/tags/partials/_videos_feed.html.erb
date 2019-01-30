@@ -2,7 +2,7 @@
   <li class="card card-video-tags">
     <div class="card-media">
       <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
-        <%= image_tag(video.cover.url, alt: video.title, class: "tagThumbnail large") %>
+        <%= image_tag(video.cover.url.to_s, alt: video.title, class: "tagThumbnail large") %>
         <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
       <% end %>
       <div class="card-cover">

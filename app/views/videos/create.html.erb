@@ -11,7 +11,22 @@
     <%= render 'partials/trending_tags_bar' %>
   </aside>
   <div class="container-video-post">
-    <div class="card card-video-post card-video-post-added"></div>
+    <div class="card card-video-post card-video-post-added">
+      <div class="card-media">
+        <div class="tagThumbnailLink large">
+          <img class="tagThumbnail large" src="<%= @video.cover.url %>">
+          <div class="card-media-cover"><span class="icon-check"></span></div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">
+          <%= "Posting YouTube Video in #{@video.tag.title} " %>
+        </div>
+        <div class="card-description">
+          <%= @video.title %>
+        </div>
+      </div>
+    </div>
 
     <section class="section-video-post section-flashNotification">
       <div class="section-heading">
@@ -19,7 +34,9 @@
         <h2 class="title">
           You Post is Now Live!
         </h2>
-        <p class="description">You post is now live on station. Yo can check <a href="#" class="link">check it out here</a> </p>
+        <p class="description">You post is now live on station. You can
+          <%= link_to 'check it out here.', video_path(@video), class: "link" %>
+        </p>
         <%= link_to 'POST ANOTHER VIDEO', videos_new_path, id: "flashButton", class: "button-video-flash"%>
       </div>
     </section>

@@ -52,17 +52,23 @@ $(function() {
   }
 
   $(document).on('click', function() {
+    var existingVideoError = $("div[existing_video='true']");
     $('.videoUrlField.errorMsg').removeClass('errorMsg');
+    if(existingVideoError.length > 0) {
+      var videoUrl = $('#video_url').val();
+      var videoSource = getVideoSource(videoUrl);
+      $('#nextstep').removeClass('disabled');
+
+      if(videoUrl.length > 10 && !apiRequestInProgress) {
+        apiRequestInProgress = true;
+        getVideoPreview(videoSource, videoUrl);
+      }
+    }
   });
 
   $('#video_url').on('click', function() {
-    var existingVideo = $("div[existing_video='true']");
     $(this).removeAttr('placeholder');
     $(this).closest("div.videoUrlField").removeClass('errorMsg');
-    var existingVideo = $("div[existing_video='true']");
-    if(existingVideo.length > 0) {
-
-    }
   });
 
   $('#video_url').on('input keyup', function() {
@@ -199,9 +205,11 @@ $(function() {
             ${response.error}
           </div>
         `
+
         $('.leftPanel-videoPost').removeClass('leftPanel-videoPost-active');
         $('.card-video-post').addClass('card-video-post-hide')
         $('#video_url').before(errorMsg);
+        $('#nextstep').addClass('disabled');
         $('.videoUrlField').addClass('errorMsg');
       } else {
         $('.videoUrlField').removeClass('errorMsg');

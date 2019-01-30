@@ -11,7 +11,7 @@ class VideosController < ApplicationController
     @sidebar_tags = get_sidebar_tags
 
     if @video.save
-      redirect_to videos_new_path, notice: 'Congratulations, your video has been posted!'
+      render :create
     elsif @video.errors.messages[:invalid_url].present? || @video.errors.details[:url].first[:error] == :invalid
       @invalid_video_url = true
       render :new

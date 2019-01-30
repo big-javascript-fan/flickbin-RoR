@@ -44,10 +44,10 @@ $(function() {
     }
   };
 
-  if($('#video_url').val().length > 0) {
+  if($('#video_url').val() && $('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }
-  if($('#video_tag_name').val().length > 0) {
+  if($('#video_tag_name').val() && $('#video_tag_name').val().length > 0) {
     videoTagInput.filled = true;
   }
 
@@ -125,7 +125,7 @@ $(function() {
   });
 
   $(document).on('keyup', '#video_url', function(e) {
-    if($(this).val().length > 0) {
+    if($(this).val() && $(this).val().length > 0) {
       videoUrlInput.filled = true;
     } else {
       videoUrlInput.filled = false;
@@ -182,7 +182,19 @@ $(function() {
       data: { source: source, video_url: video_url }
     }).done(function(response, statusText, xhr) {
       if(response.hasOwnProperty('error')) {
+        var errorMsg = `
+          <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+          <div class="validationContent largeTooltip">
+            ${response.error}
+          </div>
+        `
+        $('.leftPanel-videoPost').removeClass('leftPanel-videoPost-active');
+        $('.card-video-post').addClass('card-video-post-hide')
+        $('#video_url').before(errorMsg);
+        $('.videoUrlField').addClass('errorMsg');
       } else {
+        $('.videoUrlField').removeClass('errorMsg');
+
         videoPreview = `
           <div class="card-media">
             <div class="tagThumbnailLink large">
@@ -201,8 +213,9 @@ $(function() {
         `
         $('.leftPanel-videoPost').addClass('leftPanel-videoPost-active');
         $('.card-video-post').removeClass('card-video-post-hide').html(videoPreview);
-        apiRequestInProgress = false;
       }
+
+      apiRequestInProgress = false;
     })
   }
 

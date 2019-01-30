@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel leftPanel-videoPost leftPanel-videoPost-active">
+    <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+      <span class="offCanvasBar">&nbsp;</span>
+    </button>
+
+    <%= link_to "flickbin", root_path, class: "brand" %>
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+  <div class="container-video-post">
+    <div class="card card-video-post card-video-post-added"></div>
+
+    <section class="section-video-post section-flashNotification">
+      <div class="section-heading">
+        <div class="flashNotification-checked"><span class="icon-check icon"></span></div>
+        <h2 class="title">
+          You Post is Now Live!
+        </h2>
+        <p class="description">You post is now live on station. Yo can check <a href="#" class="link">check it out here</a> </p>
+        <%= link_to 'POST ANOTHER VIDEO', videos_new_path, id: "flashButton", class: "button-video-flash"%>
+      </div>
+    </section>
+  </div>
+</div>

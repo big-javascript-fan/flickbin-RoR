@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="offCanvasMask"></div>
-  <aside class="leftPanel leftPanel-videoPost leftPanel-videoPost-active">
+  <aside class="leftPanel leftPanel-videoPost">
     <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
       <span class="offCanvasBar">&nbsp;</span>
       <span class="offCanvasBar">&nbsp;</span>
@@ -11,7 +11,7 @@
     <%= render 'partials/trending_tags_bar' %>
   </aside>
   <div class="container-video-post">
-      <div class="card card-video-post <%= flash[:notice].present? ? 'card-video-post-added' : '' %>">
+      <div class="card card-video-post card-video-post-hide<%= flash[:notice].present? ? 'card-video-post-added' : '' %>">
       </div>
     <% if flash[:notice].present? %>
         <section class="section-video-post section-flashNotification">

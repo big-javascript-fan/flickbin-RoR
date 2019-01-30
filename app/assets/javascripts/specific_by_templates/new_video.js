@@ -182,7 +182,6 @@ $(function() {
       data: { source: source, video_url: video_url }
     }).done(function(response, statusText, xhr) {
       if(response.hasOwnProperty('error')) {
-
       } else {
         videoPreview = `
           <div class="card-media">
@@ -200,8 +199,8 @@ $(function() {
             </div>
           </div>
         `
-
-        $('.card-video-post').html(videoPreview);
+        $('.leftPanel-videoPost').addClass('leftPanel-videoPost-active');
+        $('.card-video-post').removeClass('card-video-post-hide').html(videoPreview);
         apiRequestInProgress = false;
       }
     })

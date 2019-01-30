@@ -1,4 +1,4 @@
-class SocialNetworks::TwitchAdditionalDataService
+class SocialNetworks::TwitchApiService
   def initialize(video_id, type)
     @video_id = video_id
     @type = type

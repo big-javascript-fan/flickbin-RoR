@@ -1,4 +1,4 @@
-class SocialNetworks::DailyMotionAdditionalDataService
+class SocialNetworks::DailyMotionApiService
   BASE_DAYLI_MOTION_API_URL = 'https://api.dailymotion.com'
 
   def initialize(video_id)

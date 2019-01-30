@@ -1,4 +1,4 @@
-class SocialNetworks::FacebookAdditionalDataService
+class SocialNetworks::FacebookApiService
   BASE_FACEBOOK_API_URL = 'https://graph.facebook.com/v3.2'
 
   def initialize(video_id)

@@ -46,6 +46,10 @@ Rails.application.routes.draw do
         get 'notifications', action: :index
         put 'notifications', action: :update
       end
+
+      scope module: :social_networks do
+        get 'social_networks', action: :index
+      end
     end
   end
 

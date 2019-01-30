@@ -74,10 +74,12 @@
               </div>
             </div>
             <div>
-              <%= "via #{@video.source.capitalize.gsub('_', '')}" %>
-            </div>
-            <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
-              <%= @video.title %>
+              <div class="videoTopSource">
+                <%= "via #{@video.source.capitalize.gsub('_', '')}" %>
+              </div>
+              <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
+                <%= @video.title %>
+              </div>
             </div>
           </div>
           <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">

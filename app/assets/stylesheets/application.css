@@ -5,7 +5,13 @@
  *= require responsive.scss
  *= require_self
 */
-
+.videoTopSource {
+  color: #6de8dd;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 22px;
+}
 .error {
   color: red;
 }

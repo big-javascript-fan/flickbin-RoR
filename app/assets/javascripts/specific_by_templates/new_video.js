@@ -1,4 +1,6 @@
 $(function() {
+  var apiRequestInProgress = false;
+
   videoUrlInput = {
     parentDiv: $('#video_url').parent(),
     valid: false,
@@ -42,9 +44,6 @@ $(function() {
     }
   };
 
-
-
-
   if($('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }
@@ -63,6 +62,7 @@ $(function() {
 
   $('#video_url').on('input keyup', function() {
     var self = this;
+    var videoUrl = $(this).val();
     var videoPlayers = ['youtube.', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
     var findSubstring = function(str, substr) {
       if (str.indexOf(substr) != -1) {
@@ -70,7 +70,7 @@ $(function() {
       }
     };
 
-    var getPlayer = videoPlayers.reduce(function (acum, item) {
+    var videoPlayer = videoPlayers.reduce(function (acum, item) {
       switch (findSubstring($(self).val(), item)) {
         case 'youtube.':
           acum = 'youtube';
@@ -91,8 +91,13 @@ $(function() {
       return acum
     }, '');
 
+    if(videoUrl.length > 10 && !apiRequestInProgress) {
+      apiRequestInProgress = true;
+      getVideoPreview(videoPlayer, videoUrl);
+    }
+
     $('.video-players-list .list-item').each(function (i, elem) {
-      if (elem.dataset.media === getPlayer) {
+      if (elem.dataset.media === videoPlayer) {
         $(elem).addClass('active');
         $('.video-players-list').addClass('active');
         $('#nextstep').removeClass('disabled');
@@ -169,6 +174,38 @@ $(function() {
       $('.dropdownItemListOuter').hide();
     }
   });
+
+  function getVideoPreview(source, video_url) {
+    $.ajax({
+      type: 'GET',
+      url: '/api/v1/social_networks',
+      data: { source: source, video_url: video_url }
+    }).done(function(response, statusText, xhr) {
+      if(response.hasOwnProperty('error')) {
+
+      } else {
+        videoPreview = `
+          <div class="card-media">
+            <div class="tagThumbnailLink large">
+              <img class="tagThumbnail large" src="${response.remote_cover_url}">
+              <div class="card-media-cover"><span class="icon-check"></span></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              Posting YouTube Video
+            </div>
+            <div class="card-description">
+              ${response.title}
+            </div>
+          </div>
+        `
+
+        $('.card-video-post').html(videoPreview);
+        apiRequestInProgress = false;
+      }
+    })
+  }
 
   function dropdownBuilder(data) {
     var query = $('#video_tag_name').val();

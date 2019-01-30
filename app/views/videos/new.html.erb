@@ -12,20 +12,6 @@
   </aside>
   <div class="container-video-post">
       <div class="card card-video-post <%= flash[:notice].present? ? 'card-video-post-added' : '' %>">
-        <div class="card-media">
-          <div class="tagThumbnailLink large">
-            <img alt="Eminem - Venom" class="tagThumbnail large" src="http://localhost:3000/uploads/video/cover/852/mqdefault.jpg">
-            <div class="card-media-cover"><span class="icon-check"></span></div>
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="card-title">
-            Posting YouTube Video
-          </div>
-          <div class="card-description">
-            Stock Market News - Explaining Ray Dalio's View and Markets in Detail
-          </div>
-        </div>
       </div>
     <% if flash[:notice].present? %>
         <section class="section-video-post section-flashNotification">

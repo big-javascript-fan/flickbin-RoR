@@ -20,7 +20,7 @@ class Video < ApplicationRecord
   validates_inclusion_of :kind_of, in: KINDS_OF
   validates_uniqueness_of :url, scope: :tag_id, conditions: -> { where(untagged: false, removed: false) }
 
-  before_validation :download_additional_data_from_api, if: :will_save_change_to_url?
+  before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank
   after_save :recalculate_videos_rank, if: :saved_change_to_removed?
 
@@ -35,19 +35,8 @@ class Video < ApplicationRecord
     text.to_slug.transliterate.normalize.to_s
   end
 
-  def download_additional_data_from_api
-    case self.url
-    when AppConstants::YOUTUBE_URL_REGEXP
-      YoutubeAdditionalDataService.new(self).call
-    when AppConstants::FACEBOOK_URL_REGEXP
-      FacebookAdditionalDataService.new(self).call
-    when AppConstants::TWITCH_URL_REGEXP
-      TwitchAdditionalDataService.new(self).call
-    when AppConstants::DAILY_MOTION_URL_REGEXP
-      DailyMotionAdditionalDataService.new(self).call
-    else
-      self.errors.add(:invalid_url, 'Video url invalid')
-    end
+  def add_extra_video_data
+    ExtraVideoDataService.new(self).call
   end
 
   def votes_amount

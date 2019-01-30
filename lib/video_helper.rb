@@ -7,6 +7,17 @@ module VideoHelper
     url[/videos\/(\d+)/, 1]
   end
 
+  def self.get_video_id_with_type_from_twitch_url(video_url)
+    case video_url
+    when /\/clip\//
+      { video_id: get_clip_slug_form_twitch_url(video_url), kind_of: 'clip' }
+    when /\/videos\//
+      { video_id: get_video_id_form_twitch_url(video_url), kind_of: 'video' }
+    else
+      { video_id: get_channel_id_form_twitch_url(video_url), kind_of: 'stream' }
+    end
+  end
+
   def self.get_video_id_form_twitch_url(url)
     url[/videos\/(\d+)/, 1]
   end

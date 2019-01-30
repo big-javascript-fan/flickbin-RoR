@@ -72,7 +72,7 @@
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
+                      <%= image_tag(top_video.cover.url.to_s, alt: top_video.title, class: "thumbnail") %>
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>
@@ -97,7 +97,7 @@
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
                     <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
+                      <%= image_tag(top_video.cover.url.to_s, alt: top_video.title, class: "thumbnail") %>
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                     <% end %>
                   </div>

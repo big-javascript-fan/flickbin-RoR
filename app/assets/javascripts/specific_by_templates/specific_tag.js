@@ -9,7 +9,7 @@ $(function() {
 
   sortingHandler();
   infiniteScrollForVideos();
-  votesHandler();
+  // votesHandler();
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';

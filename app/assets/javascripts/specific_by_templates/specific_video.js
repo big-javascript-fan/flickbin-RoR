@@ -173,7 +173,7 @@ $(function() {
                   <img src="${commentatorAvatar}">
                 </a>
                 <div class="commentorLine clearfix">
-                  <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
+                  <a href="/stations/${response.commentator.channel_slug}">${response.commentator.channel_name}</a>
                   <span>•</span>
                   <small>${response.post_time} ago</small>
                 </div>
@@ -258,7 +258,7 @@ $(function() {
               <img src="${commentatorAvatar}">
             </a>
             <div class="commentorLine clearfix">
-              <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
+              <a href="/stations/${response.commentator.channel_slug}">${response.commentator.channel_name}</a>
               <span>•</span>
               <small>${response.post_time} ago</small>
             </div>
@@ -323,7 +323,7 @@ $(function() {
                     <img src="${commentatorAvatar}">
                   </a>
                   <div class="commentorLine clearfix">
-                    <a href="/stations/${root_comment.commentator.channel_name}">
+                    <a href="/stations/${root_comment.commentator.channel_slug}">
                       ${root_comment.commentator.channel_name}
                     </a>
                     <span>•</span>
@@ -358,7 +358,7 @@ $(function() {
                           <img src="${commentatorAvatar}">
                         </a>
                         <div class="commentorLine clearfix">
-                          <a href="/stations/${child_comment.commentator.channel_name}">${child_comment.commentator.channel_name}</a>
+                          <a href="/stations/${child_comment.commentator.channel_slug}">${child_comment.commentator.channel_name}</a>
                           <span>•</span>
                           <small>${child_comment.post_time} ago</small>
                         </div>

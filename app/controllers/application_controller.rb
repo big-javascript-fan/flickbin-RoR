@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     if params[:video_id].present? && params[:event] == 'comment'
       video_path(params[:video_id], anchor: 'message')
     elsif params[:video_id].present? && params[:event] == 'vote'
-      video_path(params[:video_id])
+      video_path(params[:video_id], anchor: 'voting_button')
     else
       root_path
     end

@@ -11,7 +11,11 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
   onboardCloseClick();
-  window.scrollDownAnimation();
+  if(window.location.hash == '#message') {
+    window.scrollDownAnimation();
+  } else if(window.location.hash == '#voting_button') {
+    votingBttonHighlight();
+  }
 
   $(document).ready(function () {
     videoPageInfoWidth();
@@ -22,6 +26,15 @@ $(function() {
       centerVidOnboardContent();
     });
   });
+
+  function votingBttonHighlight() {
+    var buttonForHighlighting = $(window.location.hash);
+
+    if(buttonForHighlighting.length > 0 && window.location.hash == '#voting_button' ) {
+      buttonForHighlighting.addClass('highlight');
+    }
+    history.replaceState(null, null, ' ');
+  }
 
   function videoPageInfoWidth() {
     var vidTopWidth = $('.videoTop').width();

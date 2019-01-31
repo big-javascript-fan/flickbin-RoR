@@ -8,7 +8,7 @@ $(function() {
   window.scrollDownAnimation =  function () {
     var elementForScrollDown = $(window.location.hash);
 
-    if(elementForScrollDown.length > 0) {
+    if(elementForScrollDown.length > 0 && window.location.hash == '#message') {
       $('html, body').animate({
         scrollTop: elementForScrollDown.offset().top - 300
       }, 250);
@@ -17,3 +17,4 @@ $(function() {
     }
   }
 })
+

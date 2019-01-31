@@ -1,6 +1,12 @@
 module VideoHelper
   def self.get_video_id_form_youtube_url(url)
-    url[/\/watch\?v=([^&.]+)/, 1] || url.split('?').last.split('v=').last
+    if url.include?('/watch')
+      url[/\/watch\?v=([^&.]+)/, 1]
+    elsif url.include?('v=')
+      url.split('?').last.split('v=').last
+    else
+      url.split('/').last
+    end
   end
 
   def self.get_video_id_form_facebook_url(url)

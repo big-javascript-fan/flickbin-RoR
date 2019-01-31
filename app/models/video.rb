@@ -18,7 +18,7 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates_inclusion_of :source, in: SOURCES
   validates_inclusion_of :kind_of, in: KINDS_OF
-  validates_uniqueness_of :url, scope: :tag_id, conditions: -> { where(untagged: false, removed: false) }
+  validates_uniqueness_of :source_id, scope: [:tag_id, :source], conditions: -> { where(untagged: false, removed: false) }
 
   before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank

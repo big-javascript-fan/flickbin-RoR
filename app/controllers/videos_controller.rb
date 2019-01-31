@@ -12,14 +12,14 @@ class VideosController < ApplicationController
 
     if @video.save
       render :create
-    elsif @video.errors.messages[:invalid_url].present? || @video.errors.details[:url].first[:error] == :invalid
+    elsif @video.errors.messages[:invalid_url].present?
       @invalid_video_url = true
       render :new
     else
       @existing_video = Video.active
                              .tagged
                              .includes(:tag)
-                             .where(tag_id: create_params[:tag_id], url: create_params[:url])
+                             .where(tag_id: @video.tag_id, source_id: @video.source_id, source: @video.source)
                              .first
       render :new
     end

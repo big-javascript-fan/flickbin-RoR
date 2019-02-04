@@ -1288,10 +1288,14 @@ input[type="text"].searchField {
   background-color: #31B4B0;
   color: #fff;
 }
+.videoInfoControls-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .videoInfoControls {
-  float: left;
-  height: 71px;
-  display: table;
+  display: flex;
+  align-items: center;
 }
 .upDownOptions {
   line-height: 23px;
@@ -1299,7 +1303,8 @@ input[type="text"].searchField {
   border-right: 1px solid #319491;
   display: table-cell;
   vertical-align: middle;
-  padding-right: 20px;
+  padding: 12px 20px 12px 0;
+
 }
 .videoViewManager {
   background-color: #121212;
@@ -2626,6 +2631,12 @@ input.grayNormal {
     align-items: center;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    > * {
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
   }
   .card-description{
     margin-bottom: 10px;
@@ -2640,6 +2651,7 @@ input.grayNormal {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    align-items: center;
     margin-right: 14px;
     > *{
       margin-right: 6px;
@@ -2711,6 +2723,41 @@ input.grayNormal {
       color: #31B4B0;
     }
   }
+  .youtube-icon{
+    margin-right: 6px;
+    min-width: 44px;
+    height: 31px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='iso-8859-1'%3F%3E%3C!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Capa_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve'%3E%3Cg%3E%3Cpath style='fill:%23F44336;' d='M490.24,113.92c-13.888-24.704-28.96-29.248-59.648-30.976C399.936,80.864,322.848,80,256.064,80 c-66.912,0-144.032,0.864-174.656,2.912c-30.624,1.76-45.728,6.272-59.744,31.008C7.36,138.592,0,181.088,0,255.904 C0,255.968,0,256,0,256c0,0.064,0,0.096,0,0.096v0.064c0,74.496,7.36,117.312,21.664,141.728 c14.016,24.704,29.088,29.184,59.712,31.264C112.032,430.944,189.152,432,256.064,432c66.784,0,143.872-1.056,174.56-2.816 c30.688-2.08,45.76-6.56,59.648-31.264C504.704,373.504,512,330.688,512,256.192c0,0,0-0.096,0-0.16c0,0,0-0.064,0-0.096 C512,181.088,504.704,138.592,490.24,113.92z'/%3E%3Cpolygon style='fill:%23FAFAFA;' points='192,352 192,160 352,256 '/%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3Cg%3E%3C/g%3E%3C/svg%3E%0A");
+  }
+  .twitch-icon{
+    margin-right: 6px;
+    min-width: 42px;
+    height: 42px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM2NzNBQjc7IiBkPSJNNDgsMEwxNiw5NnYzNTJoMTI4djY0aDY0bDY0LTY0aDk2bDEyOC0xMzYuMzJWMEg0OHogTTQ2NCwyODhsLTg5LjYsOTZIMjYwLjkyOEwxOTIsNDM0LjE0NFYzODRIODAgICBWMzJoMzg0VjI4OHoiLz4KCTxyZWN0IHg9IjI0MCIgeT0iMTI4IiBzdHlsZT0iZmlsbDojNjczQUI3OyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjEyOCIvPgoJPHJlY3QgeD0iMzM2IiB5PSIxMjgiIHN0eWxlPSJmaWxsOiM2NzNBQjc7IiB3aWR0aD0iMzIiIGhlaWdodD0iMTI4Ii8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==")
+  }
+  .facebook-icon{
+    margin-right: 11px;
+    min-width: 34px;
+    height: 34px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("data:image/svg+xml,%3Csvg height='34pt' viewBox='0 0 512 512' width='34pt' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m483.738281 0h-455.5c-15.597656.0078125-28.24218725 12.660156-28.238281 28.261719v455.5c.0078125 15.597656 12.660156 28.242187 28.261719 28.238281h455.476562c15.605469.003906 28.257813-12.644531 28.261719-28.25 0-.003906 0-.007812 0-.011719v-455.5c-.007812-15.597656-12.660156-28.24218725-28.261719-28.238281zm0 0' fill='%234267b2'/%3E%3Cpath d='m353.5 512v-198h66.75l10-77.5h-76.75v-49.359375c0-22.386719 6.214844-37.640625 38.316406-37.640625h40.683594v-69.128906c-7.078125-.941406-31.363281-3.046875-59.621094-3.046875-59 0-99.378906 36-99.378906 102.140625v57.035156h-66.5v77.5h66.5v198zm0 0' fill='%23fff'/%3E%3C/svg%3E");
+  }
+  .icon-dailymotion {
+    color: #3AADFB;
+    margin-right: 16px;
+    font-size: 35px;
+  }
+}
+.card-video-post-wrapper{
+  display: none;
 }
 .card-video-post{
   padding: 21px 21px 17px;
@@ -2728,13 +2775,11 @@ input.grayNormal {
     .card-title{
       color: #D1F4F3;
       font-size: 14px;
-      font-weight: 500;
       line-height: 25px;
     }
     .card-description{
       color: #FFFFFF;
       font-size: 20px;
-      font-weight: 500;
       line-height: 22px;
     }
   }
@@ -2754,7 +2799,7 @@ input.grayNormal {
       span{
         border: 2px solid #ffffff;
         color: #ffffff;
-        font-size: 26px;
+        font-size: 40px;
         border-radius: 50%;
         padding: 2px;
       }
@@ -2782,6 +2827,23 @@ input.grayNormal {
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
+  .section-background{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: transform 0.3s;
+    background: #4E5766;
+    &.animation-bg{
+      transform:translatey(100%);
+    }
+    &.animation-bg-reverse{
+      transform:translatey(0) !important;
+    }
+  }
   .section-heading{
     display: flex;
     flex-direction: column;
@@ -2792,25 +2854,23 @@ input.grayNormal {
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #D5D9E1;
+      color: #ffffff;
       font-size: 34px;
-      font-weight: 500;
       line-height: 41px;
       border-radius: 50%;
       border:4px solid #D5D9E1;
       margin-bottom: 18px;
     }
     .title{
-      color: #D5D9E1;
+      color: #ffffff;
       font-size: 29px;
-      font-weight: 500;
       line-height: 25px;
       margin-bottom: 5px;
     }
     .description{
       color: #D5D9E1;
       font-size: 17px;
-      font-weight: 500;
+      font-weight: 400;
       line-height: 25px;
       margin-bottom: 20px;
     }
@@ -2838,8 +2898,8 @@ input.grayNormal {
 
       .fab, .icon{ color:#C1C8D6;}
       .fa-youtube { font-size: 40px; }
-      .fa-facebook { font-size: 34px; }
-      .fa-twitch { font-size: 41px; }
+      .icon-facebook-official { font-size: 40px; }
+      .icon-twitch-3 { font-size: 38px; }
       .icon-dailymotion { font-size: 35px; }
 
       &.active{
@@ -2920,12 +2980,15 @@ input.grayNormal {
     font-size: 17px;
     display: inline-block;
     padding: 20px 25px;
-    font-weight: 400;
     border-radius: 6px;
     line-height: 21px;
     text-align: center;
     background: #4E5766;
     color: #ffffff;
+    &:hover{
+      text-decoration: none;
+      background: darken(#4E5766,10%);
+    }
   }
 }
 .section-flashNotification{
@@ -2968,6 +3031,15 @@ input.grayNormal {
   }
 }
 .section-video-post-secondary:not(.background-video-post) {
+
+  .section-heading{
+    .numbering{
+      color: #D5D9E1;
+    }
+    .title{
+      color: #D5D9E1;
+    }
+  }
   .labelFieldsDisabled{
     pointer-events: none;
     *, input::placeholder  {
@@ -2987,6 +3059,9 @@ input.grayNormal {
 }
 
 .section-video-post-secondary{
+  .section-background{
+    transform:translatey(-100%);
+  }
   .labelFields{
     .hasNumber{
       padding-right: 165px;
@@ -2998,14 +3073,13 @@ input.grayNormal {
 }
 
 .section-video-post.background-video-post{
-  background: #4E5766;
   .video-players-list:not(.active){
     > .list-item {
       background: #ffffff;
 
       .fa-youtube { color: #FF0000; }
-      .fa-facebook { color: #4267B2; }
-      .fa-twitch { color: #6441A4 ; }
+      .icon-facebook-official { color: #4267B2; }
+      .icon-twitch-3{ color: #6441A4 ; }
       .icon-dailymotion { color: #3AADFB; }
 
     }
@@ -3036,3 +3110,6 @@ input.grayNormal {
     color: #31B4B0;
   }
 }
+
+
+

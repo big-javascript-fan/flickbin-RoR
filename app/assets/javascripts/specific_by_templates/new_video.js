@@ -82,7 +82,7 @@ $(function() {
     }
 
     $('.video-players-list .list-item').each(function (i, elem) {
-      if (elem.dataset.media === videoSource) {
+      if (elem.dataset.media === videoSource && videoUrl.length > 10) {
         $(elem).addClass('active');
         $('.video-players-list').addClass('active');
         $('#nextstep').removeClass('disabled');
@@ -90,6 +90,7 @@ $(function() {
         $(elem).removeClass('active');
       }
     });
+
     if(!$('.video-players-list .list-item').hasClass('active')){
       $('.video-players-list').removeClass('active');
       $('#nextstep').addClass('disabled');
@@ -100,6 +101,8 @@ $(function() {
     if(!$(this).hasClass('disabled')){
       $('.section-video-post-first').removeClass('background-video-post');
       $('.section-video-post-secondary').addClass('background-video-post');
+      $('.section-video-post-first .section-background').addClass('animation-bg');
+      $('.section-video-post-secondary .section-background').addClass('animation-bg-reverse');
       $('.video-players-list').removeClass('active');
       $('.section-video-post-first .labelFields').addClass('labelFieldsChecked');
     }
@@ -198,6 +201,8 @@ $(function() {
       url: '/api/v1/social_networks',
       data: { source: source, video_url: video_url }
     }).done(function(response, statusText, xhr) {
+
+
       if(response.hasOwnProperty('error')) {
         var errorMsg = `
           <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
@@ -207,7 +212,7 @@ $(function() {
         `
 
         $('.leftPanel-videoPost').removeClass('leftPanel-videoPost-active');
-        $('.card-video-post').addClass('card-video-post-hide')
+        $('.card-video-post-wrapper').hide();
         $('#video_url').before(errorMsg);
         $('#nextstep').addClass('disabled');
         $('.videoUrlField').addClass('errorMsg');
@@ -231,7 +236,9 @@ $(function() {
           </div>
         `
         $('.leftPanel-videoPost').addClass('leftPanel-videoPost-active');
-        $('.card-video-post').removeClass('card-video-post-hide').html(videoPreview);
+        $('.card-video-post').html(videoPreview);
+        $('.card-video-post-wrapper').slideDown(500)
+
       }
 
       apiRequestInProgress = false;

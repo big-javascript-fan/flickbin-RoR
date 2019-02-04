@@ -25,7 +25,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-facebook-official {
+  &:before {
+    content: $icon-facebook-official;
+  }
+}
 .icon-chevron-down {
   &:before {
     content: $icon-chevron-down;
@@ -39,6 +43,11 @@
 .icon-check {
   &:before {
     content: $icon-check;
+  }
+}
+.icon-twitch-3 {
+  &:before {
+    content: $icon-twitch-3;
   }
 }
 .icon-twitch {
@@ -108,4 +117,5 @@
     content: $icon-play_arrow;
   }
 }
+
 

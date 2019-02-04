@@ -6,77 +6,84 @@
       <span class="offCanvasBar">&nbsp;</span>
       <span class="offCanvasBar">&nbsp;</span>
     </button>
-
     <%= link_to "flickbin", root_path, class: "brand" %>
     <%= render 'partials/trending_tags_bar' %>
   </aside>
   <div class="container-video-post">
-    <div class="card card-video-post card-video-post-hide"></div>
+    <div class="card-video-post-wrapper">
+      <div class="card card-video-post"></div>
+    </div>
     <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>
       <section class="section-video-post background-video-post section-video-post-first">
-        <div class="section-heading">
-          <div class="numbering">1</div>
-          <h2 class="title">
-            To Post a Video, First Enter a URL
-          </h2>
-          <p class="description">by pasting a web address from one of these websites</p>
-        </div>
-        <div class="section-body">
-          <ul class="video-players-list">
-            <li class="list-item" data-media="youtube"><i class="fab fa-youtube"></i></li>
-            <li class="list-item" data-media="facebook"><i class="fab fa-facebook"></i></li>
-            <li class="list-item" data-media="twitch"><i class="fab fa-twitch"></i></li>
-            <li class="list-item" data-media="dailymotion"><span class="icon icon-dailymotion"></span></li>
-          </ul>
-          <div class="labelFields hasNumberInside videoUrlField <%= 'errorMsg' if @video.errors.present? %>">
-            <%= f.label :url, 'Enter Web Address Here' %>
-            <span class="ovalShape">1</span>
-            <span class="ovalShape ovalShapeCheked icon-check"></span>
-            <% if @existing_video.present? %>
-              <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-              <div class="validationContent largeTooltip" existing_video='true'>Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.</div>
-            <% elsif @invalid_video_url.present? %>
-              <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-              <div class="validationContent largeTooltip">
-                <%= @video.errors.messages[:invalid_url].first %>
-              </div>
-            <% end %>
-            <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l29' %>
-            <div id="nextstep" class="button-video button-video-nextstep disabled">NEXT STEP</div>
+        <div class="section-background"></div>
+        <div class="section-foreground">
+          <div class="section-heading">
+            <div class="numbering">1</div>
+            <h2 class="title">
+              To Post a Video, First Enter a URL
+            </h2>
+            <p class="description">by pasting a web address from one of these websites</p>
           </div>
-          <div class="section-hint">
-            Now add a tag so people can find your video!
-            <div class="icon icon-chevron-down"></div>
+          <div class="section-body">
+            <ul class="video-players-list">
+              <li class="list-item" data-media="youtube"><i class="fab fa-youtube"></i></li>
+              <li class="list-item" data-media="facebook"><i class="icon icon-facebook-official"></i></li>
+              <li class="list-item" data-media="twitch"><i class="icon icon-twitch-3"></i></li>
+              <li class="list-item" data-media="dailymotion"><span class="icon icon-dailymotion"></span></li>
+            </ul>
+            <div class="labelFields hasNumberInside videoUrlField <%= 'errorMsg' if @video.errors.present? %>">
+              <%= f.label :url, 'Enter Web Address Here' %>
+              <span class="ovalShape">1</span>
+              <span class="ovalShape ovalShapeCheked icon-check"></span>
+              <% if @existing_video.present? %>
+                <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+                <div class="validationContent largeTooltip" existing_video='true'>Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.</div>
+              <% elsif @invalid_video_url.present? %>
+                <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+                <div class="validationContent largeTooltip">
+                  <%= @video.errors.messages[:invalid_url].first %>
+                </div>
+              <% end %>
+              <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l29' %>
+              <div id="nextstep" class="button-video button-video-nextstep disabled">NEXT STEP</div>
+            </div>
+            <div class="section-hint">
+              Now add a tag so people can find your video!
+              <div class="icon icon-chevron-down"></div>
+            </div>
           </div>
         </div>
       </section>
       <section class="section-video-post section-video-post-secondary">
-        <div class="section-heading">
-          <div class="numbering">2</div>
-          <h2 class="title">
-            To Post a Video, First Enter a URL
-          </h2>
-          <p class="description">by pasting a web address from one of these websites</p>
-        </div>
-        <div class="section-body">
-          <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled">
-            <%= f.label :tag_name, 'Select One Tag' %>
-            <span class="ovalShape">2</span>
-            <div class="dropdownItemListOuter" style="display: none;">
-              <ul class="dropdownItemList"></ul>
-              <div class="createTagBtnHolder"></div>
+        <div class="section-background"></div>
+        <div class="section-foreground">
+          <div class="section-heading">
+            <div class="numbering">2</div>
+            <h2 class="title">
+              To Post a Video, First Enter a URL
+            </h2>
+            <p class="description">by pasting a web address from one of these websites</p>
+          </div>
+          <div class="section-body">
+            <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled">
+              <%= f.label :tag_name, 'Select One Tag' %>
+              <span class="ovalShape">2</span>
+              <div class="dropdownItemListOuter" style="display: none;">
+                <ul class="dropdownItemList"></ul>
+                <div class="createTagBtnHolder"></div>
+              </div>
+              <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+              <div class="validationContent largeTooltip">You can use only letters & numbers</div>
+              <span class="rightNumber"></span>
+              <%= f.text_field :tag_name, maxlength: AppConstants::MAX_TAG_TITLE_LENGTH,
+                               placeholder: 'Add an Existing Tag or Create a New One',
+                               class: "block hasNumber" %>
+              <%= f.hidden_field :tag_id %>
+
             </div>
-            <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-            <div class="validationContent largeTooltip">You can use only letters & numbers</div>
-            <span class="rightNumber"></span>
-            <%= f.text_field :tag_name, maxlength: AppConstants::MAX_TAG_TITLE_LENGTH,
-                             placeholder: 'Add an Existing Tag or Create a New One',
-                             class: "block hasNumber" %>
-            <%= f.hidden_field :tag_id %>
+            <%= f.submit 'Post Video', id: 'post_video', class: "button-video button-video-post disabled", disabled: "disabled"%>
 
           </div>
-          <%= f.submit 'Post Video', id: 'post_video', class: "button-video button-video-post disabled", disabled: "disabled"%>
-
         </div>
       </section>
   <% end %>

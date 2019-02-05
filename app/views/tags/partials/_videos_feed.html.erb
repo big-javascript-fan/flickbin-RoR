@@ -11,9 +11,9 @@
         <% elsif video.source == 'facebook' %>
           <span class="icon facebook-icon"></span>
         <% elsif video.source == 'daily_motion' %>
-          <span class="icon icon-dailymotion"></span>
+          <span class="icon dailymotion-icon"></span>
         <% elsif video.source == 'twitch' %>
-          <span class="icon twitch-icon"></span>
+          <span class="icon fab fa-twitch"></span>
         <% end %>
         <%= link_to video.title, video_path(video), class: "descText" %>
       </div>
@@ -22,6 +22,15 @@
       <div class="card-body card-body-newest">
         <div><span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span></div>
         <%= link_to video_path(video), class: "descText" do %>
+          <% if video.source == 'youtube' %>
+            <span class="icon youtube-icon"></span>
+          <% elsif video.source == 'facebook' %>
+            <span class="icon facebook-icon"></span>
+          <% elsif video.source == 'daily_motion' %>
+            <span class="icon dailymotion-icon"></span>
+          <% elsif video.source == 'twitch' %>
+            <span class="icon fab fa-twitch"></span>
+          <% end %>
           <%= video.title %>
         <% end %>
       </div>
@@ -62,9 +71,9 @@
            <% elsif video.source == 'facebook' %>
              <span class="icon facebook-icon"></span>
            <% elsif video.source == 'daily_motion' %>
-             <span class="icon icon-dailymotion"></span>
+             <span class="icon dailymotion-icon"></span>
            <% elsif video.source == 'twitch' %>
-             <span class="icon twitch-icon"></span>
+             <span class="icon fab fa-twitch"></span>
            <% end %>
            </div>
           <div class="card-posted">posted by

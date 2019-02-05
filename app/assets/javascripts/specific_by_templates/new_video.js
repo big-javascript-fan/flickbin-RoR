@@ -151,7 +151,6 @@ $(function() {
           dropdownBuilder(response, query);
         });
       } else {
-        $(this).removeClass('hasBorder')
         $('.dropdownItemListOuter').hide();
       }
     } else if(query.length > 0) {
@@ -161,6 +160,7 @@ $(function() {
     } else {
       $('.tagNameField.errorMsg').removeClass('errorMsg');
       $('.dropdownItemListOuter').hide();
+      $(this).removeClass('hasBorder');
     }
   });
 

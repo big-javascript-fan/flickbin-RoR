@@ -25,6 +25,12 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.icon-twitch-bold {
+  &:before {
+    content: $icon-twitch-bold;
+  }
+}
 .icon-facebook-official {
   &:before {
     content: $icon-facebook-official;
@@ -43,6 +49,11 @@
 .icon-check {
   &:before {
     content: $icon-check;
+  }
+}
+.icon-dailymotion {
+  &:before {
+    content: $icon-dailymotion;
   }
 }
 .icon-twitch-3 {
@@ -82,11 +93,6 @@
     color: rgb(250, 250, 250);
   }
 }
-.icon-dailymotion {
-  &:before {
-    content: $icon-dailymotion;
-  }
-}
 .icon-arrow_drop_up {
   &:before {
     content: $icon-arrow_drop_up;
@@ -117,5 +123,6 @@
     content: $icon-play_arrow;
   }
 }
+
 
 

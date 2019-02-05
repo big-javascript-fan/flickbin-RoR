@@ -28,7 +28,7 @@
             <ul class="video-players-list">
               <li class="list-item" data-media="youtube"><i class="fab fa-youtube"></i></li>
               <li class="list-item" data-media="facebook"><i class="icon icon-facebook-official"></i></li>
-              <li class="list-item" data-media="twitch"><i class="icon icon-twitch-3"></i></li>
+              <li class="list-item" data-media="twitch"><i class="fab fa-twitch"></i></li>
               <li class="list-item" data-media="dailymotion"><span class="icon icon-dailymotion"></span></li>
             </ul>
             <div class="labelFields hasNumberInside videoUrlField <%= 'errorMsg' if @video.errors.present? %>">
@@ -60,9 +60,9 @@
           <div class="section-heading">
             <div class="numbering">2</div>
             <h2 class="title">
-              To Post a Video, First Enter a URL
+              Select a Tag for Your Post
             </h2>
-            <p class="description">by pasting a web address from one of these websites</p>
+            <p class="description">Tip: Tags are kind of like categories to help people find your post.</p>
           </div>
           <div class="section-body">
             <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled">

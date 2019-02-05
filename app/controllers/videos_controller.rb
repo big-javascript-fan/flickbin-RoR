@@ -16,6 +16,7 @@ class VideosController < ApplicationController
       @invalid_video_url = true
       render :new
     else
+      @second_step = true
       @existing_video = Video.active
                              .tagged
                              .includes(:tag)

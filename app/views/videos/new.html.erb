@@ -14,8 +14,13 @@
       <div class="card card-video-post"></div>
     </div>
     <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>
-      <section class="section-video-post background-video-post section-video-post-first">
-        <div class="section-background"></div>
+      <% if @second_step.blank? %>
+        <section class="section-video-post section-video-post-first background-video-post">
+          <div class="section-background"></div>
+      <% else %>
+        <section class="section-video-post section-video-post-first">
+          <div class="section-background animation-bg"></div>
+      <% end %>
         <div class="section-foreground">
           <div class="section-heading">
             <div class="numbering">1</div>
@@ -31,14 +36,17 @@
               <li class="list-item" data-media="twitch"><i class="fab fa-twitch"></i></li>
               <li class="list-item" data-media="dailymotion"><span class="icon icon-dailymotion"></span></li>
             </ul>
-            <div class="labelFields hasNumberInside videoUrlField <%= 'errorMsg' if @video.errors.present? %>">
+            <% if @second_step.present? %>
+              <div class="labelFields hasNumberInside videoUrlField labelFieldsChecked">
+            <% elsif @video.errors.present? %>
+              <div class="labelFields hasNumberInside videoUrlField errorMsg">
+            <% else %>
+              <div class="labelFields hasNumberInside videoUrlField">
+            <% end %>
               <%= f.label :url, 'Enter Web Address Here' %>
               <span class="ovalShape">1</span>
               <span class="ovalShape ovalShapeCheked icon-check"></span>
-              <% if @existing_video.present? %>
-                <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-                <div class="validationContent largeTooltip" existing_video='true'>Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.</div>
-              <% elsif @invalid_video_url.present? %>
+              <% if @invalid_video_url.present? %>
                 <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
                 <div class="validationContent largeTooltip">
                   <%= @video.errors.messages[:invalid_url].first %>
@@ -54,8 +62,14 @@
           </div>
         </div>
       </section>
-      <section class="section-video-post section-video-post-secondary">
-        <div class="section-background"></div>
+
+      <% if @second_step.present? %>
+        <section class="section-video-post section-video-post-secondary background-video-post">
+          <div class="section-background animation-bg-reverse"></div>
+      <% else %>
+        <section class="section-video-post section-video-post-secondary background-video-post">
+          <div class="section-background"></div>
+      <% end %>
         <div class="section-foreground">
           <div class="section-heading">
             <div class="numbering">2</div>
@@ -65,7 +79,7 @@
             <p class="description">Tip: Tags are kind of like categories to help people find your post.</p>
           </div>
           <div class="section-body">
-            <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled">
+            <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled <%= 'errorMsg' if @existing_video.present? %>">
               <%= f.label :tag_name, 'Select One Tag' %>
               <span class="ovalShape">2</span>
               <div class="dropdownItemListOuter" style="display: none;">
@@ -73,7 +87,13 @@
                 <div class="createTagBtnHolder"></div>
               </div>
               <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
-              <div class="validationContent largeTooltip">You can use only letters & numbers</div>
+              <% if @existing_video.present? %>
+                <div class="validationContent largeTooltip">
+                  Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.
+                </div>
+              <% else %>
+                <div class="validationContent largeTooltip"></div>
+              <% end %>
               <span class="rightNumber"></span>
               <%= f.text_field :tag_name, maxlength: AppConstants::MAX_TAG_TITLE_LENGTH,
                                placeholder: 'Add an Existing Tag or Create a New One',

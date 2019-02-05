@@ -142,7 +142,7 @@ $(function() {
     }
 
     if(regex.test(query)) {
-      $('.postVideoLastField').removeClass('errorMsg')
+      $('.tagNameField').removeClass('errorMsg')
       videoTagInput.filled = false;
 
       if(query.length > 0 && regex.test(query)) {
@@ -154,9 +154,10 @@ $(function() {
         $(this).removeClass('hasBorder')
         $('.dropdownItemListOuter').hide();
       }
-    }  else if(query.length > 0) {
+    } else if(query.length > 0) {
       $('.dropdownItemListOuter').hide();
-      $('.postVideoLastField').addClass('errorMsg')
+      $('.validationContent').text('You can use only letters & numbers')
+      $('.tagNameField').addClass('errorMsg')
     } else {
       $('.tagNameField.errorMsg').removeClass('errorMsg');
       $('.dropdownItemListOuter').hide();

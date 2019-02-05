@@ -92,11 +92,11 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
   end
 
-  def once_a_week_on_fridays(user, top_5_tags)
+  def weekly(user, top_5_tags)
     @user = user
     @top_5_tags = top_5_tags
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
-    mail(to: @user.email, subject: "There have been some whoppers this week.")
+    mail(to: @user.email, subject: "Trending Now on Flickbin.")
   end
 end

@@ -15,9 +15,10 @@
   wasp_post_job:
     every: 60m
     class: WaspPostJob
-  once_a_week_on_fridays_job:
-    cron: '0 9 * * 1'
-    class: OnceAWeekOnFridaysJob
+  weekly_mailing_job:
+    # cron: '0 9 * * 1'
+    class: WeeklyMailingJob
+    every: 1m
 
 :queues:
   - rank_calculation

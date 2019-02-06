@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123111702) do
+ActiveRecord::Schema.define(version: 20190205145544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 20190123111702) do
     t.index ["tag_id", "amount"], name: "index_contribution_points_on_tag_id_and_amount"
     t.index ["tag_id"], name: "index_contribution_points_on_tag_id"
     t.index ["user_id", "tag_id"], name: "index_contribution_points_on_user_id_and_tag_id"
+  end
+
+  create_table "exception_loggers", force: :cascade do |t|
+    t.text "message"
+    t.string "source"
+    t.string "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

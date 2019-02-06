@@ -16,6 +16,9 @@ class Api::V1::CommentsController < Api::V1::BaseController
     else
       render json: comment.errors.messages, status: 422
     end
+  rescue => e
+    ExceptionLogger.create(source: 'Api::V1::CommentsController#create', message: e, params: params)
+    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'Api::V1::CommentsController#create' })
   end
 
   def index

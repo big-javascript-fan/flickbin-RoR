@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Flickbin Team <noreply@flickbin.tv>'
+  default from: 'Team Flickbin <noreply@flickbin.tv>'
   layout 'mailer'
 
   def after_comment(video, comment)
@@ -98,5 +98,10 @@ class ApplicationMailer < ActionMailer::Base
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Trending Now on Flickbin.")
+  end
+
+  def exception_mailing(exception)
+    @exception = exception
+    mail(to: 'magistr.koma@gmail.com', subject: "Flickbin Exception")
   end
 end

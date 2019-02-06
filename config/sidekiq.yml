@@ -19,7 +19,7 @@
     cron: '0 5 * * 1'
     class: WeeklyMailingJob
   test_mailing_job:
-    cron: '47 9 * * 3'
+    cron: '30 8 * * 4'
     class: TestMailingJob
 
 :queues:

@@ -100,13 +100,14 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Trending Now on Flickbin.")
   end
 
-  def exception_mailing(exception)
-    @exception = exception
-    mail(to: 'magistr.koma@gmail.com', subject: "Flickbin Exception")
-  end
-
   def test_mailing
     @time_now  =Time.now
     mail(to: 'magistr.koma@gmail.com', subject: "Test mailing")
+  end
+
+  def notify_exception(exception, source)
+    @exception = exception
+    @source = source
+    mail(to: 'magistr.koma@gmail.com', subject: "Flickbin JS Exception")
   end
 end

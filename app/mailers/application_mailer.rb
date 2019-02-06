@@ -104,4 +104,9 @@ class ApplicationMailer < ActionMailer::Base
     @exception = exception
     mail(to: 'magistr.koma@gmail.com', subject: "Flickbin Exception")
   end
+
+  def test_mailing
+    @time_now  =Time.now
+    mail(to: 'magistr.koma@gmail.com', subject: "Test mailing")
+  end
 end

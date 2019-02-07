@@ -40,9 +40,6 @@ $(function() {
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
-      console.log($('body').height());
-      console.log($(this).height());
-      console.log('========================================');
 
       if(loading || lastPageReached) {
         return false;

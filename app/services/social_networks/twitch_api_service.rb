@@ -30,8 +30,9 @@ class SocialNetworks::TwitchApiService
       parsed_body = JSON.parse(response_body)
 
       api_data = {
-        title:  parsed_body['stream']['game'],
-        remote_cover_url: parsed_body['stream']['preview']['medium']
+        stream_available: parsed_body['stream'].present?,
+        title:  parsed_body.dig('stream', 'game'),
+        remote_cover_url: parsed_body.dig('stream', 'preview','medium' )
       }
     end
 

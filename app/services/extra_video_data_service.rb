@@ -72,6 +72,8 @@ class ExtraVideoDataService
     end
 
     api_data = SocialNetworks::TwitchApiService.new(video_id, type).call
+    return @video.errors.add(:invalid_url, 'Stream is not available to embed.') if api_data[:stream_available].blank?
+
     @video.kind_of = type
     @video.source = 'twitch'
     @video.source_id = video_id
@@ -88,6 +90,8 @@ class ExtraVideoDataService
     return @video.errors.add(:invalid_url, 'Oops, try a Daily Motion video link instead.') if video_id.blank?
 
     api_data = SocialNetworks::DailyMotionApiService.new(video_id).call
+    return @video.errors.add(:invalid_url, 'Video encoding is in progress. This video cannot be embedded.') if api_data[:channel].blank?
+
     @video.kind_of = 'video'
     @video.source = 'daily_motion'
     @video.source_id = video_id

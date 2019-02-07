@@ -20,7 +20,7 @@ $(function() {
       history.replaceState(null, null, ' ');
     }
   }
-});
+
   function sendExceptionToServer(error, url, line) {
     var source = url+' L:'+line
     $.post({
@@ -28,5 +28,5 @@ $(function() {
       data: { exception: error, source:  source}
     })
   }
-})
+});
 

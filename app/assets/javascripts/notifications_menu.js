@@ -43,8 +43,8 @@ $(function() {
 
       notificationsMenuHeader = notificationHeaderBuilder(response);
 
-      if(response.notifications.length > 0) {
-        $.each(response.notifications, function(index, notification) {
+      if(response.current_page_notifications.length > 0) {
+        $.each(response.current_page_notifications, function(index, notification) {
           ids.push(notification.id);
           notificationsMenuContent += notificationBodyBuilder(notification);
         });

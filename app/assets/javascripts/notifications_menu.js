@@ -155,7 +155,7 @@ function notificationBodyBuilder(notification) {
     `
   } else if(notification.category == 'top_1_contributor') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/tags/${notification.tag.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -167,7 +167,7 @@ function notificationBodyBuilder(notification) {
             Flickbear says you're amazing!
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'top_3_contributors') {
     notificationsMenuContent += `

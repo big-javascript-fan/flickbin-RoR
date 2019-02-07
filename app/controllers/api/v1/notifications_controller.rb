@@ -3,6 +3,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
 
   def index
     notifications = current_user.notifications
+                                .limit(15)
                                 .order(created_at: :desc)
                                 .page(params[:page])
                                 .per(3)

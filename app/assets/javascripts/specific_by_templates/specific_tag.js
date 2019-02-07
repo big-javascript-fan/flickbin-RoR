@@ -72,7 +72,6 @@ $(function() {
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
-
           if(tagVideos.length > 0) {
             $.each(tagVideos, function(index, video) {
               videosContent += `
@@ -82,7 +81,11 @@ $(function() {
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                       <div class="card-cover">
-                        <span ><img src="https://fakeimg.pl/34x34/"></span>${video.title}
+                        ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                        ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                        ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                        ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
+                        ${video.title}
                        </div>
                     </a>
                     </div>
@@ -93,6 +96,10 @@ $(function() {
                 videosContent += `
                       <span class="time">${video.post_time} ago</span>
                       <a class="descText" href="/videos/${video.slug}">
+                        ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                        ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                        ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                        ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
                         ${video.title}
                       </a>
                   `
@@ -112,6 +119,10 @@ $(function() {
                             <span class="icon fas fa-comment-alt"></span>
                             ${video.comments_count}
                           </a>
+                          ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                          ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                          ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                          ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
                         </div>
                         <div class="card-posted">posted by
                           <span>
@@ -119,7 +130,6 @@ $(function() {
                           </span>
                         </div>
                       </div>
-
                   `
               }
               `

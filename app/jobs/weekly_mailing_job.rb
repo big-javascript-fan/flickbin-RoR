@@ -6,5 +6,8 @@ class WeeklyMailingJob < ApplicationJob
     User.where.not(role: 'dummy').find_each do |user|
       ApplicationMailer::weekly_mailing(user, top_5_tags).deliver_now
     end
+  rescue => e
+    ExceptionLogger.create(source: 'WeeklyMailingJob#perform', message: e)
+    ExceptionNotifier.notify_exception(e, data: { source: 'WeeklyMailingJob#perform' })
   end
 end

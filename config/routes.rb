@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      namespace :exceptions do
+        post '/', action: :create
+      end
+
       scope module: :users do
         get 'users/:channel_slug', action: :show
 

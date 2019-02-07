@@ -1,4 +1,6 @@
 $(function() {
+  lastPageReached = false;
+  nextPageNumber = 2;
   tagSlug = $('.titleSpecific').attr('slug');
   sortBy = '';
   if($('.video-feed').attr('video_ids').lenght > 0) {
@@ -17,7 +19,8 @@ $(function() {
 
     $('a.filter').on('click', function(e) {
       e.preventDefault();
-
+      lastPageReached = false;
+      nextPageNumber = 2;
       sortBy = $(this).attr('sort_by');
       $('.filter').removeClass('current');
       $(this).addClass('current');
@@ -34,11 +37,12 @@ $(function() {
   }
   function infiniteScrollForVideos() {
     var loading = false;
-    var lastPageReached = false;
-    var nextPageNumber = 2;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
+      console.log($('body').height());
+      console.log($(this).height());
+      console.log('========================================');
 
       if(loading || lastPageReached) {
         return false;

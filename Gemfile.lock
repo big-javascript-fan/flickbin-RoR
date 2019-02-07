@@ -146,6 +146,9 @@ GEM
     erubi (1.7.1)
     et-orbi (1.1.6)
       tzinfo
+    exception_notification (4.3.0)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     excon (0.62.0)
     execjs (2.7.0)
     faraday (0.15.4)
@@ -401,6 +404,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   devise
   dotenv-rails
+  exception_notification
   faker!
   fog-aws
   friendly_id (~> 5.2.0)

@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :prepare_exception_notifier
   layout :layout_by_resource
 
   private
+
+  def prepare_exception_notifier
+    request.env["exception_notifier.exception_data"] = {
+      current_user: current_user&.to_json
+    }
+  end
 
   def layout_by_resource
     devise_controller? ? 'devise' : 'application'

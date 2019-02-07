@@ -1,6 +1,6 @@
 <% if @video.kind_of == 'video' %>
   <iframe
-    src="https://player.twitch.tv/?autoplay=true&muted=false&video=v<%= @video.source_id %>"
+    src="https://player.twitch.tv/?video=v<%= @video.source_id %>&autoplay=true"
     height="600"
     width="800"
     frameborder="0"
@@ -9,7 +9,7 @@
   </iframe>
 <% elsif @video.kind_of == 'clip' %>
   <iframe
-    src="https://clips.twitch.tv/embed?autoplay=true&muted=false&clip=<%= @video.source_id %>"
+    src="https://clips.twitch.tv/embed?clip=<%= @video.source_id %>&autoplay=true"
     height="600"
     width="800"
     frameborder="0"
@@ -18,7 +18,7 @@
   </iframe>
 <% elsif @video.kind_of == 'stream' %>
   <iframe
-    src="https://player.twitch.tv/?autoplay=true&muted=false&channel=<%= @video.source_id %>"
+    src="https://player.twitch.tv/?channel=<%= @video.source_id %>&autoplay=true"
     height="600"
     width="800"
     frameborder="0"

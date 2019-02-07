@@ -11,6 +11,19 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
   onboardCloseClick();
+  textareaAutoheight();
+
+
+  function textareaAutoheight(){
+    $('.autoresize').on('input keyup', function() {
+      var paddingTop = $(this).css('padding-top').replace('px', ''),
+          paddingBottom = $(this).css('padding-bottom').replace('px', '');
+
+      $(this).css('height', '68px');
+      $(this).css('height', (this.scrollHeight) + 'px');
+    });
+  }
+
   if(window.location.hash == '#message') {
     window.scrollDownAnimation();
   } else if(window.location.hash == '#voting_button') {
@@ -157,17 +170,29 @@ $(function() {
 
     $('#message').keypress(function(e) {
       if(e.which == 13) {
-        var commentContent = '';
+        sendMessange(this, e)
+      }
+    });
+    $('#message-button').on('click', function(e){
+      console.log('asdasd');
+      e.preventDefault();
+      var message = $('#message');
+      sendMessange(message, e)
+    });
 
-        if($(this).attr('loginRequired')) {
-          window.location = '/users/sign_in'
-        } else {
-          $.post(`/api/v1/${videoSlug}/comments`, {
-            message: $(this).val()
-          }).then(function(response) {
-            var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
+    function sendMessange(elem, event) {
+      var commentContent = '';
 
-            commentContent += `
+      if($(elem).attr('loginRequired')) {
+        window.location = '/users/sign_in'
+      } else {
+        event.preventDefault();
+        $.post(`/api/v1/${videoSlug}/comments`, {
+          message: $(elem).val()
+        }).then(function(response) {
+          var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
+
+          commentContent += `
               <div class="commentEntity" comment_id="${response.id}">
                 <a href="#" class="commentorThumb">
                   <img src="${commentatorAvatar}">
@@ -184,13 +209,12 @@ $(function() {
               </div>
             `
 
-            $('.comments-feed').prepend(commentContent);
-            $('#message').val('');
-            $('.blankComments').remove();
-          });
-        }
+          $('.comments-feed').prepend(commentContent);
+          $('#message').val('');
+          $('.blankComments').remove();
+        });
       }
-    });
+    }
   }
 
   function replyCommentHandler() {

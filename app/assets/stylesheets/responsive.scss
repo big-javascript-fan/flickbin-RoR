@@ -34,10 +34,20 @@
 	.topContributorRankFirst span, .topContributorRank span {
     font-size: 18px;
     margin: 0 0 0 9px;
-}
+	}
+	.labelFields.vidioFieldOuter {
+		margin-bottom: 37px;
+		text-align: center;
+		.button-primary{
+			display: inline-block;
+			margin-top: 30px;
+			font-size: 15px;
+			line-height: 18px;
+			padding: 14px 19px;
+		}
+	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
-	
 }
 @media (min-width: 768px) {
 	.hideOnDesktop { display: none !important;}
@@ -170,6 +180,7 @@
 		}
 		.brand{
 			background: url('/images/logo_placement.png') no-repeat;
+			background-size: cover;
 		}
 	}
 
@@ -729,7 +740,8 @@
 					margin: 0;
 				}
 			}
-			.card-cover{display: -webkit-box;
+			.card-cover{
+				display: -webkit-box;
 				display: -ms-flexbox;
 				display: flex;
 				-webkit-box-align: center;

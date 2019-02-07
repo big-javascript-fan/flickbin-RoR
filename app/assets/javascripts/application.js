@@ -16,5 +16,4 @@ $(function() {
       history.replaceState(null, null, ' ');
     }
   }
-})
-
+});

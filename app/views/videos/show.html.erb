@@ -136,10 +136,11 @@
       <h4 class="commentTitle">Discuss with the Community</h4>
       <div class="labelFields vidioFieldOuter">
         <% if current_user.present? %>
-          <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
+          <%= text_area_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel autoresize", row: '1' %>
         <% else %>
-          <%= text_field_tag :message, nil, placeholder: 'Enter comment', loginRequired: true, class: "block noInsideLabel" %>
+          <%= text_area_tag :message, nil, placeholder: 'Enter comment', loginRequired: true, class: "block noInsideLabel autoresize", row: '1' %>
         <% end %>
+        <a class="button-primary" id="message-button" href="#">POST COMMENT</a>
       </div>
 
       <div class="comments-feed">

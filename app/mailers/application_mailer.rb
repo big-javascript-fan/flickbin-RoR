@@ -1,5 +1,13 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Team Flickbin <noreply@flickbin.tv>'
+  case Rails.env
+  when 'production'
+    default from: 'Team Flickbin <noreply@flickbin.tv>'
+  when 'staging'
+    default from: 'Staging Team Flickbin <noreply@flickbin.tv>'
+  else
+    default from: 'Development Team Flickbin <noreply@flickbin.tv>'
+  end
+
   layout 'mailer'
 
   def after_comment(video, comment)

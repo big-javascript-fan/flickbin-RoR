@@ -202,8 +202,6 @@ $(function() {
       url: '/api/v1/social_networks',
       data: { source: source, video_url: video_url }
     }).done(function(response, statusText, xhr) {
-
-
       if(response.hasOwnProperty('error')) {
         var errorMsg = `
           <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
@@ -229,7 +227,7 @@ $(function() {
           </div>
           <div class="card-body">
             <div class="card-title">
-              Posting YouTube Video
+              Posting ${source} Video
             </div>
             <div class="card-description">
               ${response.title}

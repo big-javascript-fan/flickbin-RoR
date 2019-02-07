@@ -12,7 +12,8 @@ class SocialNetworks::DailyMotionApiService
 
     data = {
       title:  parsed_body['title'],
-      remote_cover_url: "https://www.dailymotion.com/thumbnail/video/#{@video_id}"
+      remote_cover_url: "https://www.dailymotion.com/thumbnail/video/#{@video_id}",
+      channel: parsed_body['channel']
     }
 
     data

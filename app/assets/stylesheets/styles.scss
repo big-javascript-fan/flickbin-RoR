@@ -437,6 +437,7 @@ select:actived {
   background-color: #fafafa;
   padding: 0;
   min-width: 166px;
+  z-index: 3;
 }
 @media(max-width: 767px){
   .wrapper {

@@ -169,15 +169,17 @@ $(function() {
     });
 
     $('#message').keypress(function(e) {
-      if(e.which == 13) {
-        sendMessange(this, e)
+      if(e.which == 13){
+        e.preventDefault();
+        if($( window ).width() > 940){
+          sendMessange(this, e)
+        }
       }
     });
     $('#message-button').on('click', function(e){
-      console.log('asdasd');
       e.preventDefault();
       var message = $('#message');
-      sendMessange(message, e)
+      sendMessange(message, e);
     });
 
     function sendMessange(elem, event) {
@@ -185,8 +187,7 @@ $(function() {
 
       if($(elem).attr('loginRequired')) {
         window.location = '/users/sign_in'
-      } else {
-        event.preventDefault();
+      } else if(!!$(elem).val()) {
         $.post(`/api/v1/${videoSlug}/comments`, {
           message: $(elem).val()
         }).then(function(response) {
@@ -213,6 +214,8 @@ $(function() {
           $('#message').val('');
           $('.blankComments').remove();
         });
+      } else{
+        console.log('false');
       }
     }
   }

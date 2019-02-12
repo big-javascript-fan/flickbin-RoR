@@ -9,7 +9,6 @@ module AppConstants
   MAX_CHANNEL_NAME_LENGTH = 30
   MAX_CHANNEL_DESCRIPTION_LENGTH = 160
   MAX_COMMENT_MESSAGE_LENGTH = 1000
-  NOT_RATED_USER_EMAILS = %w(
-    bleachtree@gmail.com
-  )
+  NOT_RATED_USER_EMAILS = %w(bleachtree@gmail.com)
+  JS_EXCEPTION_RECIPIENTS = %w(magistr.koma@gmail.com bleachtree@gmail.com)
 end

@@ -113,9 +113,9 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: 'magistr.koma@gmail.com', subject: "Test mailing")
   end
 
-  def notify_exception(exception, source)
+  def notify_exception(recipient, exception, source)
     @exception = exception
     @source = source
-    mail(to: 'magistr.koma@gmail.com', subject: "Flickbin JS Exception")
+    mail(to: recipient, subject: "Flickbin JS Exception")
   end
 end

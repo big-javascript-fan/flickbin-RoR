@@ -4,11 +4,19 @@
 //= require notifications_menu
 //= require specific_by_templates/trending_tags_bar
 
-$(function() {
-  window.onerror = function(error, url, line) {
-    sendExceptionToServer(error, url, line)
-  };
+window.onerror = function(error, url, line) {
+  sendExceptionToServer(error, url, line)
+};
 
+function sendExceptionToServer(error, url, line) {
+  var source = url+' L:'+line
+  $.post({
+    url: '/api/v1/exceptions',
+    data: { exception: error, source:  source}
+  })
+}
+
+$(function() {
   window.scrollDownAnimation =  function () {
     var elementForScrollDown = $(window.location.hash);
 
@@ -19,14 +27,6 @@ $(function() {
       elementForScrollDown.addClass('is-fade');
       history.replaceState(null, null, ' ');
     }
-  }
-
-  function sendExceptionToServer(error, url, line) {
-    var source = url+' L:'+line
-    $.post({
-      url: '/api/v1/exceptions',
-      data: { exception: error, source:  source}
-    })
   }
 });
 

@@ -73,21 +73,21 @@ class ApplicationMailer < ActionMailer::Base
 
   def three_days_after_confirmation(user)
     @user = user
-    return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if user.confirmed_at.blank? || @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
   end
 
   def four_days_after_confirmation(user)
     @user = user
-    return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if user.confirmed_at.blank? || @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
   end
 
   def five_days_after_confirmation(user)
     @user = user
-    return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
+    return if user.confirmed_at.blank? || @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
   end

@@ -4,7 +4,7 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column :email
+    # column :email
     toggle_bool_column :allowed_to_send_notifications
     column :role do |user|
       case user.role
@@ -27,4 +27,6 @@ ActiveAdmin.register User do
     column :updated_at
     actions
   end
+
+  filter :email
 end

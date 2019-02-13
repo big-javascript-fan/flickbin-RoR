@@ -6,8 +6,8 @@ class Api::V1::SocialNetworksController < Api::V1::BaseController
 
     if params[:source] == 'youtube' && api_data[:embeddable].blank?
       render json: { error: 'This video cannot be embedded.' }
-    elsif params[:source] == 'twitch' && api_data[:stream_available].blank?
-      render json: { error: 'Stream is not available to embed.' }
+    elsif params[:source] == 'twitch' && api_data[:type] == 'stream' && api_data[:stream_available].blank?
+      render json: { error: 'This stream is not available to embed.' }
     elsif params[:source] == 'dailymotion' && api_data[:channel].blank?
       render json: { error: 'Video encoding is in progress. This video cannot be embedded.' }
     else

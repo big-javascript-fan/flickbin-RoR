@@ -72,7 +72,9 @@ class ExtraVideoDataService
     end
 
     api_data = SocialNetworks::TwitchApiService.new(video_id, type).call
-    return @video.errors.add(:invalid_url, 'Stream is not available to embed.') if api_data[:stream_available].blank?
+    if api_data[:type] == 'stream' && api_data[:stream_available].blank?
+      return @video.errors.add(:invalid_url, 'This stream is not available to embed.')
+    end
 
     @video.kind_of = type
     @video.source = 'twitch'

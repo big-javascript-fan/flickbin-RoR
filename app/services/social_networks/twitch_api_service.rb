@@ -12,6 +12,7 @@ class SocialNetworks::TwitchApiService
       parsed_body = JSON.parse(response_body)
 
       api_data = {
+        type: 'video',
         title:  parsed_body['title'],
         remote_cover_url: parsed_body['preview']
       }
@@ -21,6 +22,7 @@ class SocialNetworks::TwitchApiService
       parsed_body = JSON.parse(response_body)
 
       api_data = {
+        type: 'clip',
         title:  parsed_body['title'],
         remote_cover_url: parsed_body['preview_image']
       }
@@ -30,6 +32,7 @@ class SocialNetworks::TwitchApiService
       parsed_body = JSON.parse(response_body)
 
       api_data = {
+        type: 'stream',
         stream_available: parsed_body['stream'].present?,
         title:  parsed_body.dig('stream', 'game'),
         remote_cover_url: parsed_body.dig('stream', 'preview','medium' )

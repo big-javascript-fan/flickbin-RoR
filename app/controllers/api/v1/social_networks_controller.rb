@@ -4,7 +4,9 @@ class Api::V1::SocialNetworksController < Api::V1::BaseController
   def index
     api_data = get_api_data(params)
 
-    if params[:source] == 'youtube' && api_data[:embeddable].blank?
+    if api_data[:error].present?
+      render json: api_data
+    elsif params[:source] == 'youtube' && api_data[:embeddable].blank?
       render json: { error: 'This video cannot be embedded.' }
     elsif params[:source] == 'twitch' && api_data[:type] == 'stream' && api_data[:stream_available].blank?
       render json: { error: 'This stream is not available to embed.' }

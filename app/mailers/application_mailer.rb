@@ -83,21 +83,21 @@ class ApplicationMailer < ActionMailer::Base
     @user = user
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
-    mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
+    mail(to: @user.email, subject: "3 day: Try posting a video!")
   end
 
   def four_days_after_confirmation(user)
     @user = user
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
-    mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
+    mail(to: @user.email, subject: "4 day: Creating a Tag")
   end
 
   def five_days_after_confirmation(user)
     @user = user
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
-    mail(to: @user.email, subject: "Hello #{@user.channel_name}!")
+    mail(to: @user.email, subject: "5 day: Top Contributor, Your Pathway to Stardom on flickbin")
   end
 
   def weekly_mailing(user, top_5_tags)

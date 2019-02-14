@@ -14,6 +14,8 @@ RSpec.describe RecalculateVideosRankService do
       index.times { video.votes.create(voter_id: user.id, value: 1) }
     end
 
+    10.times { videos.first.votes.create(voter_id: user.id, value: 1, created_at: 8.days.ago) }
+
     RecalculateVideosRankService.new.call
     videos_sort_by_rank = Video.active
                                .tagged

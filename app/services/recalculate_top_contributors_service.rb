@@ -63,7 +63,7 @@ class RecalculateTopContributorsService
             category: 'top_3_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif [4, 5].include?(index) && contribution_points.size > 10
+        elsif [3, 4].include?(index) && contribution_points.size > 10
           next unless allowed_to_create_new_notification?(cp.user, 'top_5_contributors', cp.tag_id)
 
           Notification.new(
@@ -71,7 +71,7 @@ class RecalculateTopContributorsService
             category: 'top_5_contributors',
             event_object: { tag: cp.tag_id }
           )
-        elsif (6..10).include?(index) && contribution_points.size > 10
+        elsif (5..9).include?(index) && contribution_points.size > 10
           next unless allowed_to_create_new_notification?(cp.user, 'top_10_contributors', cp.tag_id)
 
           Notification.new(

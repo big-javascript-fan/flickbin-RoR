@@ -36,7 +36,7 @@ class Video < ApplicationRecord
   end
 
   def add_extra_video_data
-    ExtraVideoDataService.new(self).call
+    ExtraVideoDataService.new(self).call unless Rails.env.test?
   end
 
   def votes_amount

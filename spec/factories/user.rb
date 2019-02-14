@@ -14,6 +14,4 @@ FactoryBot.define do
     channel_description { 'Channel for rpsec tests' }
     confirmed_at { Time.now }
   end
-
-
 end

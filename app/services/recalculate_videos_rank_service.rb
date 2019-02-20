@@ -12,11 +12,11 @@ class RecalculateVideosRankService
 
 
       sorted_videos_for_tag.each do |video|
-        if rank == 1
-          top_1_video_in_tag_notification_handler(video)
-        elsif (2..10).include?(rank) && sorted_videos_for_tag.size > 10
-          top_10_videos_in_tag_notification_handler(video)
-        end
+        # if rank == 1
+        #   top_1_video_in_tag_notification_handler(video)
+        # elsif (2..10).include?(rank) && sorted_videos_for_tag.size > 10
+        #   top_10_videos_in_tag_notification_handler(video)
+        # end
 
         video.update_attribute(:rank, rank)
         rank += 1

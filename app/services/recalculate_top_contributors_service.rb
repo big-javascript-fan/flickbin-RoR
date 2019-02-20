@@ -88,11 +88,14 @@ class RecalculateTopContributorsService
   end
 
   def allowed_to_create_new_notification?(user, category, tag_id)
-    not_outdated_notifications_in_category = user.notifications
-                                                 .where(category: category)
-                                                 .where("event_object ->> 'tag' = '#{tag_id}'")
-                                                 .where("notifications.created_at BETWEEN '#{1.week.ago.to_s}' AND '#{Time.now}'")
+    already_notificated_categories = user.notifications
+                                         .where("event_object ->> 'tag' = '#{tag_id}'")
+                                         .pluck(:category)
 
-    not_outdated_notifications_in_category.present? ? false : true
+    positions = already_notificated_categories.map { |c| c[/(\d+)_contributor/, 1] }
+    top_position = positions.sort.first.to_i
+    new_position = category[/top_(\d+)/, 1].to_i
+
+    top_position > 0 && new_position >= top_position ? false : true
   end
 end

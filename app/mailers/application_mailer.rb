@@ -53,6 +53,14 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @contributor.email, subject: "You're in the running for top contributor")
   end
 
+  def kicked_out_of_top_contributor(tag, contributor)
+    @tag = tag
+    @contributor = contributor
+    return if @contributor.allowed_to_send_notifications.blank? || @contributor.receive_notification_emails.blank?
+
+    mail(to: @contributor.email, subject: "You’ve been kicked out as a top contributor")
+  end
+
   def top_1_video_in_tag(video)
     @video = video
     @tag = video.tag

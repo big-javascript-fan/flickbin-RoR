@@ -10,6 +10,7 @@ class Notification < ApplicationRecord
     'top_3_contributors',
     'top_5_contributors',
     'top_10_contributors',
+    'kicked_out_of_top_contributor',
     'top_1_video_in_tag',
     'top_10_videos_in_tag'
   ]

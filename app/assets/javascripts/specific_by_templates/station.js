@@ -49,6 +49,7 @@ $(function() {
         $.get(`/api/v1/users/${channelSlug}`, { page: nextPageNumber }).then(function(response) {
           var sidbarTags = response.sidebar_tags;
           var stationVideos = response.station_videos;
+          var currentUserStation = response.current_user_station;
           var sidbarTagsContent = '';
           var videosContent = '';
 
@@ -66,31 +67,52 @@ $(function() {
 
           if(stationVideos.length > 0) {
             $.each(stationVideos, function(index, video) {
-              videosContent += `
-                <li class="entityRow" slug="${video.slug}">
-                  <div class="entityCell thumbnailCell">
-                    <a class="stationThumbnailLink large" href="/videos/${video.slug}">
-                      <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    </a>
-                  </div>
-                  <div class="entityCellStation hasRemover">
-                    <span class="postTime">
-                      posted
-                      ${video.post_time} ago in
-                      <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
-                    </span>
-                    <a class="descText" href="/videos/${video.slug}">${video.title}</a>
-                    <div class="removerBar" id="${video.id}">
-                      <span class="removerBarTrack">Are you sure?
-                        <a data-remote="true" rel="nofollow" data-method="delete" href="/videos/${video.slug}">Yes</a>
-                        <a href="#" class="rejectDestroyVideo">No</a>
-                      </span>
-                      <a href="#" class="removeIcon">×</a>
+              if(currentUserStation) {
+                videosContent += `
+                  <li class="entityRow" slug="${video.slug}">
+                    <div class="entityCell thumbnailCell">
+                      <a class="stationThumbnailLink large" href="/videos/${video.slug}">
+                        <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
+                        <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
+                      </a>
                     </div>
-                  </div>
-                </li>
-              `
+                    <div class="entityCellStation hasRemover">
+                      <span class="postTime">
+                        posted
+                        ${video.post_time} ago in
+                        <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
+                      </span>
+                      <a class="descText" href="/videos/${video.slug}">${video.title}</a>
+                      <div class="removerBar" id="${video.id}">
+                        <span class="removerBarTrack">Are you sure?
+                          <a data-remote="true" rel="nofollow" data-method="delete" href="/videos/${video.slug}">Yes</a>
+                          <a href="#" class="rejectDestroyVideo">No</a>
+                        </span>
+                        <a href="#" class="removeIcon">×</a>
+                      </div>
+                    </div>
+                  </li>
+                `
+              } else {
+                videosContent += `
+                  <li class="entityRow" slug="${video.slug}">
+                    <div class="entityCell thumbnailCell">
+                      <a class="stationThumbnailLink large" href="/videos/${video.slug}">
+                        <img alt="${video.title}" class="stationThumbnail large" src="${video.cover_url}">
+                        <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
+                      </a>
+                    </div>
+                    <div class="entityCellStation hasRemover">
+                      <span class="postTime">
+                        posted
+                        ${video.post_time} ago in
+                        <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
+                      </span>
+                      <a class="descText" href="/videos/${video.slug}">${video.title}</a>
+                    </div>
+                  </li>
+                `
+              }
             });
 
             $('ul.stationList').append(videosContent);

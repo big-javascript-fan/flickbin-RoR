@@ -1,7 +1,8 @@
 class Api::V1::Users::ShowSerializer < Api::V1::BaseSerializer
   include ActionView::Helpers::DateHelper
 
-  def initialize(sidebar_tags, videos)
+  def initialize(sidebar_tags, videos, options = {})
+    @options = options
     @sidebar_tags = sidebar_tags
     @videos = videos
   end
@@ -9,7 +10,8 @@ class Api::V1::Users::ShowSerializer < Api::V1::BaseSerializer
   def call
     Oj.dump(
       sidebar_tags: sidebar_tags_to_hash(@sidebar_tags),
-      station_videos: videos_to_hash(@videos)
+      station_videos: videos_to_hash(@videos),
+      current_user_station: @options[:current_user_station]
     )
   end
 

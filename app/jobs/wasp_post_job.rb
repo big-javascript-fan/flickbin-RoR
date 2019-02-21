@@ -8,5 +8,8 @@ class WaspPostJob < ApplicationJob
     })
 
     WaspPostService.new.call
+  rescue => e
+    ExceptionLogger.create(source: 'WaspPostJob#perform', message: e)
+    ExceptionNotifier.notify_exception(e, data: { source: 'WaspPostJob#perform' })
   end
 end

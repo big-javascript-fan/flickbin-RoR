@@ -24,6 +24,7 @@ class Api::V1::Tags::IndexSerializer < Api::V1::BaseSerializer
         id:             video.id,
         slug:           video.slug,
         title:          video.title,
+        source:         video.source,
         cover_url:      video.cover.url,
         rank:           video.rank,
         votes_amount:   number_with_delimiter(video.votes_amount),

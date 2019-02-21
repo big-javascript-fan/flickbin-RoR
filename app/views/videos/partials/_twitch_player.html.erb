@@ -1,18 +1,27 @@
 <% if @video.kind_of == 'video' %>
   <iframe
-    src="https://player.twitch.tv/?video=v<%= @video.source_id %>"
+    src="https://player.twitch.tv/?video=v<%= @video.source_id %>&autoplay=true"
     height="600"
     width="800"
-    frameborder="<frameborder>"
+    frameborder="0"
     scrolling="false"
     allowfullscreen="false">
   </iframe>
 <% elsif @video.kind_of == 'clip' %>
   <iframe
-    src="https://player.twitch.tv/?clip=<%= @video.source_id %>"
+    src="https://clips.twitch.tv/embed?clip=<%= @video.source_id %>&autoplay=true"
     height="600"
     width="800"
-    frameborder="<frameborder>"
+    frameborder="0"
+    scrolling="false"
+    allowfullscreen="false">
+  </iframe>
+<% elsif @video.kind_of == 'stream' %>
+  <iframe
+    src="https://player.twitch.tv/?channel=<%= @video.source_id %>&autoplay=true"
+    height="600"
+    width="800"
+    frameborder="0"
     scrolling="false"
     allowfullscreen="false">
   </iframe>

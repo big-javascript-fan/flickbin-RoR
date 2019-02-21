@@ -1,5 +1,13 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'Flickbin Team <noreply@flickbin.tv>'
+  case Rails.env
+  when 'production'
+    default from: 'Team Flickbin <noreply@flickbin.tv>'
+  when 'staging'
+    default from: 'Staging Team Flickbin <noreply@flickbin.tv>'
+  else
+    default from: 'Development Team Flickbin <noreply@flickbin.tv>'
+  end
+
   layout 'mailer'
 
   def after_comment(video, comment)
@@ -100,11 +108,22 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Top Contributor, Your Pathway to Stardom on flickbin")
   end
 
-  def once_a_week_on_fridays(user, top_5_tags)
+  def weekly_mailing(user, top_5_tags)
     @user = user
     @top_5_tags = top_5_tags
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
-    mail(to: @user.email, subject: "There have been some whoppers this week.")
+    mail(to: @user.email, subject: "Trending Now on Flickbin.")
+  end
+
+  def test_mailing
+    @time_now  =Time.now
+    mail(to: 'magistr.koma@gmail.com', subject: "Test mailing")
+  end
+
+  def notify_exception(recipient, exception, source)
+    @exception = exception
+    @source = source
+    mail(to: recipient, subject: "Flickbin JS Exception")
   end
 end

@@ -2,17 +2,35 @@
   <li class="card card-video-tags">
     <div class="card-media">
       <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
-        <%= image_tag(video.cover.url, alt: video.title, class: "tagThumbnail large") %>
+        <%= image_tag(video.cover.url.to_s, alt: video.title, class: "tagThumbnail large") %>
         <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
       <% end %>
       <div class="card-cover">
-        <span ><img src="https://fakeimg.pl/34x34/"></span><%= link_to video.title, video_path(video), class: "descText" %>
+        <% if video.source == 'youtube' %>
+          <span class="icon youtube-icon"></span>
+        <% elsif video.source == 'facebook' %>
+          <span class="icon facebook-icon"></span>
+        <% elsif video.source == 'daily_motion' %>
+          <span class="icon dailymotion-icon"></span>
+        <% elsif video.source == 'twitch' %>
+          <span class="icon fab fa-twitch"></span>
+        <% end %>
+        <%= link_to video.title, video_path(video), class: "descText" %>
       </div>
     </div>
     <% if params[:sort_by] == 'newest' %>
       <div class="card-body card-body-newest">
+        <div><span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span></div>
         <%= link_to video_path(video), class: "descText" do %>
-          <span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span>
+          <% if video.source == 'youtube' %>
+            <span class="icon youtube-icon"></span>
+          <% elsif video.source == 'facebook' %>
+            <span class="icon facebook-icon"></span>
+          <% elsif video.source == 'daily_motion' %>
+            <span class="icon dailymotion-icon"></span>
+          <% elsif video.source == 'twitch' %>
+            <span class="icon fab fa-twitch"></span>
+          <% end %>
           <%= video.title %>
         <% end %>
       </div>
@@ -26,13 +44,16 @@
 
             <div class="card-tags-id">#<%= index + 1 %></div>
             <% if current_user.present? %>
-              <div class="card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
+              <%= link_to video_path(video), class: "card-tags-like #{'active' if @current_user_voted_video_ids&.include?(video.id)}" do %>
+                <span class="icon icon-arrow_drop_up"></span>
+                <%= number_with_delimiter(video.votes_amount) %>
+              <% end %>
             <% else %>
-              <div class="card-tags-like" loginRequired='true'>
+              <%= link_to new_user_session_path(video_id: video.id, event: 'vote'), class: "card-tags-like" do %>
+                <span class="icon icon-arrow_drop_up"></span>
+                <%= number_with_delimiter(video.votes_amount) %>
+                <% end %>
             <% end %>
-              <span class="icon icon-arrow_drop_up"></span>
-              <%= number_with_delimiter(video.votes_amount) %>
-            </div>
 
             <% if current_user.present? %>
               <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
@@ -40,11 +61,20 @@
                 <%= video.comments_count %>
               <% end %>
             <% else %>
-              <%= link_to new_user_session_path(video_id: video.id), class: 'card-tags-comment' do %>
+              <%= link_to new_user_session_path(video_id: video.id, event: 'comment'), class: 'card-tags-comment' do %>
                 <span class="icon fas fa-comment-alt"></span>
                 <%= video.comments_count %>
               <% end %>
             <% end %>
+           <% if video.source == 'youtube' %>
+             <span class="icon youtube-icon"></span>
+           <% elsif video.source == 'facebook' %>
+             <span class="icon facebook-icon"></span>
+           <% elsif video.source == 'daily_motion' %>
+             <span class="icon dailymotion-icon"></span>
+           <% elsif video.source == 'twitch' %>
+             <span class="icon fab fa-twitch"></span>
+           <% end %>
            </div>
           <div class="card-posted">posted by
             <span>

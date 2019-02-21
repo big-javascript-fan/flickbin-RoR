@@ -25,6 +25,9 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
     else
       respond_with_navigational(resource.errors, status: :unprocessable_entity){ render :new }
     end
+  rescue => e
+    ExceptionLogger.create(source: 'Users::ConfirmationsController#show', message: e, params: params)
+    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'Users::ConfirmationsController#show' })
   end
 
   protected

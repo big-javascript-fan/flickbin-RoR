@@ -43,8 +43,8 @@ $(function() {
 
       notificationsMenuHeader = notificationHeaderBuilder(response);
 
-      if(response.notifications.length > 0) {
-        $.each(response.notifications, function(index, notification) {
+      if(response.current_page_notifications.length > 0) {
+        $.each(response.current_page_notifications, function(index, notification) {
           ids.push(notification.id);
           notificationsMenuContent += notificationBodyBuilder(notification);
         });
@@ -155,7 +155,7 @@ function notificationBodyBuilder(notification) {
     `
   } else if(notification.category == 'top_1_contributor') {
     notificationsMenuContent += `
-      <div class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/tags/${notification.tag.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>
@@ -167,7 +167,7 @@ function notificationBodyBuilder(notification) {
             Flickbear says you're amazing!
           </p>
         </div>
-      </div>
+      </a>
     `
   } else if(notification.category == 'top_3_contributors') {
     notificationsMenuContent += `
@@ -253,45 +253,6 @@ function notificationBodyBuilder(notification) {
 
   return notificationsMenuContent;
 }
-
-class Dropdown {
-  constructor(selector) {
-    this.selector = selector;
-  }
-
-  init() {
-    let data = document.querySelectorAll(this.selector);
-    let self = this;
-
-    data.forEach( (item, index) => {
-      document.addEventListener('click',function (e) {
-      if ( e.target === item ) {
-        self.toggle(item)
-      } else if(e.target.parentElement == item.nextElementSibling || e.target == item.nextElementSibling){
-        e.stopPropagation();
-      } else {
-        self.hide(item)
-      }
-    })
-  })
-  }
-
-  toggle(item) {
-    item.parentElement.classList.toggle('show');
-    item.nextElementSibling.classList.toggle('show');
-  }
-  hide(item) {
-    item.parentElement.classList.remove('show');
-    item.nextElementSibling.classList.remove('show');
-  }
-}
-
-let dropdown = new Dropdown('[data-toggle]');
-
-dropdown.init();
-
-
-
 
 
 

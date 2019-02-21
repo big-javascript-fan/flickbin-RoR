@@ -1,4 +1,6 @@
 $(function() {
+  var apiRequestInProgress = false;
+
   videoUrlInput = {
     parentDiv: $('#video_url').parent(),
     valid: false,
@@ -13,7 +15,6 @@ $(function() {
       submitButton.validate();
     }
   };
-
   videoTagInput = {
     parentDiv: $('#video_tag_name').parent(),
     valid: false,
@@ -27,6 +28,7 @@ $(function() {
       }
       submitButton.validate();
     }
+
   };
 
   submitButton = {
@@ -34,22 +36,34 @@ $(function() {
     validate: function() {
       if(videoUrlInput.valid && videoTagInput.valid) {
         this.element.prop( "disabled", false );
+        this.element.removeClass("disabled");
       } else {
+        this.element.addClass("disabled");
         this.element.prop( "disabled", true );
       }
     }
-  }
+  };
 
-  if($('#video_url').val().length > 0) {
+  if($('#video_url').val() && $('#video_url').val().length > 0) {
     videoUrlInput.filled = true;
   }
-
-  if($('#video_tag_id').val().length > 0) {
+  if($('#video_tag_name').val() && $('#video_tag_name').val().length > 0) {
     videoTagInput.filled = true;
   }
 
   $(document).on('click', function() {
+    var existingVideoError = $("div[existing_video='true']");
     $('.videoUrlField.errorMsg').removeClass('errorMsg');
+    if(existingVideoError.length > 0) {
+      var videoUrl = $('#video_url').val();
+      var videoSource = getVideoSource(videoUrl);
+      $('#nextstep').removeClass('disabled');
+
+      if(videoUrl.length > 10 && !apiRequestInProgress) {
+        apiRequestInProgress = true;
+        getVideoPreview(videoSource, videoUrl);
+      }
+    }
   });
 
   $('#video_url').on('click', function() {
@@ -57,12 +71,49 @@ $(function() {
     $(this).closest("div.videoUrlField").removeClass('errorMsg');
   });
 
+  $('#video_url').on('input keyup', function() {
+    var self = this;
+    var videoUrl = $(this).val();
+    var videoSource = getVideoSource(videoUrl);
+
+    if(videoUrl.length > 10 && !apiRequestInProgress) {
+      apiRequestInProgress = true;
+      getVideoPreview(videoSource, videoUrl);
+    }
+
+    $('.video-players-list .list-item').each(function (i, elem) {
+      if (elem.dataset.media === videoSource && videoUrl.length > 10) {
+        $(elem).addClass('active');
+        $('.video-players-list').addClass('active');
+        $('#nextstep').removeClass('disabled');
+      } else {
+        $(elem).removeClass('active');
+      }
+    });
+
+    if(!$('.video-players-list .list-item').hasClass('active')){
+      $('.video-players-list').removeClass('active');
+      $('#nextstep').addClass('disabled');
+    }
+  });
+
+  $('#nextstep').on('click', function(){
+    if(!$(this).hasClass('disabled')){
+      $('.section-video-post-first').removeClass('background-video-post');
+      $('.section-video-post-secondary').addClass('background-video-post');
+      $('.section-video-post-first .section-background').addClass('animation-bg');
+      $('.section-video-post-secondary .section-background').addClass('animation-bg-reverse');
+      $('.video-players-list').removeClass('active');
+      $('.section-video-post-first .labelFields').addClass('labelFieldsChecked');
+    }
+  });
+
   $('#video_url').on('focusout', function() {
-    $(this).attr("placeholder", 'https://www.youtube.com/watch?v=ABuQA13l-229')
+    $(this).attr("placeholder", 'https://www.youtube.com/watch?v=ABuQA13l-229');
   });
 
   $(document).on('keyup', '#video_url', function(e) {
-    if($(this).val().length > 0) {
+    if($(this).val() && $(this).val().length > 0) {
       videoUrlInput.filled = true;
     } else {
       videoUrlInput.filled = false;
@@ -91,7 +142,7 @@ $(function() {
     }
 
     if(regex.test(query)) {
-      $('.postVideoLastField').removeClass('errorMsg')
+      $('.tagNameField').removeClass('errorMsg')
       videoTagInput.filled = false;
 
       if(query.length > 0 && regex.test(query)) {
@@ -100,18 +151,98 @@ $(function() {
           dropdownBuilder(response, query);
         });
       } else {
-        $(this).removeClass('hasBorder')
         $('.dropdownItemListOuter').hide();
       }
     } else if(query.length > 0) {
       $('.dropdownItemListOuter').hide();
-      $('.postVideoLastField').addClass('errorMsg')
+      $('.validationContent').text('You can use only letters & numbers')
+      $('.tagNameField').addClass('errorMsg')
     } else {
-      $(this).removeClass('hasBorder')
       $('.tagNameField.errorMsg').removeClass('errorMsg');
       $('.dropdownItemListOuter').hide();
+      $(this).removeClass('hasBorder');
     }
   });
+
+  function getVideoSource(videoUrl) {
+    var domains = ['youtube.', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
+    var findSubstring = function(str, substr) {
+      if (str.indexOf(substr) != -1) {
+        return substr;
+      }
+    };
+
+    var source = domains.reduce(function (acum, item) {
+      switch (findSubstring(videoUrl, item)) {
+        case 'youtube.':
+          acum = 'youtube';
+          break;
+        case 'youtu.be':
+          acum = 'youtube';
+          break;
+        case 'facebook.':
+          acum = 'facebook';
+          break;
+        case 'dailymotion.':
+          acum = 'dailymotion';
+          break;
+        case 'twitch.':
+          acum = 'twitch';
+          break;
+      }
+      return acum
+    }, '');
+
+    return source;
+  }
+
+  function getVideoPreview(source, video_url) {
+    $.ajax({
+      type: 'GET',
+      url: '/api/v1/social_networks',
+      data: { source: source, video_url: video_url }
+    }).done(function(response, statusText, xhr) {
+      if(response.hasOwnProperty('error')) {
+        var errorMsg = `
+          <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+          <div class="validationContent largeTooltip">
+            ${response.error}
+          </div>
+        `
+
+        $('.leftPanel-videoPost').removeClass('leftPanel-videoPost-active');
+        $('.card-video-post-wrapper').hide();
+        $('#video_url').before(errorMsg);
+        $('#nextstep').addClass('disabled');
+        $('.videoUrlField').addClass('errorMsg');
+      } else {
+        $('.videoUrlField').removeClass('errorMsg');
+
+        videoPreview = `
+          <div class="card-media">
+            <div class="tagThumbnailLink large">
+              <img class="tagThumbnail large" src="${response.remote_cover_url}">
+              <div class="card-media-cover"><span class="icon-check"></span></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              Posting ${source} Video
+            </div>
+            <div class="card-description">
+              ${response.title}
+            </div>
+          </div>
+        `
+        $('.leftPanel-videoPost').addClass('leftPanel-videoPost-active');
+        $('.card-video-post').html(videoPreview);
+        $('.card-video-post-wrapper').slideDown(500)
+
+      }
+
+      apiRequestInProgress = false;
+    })
+  }
 
   function dropdownBuilder(data) {
     var query = $('#video_tag_name').val();
@@ -169,7 +300,7 @@ $(function() {
   function setPageHeight() {
     var mediaQuery = 768;
     var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    var viewPortWidth = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    var viewPortWidth = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var pageContainerStyles = "overflow: hidden;";
     if (viewPortWidth > mediaQuery) {
       $('.newVideoPageContainer').css({'height': viewPortHeight + "px", 'overflow': 'hidden'});

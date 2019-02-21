@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      namespace :exceptions do
+        post '/', action: :create
+      end
+
       scope module: :users do
         get 'users/:channel_slug', action: :show
 
@@ -45,6 +49,10 @@ Rails.application.routes.draw do
       scope module: :notifications do
         get 'notifications', action: :index
         put 'notifications', action: :update
+      end
+
+      scope module: :social_networks do
+        get 'social_networks', action: :index
       end
     end
   end

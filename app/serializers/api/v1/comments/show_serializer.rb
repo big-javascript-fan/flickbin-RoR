@@ -25,6 +25,7 @@ class Api::V1::Comments::ShowSerializer
     {
       id:           user.id,
       channel_name: user.channel_name,
+      channel_slug: user.slug,
       avatar:       user.avatar.thumb_44x44.url
     }
   end

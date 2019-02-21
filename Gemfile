@@ -35,6 +35,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'buffer', :github => 'bufferapp/buffer-ruby'
+gem 'exception_notification'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -43,6 +44,10 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'dotenv-rails'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'rspec-html-matchers'
 end
 
 group :development do

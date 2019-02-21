@@ -5,7 +5,13 @@
  *= require responsive.scss
  *= require_self
 */
-
+.videoTopSource {
+  color: #6de8dd;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 22px;
+}
 .error {
   color: red;
 }
@@ -169,6 +175,12 @@
   animation-fill-mode: both;
 }
 
+.highlight {
+  animation-name: button-highlight;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+}
+
 @keyframes comment-fade {
   0% {
     border: 2px solid transparent;
@@ -180,3 +192,8 @@
   }
 }
 
+@keyframes button-highlight {
+  0% {
+    background: tomato;
+  }
+}

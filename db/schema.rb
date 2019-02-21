@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190221125952) do
+=======
+ActiveRecord::Schema.define(version: 20190205145544) do
+>>>>>>> develop
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(version: 20190221125952) do
     t.index ["user_id", "tag_id"], name: "index_contribution_points_on_user_id_and_tag_id"
   end
 
+<<<<<<< HEAD
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.json "event_object"
@@ -76,6 +81,8 @@ ActiveRecord::Schema.define(version: 20190221125952) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> develop
   create_table "exception_loggers", force: :cascade do |t|
     t.text "message"
     t.string "source"

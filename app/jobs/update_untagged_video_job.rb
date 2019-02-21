@@ -3,5 +3,8 @@ class UpdateUntaggedVideoJob < ApplicationJob
 
   def perform(*args)
     UpdateUntaggedVideoService.new.call
+  rescue => e
+    ExceptionLogger.create(source: 'UpdateUntaggedVideoJob#perform', message: e)
+    ExceptionNotifier.notify_exception(e, data: { source: 'UpdateUntaggedVideoJob#perform' })
   end
 end

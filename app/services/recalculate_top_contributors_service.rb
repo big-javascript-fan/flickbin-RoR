@@ -1,46 +1,43 @@
 class RecalculateTopContributorsService
   def call
-    Tag.find_each do |tag|
-      recalculate_contributors_rank(tag)
+    tag_ids = Tag.joins(:videos)
+                 .where(videos: { removed: false })
+                 .distinct
+                 .pluck(:id)
+                     
+    tag_ids.each do |tag_id|
+      recalculate_contributors_rank(tag_id)
 
-      top_11_contribution_points = get_contribution_points_for_tag(tag, 11)
+      top_11_contribution_points = get_contribution_points_for_tag(tag_id, 11)
       contributors_notification_handler(top_11_contribution_points)
     end
   end
 
   private
 
-  def recalculate_contributors_rank(tag)
-    contributors = tag.users
-    unless Rails.env.development?
-      contributors = contributors.where.not(role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS)
-    end
+  def recalculate_contributors_rank(tag_id)
+    grouped_users = Video.where(tag_id: tag_id, removed: false)
+                         .group(:user_id)
+                         .sum('positive_votes_amount + 1')
 
-    contributors.each do |contributor|
-      amount = 0
-      contributor.videos.where(tag_id: tag.id, removed: false).each do |video|
-        amount += (video.positive_votes_amount + 1)
-      end
-
-      cp = ContributionPoint.find_or_initialize_by(tag_id: tag.id, user_id: contributor.id)
+    grouped_users.each do |user_id, amount|
+      cp = ContributionPoint.find_or_initialize_by(tag_id: tag_id, user_id: user_id)
       cp.update(amount: amount)
     end
   end
 
-  def get_contribution_points_for_tag(tag, limit)
+  def get_contribution_points_for_tag(tag_id, limit)
     if Rails.env.development?
-      tag.contribution_points
-         .includes(:user)
-         .where('contribution_points.amount > ?', 0)
-         .order(amount: :desc)
-         .limit(limit)
+      ContributionPoint.where(tag_id: tag_id)
+                       .includes(:user)
+                       .order(amount: :desc)
+                       .limit(limit)
     else
-      tag.contribution_points
-         .includes(:user)
-         .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
-         .where('contribution_points.amount > ?', 0)
-         .order(amount: :desc)
-         .limit(limit)
+      ContributionPoint.where(tag_id: tag_id)
+                       .includes(:user)
+                       .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
+                       .order(amount: :desc)
+                       .limit(limit)
     end
   end
 

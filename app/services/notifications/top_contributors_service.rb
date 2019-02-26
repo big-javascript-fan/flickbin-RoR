@@ -33,9 +33,9 @@ class Notifications::TopContributorsService
         event_and_notification_handler(contributor, tag, 'top_1_contributor')
       elsif [1, 2].include?(index)
         event_and_notification_handler(contributor, tag, 'top_3_contributors')
-      elsif [4, 5].include?(index) && contribution_points.size > 10
+      elsif [4, 5].include?(index) && contributors.size > 10
         event_and_notification_handler(contributor, tag, 'top_5_contributors')
-      elsif (6..10).include?(index) && contribution_points.size > 10
+      elsif (6..10).include?(index) && contributors.size > 10
         event_and_notification_handler(contributor, tag, 'top_10_contributors')
       end
     end

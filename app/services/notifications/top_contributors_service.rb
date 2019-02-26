@@ -71,10 +71,10 @@ class Notifications::TopContributorsService
                                          .where("event_object ->> 'tag' = '#{tag_id}'")
                                          .pluck(:category)
 
-    positions = already_notificated_categories.map { |c| c[/(\d+)_contributor/, 1] }
-    top_position = positions.sort.first.to_i
+    positions = already_notificated_categories.map { |c| c[/(\d+)_contributor/, 1].to_i }
+    top_position = positions.min
     new_position = category[/(\d+)_contributor/, 1].to_i
 
-    top_position > 0 && new_position >= top_position ? false : true
+    top_position.present? && new_position < top_position
   end
 end

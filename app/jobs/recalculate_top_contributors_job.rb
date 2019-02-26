@@ -3,5 +3,6 @@ class RecalculateTopContributorsJob < ApplicationJob
 
   def perform(*args)
     RecalculateTopContributorsService.new.call
+    Notifications::TopContributorsService.new.call
   end
 end

@@ -32,7 +32,7 @@ class TagsController < ApplicationController
                        .where(tag_id: @tag.id)
     @top_3_contribution_points = @tag.contribution_points
                                      .includes(:user)
-                                     .where.not(users: { role: 'dummy' })
+                                     .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
                                      .where('contribution_points.amount > ?', 0)
                                      .order(amount: :desc)
                                      .limit(3)

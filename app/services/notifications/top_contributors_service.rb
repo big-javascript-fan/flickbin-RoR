@@ -60,14 +60,13 @@ class Notifications::TopContributorsService
   end
 
   def allowed_to_create_new_notification?(user, tag_id, category)
-    already_notificated_categories = user.notifications
-                                         .where("event_object ->> 'tag' = '#{tag_id}'")
-                                         .pluck(:category)
-
+    notifications_per_tag = user.notifications.where("event_object ->> 'tag' = '#{tag_id}'")
+    query = "notifications.category = '#{category}' AND notifications.created_at BETWEEN '#{1.day.ago.to_s}' AND '#{Time.now}'"
+    last_day_notification_per_tag = notifications_per_tag.where(query).limit(1)
+    already_notificated_categories = notifications_per_tag.map(&:category)
     positions = already_notificated_categories.map { |c| c[/(\d+)_contributor/, 1].to_i }
-    top_position = positions.min
+    top_position = positions.min.to_i
     new_position = category[/(\d+)_contributor/, 1].to_i
-
-    top_position.present? && new_position < top_position
+    last_day_notification_per_tag.blank? && new_position < top_position || top_position.zero?
   end
 end

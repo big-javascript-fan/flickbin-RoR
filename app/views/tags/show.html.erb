@@ -36,6 +36,11 @@
       <div class="topContributorHeadline">
         <span>Top <%= "contributor".pluralize(@top_3_contribution_points.size) %> in <%= @tag.title %></span>
       </div>
+      <% if Rails.env.development? || Rails.env.staging? %>
+        <div class="topContributorHeadline">
+          <span> (Display only for staging) Comments count = <%= @tag.comments.size %></span>
+        </div>
+      <% end %>
       <div class="topContributorWrapper">
         <ul class="contributorList clearfix">
           <% @top_3_contribution_points.each_with_index do |cp, index| %>

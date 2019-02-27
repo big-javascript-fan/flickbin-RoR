@@ -13,18 +13,11 @@ class Notifications::TopContributorsService
   private
 
   def get_contributiors_for_tag(tag_id, limit)
-    if Rails.env.development?
-      User.joins(:contribution_points)
-           .where(contribution_points: { tag_id: tag_id })
-           .order('contribution_points.amount DESC')
-           .limit(limit)
-    else
-      User.joins(:contribution_points)
-           .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
-           .where(contribution_points: { tag_id: tag_id })
-           .order('contribution_points.amount DESC')
-           .limit(limit)
-    end
+    User.joins(:contribution_points)
+          .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
+          .where(contribution_points: { tag_id: tag_id })
+          .order('contribution_points.amount DESC')
+          .limit(limit)
   end
 
   def notification_handler(contributors, tag)

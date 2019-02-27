@@ -1,6 +1,4 @@
 class Notification < ApplicationRecord
-  max_pages 5
-
   belongs_to :user
 
   CATEGORIES = [

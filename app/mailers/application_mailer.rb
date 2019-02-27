@@ -100,7 +100,7 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Top Contributor, Your Pathway to Stardom on flickbin")
   end
 
-  def once_a_week_on_fridays(user, top_5_tags)
+  def weekly_mailing(user, top_5_tags)
     @user = user
     @top_5_tags = top_5_tags
     @counted_video_url = []

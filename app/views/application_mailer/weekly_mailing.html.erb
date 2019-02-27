@@ -149,7 +149,7 @@
                 </td>
               </tr>
               <% @top_5_tags.each do |top_5_tag| %>
-                <% next if top_5_tag.top_3_videos.blank? %>
+                <% next if top_5_tag.top_3_videos.blank? || (top_5_tag.top_3_videos.map(&:url) - @counted_video_url).blank? %>
 
                 <tr>
                   <td height="20"></td>
@@ -169,6 +169,8 @@
                   <td height="10"></td>
                 </tr>
                 <% top_5_tag.top_3_videos.each do |top_3_video| %>
+                  <% @counted_video_url.include?(top_3_video.url) ? next : @counted_video_url << top_3_video.url %>
+                  
                   <tr>
                     <td style="font-size:0; padding:0 20px 0 20px;">
                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">

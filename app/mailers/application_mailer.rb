@@ -111,6 +111,7 @@ class ApplicationMailer < ActionMailer::Base
   def weekly_mailing(user, top_5_tags)
     @user = user
     @top_5_tags = top_5_tags
+    @counted_video_url = []
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Trending Now on Flickbin.")

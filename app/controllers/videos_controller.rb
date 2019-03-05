@@ -44,6 +44,8 @@ class VideosController < ApplicationController
     if current_user.present?
       @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id)
     end
+
+    @meta_title = "#{@video.title} | "
   end
 
   def destroy

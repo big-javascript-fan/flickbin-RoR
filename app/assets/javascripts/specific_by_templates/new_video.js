@@ -180,9 +180,9 @@ $(function() {
         case 'youtu.be':
           acum = 'youtube';
           break;
-        case 'facebook.':
-          acum = 'facebook';
-          break;
+        // case 'facebook.':
+        //   acum = 'facebook';
+        //   break;
         case 'dailymotion.':
           acum = 'dailymotion';
           break;

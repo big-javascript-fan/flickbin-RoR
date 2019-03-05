@@ -12,6 +12,35 @@
 		padding: 8px 15px;
 	}
 }
+@media(max-width: 1080px){
+	.wrapper-battle{
+		.section-fight {
+			padding: 90px 0;
+
+			.layout-fight-secondary {
+				.layout-divider {
+					min-width: 50px;
+					.divider-button{
+						display: none;
+					}
+				}
+			}
+			.divider-button-mobile{
+				display: flex;
+			}
+		}
+		.section-tweets{
+			margin: 0;
+			padding-right:10px;
+			padding-left: 10px;
+			.layout-tweets{
+				> *:not(:first-child) {
+					margin-left: 32px;
+				}
+			}
+		}
+	}
+}
 @media (max-width: 940px) {
 	.contributorLineItem {
 		margin: 0 5px 0 5px;
@@ -22,6 +51,7 @@
 	.topContributorAvatar {
 		height: 40px;
 		width: 40px;
+
 		img {
 			height: 40px;
 			width: 40px;
@@ -38,7 +68,8 @@
 	.labelFields.vidioFieldOuter {
 		margin-bottom: 37px;
 		text-align: center;
-		.button-primary{
+
+		.button-primary {
 			display: inline-block;
 			margin-top: 30px;
 			font-size: 15px;
@@ -46,6 +77,135 @@
 			padding: 14px 19px;
 		}
 	}
+	.wrapper-battle {
+		.section-fight {
+			padding: 60px 0;
+
+			.layout-fight {
+				flex-basis: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				.layout-grow {
+					flex-grow: 1;
+				}
+
+				> .layout-item:first-child, > .layout-item:last-child {
+					display: none;
+				}
+
+				.text-divider {
+					font-size: 20px;
+				}
+			}
+
+			.layout-fight-secondary {
+				.layout-divider {
+					min-width: 30px;
+					margin: -10px 0 0;
+				}
+			}
+
+			.card-fight {
+				.card-body {
+					.card-vote {
+						padding: 8px 12px;
+						font-size: 25px;
+						line-height: 30px;
+						margin-bottom: 18px;
+
+						span {
+							margin-left: 18px;
+							color: #7CD9D6;
+							font-size: 18px;
+						}
+
+						&:hover {
+							text-decoration: none;
+						}
+					}
+
+					.card-vote-description {
+						font-size: 16px;
+						line-height: 19px;
+						padding: 0 4px;
+					}
+				}
+			}
+		}
+		.section-tweets{
+			margin: 0;
+			padding:  60px 72px;
+			.layout-tweets{
+				flex-wrap: wrap;
+				> * {
+					width: 100%;
+
+					&:not(:last-child){
+						.card-tweets{
+							padding-bottom: 45px;
+							border-bottom: 1px dashed #E5E7E9;
+							margin-bottom: 45px;
+						}
+					}
+				}
+				> *:not(:first-child) {
+					margin-left: 0;
+				}
+			}
+		}
+    .uk-countdown{
+      .uk-countdown-separator{
+        font-size: 42px;
+      }
+      .uk-countdown-label{
+				font-size: 17px;
+      }
+      .uk-countdown-number{
+        display: flex;
+        span{
+					width: 75px;
+					height: 80px;
+          font-size: 42px;
+        }
+      }
+      > div:nth-child(2){
+        left: 6px;
+      }
+      > div:nth-child(3){
+        .uk-countdown-number{
+          span:first-child{
+						right: -9px;
+						top: -3px;
+						width: 76px;
+						height: 80px;
+          }
+          span:last-child{
+						width: 84px;
+						height: 80px;
+						left: -4px;
+						margin-left: -10px;
+          }
+        }
+      }
+      > div:nth-child(5){
+        .uk-countdown-number{
+          span:first-child{
+						width: 80px;
+						height: 80px;
+						left: -2px;
+						top: -4px;
+          }
+          span:last-child{
+						width: 80px;
+						height: 84px;
+						margin-left: -24px;
+						top: -4px;
+          }
+        }
+      }
+    }
+  }
 }
 @media (min-width: 768px) and (max-width: 979px) {
 }
@@ -584,6 +744,14 @@
 	.section-video-post{
 		padding: 30px 15px 59px;
 	}
+	.wrapper-battle{
+		.leftPanel{
+			padding: 0 15px;
+			.brand{
+				display: none;
+			}
+		}
+	}
 }
 
 @media(max-width: 639px){
@@ -664,6 +832,35 @@
 			}
 			.rightNumber{
 				right: 21px;
+			}
+		}
+	}
+	.wrapper-battle{
+		.section-tweets{
+			margin: 0;
+			padding:  60px 0;
+			.card-tweets{
+				padding: 0 30px;
+				.card-header{
+					.card-image{
+						.icon{
+							display: flex;
+						}
+					}
+				}
+				.card-body{
+					.form-tweets{
+						align-items: center;
+						.form-control{
+							.icon{
+								display: none;
+							}
+							.textarea-tip{
+								display: none;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -857,8 +1054,104 @@
 			}
 		}
 	}
-}
 
+
+	.wrapper-battle{
+		.section-fight{
+			.card-fight{
+				.card-body{
+					.card-image{
+						min-width: 170px;
+					}
+				}
+			}
+		}
+	}
+}
+@media(max-width: 415px){
+	.wrapper-battle{
+		.section-fight{
+			.layout-fight-secondary{
+				.layout-divider{
+					display: none;
+					min-width: 23px;
+					.text-divider{
+						font-size: 16px;
+					}
+				}
+			}
+			.card-fight{
+				.card-header{
+					.card-title{
+						margin-bottom: 6px;
+						font-size: 16px;
+					}
+					.card-tag{
+						font-size: 18px;
+						line-height: 14px;
+					}
+				}
+				.card-body{
+					.card-image{
+						min-width: 140px;
+					}
+				}
+			}
+		}
+		.uk-countdown{
+			.uk-countdown-separator{
+				margin: 0 3px 20px;
+				font-size: 32px;
+			}
+			.uk-countdown-label{
+				font-size: 14px;
+			}
+			.uk-countdown-number{
+				display: flex;
+				span{
+					width: 58px;
+					height: 60px;
+					font-size: 30px;
+				}
+			}
+			> div:nth-child(2){
+				left: 6px;
+			}
+			> div:nth-child(3){
+				.uk-countdown-number{
+					span:first-child{
+						right: -9px;
+						top: -3px;
+						width: 58px;
+						height: 61px;
+					}
+					span:last-child{
+						width: 62px;
+						height: 58px;
+						left: -4px;
+						margin-left: -5px;
+					}
+				}
+			}
+			> div:nth-child(5){
+				.uk-countdown-number{
+					span:first-child{
+						width: 60px;
+						height: 60px;
+						left: -2px;
+						top: -4px;
+					}
+					span:last-child{
+						width: 62px;
+						height: 63px;
+						margin-left: -24px;
+						top: -4px;
+					}
+				}
+			}
+		}
+	}
+}
 @media(max-width: 360px){
 	.leftPanel{
 		.brand{

@@ -8,8 +8,8 @@
       <div class="card-cover">
         <% if video.source == 'youtube' %>
           <span class="icon youtube-icon"></span>
-        <% elsif video.source == 'facebook' %>
-          <span class="icon facebook-icon"></span>
+        <%# elsif video.source == 'facebook' %>
+<!--          <span class="icon facebook-icon"></span>-->
         <% elsif video.source == 'daily_motion' %>
           <span class="icon dailymotion-icon"></span>
         <% elsif video.source == 'twitch' %>
@@ -24,8 +24,8 @@
         <%= link_to video_path(video), class: "descText" do %>
           <% if video.source == 'youtube' %>
             <span class="icon youtube-icon"></span>
-          <% elsif video.source == 'facebook' %>
-            <span class="icon facebook-icon"></span>
+          <%# elsif video.source == 'facebook' %>
+<!--            <span class="icon facebook-icon"></span>-->
           <% elsif video.source == 'daily_motion' %>
             <span class="icon dailymotion-icon"></span>
           <% elsif video.source == 'twitch' %>
@@ -68,8 +68,8 @@
             <% end %>
            <% if video.source == 'youtube' %>
              <span class="icon youtube-icon"></span>
-           <% elsif video.source == 'facebook' %>
-             <span class="icon facebook-icon"></span>
+           <%# elsif video.source == 'facebook' %>
+<!--             <span class="icon facebook-icon"></span>-->
            <% elsif video.source == 'daily_motion' %>
              <span class="icon dailymotion-icon"></span>
            <% elsif video.source == 'twitch' %>

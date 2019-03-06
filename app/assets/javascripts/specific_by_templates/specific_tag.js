@@ -11,7 +11,7 @@ $(function() {
 
   sortingHandler();
   infiniteScrollForVideos();
-  // votesHandler();
+  votesHandler();
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
@@ -108,7 +108,7 @@ $(function() {
                       <div class="card-info">
                         <div class="card-tags">
                           <div class="card-tags-id"> #${video.rank} </div>
-                          <div class="card-tags-like  ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
+                          <div class="card-tags-like card-tags-vote ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
                             <span class="icon icon-arrow_drop_up"></span>
                             ${video.votes_amount}
                           </div>
@@ -149,7 +149,7 @@ $(function() {
   }
 
   function votesHandler() {
-    $(document).on('click', '.card-tags-like', function(e) {
+    $(document).on('click', '.card-tags-vote', function(e) {
       var voteBox = $(this);
       var votesAmountElement = $(this).find('votes_amount')
       var videoSlug = $(this).attr('video_slug');

@@ -74,7 +74,7 @@ $(function() {
               videosContent += `
                 <li class="card card-video-tags">
                   <div class="card-media">
-                    <a class="tagThumbnailLink large" href="/videos/${video.slug}">
+                    <div class="tagThumbnailLink large">
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                       <div class="card-cover">
@@ -82,9 +82,9 @@ $(function() {
                         ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
                         ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
                         ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
-                        ${video.title}
-                       </div>
-                    </a>
+                        <a href="/videos/${video.slug}" class="descText">${video.title}</a> 
+                      </div>
+                    </div>
                     </div>
                   </div>
                   <div class="card-body card-body-newest">

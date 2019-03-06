@@ -1,5 +1,11 @@
 $(function() {
   var apiRequestInProgress = false;
+  $('a').click(function(){
+    $('html, body').animate({
+      scrollTop: $( $(this).attr('href') ).offset().top - 57
+    }, 1500);
+    return false;
+  });
 
   videoUrlInput = {
     parentDiv: $('#video_url').parent(),
@@ -96,7 +102,6 @@ $(function() {
       $('#nextstep').addClass('disabled');
     }
   });
-
   $('#nextstep').on('click', function(){
     if(!$(this).hasClass('disabled')){
       $('.section-video-post-first').removeClass('background-video-post');
@@ -105,6 +110,9 @@ $(function() {
       $('.section-video-post-secondary .section-background').addClass('animation-bg-reverse');
       $('.video-players-list').removeClass('active');
       $('.section-video-post-first .labelFields').addClass('labelFieldsChecked');
+      // $('html, body').animate({
+      //   scrollTop: $( $(this).attr('href') ).offset().top
+      // }, 1500);
     }
   });
 

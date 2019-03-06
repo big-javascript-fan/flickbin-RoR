@@ -427,7 +427,7 @@ select:actived {
   min-height: 100%;
   background-color: #fafafa;
   padding: 0;
-  min-width: 166px;
+  min-width: 175px;
   z-index: 3;
 }
 @media(max-width: 767px){
@@ -2918,11 +2918,11 @@ input.grayNormal {
     bottom: 0;
     left: 0;
     z-index: -1;
-    -webkit-transition: -webkit-transform 0.3s;
-    transition: -webkit-transform 0.3s;
-    -o-transition: transform 0.3s;
-    transition: transform 0.3s;
-    transition: transform 0.3s, -webkit-transform 0.3s;
+    -webkit-transition: -webkit-transform 1s;
+    transition: -webkit-transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition: transform 1s, -webkit-transform 1s;
     background: #4E5766;
     &.animation-bg{
       -webkit-transform:translatey(100%);
@@ -3095,6 +3095,9 @@ input.grayNormal {
     border-radius: 6px;
     background: #279693;
     text-transform: uppercase;
+    &:hover{
+      text-decoration: none;
+    }
     &-post{
       display: none;
     }

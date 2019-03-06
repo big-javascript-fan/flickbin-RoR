@@ -32,7 +32,7 @@
           <div class="section-body">
             <ul class="video-players-list">
               <li class="list-item" data-media="youtube"><i class="fab fa-youtube"></i></li>
-<!--              <li class="list-item" data-media="facebook"><i class="icon icon-facebook-official"></i></li>-->
+              <!--<li class="list-item" data-media="facebook"><i class="icon icon-facebook-official"></i></li> -->
               <li class="list-item" data-media="twitch"><i class="fab fa-twitch"></i></li>
               <li class="list-item" data-media="dailymotion"><span class="icon icon-dailymotion"></span></li>
             </ul>
@@ -53,7 +53,7 @@
                 </div>
               <% end %>
               <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l29' %>
-              <div id="nextstep" class="button-video button-video-nextstep disabled">NEXT STEP</div>
+              <a href="#video-scroll" id="nextstep" class="button-video button-video-nextstep disabled"  >NEXT STEP</a>
             </div>
             <div class="section-hint">
               Now add a topic so people can find your video!
@@ -67,7 +67,7 @@
         <section class="section-video-post section-video-post-secondary background-video-post">
           <div class="section-background animation-bg-reverse"></div>
       <% else %>
-        <section class="section-video-post section-video-post-secondary">
+        <section id="video-scroll" class="section-video-post section-video-post-secondary">
           <div class="section-background"></div>
       <% end %>
         <div class="section-foreground">

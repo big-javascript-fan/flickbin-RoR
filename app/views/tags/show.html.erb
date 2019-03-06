@@ -20,7 +20,7 @@
       <div class="dropdown-menu notifications dropdown-menu-medium"></div>
     </div>
   </div>
-  <section class="contentPanel leftSpace36 tag">
+  <section class="container-tags leftSpace36 tag ">
     <% if current_user.present? %>
       <div class="clearfix bottom-margin-20 mobileThemeBtn hideOnMobile">
         <span class="sideTitleTagSpecific titleSpecific titleSpecificMargin" slug="<%= @tag.slug %>"><!--<span class="icon icon-playlist_add"></span>--><%= @tag.title %></span>
@@ -36,6 +36,11 @@
       <div class="topContributorHeadline">
         <span>Top <%= "contributor".pluralize(@top_3_contribution_points.size) %> in <%= @tag.title %></span>
       </div>
+      <% if Rails.env.development? || Rails.env.staging? %>
+        <div class="topContributorHeadline">
+          <span> (Display only for staging) Comments count = <%= @tag.comments.size %></span>
+        </div>
+      <% end %>
       <div class="topContributorWrapper">
         <ul class="contributorList clearfix">
           <% @top_3_contribution_points.each_with_index do |cp, index| %>
@@ -55,7 +60,7 @@
         <div class="wannaBeFeatured">
           <p>
             <%= image_tag("/images/flickBearOnboarding.png", alt: 'flickbear', class: 'flickBearWannaBeFeatured') %>
-            <span>Wanna be featured at the top of this tag?</span>
+            <span>Wanna be featured at the top of this topic?</span>
             <%= link_to 'Post Some Videos!', videos_new_path %>
           </p>
         </div>
@@ -63,13 +68,14 @@
     <% end %>
     <div class="tagSpecificWrapper">
       <% if @tag_videos.present? %>
-        <div class="clearfix tagHeadingBottomGap">
-          <span class="sideTitleTagSpecific titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><!--<span class="icon icon-playlist_add"></span>--><%= @tag.title %></span>
+        <div class="tagHeadingBottomGap">
+          <span class="sideTitleTagSpecific titleSpecific hideOnDesktop" slug="<%= @tag.slug %>"><!-- <span class="subscribe-tag"><span class="icon icon-playlist_add"></span></span> <span class="subscribe-tag unfollow"><span class="icon icon-check"></span></span> --><%= @tag.title %></span>
           <ul class="pillNav clearfix">
             <li><%= link_to 'top charts', tag_path(@tag), sort_by: 'top_charts', class: "top_charts filter", remote: true %></li>
             <li> <%= link_to 'newest', tag_path(@tag), sort_by: 'newest', class: "filter" %></li>
           </ul>
         </div>
+
 
         <ul class="entityList inTag specificTagList tagListHasNumber video-feed" video_ids="<%= @current_user_voted_video_ids %>">
           <%= render 'tags/partials/videos_feed' %>

@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :prepare_exception_notifier
   layout :layout_by_resource
 
   private
+
+  def prepare_exception_notifier
+    request.env["exception_notifier.exception_data"] = {
+      current_user: current_user&.to_json
+    }
+  end
 
   def layout_by_resource
     devise_controller? ? 'devise' : 'application'
@@ -13,8 +20,10 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if params[:video_id].present?
+    if params[:video_id].present? && params[:event] == 'comment'
       video_path(params[:video_id], anchor: 'message')
+    elsif params[:video_id].present? && params[:event] == 'vote'
+      video_path(params[:video_id], anchor: 'voting_button')
     else
       root_path
     end

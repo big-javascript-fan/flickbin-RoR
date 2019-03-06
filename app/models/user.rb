@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :contributed_tags, through: :contribution_points, source: :tag
   has_many :notifications, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :top_15_notifications, -> { order(created_at: :desc).limit(15) }, class_name: 'Notification'
 
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true

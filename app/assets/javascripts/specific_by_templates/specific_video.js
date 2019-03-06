@@ -11,7 +11,24 @@ $(function() {
   replyCommentHandler();
   infiniteScrollForComments();
   onboardCloseClick();
-  window.scrollDownAnimation();
+  textareaAutoheight();
+
+
+  function textareaAutoheight(){
+    $('.autoresize').on('input keyup', function() {
+      var paddingTop = $(this).css('padding-top').replace('px', ''),
+          paddingBottom = $(this).css('padding-bottom').replace('px', '');
+
+      $(this).css('height', '68px');
+      $(this).css('height', (this.scrollHeight) + 'px');
+    });
+  }
+
+  if(window.location.hash == '#message') {
+    window.scrollDownAnimation();
+  } else if(window.location.hash == '#voting_button') {
+    votingBttonHighlight();
+  }
 
   $(document).ready(function () {
     videoPageInfoWidth();
@@ -22,6 +39,15 @@ $(function() {
       centerVidOnboardContent();
     });
   });
+
+  function votingBttonHighlight() {
+    var buttonForHighlighting = $(window.location.hash);
+
+    if(buttonForHighlighting.length > 0 && window.location.hash == '#voting_button' ) {
+      buttonForHighlighting.addClass('highlight');
+    }
+    history.replaceState(null, null, ' ');
+  }
 
   function videoPageInfoWidth() {
     var vidTopWidth = $('.videoTop').width();
@@ -143,24 +169,37 @@ $(function() {
     });
 
     $('#message').keypress(function(e) {
-      if(e.which == 13) {
-        var commentContent = '';
+      if(e.which == 13){
+        e.preventDefault();
+        if($( window ).width() > 940){
+          sendMessange(this, e)
+        }
+      }
+    });
+    $('#message-button').on('click', function(e){
+      e.preventDefault();
+      var message = $('#message');
+      sendMessange(message, e);
+    });
 
-        if($(this).attr('loginRequired')) {
-          window.location = '/users/sign_in'
-        } else {
-          $.post(`/api/v1/${videoSlug}/comments`, {
-            message: $(this).val()
-          }).then(function(response) {
-            var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
+    function sendMessange(elem, event) {
+      var commentContent = '';
 
-            commentContent += `
+      if($(elem).attr('loginRequired')) {
+        window.location = '/users/sign_in'
+      } else if(!!$(elem).val()) {
+        $.post(`/api/v1/${videoSlug}/comments`, {
+          message: $(elem).val()
+        }).then(function(response) {
+          var commentatorAvatar = response.commentator.avatar || '/images/avatar_holder.jpg';
+
+          commentContent += `
               <div class="commentEntity" comment_id="${response.id}">
                 <a href="#" class="commentorThumb">
                   <img src="${commentatorAvatar}">
                 </a>
                 <div class="commentorLine clearfix">
-                  <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
+                  <a href="/stations/${response.commentator.channel_slug}">${response.commentator.channel_name}</a>
                   <span>•</span>
                   <small>${response.post_time} ago</small>
                 </div>
@@ -171,13 +210,14 @@ $(function() {
               </div>
             `
 
-            $('.comments-feed').prepend(commentContent);
-            $('#message').val('');
-            $('.blankComments').remove();
-          });
-        }
+          $('.comments-feed').prepend(commentContent);
+          $('#message').val('');
+          $('.blankComments').remove();
+        });
+      } else{
+        console.log('false');
       }
-    });
+    }
   }
 
   function replyCommentHandler() {
@@ -245,7 +285,7 @@ $(function() {
               <img src="${commentatorAvatar}">
             </a>
             <div class="commentorLine clearfix">
-              <a href="/stations/${response.commentator.channel_name}">${response.commentator.channel_name}</a>
+              <a href="/stations/${response.commentator.channel_slug}">${response.commentator.channel_name}</a>
               <span>•</span>
               <small>${response.post_time} ago</small>
             </div>
@@ -310,7 +350,7 @@ $(function() {
                     <img src="${commentatorAvatar}">
                   </a>
                   <div class="commentorLine clearfix">
-                    <a href="/stations/${root_comment.commentator.channel_name}">
+                    <a href="/stations/${root_comment.commentator.channel_slug}">
                       ${root_comment.commentator.channel_name}
                     </a>
                     <span>•</span>
@@ -345,7 +385,7 @@ $(function() {
                           <img src="${commentatorAvatar}">
                         </a>
                         <div class="commentorLine clearfix">
-                          <a href="/stations/${child_comment.commentator.channel_name}">${child_comment.commentator.channel_name}</a>
+                          <a href="/stations/${child_comment.commentator.channel_slug}">${child_comment.commentator.channel_name}</a>
                           <span>•</span>
                           <small>${child_comment.post_time} ago</small>
                         </div>

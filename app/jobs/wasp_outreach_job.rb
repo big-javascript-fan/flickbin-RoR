@@ -3,5 +3,8 @@ class WaspOutreachJob < ApplicationJob
 
   def perform(video_id)
     WaspOutreachService.new(video_id).call
+  rescue => e
+    ExceptionLogger.create(source: 'WaspOutreachJob#perform', message: e)
+    ExceptionNotifier.notify_exception(e, data: { source: 'WaspOutreachJob#perform' })
   end
 end

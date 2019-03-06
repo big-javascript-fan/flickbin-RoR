@@ -8,6 +8,7 @@ class Tag < ApplicationRecord
   has_many :top_10_videos, -> { active.tagged.order(rank: :asc, positive_votes_amount: :desc, created_at: :desc).limit(10) }, class_name: 'Video'
   has_many :users, through: :videos
   has_many :votes, through: :videos
+  has_many :comments, through: :videos
   has_many :contribution_points, dependent: :destroy
   has_many :contributors, -> { where(videos: { removed: false, untagged: false }) }, through: :videos, source: :user
 

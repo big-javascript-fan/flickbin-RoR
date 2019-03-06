@@ -1,0 +1,2 @@
+class ExceptionLogger < ApplicationRecord
+end

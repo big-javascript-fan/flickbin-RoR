@@ -1,4 +1,6 @@
 $(function() {
+  lastPageReached = false;
+  nextPageNumber = 2;
   tagSlug = $('.titleSpecific').attr('slug');
   sortBy = '';
   if($('.video-feed').attr('video_ids').lenght > 0) {
@@ -9,7 +11,7 @@ $(function() {
 
   sortingHandler();
   infiniteScrollForVideos();
-  votesHandler();
+  // votesHandler();
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
@@ -17,7 +19,8 @@ $(function() {
 
     $('a.filter').on('click', function(e) {
       e.preventDefault();
-
+      lastPageReached = false;
+      nextPageNumber = 2;
       sortBy = $(this).attr('sort_by');
       $('.filter').removeClass('current');
       $(this).addClass('current');
@@ -34,8 +37,6 @@ $(function() {
   }
   function infiniteScrollForVideos() {
     var loading = false;
-    var lastPageReached = false;
-    var nextPageNumber = 2;
 
     $(window).scroll(function(e) {
       var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 80;
@@ -68,7 +69,6 @@ $(function() {
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
-
           if(tagVideos.length > 0) {
             $.each(tagVideos, function(index, video) {
               videosContent += `
@@ -78,7 +78,11 @@ $(function() {
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
                       <div class="card-cover">
-                        <span ><img src="https://fakeimg.pl/34x34/"></span>${video.title}
+                        ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                        ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                        ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                        ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
+                        ${video.title}
                        </div>
                     </a>
                     </div>
@@ -87,8 +91,12 @@ $(function() {
                 `
               if(sortBy == 'newest') {
                 videosContent += `
+                      <span class="time">${video.post_time} ago</span>
                       <a class="descText" href="/videos/${video.slug}">
-                        <span class="time">${video.post_time} ago</span>
+                        ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                        ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                        ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                        ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
                         ${video.title}
                       </a>
                   `
@@ -108,6 +116,10 @@ $(function() {
                             <span class="icon fas fa-comment-alt"></span>
                             ${video.comments_count}
                           </a>
+                          ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
+                          ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
+                          ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
+                          ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
                         </div>
                         <div class="card-posted">posted by
                           <span>
@@ -115,7 +127,6 @@ $(function() {
                           </span>
                         </div>
                       </div>
-
                   `
               }
               `

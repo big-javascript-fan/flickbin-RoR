@@ -33,7 +33,7 @@
     <% end %>
 
     <div class="searchBar clearfix">
-      <span class="labelTitle">browse tags</span>
+      <span class="labelTitle">browse topics</span>
       <div class="searchOuter">
         <a href="#" class="searchIcon"><i class="fas fa-search"></i></a>
         <%= text_field_tag :search_query, nil, value: params[:query], class: 'searchField' %>
@@ -41,7 +41,7 @@
     </div>
 
     <div class="tagNavBar">
-      <span class="labelTitle">all tags</span>
+      <span class="labelTitle">all topics</span>
       <ul class="tagNavLinks">
         <% ('a'..'z').to_a.each do |char| %>
           <li><%= link_to char, tags_path(first_char: char), class: 'alphabet' %></li>

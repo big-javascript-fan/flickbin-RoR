@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      namespace :exceptions do
+        post '/', action: :create
+      end
+
       scope module: :users do
         get 'users/:channel_slug', action: :show
 
@@ -46,6 +50,10 @@ Rails.application.routes.draw do
         get 'notifications', action: :index
         put 'notifications', action: :update
       end
+
+      scope module: :social_networks do
+        get 'social_networks', action: :index
+      end
     end
   end
 
@@ -57,10 +65,10 @@ Rails.application.routes.draw do
   }
 
   scope module: :tags do
-    get  'tags/new',       action: :new
-    get  'tags',           action: :index
-    get  'tags/:tag_slug', action: :show, as: :tag
-    post 'tags',           action: :create
+    get  'topics/new',       action: :new
+    get  'topics',           action: :index, as: :tags
+    get  'topics/:tag_slug', action: :show, as: :tag
+    post 'topics',           action: :create
   end
 
   scope module: :videos do

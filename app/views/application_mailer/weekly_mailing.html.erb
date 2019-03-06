@@ -145,7 +145,7 @@
               </tr>
               <tr>
                 <td align="center" style="font-size:20px; padding: 0 20px 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 500;	line-height: 25px; color:#090A0B;">
-                  There have been some whoppers this week.
+                  Trending Now on Flickbin.
                 </td>
               </tr>
               <% @top_3_tags.each do |tag| %>
@@ -188,7 +188,7 @@
                                             <tr>
                                               <td>
                                                 <%= link_to video_url(top_3_video), style: 'color: inherit; text-decoration: none;' do %>
-                                                  <img alt="" width="100%" src="<%= top_3_video.cover.url %>" style="border:0; display:block;" /> </td>
+                                                  <img alt="" width="100%" src="<%= top_3_video.cover.url.to_s %>" style="border:0; display:block;" /> </td>
                                                 <% end %>
                                             </tr>
                                             </tbody>
@@ -221,8 +221,8 @@
                             </td>
                           </tr>
                         </table>
-                      
-                      
+
+
                     </td>
                   </tr>
                 <% end %>

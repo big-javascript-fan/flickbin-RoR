@@ -55,11 +55,11 @@
           </span>
         </div>
       <% end %>
-      <div class="clearfix bottom-margin-20">
+      <div class="videoInfoControls-wrapper bottom-margin-20">
         <% if current_user.present? %>
           <div class="videoInfoControls">
             <div class="upDownOptions clearfix" voted="<%= @vote&.value %>" channelSlug="<%= @video_owner.slug %>">
-              <div class="counter-wrapper <%= 'voted' if @vote&.value&.positive? %>">
+              <div id='voting_button' class="counter-wrapper <%= 'voted' if @vote&.value&.positive? %>">
                 <span class="counterNumber counterValueHolder">
                   <%= number_with_delimiter(@video.votes_amount) %>
                 </span>
@@ -75,8 +75,13 @@
                 <%# end %>
               </div>
             </div>
-            <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
-              <%= @video.title %>
+            <div>
+              <div class="videoTopSource">
+                <%= "via #{@video.source.capitalize.gsub('_', '')}" %>
+              </div>
+              <div class="videoTopDesc" videoSlug="<%= @video.slug %>">
+                <%= @video.title %>
+              </div>
             </div>
           </div>
           <div class="afterLoginBtns reverseThemeHoler afterLoginReverseBtn fRight hideOnMobile">
@@ -84,7 +89,7 @@
           </div>
         <% else %>
           <div class="videoInfoControls">
-            <div class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
+            <div id='voting_button' class="upDownOptions clearfix" channelSlug="<%= @video_owner.slug %>">
               <div class="counter-wrapper" loginRequired='true'>
                 <span class="counterOption upVote"><span class="icon icon-arrow_drop_up"></span></span>
                 <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
@@ -133,10 +138,11 @@
       <h4 class="commentTitle">Discuss with the Community</h4>
       <div class="labelFields vidioFieldOuter">
         <% if current_user.present? %>
-          <%= text_field_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel" %>
+          <%= text_area_tag :message, nil, placeholder: 'Enter comment', class: "block noInsideLabel autoresize", row: '1' %>
         <% else %>
-          <%= text_field_tag :message, nil, placeholder: 'Enter comment', loginRequired: true, class: "block noInsideLabel" %>
+          <%= text_area_tag :message, nil, placeholder: 'Enter comment', loginRequired: true, class: "block noInsideLabel autoresize", row: '1' %>
         <% end %>
+        <a class="button-primary" id="message-button" href="#">POST COMMENT</a>
       </div>
 
       <div class="comments-feed">

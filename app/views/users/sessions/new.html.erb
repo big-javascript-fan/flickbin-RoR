@@ -14,8 +14,12 @@
     <% end %>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <% if params[:video_id].present? %>
+      <% if params[:video_id].present? &&  params[:event] == 'comment' %>
         <%= hidden_field_tag('video_id', params[:video_id]) %>
+        <%= hidden_field_tag('event', 'comment') %>
+      <% elsif params[:video_id].present? &&  params[:event] == 'vote' %>
+        <%= hidden_field_tag('video_id', params[:video_id]) %>
+        <%= hidden_field_tag('event', 'vote') %>
       <% end %>
 
       <div class="labelFields">

@@ -25,7 +25,7 @@ $(function() {
       $('.filter').removeClass('current');
       $(this).addClass('current');
 
-      var newUrl = `${window.location.origin}/tags/${tagSlug}?sort_by=${sortBy}`;
+      var newUrl = `${window.location.origin}/topics/${tagSlug}?sort_by=${sortBy}`;
       window.history.pushState({path: newUrl}, '', newUrl);
 
       $.ajax({
@@ -49,7 +49,7 @@ $(function() {
       }
 
       function loadNextBatchOfVideos() {
-        $.get(`/api/v1/tags/${tagSlug}`, {
+        $.get(`/api/v1/topics/${tagSlug}`, {
           page: nextPageNumber,
           sort_by: sortBy
         }).then(function(response) {
@@ -62,7 +62,7 @@ $(function() {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });

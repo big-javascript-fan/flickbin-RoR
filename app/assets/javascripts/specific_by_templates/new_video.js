@@ -129,7 +129,7 @@ $(function() {
   });
 
   $('#video_tag_name').on('focusout', function() {
-    $(this).attr("placeholder", 'Add and Existing Tag or Create a New One')
+    $(this).attr("placeholder", 'Add and Existing Topic or Create a New One')
   });
 
   $('#video_tag_name').on('keyup', function() {
@@ -250,7 +250,7 @@ $(function() {
     var newTag = true;
     var createTagBtn = `
       <a href="#" class="createTagBtn" tag_title="${query.toLowerCase()}">
-        <span class="inlineAddCircle ">+</span> Create Tag "${query.toLowerCase()}"
+        <span class="inlineAddCircle ">+</span> Create Topic "${query.toLowerCase()}"
       </a>
     `
     if(data.length > 0) {

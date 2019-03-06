@@ -56,7 +56,7 @@
               <div id="nextstep" class="button-video button-video-nextstep disabled">NEXT STEP</div>
             </div>
             <div class="section-hint">
-              Now add a tag so people can find your video!
+              Now add a topic so people can find your video!
               <div class="icon icon-chevron-down"></div>
             </div>
           </div>
@@ -74,13 +74,13 @@
           <div class="section-heading">
             <div class="numbering">2</div>
             <h2 class="title">
-              Select a Tag for Your Post
+              Select a Topic for Your Post
             </h2>
-            <p class="description">Tip: Tags are kind of like categories to help people find your post.</p>
+            <p class="description">Tip: Topics are kind of like categories to help people find your post.</p>
           </div>
           <div class="section-body">
             <div class="labelFields hasNumberInside tagNameField labelFieldsDisabled <%= 'errorMsg' if @existing_video.present? %>">
-              <%= f.label :tag_name, 'Select One Tag' %>
+              <%= f.label :tag_name, 'Select One Topic' %>
               <span class="ovalShape">2</span>
               <div class="dropdownItemListOuter" style="display: none;">
                 <ul class="dropdownItemList"></ul>
@@ -89,14 +89,14 @@
               <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
               <% if @existing_video.present? %>
                 <div class="validationContent largeTooltip">
-                  Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> tag. <br />Try a different tag or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.
+                  Oops, <%= link_to 'this video', video_path(@existing_video) %> has already been posted in the <%= link_to @existing_video.tag.title, tag_path(@existing_video.tag) %> topic. <br />Try a different topic or you’ll be able to post it here in <%= @existing_video.remaining_days %> days.
                 </div>
               <% else %>
                 <div class="validationContent largeTooltip"></div>
               <% end %>
               <span class="rightNumber"></span>
               <%= f.text_field :tag_name, maxlength: AppConstants::MAX_TAG_TITLE_LENGTH,
-                               placeholder: 'Add an Existing Tag or Create a New One',
+                               placeholder: 'Add an Existing Topic or Create a New One',
                                class: "block hasNumber" %>
               <%= f.hidden_field :tag_id %>
 

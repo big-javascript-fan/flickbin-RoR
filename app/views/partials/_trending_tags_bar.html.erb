@@ -1,4 +1,4 @@
-<%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnMobile" %>
+<%= link_to "Browse All Topics", tags_path, class: "boldBlockLinks hideOnMobile" %>
 <div class="leftTagsOuter">
   <a href="#" class="offCanvasBtn offCanvasBtnClose">&times;</a>
   <% unless current_user.present? %>
@@ -7,9 +7,9 @@
     </div>
   <% end %>
   
-  <%= link_to "Browse All Tags", tags_path, class: "boldBlockLinks hideOnDesktop" %>
+  <%= link_to "Browse All Topics", tags_path, class: "boldBlockLinks hideOnDesktop" %>
 
-  <span class="tagsTitle">Trending Tags</span>
+  <span class="tagsTitle">Trending Topics</span>
   <ul class="leftPanelTags tag-feed">
     <% @sidebar_tags.each do |trending_tag| %>
       <li>

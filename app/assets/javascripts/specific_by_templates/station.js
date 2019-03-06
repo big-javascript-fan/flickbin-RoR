@@ -57,7 +57,7 @@ $(function() {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });
@@ -80,7 +80,7 @@ $(function() {
                       <span class="postTime">
                         posted
                         ${video.post_time} ago in
-                        <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
+                        <a href="/topics/${video.tag.slug}">${video.tag.title}</a>
                       </span>
                       <a class="descText" href="/videos/${video.slug}">${video.title}</a>
                       <div class="removerBar" id="${video.id}">
@@ -106,7 +106,7 @@ $(function() {
                       <span class="postTime">
                         posted
                         ${video.post_time} ago in
-                        <a href="/tags/${video.tag.slug}">${video.tag.title}</a>
+                        <a href="/topics/${video.tag.slug}">${video.tag.title}</a>
                       </span>
                       <a class="descText" href="/videos/${video.slug}">${video.title}</a>
                     </div>

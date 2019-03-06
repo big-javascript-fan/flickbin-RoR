@@ -33,7 +33,7 @@ $(function() {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });
@@ -46,7 +46,7 @@ $(function() {
               <div id="${leftTag.id}" class="colHalf colTitle clearfix mobileColBottom left_tag top-margin-25">
                 <div class="clearfix bottom-margin-15">
                 <span class="sideTitle">${leftTag.title}</span>
-                <a class="seeAllLink" href="/tags/${leftTag.slug}">SEE ALL</a>
+                <a class="seeAllLink" href="/topics/${leftTag.slug}">SEE ALL</a>
               </div>
 
               <ul class="entityList">
@@ -80,7 +80,7 @@ $(function() {
               <div id="${rightTag.id}" class="colHalf clearfix right_tag top-margin-25">
                 <div class="clearfix bottom-margin-15">
                 <span class="sideTitle">${rightTag.title}</span>
-                <a class="seeAllLink" href="/tags/${rightTag.slug}">SEE ALL</a>
+                <a class="seeAllLink" href="/topics/${rightTag.slug}">SEE ALL</a>
               </div>
 
               <ul class="entityList">

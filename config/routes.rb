@@ -26,9 +26,9 @@ Rails.application.routes.draw do
       end
 
       scope module: :tags do
-        get  'tags/:tag_slug', action: :show
-        get  'tags',          action: :index
-        post 'tags',          action: :create
+        get  'topics/:tag_slug', action: :show
+        get  'topics',          action: :index
+        post 'topics',          action: :create
       end
 
       scope module: :grouped_tags do

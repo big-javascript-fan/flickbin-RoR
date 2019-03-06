@@ -108,9 +108,9 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Top Contributor, Your Pathway to Stardom on flickbin")
   end
 
-  def weekly_mailing(user, top_5_tags)
+  def weekly_mailing(user, top_3_tags)
     @user = user
-    @top_5_tags = top_5_tags
+    @top_3_tags = top_3_tags
     @counted_video_url = []
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 

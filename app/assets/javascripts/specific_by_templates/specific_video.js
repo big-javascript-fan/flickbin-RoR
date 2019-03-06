@@ -326,7 +326,7 @@ $(function() {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });

@@ -148,8 +148,8 @@
                   Trending Now on Flickbin.
                 </td>
               </tr>
-              <% @top_5_tags.each do |top_5_tag| %>
-                <% next if top_5_tag.top_3_videos.blank? || (top_5_tag.top_3_videos.map(&:url) - @counted_video_url).blank? %>
+              <% @top_3_tags.each do |tag| %>
+                <% next if tag.top_3_videos.blank? || (tag.top_3_videos.map(&:url) - @counted_video_url).blank? %>
 
                 <tr>
                   <td height="20"></td>
@@ -162,13 +162,13 @@
                 </tr>
                 <tr>
                   <td align="left" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:0 20px 0 20px; font-size:17px; color:#4E5766; line-height: 25px; font-weight: 500;">
-                    popular in <a href="<%= tag_url(top_5_tag) %>" style="color: #31B4B0; text-decoration: none;"><%= top_5_tag.title %></a>
+                    popular in <a href="<%= tag_url(tag) %>" style="color: #31B4B0; text-decoration: none;"><%= tag.title %></a>
                   </td>
                 </tr>
                 <tr>
                   <td height="10"></td>
                 </tr>
-                <% top_5_tag.top_3_videos.each do |top_3_video| %>
+                <% tag.top_3_videos.each do |top_3_video| %>
                   <% @counted_video_url.include?(top_3_video.url) ? next : @counted_video_url << top_3_video.url %>
                   
                   <tr>

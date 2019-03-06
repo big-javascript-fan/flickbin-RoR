@@ -29,7 +29,7 @@ $(function() {
     });
 
     function loadNextBatchOfTags() {
-      $.get('/api/v1/tags', {
+      $.get('/api/v1/topics', {
         page: nextPageNumber,
         number_of_tags_per_page: numberOfTagsPerPage
       }).then(function(response) {
@@ -39,7 +39,7 @@ $(function() {
           $.each(response, function(index, tag) {
             tagContent += `
               <li>
-                <a href="/tags/${tag.slug}">${tag.title}</a>
+                <a href="/topics/${tag.slug}">${tag.title}</a>
               </li>
             `
           });

@@ -155,7 +155,7 @@ $(function() {
 
       if(query.length > 0 && regex.test(query)) {
         $(this).addClass('hasBorder');
-        $.get('/api/v1/tags', { query: query }).then(function(response) {
+        $.get('/api/v1/topics', { query: query }).then(function(response) {
           dropdownBuilder(response, query);
         });
       } else {
@@ -296,7 +296,7 @@ $(function() {
       e.preventDefault();
       var tagTitle = $(this).attr('tag_title');
 
-      $.post('/api/v1/tags', { title: tagTitle }).then(function(response) {
+      $.post('/api/v1/topics', { title: tagTitle }).then(function(response) {
         $('.dropdownItemListOuter').hide();
         $('#video_tag_name').val(tagTitle);
         $('#video_tag_name').removeClass('hasBorder');

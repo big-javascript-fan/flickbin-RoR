@@ -11,7 +11,7 @@ $(function() {
 
   sortingHandler();
   infiniteScrollForVideos();
-  // votesHandler();
+  votesHandler();
 
   function sortingHandler() {
     sortBy = window.location.search.split('sort_by=').pop() || 'top_charts';
@@ -25,7 +25,7 @@ $(function() {
       $('.filter').removeClass('current');
       $(this).addClass('current');
 
-      var newUrl = `${window.location.origin}/tags/${tagSlug}?sort_by=${sortBy}`;
+      var newUrl = `${window.location.origin}/topics/${tagSlug}?sort_by=${sortBy}`;
       window.history.pushState({path: newUrl}, '', newUrl);
 
       $.ajax({
@@ -49,7 +49,7 @@ $(function() {
       }
 
       function loadNextBatchOfVideos() {
-        $.get(`/api/v1/tags/${tagSlug}`, {
+        $.get(`/api/v1/topics/${tagSlug}`, {
           page: nextPageNumber,
           sort_by: sortBy
         }).then(function(response) {
@@ -58,18 +58,18 @@ $(function() {
           var sidbarTagsContent = '';
           var videosContent = '';
 
-          if(sidbarTags.length > 0) {
+          if(sidbarTags && sidbarTags.length > 0) {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
-          if(tagVideos.length > 0) {
+          if(tagVideos && tagVideos.length > 0) {
             $.each(tagVideos, function(index, video) {
               videosContent += `
                 <li class="card card-video-tags">
@@ -108,7 +108,7 @@ $(function() {
                       <div class="card-info">
                         <div class="card-tags">
                           <div class="card-tags-id"> #${video.rank} </div>
-                          <div class="card-tags-like  ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
+                          <div class="card-tags-like card-tags-vote ${ currentUserVotedVideoIds.includes(parseInt(video.id)) ? 'active' : '' }" video_slug=${video.slug}>
                             <span class="icon icon-arrow_drop_up"></span>
                             ${video.votes_amount}
                           </div>
@@ -137,7 +137,7 @@ $(function() {
             $('ul.video-feed').append(videosContent);
           }
 
-          if(sidbarTags.length == 0 && tagVideos.length == 0) {
+          if(sidbarTags && sidbarTags.length == 0 && tagVideos && tagVideos.length == 0) {
             lastPageReached = true;
           }
 
@@ -149,7 +149,7 @@ $(function() {
   }
 
   function votesHandler() {
-    $(document).on('click', '.card-tags-like', function(e) {
+    $(document).on('click', '.card-tags-vote', function(e) {
       var voteBox = $(this);
       var votesAmountElement = $(this).find('votes_amount')
       var videoSlug = $(this).attr('video_slug');

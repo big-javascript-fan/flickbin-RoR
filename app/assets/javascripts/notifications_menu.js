@@ -155,7 +155,7 @@ function notificationBodyBuilder(notification) {
     `
   } else if(notification.category == 'top_1_contributor') {
     notificationsMenuContent += `
-      <a href="/tags/${notification.tag.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
+      <a href="/topics/${notification.tag.slug}" class="notification message ${notification.read ? 'notification-read' : 'notification-unread'}">
         <div class="notification-header">
           <p class="notification-title">
             <span class="icon icon-star"></span>

@@ -58,7 +58,7 @@ $(function() {
           var sidbarTagsContent = '';
           var videosContent = '';
 
-          if(sidbarTags.length > 0) {
+          if(sidbarTags && sidbarTags.length > 0) {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
@@ -69,7 +69,7 @@ $(function() {
 
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
-          if(tagVideos.length > 0) {
+          if(tagVideos && tagVideos.length > 0) {
             $.each(tagVideos, function(index, video) {
               videosContent += `
                 <li class="card card-video-tags">
@@ -137,7 +137,7 @@ $(function() {
             $('ul.video-feed').append(videosContent);
           }
 
-          if(sidbarTags.length == 0 && tagVideos.length == 0) {
+          if(sidbarTags && sidbarTags.length == 0 && tagVideos && tagVideos.length == 0) {
             lastPageReached = true;
           }
 

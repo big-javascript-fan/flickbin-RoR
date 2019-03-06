@@ -6,16 +6,18 @@
         <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
       <% end %>
       <div class="card-cover">
-        <% if video.source == 'youtube' %>
-          <span class="icon youtube-icon"></span>
-        <%# elsif video.source == 'facebook' %>
-<!--          <span class="icon facebook-icon"></span>-->
-        <% elsif video.source == 'daily_motion' %>
-          <span class="icon dailymotion-icon"></span>
-        <% elsif video.source == 'twitch' %>
-          <span class="icon fab fa-twitch"></span>
+        <%= link_to video_path(video), class: "descText" do %>
+          <% if video.source == 'youtube' %>
+            <span class="icon youtube-icon"></span>
+          <%# elsif video.source == 'facebook' %>
+  <!--          <span class="icon facebook-icon"></span>-->
+          <% elsif video.source == 'daily_motion' %>
+            <span class="icon dailymotion-icon"></span>
+          <% elsif video.source == 'twitch' %>
+            <span class="icon fab fa-twitch"></span>
+          <% end %>
+          <%= video.title %>
         <% end %>
-        <%= link_to video.title, video_path(video), class: "descText" %>
       </div>
     </div>
     <% if params[:sort_by] == 'newest' %>

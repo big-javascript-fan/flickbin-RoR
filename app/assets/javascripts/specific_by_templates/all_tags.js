@@ -56,7 +56,7 @@ $(function() {
   }
 
   function newUrlBuilder() {
-    newUrl = `${window.location.origin}/tags`;
+    newUrl = `${window.location.origin}/topics`;
     if(!$.isEmptyObject(filter)) newUrl += `?${$.param(filter)}`
 
     window.history.pushState({path: newUrl}, '', newUrl);
@@ -101,7 +101,7 @@ $(function() {
             $.each(sidbarTags, function(index, tag) {
               sidbarTagsContent += `
                 <li>
-                  <a href="/tags/${tag.slug}">${tag.title}</a>
+                  <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
             });
@@ -117,7 +117,7 @@ $(function() {
 
               if(lastAlphabetTitle == char) {
                 $.each(tags, function(index, tag) {
-                  charTagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                  charTagsContent += `<a class="tagsBadge" href="/topics/${tag.slug}">${tag.title}</a>`
                 });
 
                 charTagsContent += `
@@ -133,7 +133,7 @@ $(function() {
                     <div class="clearfix">
                 `
                 $.each(tags, function(index, tag) {
-                  charTagsContent += `<a class="tagsBadge" href="/tags/${tag.slug}">${tag.title}</a>`
+                  charTagsContent += `<a class="tagsBadge" href="/topics/${tag.slug}">${tag.title}</a>`
                 });
 
                 charTagsContent += `

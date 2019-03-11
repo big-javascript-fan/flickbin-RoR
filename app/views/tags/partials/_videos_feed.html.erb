@@ -46,7 +46,7 @@
 
             <div class="card-tags-id">#<%= index + 1 %></div>
             <% if current_user.present? %>
-              <div class="card-tags-vote card-tags-like #{'active' if @current_user_voted_video_ids&.include?(video.id)}" video_slug="<%= video.slug %>">
+              <div class="card-tags-vote card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
                 <span class="icon icon-arrow_drop_up"></span>
                 <%= number_with_delimiter(video.votes_amount) %>
               </div>

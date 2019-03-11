@@ -110,7 +110,11 @@ class ApplicationMailer < ActionMailer::Base
 
   def weekly_mailing(user, tags_with_vidoes)
     @user = user
+<<<<<<< Updated upstream
     @tags_with_vidoes = tags_with_vidoes
+=======
+    @top_3_tags = top_3_tags
+>>>>>>> Stashed changes
     return if @user.allowed_to_send_notifications.blank? || @user.receive_notification_emails.blank?
 
     mail(to: @user.email, subject: "Trending Now on Flickbin.")

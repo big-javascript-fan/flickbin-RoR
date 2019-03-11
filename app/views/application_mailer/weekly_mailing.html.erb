@@ -148,9 +148,7 @@
                   Trending Now on Flickbin.
                 </td>
               </tr>
-              <% @top_3_tags.each do |tag| %>
-                <% next if tag.top_3_videos.blank? || (tag.top_3_videos.map(&:url) - @counted_video_url).blank? %>
-
+              <% @tags_with_vidoes.each do |tag, videos| %>
                 <tr>
                   <td height="20"></td>
                 </tr>
@@ -168,9 +166,7 @@
                 <tr>
                   <td height="10"></td>
                 </tr>
-                <% tag.top_3_videos.each do |top_3_video| %>
-                  <% @counted_video_url.include?(top_3_video.url) ? next : @counted_video_url << top_3_video.url %>
-                  
+                <% videos.each do |video| %>
                   <tr>
                     <td style="font-size:0; padding:0 20px 0 20px;">
                       <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
@@ -187,8 +183,8 @@
                                             <tbody>
                                             <tr>
                                               <td>
-                                                <%= link_to video_url(top_3_video), style: 'color: inherit; text-decoration: none;' do %>
-                                                  <img alt="" width="100%" src="<%= top_3_video.cover.url.to_s %>" style="border:0; display:block;" /> </td>
+                                                <%= link_to video_url(video), style: 'color: inherit; text-decoration: none;' do %>
+                                                  <img alt="" width="100%" src="<%= video.cover.url.to_s %>" style="border:0; display:block;" /> </td>
                                                 <% end %>
                                             </tr>
                                             </tbody>
@@ -202,7 +198,7 @@
                                       <tr>
                                         <td align="left" style="color: #C1C8D6;	font-size: 14px;	font-weight: 500;	line-height: 21px; padding:0 20px 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
                                           posted by
-                                          <a href="<%= station_url(top_3_video.user) %>" style="color: #31B4B0; text-decoration: none;	font-size: 14px;"><%= top_3_video.user.channel_name %> (<%= top_3_video.user.rank %>)</a>
+                                          <a href="<%= station_url(video.user) %>" style="color: #31B4B0; text-decoration: none;	font-size: 14px;"><%= video.user.channel_name %> (<%= video.user.rank %>)</a>
                                         </td>
                                       </tr>
                                       <tr>
@@ -210,7 +206,7 @@
                                       </tr>
                                       <tr>
                                         <td style="font-size:17px;line-height:1;text-align:left;color:#1D1F23; padding:0 0 0 20px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
-                                          <%= link_to top_3_video.title, video_url(top_3_video), style: 'color: inherit; text-decoration: none;' %>
+                                          <%= link_to video.title, video_url(video), style: 'color: inherit; text-decoration: none;' %>
                                         </td>
                                       </tr>
                                     </table>

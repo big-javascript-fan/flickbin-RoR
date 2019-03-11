@@ -2,7 +2,7 @@ class RecalculateVideosRankService
   def call
     Tag.find_each do |tag|
       rank = 1
-      upvote_for_last_week = "votes.value = 1 AND votes.created_at BETWEEN '#{12.hours.ago.to_s}' AND '#{Time.now}'"
+      upvote_for_last_week = "votes.value = 1 AND votes.created_at BETWEEN '#{3.days.ago.to_s}' AND '#{Time.now}'"
       sorted_videos_for_tag = Video.active
                                    .tagged
                                    .where(tag_id: tag.id)

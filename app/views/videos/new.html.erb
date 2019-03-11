@@ -13,7 +13,7 @@
     <div class="card-video-post-wrapper">
       <div class="card card-video-post"></div>
     </div>
-    <%= simple_form_for(@video, url: create_video_path, html: {autocomplete: 'off'}) do |f| %>
+    <%= simple_form_for(@video, url: create_video_path(anchor: 'second_step'), html: {autocomplete: 'off'}) do |f| %>
       <% if @second_step.blank? %>
         <section class="section-video-post section-video-post-first background-video-post">
           <div class="section-background"></div>
@@ -64,7 +64,7 @@
       </section>
 
       <% if @second_step.present? %>
-        <section class="section-video-post section-video-post-secondary background-video-post">
+        <section id="second_step" class="section-video-post section-video-post-secondary background-video-post">
           <div class="section-background animation-bg-reverse"></div>
       <% else %>
         <section id="video-scroll" class="section-video-post section-video-post-secondary">

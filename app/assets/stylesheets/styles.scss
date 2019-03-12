@@ -225,6 +225,7 @@ input:-webkit-autofill {
   font-weight: 400;
 }
 .vidRowContainer {
+  width: 100%;
   float: left;
   margin-bottom: 40px;
 }
@@ -587,7 +588,7 @@ select:actived {
 .leftPanelTags a:hover {
   color:#31B4B0;
   text-decoration: none;
- }
+}
 .btnGroup {
   margin-bottom: 38px;
 }
@@ -667,6 +668,7 @@ select:actived {
   list-style: none;
   padding: 0;
   display: table;
+  width: 100%;
 
 }
 .entityList .entityRow {

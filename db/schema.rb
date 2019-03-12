@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20190312133544) do
 
   create_table "battles", force: :cascade do |t|
     t.integer "tag_id"
-    t.integer "frist_member_id"
+    t.integer "first_member_id"
     t.integer "second_member_id"
     t.datetime "final_date"
-    t.string "status"
+    t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_battles_on_tag_id"

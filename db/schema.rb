@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20190221125952) do
-=======
-ActiveRecord::Schema.define(version: 20190205145544) do
->>>>>>> develop
+ActiveRecord::Schema.define(version: 20190312133544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +41,17 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "battles", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "frist_member_id"
+    t.integer "second_member_id"
+    t.datetime "final_date"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_battles_on_tag_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "commentator_id"
     t.integer "video_id"
@@ -72,7 +79,6 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.index ["user_id", "tag_id"], name: "index_contribution_points_on_user_id_and_tag_id"
   end
 
-<<<<<<< HEAD
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.json "event_object"
@@ -81,8 +87,6 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.datetime "updated_at", null: false
   end
 
-=======
->>>>>>> develop
   create_table "exception_loggers", force: :cascade do |t|
     t.text "message"
     t.string "source"

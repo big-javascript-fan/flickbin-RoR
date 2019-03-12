@@ -83,7 +83,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :battles do
-    get '/battles', action: :index
+    get '/battles/:tag_slug', action: :show
   end
 
   get  'stations/:channel_slug' => 'users#show', as: :station

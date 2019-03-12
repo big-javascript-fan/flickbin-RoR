@@ -1,0 +1,179 @@
+<% if flash[:notice].present? %>
+  <div class="flashNotification">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="wrapper wrapper-battle scroll">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel">
+    <%= link_to "flickbin", root_path, class: "brand" %>
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+  <div class="rightPanel">
+    <section class="section-hero">
+      <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+      </button>
+      <div class="heading-hero">
+        <h1 class="heading-title">
+          CREATOR BATTLE
+        </h1>
+        <p class="heading-subtitle">
+          <span>The Youtube Channel with the</span> most votes <span>wins.</span> Choose your favorite.
+        </p>
+      </div>
+    </section>
+    <section class="section-countdown">
+      <h2 class="heading-countdown">
+        This Battle Ends In
+      </h2>
+      <div class="uk-countdown" uk-countdown="date: 2019-02-28T01:27:01+00:00">
+        <div>
+          <div class="uk-countdown-number uk-countdown-days"></div>
+          <div class="uk-countdown-label">Days</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+          <div class="uk-countdown-number uk-countdown-hours"></div>
+          <div class="uk-countdown-label">Hours</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+          <div class="uk-countdown-number uk-countdown-minutes"></div>
+          <div class="uk-countdown-label ">Minutes</div>
+        </div>
+      </div>
+    </section>
+    <section class="section-fight">
+
+      <div class="layout-fight">
+        <div class="layout-item">
+          <div class="effect">
+            <%= image_tag('/images/Bitmap.png', class: 'decore-image') %>
+          </div>
+        </div>
+        <div class="layout-item layout-grow layout-flex">
+          <div class="layout-fight-secondary">
+            <div class="layout-item layout-grow">
+              <div class="card-fight">
+                <div class="card-header">
+                  <div class="card-title">Way Away</div>
+                  <a href="#" class="card-tag">@music</a>
+                </div>
+                <div class="card-body">
+                  <div class="card-image">
+                    <div>
+                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                    </div>
+                  </div>
+                  <a href="#" class="card-vote">331<span class="icon icon-arrow_drop_up"></span></a>
+                  <div class="card-vote-description">
+                    Vote for Way Away
+                  </div>
+                  <div class="card-vote-winner">
+                    Winner
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layout-item layout-divider">
+              <div class="text-divider">
+                <span>VS.</span>
+              </div>
+              <a href="#" class="divider-button hidden">Request a Rematch</a>
+            </div>
+            <div class="layout-item layout-grow">
+              <div class="card-fight">
+                <div class="card-header">
+                  <div class="card-title">Way Away</div>
+                  <a href="#" class="card-tag">@waywayway</a>
+                </div>
+                <div class="card-body">
+                  <div class="card-image">
+                    <div>
+                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                    </div>
+                  </div>
+                  <a href="#" class="card-vote">456<span class="icon icon-arrow_drop_up"></span></a>
+                  <div class="card-vote-description">
+                    Vote for Way Away
+                  </div>
+                  <div class="card-vote-winner">
+                    Winner
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="divider-button-mobile hidden">Request a Rematch</a>
+        </div>
+        <div class="layout-item">
+          <%= image_tag('/images/Bitmap1.png', class: 'decore-image-secondary') %>
+        </div>
+      </div>
+    </section>
+    <section class="section-tweets">
+      <div class="layout-tweets">
+        <div class="layout-item">
+          <div class="card-tweets">
+            <div class="card-header">
+              <div class="card-image">
+                <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                <span class="icon fab fa-twitter"></span>
+              </div>
+              <div class="card-title">
+                Spread the Word
+              </div>
+              <div class="card-description">
+                Fans of The Endless Adventure, Tweet This.
+              </div>
+            </div>
+            <div class="card-body">
+              <form action="" class="form-tweets">
+                <label class="form-control">
+                  <span class="icon fab fa-twitter"></span>
+                  <span class="textarea-wrapper">
+                    <span class="textarea-tip"></span>
+                    <textarea class="textarea" placeholder="The Youtube Creator battle round is happening now between The Endless Adventure and Way Away on Flickbin. Go vote for The Endless Adventure now before it’s too late!"></textarea>
+                  </span>
+                </label>
+                <button class="form-button"> Send Tweet</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="layout-item">
+          <div class="card-tweets">
+            <div class="card-header">
+              <div class="card-image">
+                <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+              </div>
+              <div class="card-title">
+                Spread the Word
+              </div>
+              <div class="card-description">
+                Fans of The Endless Adventure, Tweet This.
+              </div>
+            </div>
+            <div class="card-body">
+              <form action="" class="form-tweets">
+                <label class="form-control">
+                  <span class="icon fab fa-twitter"></span>
+                  <span class="textarea-wrapper">
+                    <span class="textarea-tip"></span>
+                    <textarea class="textarea" placeholder="The Youtube Creator battle round is happening now between The Endless Adventure and Way Away on Flickbin. Go vote for The Endless Adventure now before it’s too late!"></textarea>
+                  </span>
+                </label>
+                <button class="form-button"> Send Tweet</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<%= javascript_include_tag('specific_by_templates/station') %>

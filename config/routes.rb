@@ -82,6 +82,10 @@ Rails.application.routes.draw do
     get '/:page/', action: :show
   end
 
+  scope module: :battles do
+    get '/battles', action: :index
+  end
+
   get  'stations/:channel_slug' => 'users#show', as: :station
 
   root 'home#index'

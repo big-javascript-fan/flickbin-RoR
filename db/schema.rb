@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190312133544) do
+ActiveRecord::Schema.define(version: 20190313144801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,26 @@ ActiveRecord::Schema.define(version: 20190312133544) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "battle_members", force: :cascade do |t|
+    t.string "youtube_channel_id"
+    t.string "twitter_account"
+    t.string "station"
+    t.string "avatar"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "battles", force: :cascade do |t|
     t.integer "tag_id"
     t.integer "first_member_id"
     t.integer "second_member_id"
+    t.integer "first_member_voices"
+    t.integer "second_member_voices"
+    t.integer "number_of_rematch_requests"
+    t.string "winner"
+    t.string "status", default: "live"
     t.datetime "final_date"
-    t.string "status", default: "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_battles_on_tag_id"

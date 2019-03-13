@@ -20,9 +20,9 @@ ActiveAdmin.register Battle do
     column :final_date
     column :status do |battle|
       case battle.status
-      when 'active'
+      when 'live'
         status_tag(battle.status, class: "orange abc")
-      when 'completed'
+      when 'finished'
         status_tag(battle.status, :yes, class: "abc")
       end
     end
@@ -35,11 +35,11 @@ ActiveAdmin.register Battle do
     f.semantic_errors
     f.inputs do
       f.input :tag
-      f.input :first_member_id, as: :search_select, url: admin_users_path,
-                    fields: [:channel_name], display_name: :channel_name, minimum_input_length: 3,
+      f.input :first_member_id, as: :search_select, url: admin_battle_members_path,
+                    fields: [:name], display_name: :name, minimum_input_length: 2,
                     order_by: 'channel_name_asc'
-      f.input :second_member_id, as: :search_select, url: admin_users_path,
-                    fields: [:channel_name], display_name: :channel_name, minimum_input_length: 3,
+      f.input :second_member_id, as: :search_select, url: admin_battle_members_path,
+                    fields: [:name], display_name: :name, minimum_input_length: 2,
                     order_by: 'channel_name_asc'
       f.input :final_date, as: :date_time_picker,
                            input_html: { style: 'width: 100px;' }

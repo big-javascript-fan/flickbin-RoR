@@ -45,6 +45,9 @@ $(function() {
 
     if(buttonForHighlighting.length > 0 && window.location.hash == '#voting_button' ) {
       buttonForHighlighting.addClass('highlight');
+      setTimeout(function(){
+        buttonForHighlighting.removeClass('highlight');
+      }, 2100)
     }
     history.replaceState(null, null, ' ');
   }
@@ -113,7 +116,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = '';
           counterOptionElement.removeClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change');
           $('.upDownOptions').removeAttr('voted');
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -127,7 +130,7 @@ $(function() {
           votedValue = newVoteValue;
           $('.counterOption').removeClass('voted');
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change');
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);
@@ -139,7 +142,7 @@ $(function() {
         }).done(function(response, statusText, xhr) {
           votedValue = newVoteValue;
           counterOptionElement.addClass('voted');
-          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change'); ;
+          $('.counterValueHolder').text(response.new_votes_amount_for_video).trigger('change');
           $('.upDownOptions').attr("voted", votedValue);
         }).fail(function(response, statusText, xhr) {
           console.log(response.responseJSON.messages);

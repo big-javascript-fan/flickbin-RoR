@@ -3,7 +3,7 @@ $(function() {
   nextPageNumber = 2;
   tagSlug = $('.titleSpecific').attr('slug');
   sortBy = '';
-  if($('.video-feed').attr('video_ids').lenght > 0) {
+  if($('.video-feed').attr('video_ids')) {
     window.currentUserVotedVideoIds = $.parseJSON($('.video-feed').attr('video_ids'));
   } else {
     window.currentUserVotedVideoIds = [];
@@ -82,7 +82,7 @@ $(function() {
                         ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
                         ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
                         ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
-                        <a href="/videos/${video.slug}" class="descText">${video.title}</a> 
+                        <a href="/videos/${video.slug}" class="descText">${video.title}</a>
                       </div>
                     </div>
                     </div>

@@ -166,7 +166,7 @@
 
 .nestedComment .commentorThumb {
   top: 6px;
-  left: 0px;
+  left: 0;
 }
 
 .is-fade {
@@ -182,6 +182,17 @@
 }
 
 @keyframes comment-fade {
+  0% {
+    border: 2px solid transparent;
+    background: tomato;
+  }
+  100% {
+    border: 2px solid #ccc;
+    background: transparent;
+  }
+}
+
+@-webkit-keyframes comment-fade {
   0% {
     border: 2px solid transparent;
     background: tomato;

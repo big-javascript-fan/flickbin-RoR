@@ -2151,8 +2151,9 @@ input.grayNormal {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  }
   &:hover {
-    background-color: #4e5766;
+    background-color: #4e5766 ;
     .counterOption {
       background-color: transparent;
       color:#31b4b0;

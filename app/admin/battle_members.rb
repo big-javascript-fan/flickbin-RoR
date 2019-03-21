@@ -1,9 +1,18 @@
 ActiveAdmin.register BattleMember do
-  permit_params :youtube_channel_id, :twitter_account, :station, :name, :avatar
+  permit_params :youtube_channel_id, :twitter_account, :channel_title, :channel_avatar_url, :station_title
 
   controller do
     def create
-      byebug
+      @resource = BattleMember.new(permitted_params[:battle_member])
+      @resource.remote_channel_avatar_url = permitted_params.dig(:battle_member, :channel_avatar_url)
+
+      if @resource.save
+        flash[:notice] = "Battle Member was successfully created!"
+        redirect_to admin_battle_member_path(@resource)
+      else
+        flash[:error] = @resource.errors.messages[:invalid_url].first
+        redirect_to new_admin_battle_member_path
+      end
     end
   end
 
@@ -24,7 +33,7 @@ ActiveAdmin.register BattleMember do
       f.inputs do
         f.input :twitter_account
         f.input :channel_title
-        f.input :channel_avatar, label: 'Channel avatar url'
+        f.input :channel_avatar_url
         f.input :station_title
       end
     end

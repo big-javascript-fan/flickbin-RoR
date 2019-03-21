@@ -20,7 +20,7 @@ $(function() {
           $('#battle_member_channel_title').val(response.channel_title);
 
           if(response.channel_avatar_url) {
-            $('#battle_member_channel_avatar').val(response.channel_avatar_url);
+            $('#battle_member_channel_avatar_url').val(response.channel_avatar_url);
             $('#channel_avatar_preview').html(`<img src="${response.channel_avatar_url}">`);
             $('#channel_avatar_preview').prepend('<label class="label">Channel avatar preview</label>');
           }

@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20190313144801) do
   create_table "battle_members", force: :cascade do |t|
     t.string "youtube_channel_id"
     t.string "twitter_account"
-    t.string "station"
     t.string "channel_avatar"
     t.string "channel_title"
     t.string "station_title"

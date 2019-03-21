@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20190313144801) do
     t.string "youtube_channel_id"
     t.string "twitter_account"
     t.string "station"
-    t.string "avatar"
-    t.string "name"
+    t.string "channel_avatar"
+    t.string "channel_title"
+    t.string "station_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

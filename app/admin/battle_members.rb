@@ -3,40 +3,29 @@ ActiveAdmin.register BattleMember do
 
   controller do
     def create
-      youtube_url = params.dig(:battle_member, :youtube_url)
-      response_body = RestClient.get(youtube_url).body
-      twitter_account = response_body[/twitter.com\/#!\/([A-Za-z0-9]+)/, 1]
-
-      if twitter_account.present?
-        youtube_channel_id = youtube_url[/channel\/(\w+)(\/|\?|\z)/, 1]
-        if youtube_channel_id.present?
-          channel = Yt::Channel.new id:(youtube_channel_id)
-          battle_mamber = BattleMember.new(
-            youtube_channel_id: youtube_channel_id,
-            name: channel.title
-          )
-        else
-
-        end
-      else
-
-      end
+      byebug
     end
   end
 
   form do |f|
     f.semantic_errors
     f.inputs do
-      f.input :youtube_url
+      f.input :youtube_channel_url, required: true
       f.inputs do
-        '<li class="string input optional stringish" id="battle_member_twitter_account_input">
-          <label for="battle_member_twitter_account" class="label">Youtube url</label>
-          <div class="battle_mamber-wrap">
-            <input id="battle_member_twitter_account" type="text" name="battle_member[twitter_account]">
-            <input type="submit" name="commit" value="Parse twitter from youtube channel" data-disable-with="Parse twitter from youtube channel">
+        '<li class="string input optional stringish">
+          <div class="battle_member-wrap">
+            <input id="parse_youtube_channel_info" type="button" class="no-click" value="Parse info from youtube channel">
           </div>
+        </li>
+        <li class="string input optional stringish">
+          <div id="channel_avatar_preview"></div>
         </li>'.html_safe
-        # f.button :parse_twitter_from_youtube_channel_page
+      end
+      f.inputs do
+        f.input :twitter_account
+        f.input :channel_title
+        f.input :channel_avatar, label: 'Channel avatar url'
+        f.input :station_title
       end
     end
     f.actions

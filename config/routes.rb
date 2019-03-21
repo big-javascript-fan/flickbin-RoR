@@ -54,6 +54,10 @@ Rails.application.routes.draw do
       scope module: :social_networks do
         get 'social_networks', action: :index
       end
+
+      scope module: :youtube_channels do
+        get 'youtube_channels', action: :index
+      end
     end
   end
 

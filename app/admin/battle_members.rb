@@ -1,9 +1,10 @@
 ActiveAdmin.register BattleMember do
-  permit_params :youtube_channel_id, :twitter_account, :channel_title, :channel_avatar_url, :station_title
+  permit_params :youtube_channel_url, :twitter_account, :channel_title, :channel_avatar_url, :station_title
 
   controller do
     def create
       @resource = BattleMember.new(permitted_params[:battle_member])
+      @resource.youtube_channel_id = permitted_params.dig(:battle_member, :youtube_channel_url).split('/').last
       @resource.remote_channel_avatar_url = permitted_params.dig(:battle_member, :channel_avatar_url)
 
       if @resource.save
@@ -14,6 +15,21 @@ ActiveAdmin.register BattleMember do
         redirect_to new_admin_battle_member_path
       end
     end
+  end
+
+  index do
+    selectable_column
+    id_column
+    column :channel_title
+    column :station_title
+    column :twitter_account
+    column :youtube_channel_id
+    column :channel_avatar do |bm|
+      image_tag(bm.channel_avatar.url || '/images/avatar_holder.jpg', width:50, height:50)
+    end
+    column :created_at
+    column :updated_at
+    actions
   end
 
   form do |f|

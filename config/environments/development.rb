@@ -49,7 +49,7 @@ Rails.application.configure do
     email: {
       email_prefix: "[PREFIX] ",
       sender_address: %{"Flickbin Exception" <exception@flickbin.com>},
-      exception_recipients: %w{magistr.koma@gmail.com}
+      exception_recipients: %w{flickbin.developer@gmail.com}
     }
 
   # Raises error for missing translations

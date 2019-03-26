@@ -989,6 +989,14 @@ select:actived {
   }
 }
 
+.reverseThemeHoler .afterLoginBtns li:not(.notificationDropdown){
+  .addCircle:hover{
+    text-decoration: none;
+    color: #4E5766;
+    border-color: #4E5766;
+  }
+}
+
 .profileDropdown {
   position: relative;
   display: block;

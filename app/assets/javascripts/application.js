@@ -32,7 +32,7 @@ $(function() {
 
 $('.card-vote').on('click', function(e){
   e.preventDefault();
-  $(this).parents('.card-fight').addClass('card-fight-selected')
+  $('.card-vote').parents('.card-fight').addClass('card-fight-selected')
   $('.divider-button, .divider-button-mobile').removeClass('hidden')
 })
 $('.divider-button, .divider-button-mobile').on('click', function(e){

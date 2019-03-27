@@ -63,16 +63,16 @@
             <div class="layout-item layout-grow">
               <div class="card-fight">
                 <div class="card-header">
-                  <div class="card-title">Way Away</div>
+                  <div class="card-title"><%= @first_channel_title %></div>
                   <a href="#" class="card-tag">@music</a>
                 </div>
                 <div class="card-body">
                   <div class="card-image">
                     <div>
-                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                      <%= image_tag(@first_channel_avatat) %>
                     </div>
                   </div>
-                  <a href="#" class="card-vote">331<span class="icon icon-arrow_drop_up"></span></a>
+                  <a href="#" class="card-vote" data-member="1"><%= @first_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
                   <div class="card-vote-description">
                     Vote for Way Away
                   </div>
@@ -91,16 +91,16 @@
             <div class="layout-item layout-grow">
               <div class="card-fight">
                 <div class="card-header">
-                  <div class="card-title">Way Away</div>
-                  <a href="#" class="card-tag">@waywayway</a>
+                  <div class="card-title"><%= @second_channel_title %></div>
+                  <a href="#" class="card-tag"></a>
                 </div>
                 <div class="card-body">
                   <div class="card-image">
                     <div>
-                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                      <%= image_tag(@second_channel_avatat) %>
                     </div>
                   </div>
-                  <a href="#" class="card-vote">456<span class="icon icon-arrow_drop_up"></span></a>
+                  <a href="#" class="card-vote" data-member="2"><%= @second_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
                   <div class="card-vote-description">
                     Vote for Way Away
                   </div>
@@ -192,3 +192,4 @@
 </div>
 
 <%= javascript_include_tag('specific_by_templates/battle') %>
+<%= javascript_include_tag('specific_by_templates/battle_votes') %>

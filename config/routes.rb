@@ -13,6 +13,11 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      namespace :battles do
+        get '/', action: :index
+        put '/', action: :update
+      end
+
       namespace :exceptions do
         post '/', action: :create
       end

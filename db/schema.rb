@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190313144801) do
+ActiveRecord::Schema.define(version: 20190328154537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,13 +42,14 @@ ActiveRecord::Schema.define(version: 20190313144801) do
   end
 
   create_table "battle_members", force: :cascade do |t|
-    t.string "youtube_channel_id"
-    t.string "twitter_account"
-    t.string "channel_avatar"
-    t.string "channel_title"
-    t.string "station_title"
+    t.string "youtube_channel_guid"
+    t.string "twitter_account_name"
+    t.string "photo"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_battle_members_on_user_id"
   end
 
   create_table "battles", force: :cascade do |t|

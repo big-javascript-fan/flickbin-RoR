@@ -1,18 +1,17 @@
 ActiveAdmin.register BattleMember do
-  permit_params :youtube_channel_url, :twitter_account, :channel_title, :channel_avatar_url, :station_title
+  permit_params :youtube_channel_url, :twitter_account_name, :name, :photo_url
 
   controller do
     def create
       @resource = BattleMember.new(permitted_params[:battle_member])
-      @resource.youtube_channel_id = permitted_params.dig(:battle_member, :youtube_channel_url).split('/').last
-      @resource.remote_channel_avatar_url = permitted_params.dig(:battle_member, :channel_avatar_url)
+      @resource.youtube_channel_guid = permitted_params.dig(:battle_member, :youtube_channel_url).split('/').last
+      @resource.remote_photo_url = permitted_params.dig(:battle_member, :photo_url)
 
       if @resource.save
         flash[:notice] = "Battle Member was successfully created!"
         redirect_to admin_battle_member_path(@resource)
       else
-        flash[:error] = @resource.errors.messages[:invalid_url].first
-        redirect_to new_admin_battle_member_path
+        render :new
       end
     end
   end
@@ -20,12 +19,11 @@ ActiveAdmin.register BattleMember do
   index do
     selectable_column
     id_column
-    column :channel_title
-    column :station_title
-    column :twitter_account
-    column :youtube_channel_id
-    column :channel_avatar do |bm|
-      image_tag(bm.channel_avatar.url || '/images/avatar_holder.jpg', width:50, height:50)
+    column :name
+    column :twitter_account_name
+    column :youtube_channel_guid
+    column :photo do |bm|
+      image_tag(bm.photo.url || '/images/avatar_holder.jpg', width:50, height:50)
     end
     column :created_at
     column :updated_at
@@ -47,10 +45,9 @@ ActiveAdmin.register BattleMember do
         </li>'.html_safe
       end
       f.inputs do
-        f.input :twitter_account
-        f.input :channel_title
-        f.input :channel_avatar_url
-        f.input :station_title
+        f.input :twitter_account_name
+        f.input :name
+        f.input :photo_url
       end
     end
     f.actions

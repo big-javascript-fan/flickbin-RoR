@@ -2,22 +2,21 @@
 #
 # Table name: battle_members
 #
-#  id                 :bigint(8)        not null, primary key
-#  youtube_channel_id :string
-#  twitter_account    :string
-#  channel_avatar     :string
-#  channel_title      :string
-#  station_title      :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                   :bigint(8)        not null, primary key
+#  youtube_channel_guid :string
+#  twitter_account_name :string
+#  photo                :string
+#  name                 :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :bigint(8)
 #
 
 FactoryBot.define do
   factory :battle_member do
-    youtube_channel_id { "MyString" }
-    twitter_account { "MyString" }
-    station { "MyString" }
-    avatar { "MyString" }
+    youtube_channel_guid { "MyString" }
+    twitter_account_name { "MyString" }
+    photo { "MyString" }
     name { "MyString" }
   end
 end

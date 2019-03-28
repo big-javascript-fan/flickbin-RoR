@@ -29,4 +29,11 @@ class Battle < ApplicationRecord
 
   validates_inclusion_of :status, in: STATUSES
   validates_presence_of  :status, :tag, :first_member, :second_member, :final_date
+
+  after_create :set_finish_battle_job
+
+  def set_finish_battle_job
+    duration = self.final_date - Time.now
+    FinishBattleJob.set(wait: duration).perform_later(self.id)
+  end
 end

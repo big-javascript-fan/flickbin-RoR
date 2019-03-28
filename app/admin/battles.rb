@@ -12,10 +12,10 @@ ActiveAdmin.register Battle do
     id_column
     column :tag
     column :first_member_id do |battle|
-      battle.first_member.channel_name
+      battle.first_member.channel_title
     end
     column :second_member_id do |battle|
-      battle.second_member.channel_name
+      battle.second_member.channel_title
     end
     column :final_date
     column :status do |battle|
@@ -36,11 +36,11 @@ ActiveAdmin.register Battle do
     f.inputs do
       f.input :tag
       f.input :first_member_id, as: :search_select, url: admin_battle_members_path,
-                    fields: [:name], display_name: :name, minimum_input_length: 2,
-                    order_by: 'channel_name_asc'
+                    fields: [:name], display_name: :channel_title, minimum_input_length: 2,
+                    order_by: 'channel_title_asc'
       f.input :second_member_id, as: :search_select, url: admin_battle_members_path,
-                    fields: [:name], display_name: :name, minimum_input_length: 2,
-                    order_by: 'channel_name_asc'
+                    fields: [:name], display_name: :channel_title, minimum_input_length: 2,
+                    order_by: 'channel_title_asc'
       f.input :final_date, as: :date_time_picker,
                            input_html: { style: 'width: 100px;' }
       f.input :status, as: :select, collection: Battle::STATUSES

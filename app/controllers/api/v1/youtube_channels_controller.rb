@@ -11,10 +11,10 @@ class Api::V1::YoutubeChannelsController < Api::V1::BaseController
     # Nokogiri doesn't see element ids from Youtube pages because they are loading by AJAX after page loaded
     response_body = RestClient.get(url).body
     doc = Nokogiri::HTML(response_body)
-    twitter_account_link = doc.at_css('a[title="Twitter"]').attr('href')
+
+    twitter_account = doc.at_css('a[title="Twitter"]')&.attr('href')&.split('/')&.last
     channel_title = doc.at_css('img.appbar-nav-avatar').attr('title')
     channel_avatar_url = doc.at_css('img.appbar-nav-avatar').attr('src')
-    twitter_account = twitter_account_link.split('/').last
 
     {
       channel_title: channel_title,

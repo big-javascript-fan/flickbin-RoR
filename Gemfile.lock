@@ -88,6 +88,9 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     ancestry (3.0.2)
       activerecord (>= 3.2.0)
+    annotate (2.7.4)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
@@ -424,6 +427,7 @@ DEPENDENCIES
   activeadmin_addons
   activeadmin_json_editor (~> 0.0.7)
   ancestry
+  annotate
   autoprefixer-rails (~> 7.1, >= 7.1.6)
   awesome_print
   babosa

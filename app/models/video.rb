@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: videos
+#
+#  id                    :bigint(8)        not null, primary key
+#  title                 :string
+#  url                   :string
+#  user_id               :integer
+#  tag_id                :integer
+#  rank                  :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  slug                  :string
+#  cover                 :string
+#  removed               :boolean          default(FALSE)
+#  untagged              :boolean          default(FALSE)
+#  source_id             :string
+#  positive_votes_amount :integer          default(0)
+#  negative_votes_amount :integer          default(0)
+#  wasp_outreach         :boolean          default(FALSE)
+#  twitter_handle        :string
+#  wasp_post             :boolean          default(FALSE)
+#  comments_count        :integer          default(0)
+#  source                :string           default("")
+#  kind_of               :string           default("")
+#
+
 class Video < ApplicationRecord
   attr_accessor :tag_name
 

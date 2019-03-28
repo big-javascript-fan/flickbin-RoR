@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id             :bigint(8)        not null, primary key
+#  commentator_id :integer
+#  video_id       :integer
+#  parent_id      :integer
+#  message        :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  ancestry       :string
+#  ancestry_depth :integer          default(0)
+#
+
 class Comment < ApplicationRecord
   has_ancestry cache_depth: true
 

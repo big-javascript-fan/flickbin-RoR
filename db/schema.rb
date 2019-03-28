@@ -210,6 +210,13 @@ ActiveRecord::Schema.define(version: 20190328154537) do
     t.index ["user_id", "tag_id"], name: "index_videos_on_user_id_and_tag_id"
   end
 
+  create_table "vote_ips", force: :cascade do |t|
+    t.integer "battle_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "votes", force: :cascade do |t|
     t.integer "value"
     t.integer "video_id"

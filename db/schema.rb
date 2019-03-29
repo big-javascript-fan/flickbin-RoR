@@ -211,10 +211,11 @@ ActiveRecord::Schema.define(version: 20190328154537) do
   end
 
   create_table "vote_ips", force: :cascade do |t|
-    t.integer "battle_id"
+    t.bigint "battle_id"
     t.string "ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_vote_ips_on_battle_id"
   end
 
   create_table "votes", force: :cascade do |t|

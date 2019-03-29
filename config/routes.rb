@@ -13,8 +13,9 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      resources :battles, only: :update
+
       namespace :battles do
-        get '/', action: :index
         put '/', action: :update
       end
 

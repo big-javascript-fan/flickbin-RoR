@@ -3,13 +3,20 @@
 # Table name: tags
 #
 #  id              :bigint(8)        not null, primary key
-#  title           :string
+#  first_character :string           default("")
 #  rank            :integer
+#  slug            :string
+#  title           :string
+#  wasp_post       :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  slug            :string
-#  first_character :string           default("")
-#  wasp_post       :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_tags_on_first_character  (first_character)
+#  index_tags_on_rank             (rank)
+#  index_tags_on_slug             (slug) UNIQUE
+#  index_tags_on_title            (title)
 #
 
 FactoryBot.define do

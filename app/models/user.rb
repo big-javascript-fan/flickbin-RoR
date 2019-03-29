@@ -3,27 +3,35 @@
 # Table name: users
 #
 #  id                            :bigint(8)        not null, primary key
-#  email                         :string           default(""), not null
-#  encrypted_password            :string           default(""), not null
-#  reset_password_token          :string
-#  reset_password_sent_at        :datetime
-#  remember_created_at           :datetime
+#  allowed_to_send_notifications :boolean          default(TRUE)
+#  avatar                        :string
+#  channel_description           :text
+#  channel_name                  :string
+#  confirmation_sent_at          :datetime
 #  confirmation_token            :string
 #  confirmed_at                  :datetime
-#  confirmation_sent_at          :datetime
+#  email                         :string           default(""), not null
+#  encrypted_password            :string           default(""), not null
+#  fake_avatar_url               :string           default("")
+#  rank                          :integer          default(0)
+#  receive_notification_emails   :boolean          default(TRUE)
+#  receive_promotional_emails    :boolean          default(TRUE)
+#  remember_created_at           :datetime
+#  reset_password_sent_at        :datetime
+#  reset_password_token          :string
+#  role                          :string           default("client")
+#  slug                          :string
 #  unconfirmed_email             :string
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
-#  channel_name                  :string
-#  slug                          :string
-#  channel_description           :text
-#  avatar                        :string
-#  rank                          :integer          default(0)
-#  role                          :string           default("client")
-#  fake_avatar_url               :string           default("")
-#  allowed_to_send_notifications :boolean          default(TRUE)
-#  receive_notification_emails   :boolean          default(TRUE)
-#  receive_promotional_emails    :boolean          default(TRUE)
+#
+# Indexes
+#
+#  index_users_on_channel_name          (channel_name) UNIQUE
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
 #
 
 class User < ApplicationRecord

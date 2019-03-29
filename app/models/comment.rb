@@ -3,14 +3,21 @@
 # Table name: comments
 #
 #  id             :bigint(8)        not null, primary key
-#  commentator_id :integer
-#  video_id       :integer
-#  parent_id      :integer
+#  ancestry       :string
+#  ancestry_depth :integer          default(0)
 #  message        :text
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  ancestry       :string
-#  ancestry_depth :integer          default(0)
+#  commentator_id :integer
+#  parent_id      :integer
+#  video_id       :integer
+#
+# Indexes
+#
+#  index_comments_on_ancestry                     (ancestry)
+#  index_comments_on_commentator_id               (commentator_id)
+#  index_comments_on_parent_id                    (parent_id)
+#  index_comments_on_video_id_and_commentator_id  (video_id,commentator_id)
 #
 
 class Comment < ApplicationRecord

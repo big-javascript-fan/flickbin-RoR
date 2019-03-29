@@ -4,10 +4,15 @@
 #
 #  id         :bigint(8)        not null, primary key
 #  value      :integer
-#  video_id   :integer
-#  voter_id   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  video_id   :integer
+#  voter_id   :integer
+#
+# Indexes
+#
+#  index_votes_on_video_id               (video_id)
+#  index_votes_on_video_id_and_voter_id  (video_id,voter_id) UNIQUE
 #
 
 class Vote < ApplicationRecord

@@ -1,5 +1,5 @@
 ActiveAdmin.register BattleMember do
-  permit_params :youtube_channel_url, :twitter_account_name, :name, :photo_url
+  permit_params :user_id, :youtube_channel_url, :twitter_account_name, :name, :photo_url
 
   controller do
     def create
@@ -25,6 +25,9 @@ ActiveAdmin.register BattleMember do
     column :photo do |bm|
       image_tag(bm.photo.url || '/images/avatar_holder.jpg', width:50, height:50)
     end
+    column :user_id do |bm|
+      link_to(bm.user_id, admin_user_path(id: bm.user_id)) if bm.user_id.present?
+    end
     column :created_at
     column :updated_at
     actions
@@ -33,6 +36,9 @@ ActiveAdmin.register BattleMember do
   form do |f|
     f.semantic_errors
     f.inputs do
+      f.input :user_id, as: :search_select, url: admin_users_path,
+              fields: [:channel_name], display_name: :channel_name, minimum_input_length: 2,
+              order_by: 'channel_name_asc'
       f.input :youtube_channel_url, required: true
       f.inputs do
         '<li class="string input optional stringish">

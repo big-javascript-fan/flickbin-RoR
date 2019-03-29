@@ -12,6 +12,19 @@ $(function() {
     toggle_parser_button();
   });
 
+  $('#battle_member_user_id').on('select2:select', function(e) {
+    $.get(
+      `/admin/users/` + $('#battle_member_user_id').val() + `.json`
+    ).then(function(response) {
+      $('#battle_member_name').val(response.channel_name);
+      if(response.avatar.url) {
+        $('#battle_member_photo_url').val(response.avatar.url);
+        $('#channel_avatar_preview').html(`<img src="${response.avatar.thumb_128x128.url}">`);
+        $('#channel_avatar_preview').prepend('<label class="label">Channel avatar preview</label>');
+      }
+    });
+  })
+
   $(document).on('click', '#parse_youtube_channel_info', function(e) {
     e.preventDefault();
     var url = $('#battle_member_youtube_channel_url').val();

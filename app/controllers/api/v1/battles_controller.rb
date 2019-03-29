@@ -25,7 +25,7 @@ class Api::V1::BattlesController < Api::V1::BaseController
   end
 
   def set_battle 
-    @battle = Battle.last
+    @battle = Battle.find(params[:id])
   end
 
   def set_voices 

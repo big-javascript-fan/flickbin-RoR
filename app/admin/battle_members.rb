@@ -36,7 +36,7 @@ ActiveAdmin.register BattleMember do
   form do |f|
     f.semantic_errors
     f.inputs do
-      f.input :user_id, as: :search_select, url: admin_users_path,
+      f.input :user_id, as: :search_select, url: admin_users_path, label: 'Flickbin station',
               fields: [:channel_name], display_name: :channel_name, minimum_input_length: 2,
               order_by: 'channel_name_asc'
       f.input :youtube_channel_url, required: true

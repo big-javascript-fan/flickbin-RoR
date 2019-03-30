@@ -13,6 +13,8 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      resources :battles, only: :update
+
       namespace :exceptions do
         post '/', action: :create
       end

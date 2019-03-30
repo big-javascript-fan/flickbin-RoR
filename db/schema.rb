@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190328154537) do
+ActiveRecord::Schema.define(version: 20190329133209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 20190328154537) do
     t.integer "tag_id"
     t.integer "first_member_id"
     t.integer "second_member_id"
-    t.integer "first_member_voices"
-    t.integer "second_member_voices"
-    t.integer "number_of_rematch_requests"
-    t.string "winner"
+    t.integer "first_member_voices", default: 0
+    t.integer "second_member_voices", default: 0
+    t.integer "number_of_rematch_requests", default: 0
+    t.string "winner", default: ""
     t.string "status", default: "live"
     t.datetime "final_date"
     t.datetime "created_at", null: false
@@ -208,6 +208,14 @@ ActiveRecord::Schema.define(version: 20190328154537) do
     t.index ["tag_id"], name: "index_videos_on_tag_id"
     t.index ["url", "tag_id"], name: "index_videos_on_url_and_tag_id"
     t.index ["user_id", "tag_id"], name: "index_videos_on_user_id_and_tag_id"
+  end
+
+  create_table "vote_ips", force: :cascade do |t|
+    t.bigint "battle_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_vote_ips_on_battle_id"
   end
 
   create_table "votes", force: :cascade do |t|

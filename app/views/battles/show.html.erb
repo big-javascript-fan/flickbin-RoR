@@ -50,7 +50,7 @@
         </div>
       </div>
     </section>
-    <section class="section-fight">
+    <section class="section-fight" data-battle="<%= @battle.id %>">
 
       <div class="layout-fight">
         <div class="layout-item">
@@ -63,18 +63,18 @@
             <div class="layout-item layout-grow">
               <div class="card-fight">
                 <div class="card-header">
-                  <div class="card-title">Way Away</div>
+                  <div class="card-title"><%= @battle.first_member.channel_title %></div>
                   <a href="#" class="card-tag">@music</a>
                 </div>
                 <div class="card-body">
                   <div class="card-image">
                     <div>
-                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                      <%= image_tag(@battle.first_member.channel_avatar) %>
                     </div>
                   </div>
-                  <a href="#" class="card-vote">331<span class="icon icon-arrow_drop_up"></span></a>
-                  <div class="card-vote-description">
-                    Vote for Way Away
+                  <a href="#" class="card-vote" data-member="1"><%= @battle.first_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
+                  <div class="card-vote-description" >
+                    Vote for <%= @battle.first_member.channel_title %>
                   </div>
                   <div class="card-vote-winner">
                     Winner
@@ -91,18 +91,18 @@
             <div class="layout-item layout-grow">
               <div class="card-fight">
                 <div class="card-header">
-                  <div class="card-title">Way Away</div>
-                  <a href="#" class="card-tag">@waywayway</a>
+                  <div class="card-title"><%= @battle.second_member.channel_title %></div>
+                  <a href="#" class="card-tag"></a>
                 </div>
                 <div class="card-body">
                   <div class="card-image">
                     <div>
-                      <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
+                      <%= image_tag(@battle.second_member.channel_avatar) %>
                     </div>
                   </div>
-                  <a href="#" class="card-vote">456<span class="icon icon-arrow_drop_up"></span></a>
+                  <a href="#" class="card-vote" data-member="2"><%= @battle.second_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
                   <div class="card-vote-description">
-                    Vote for Way Away
+                    Vote for <%= @battle.second_member.channel_title %>
                   </div>
                   <div class="card-vote-winner">
                     Winner
@@ -192,3 +192,4 @@
 </div>
 
 <%= javascript_include_tag('specific_by_templates/battle') %>
+<%= javascript_include_tag('specific_by_templates/battle_votes') %>

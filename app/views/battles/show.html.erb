@@ -29,7 +29,11 @@
       <h2 class="heading-countdown">
         This Battle Ends In
       </h2>
-      <div class="uk-countdown" uk-countdown="date: <%= @battle.final_date %>">
+      <%
+        # Anton Tkachov. We don't have seconds in our timer, therefore last minute will be cut
+        # I bring back this minute by adding it to the expiration time
+      %>
+      <div class="uk-countdown" uk-countdown="date: <%= @battle.final_date + 1.minute %>">
         <div>
           <div class="uk-countdown-number uk-countdown-days"></div>
           <div class="uk-countdown-label">Days</div>

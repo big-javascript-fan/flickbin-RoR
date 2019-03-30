@@ -40,4 +40,14 @@ $(function() {
       }
     });
   }
+
+  if ($('.uk-countdown-days').text() > 0 ||
+      $('.uk-countdown-hours').text() > 0 ||
+      $('.uk-countdown-minutes').text() > 0) {
+    setInterval(function () {
+      if ($('.uk-countdown-days').text() == 0 &&
+          $('.uk-countdown-hours').text() == 0 &&
+          $('.uk-countdown-minutes').text() == 0) location.reload();
+    }, 1000);
+  }
 });

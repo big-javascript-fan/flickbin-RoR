@@ -15,10 +15,6 @@ Rails.application.routes.draw do
 
       resources :battles, only: :update
 
-      namespace :battles do
-        put '/', action: :update
-      end
-
       namespace :exceptions do
         post '/', action: :create
       end

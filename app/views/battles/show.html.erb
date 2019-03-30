@@ -60,58 +60,55 @@
         </div>
         <div class="layout-item layout-grow layout-flex">
           <div class="layout-fight-secondary">
-            <div class="layout-item layout-grow">
-              <div class="card-fight">
-                <div class="card-header">
-                  <div class="card-title"><%= @battle.first_member.channel_title %></div>
-                  <a href="#" class="card-tag">@music</a>
-                </div>
-                <div class="card-body">
-                  <div class="card-image">
-                    <div>
-                      <%= image_tag(@battle.first_member.channel_avatar) %>
+            <% {
+                 @battle.first_member => @battle.first_member_voices,
+                 @battle.second_member => @battle.second_member_voices
+               }.each do |current_member, current_voices| %>
+              <div class="layout-item layout-grow">
+                <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
+                  <div class="card-header">
+                    <div class="card-title"><%= current_member.name %></div>
+                    <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank'>
+                      @<%= current_member.twitter_account_name %>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-image">
+                      <div>
+                        <%= image_tag(current_member.photo) %>
+                      </div>
+                    </div>
+                    <a href="#" class="card-vote
+                                       <%= 'card-vote-used' if @battle.live? && @already_voted %>
+                                       <%= 'card-vote-disabled' if @battle.finished? && @battle.winner != current_member.name %>
+                                       " data-member="1">
+                      <%= current_voices %>
+                      <% if @battle.live? && !@already_voted %>
+                        <span class="icon icon-arrow_drop_up"></span>
+                      <% end %>
+                    </a>
+                    <% if @battle.live? %>
+                      <div class="card-vote-description" >
+                        Vote for <%= current_member.name %>
+                      </div>
+                    <% end %>
+                    <div class="card-vote-winner">
+                      Winner
                     </div>
                   </div>
-                  <a href="#" class="card-vote" data-member="1"><%= @battle.first_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
-                  <div class="card-vote-description" >
-                    Vote for <%= @battle.first_member.channel_title %>
-                  </div>
-                  <div class="card-vote-winner">
-                    Winner
-                  </div>
                 </div>
               </div>
-            </div>
-            <div class="layout-item layout-divider">
-              <div class="text-divider">
-                <span>VS.</span>
-              </div>
-              <a href="#" class="divider-button hidden">Request a Rematch</a>
-            </div>
-            <div class="layout-item layout-grow">
-              <div class="card-fight">
-                <div class="card-header">
-                  <div class="card-title"><%= @battle.second_member.channel_title %></div>
-                  <a href="#" class="card-tag"></a>
+              <% if current_member == @battle.first_member %>
+                <div class="layout-item layout-divider">
+                  <div class="text-divider">
+                    <span>VS.</span>
+                  </div>
+                  <a href="#" class="divider-button <%= 'hidden' if @battle.live? %>">Request a Rematch</a>
                 </div>
-                <div class="card-body">
-                  <div class="card-image">
-                    <div>
-                      <%= image_tag(@battle.second_member.channel_avatar) %>
-                    </div>
-                  </div>
-                  <a href="#" class="card-vote" data-member="2"><%= @battle.second_member_voices %><span class="icon icon-arrow_drop_up"></span></a>
-                  <div class="card-vote-description">
-                    Vote for <%= @battle.second_member.channel_title %>
-                  </div>
-                  <div class="card-vote-winner">
-                    Winner
-                  </div>
-                </div>
-              </div>
-            </div>
+              <% end %>
+            <% end %>
           </div>
-          <a href="#" class="divider-button-mobile hidden">Request a Rematch</a>
+          <a href="#" class="divider-button-mobile <%= 'hidden' if @battle.live? %>">Request a Rematch</a>
         </div>
         <div class="layout-item">
           <%= image_tag('/images/Bitmap1.png', class: 'decore-image-secondary') %>
@@ -120,67 +117,42 @@
     </section>
     <section class="section-tweets">
       <div class="layout-tweets">
-        <div class="layout-item">
-          <div class="card-tweets">
-            <div class="card-header">
-              <div class="card-image">
-                <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
-                <span class="icon fab fa-twitter"></span>
-              </div>
-              <div class="card-title">
-                Spread the Word
-              </div>
-              <div class="card-description">
-                Fans of The Endless Adventure, Tweet This.
-              </div>
-            </div>
-            <div class="card-body">
-              <form action="" class="form-tweets">
-                <label class="form-control">
+        <% [@battle.first_member, @battle.second_member].each do |current_member| %>
+          <div class="layout-item">
+            <div class="card-tweets">
+              <div class="card-header">
+                <div class="card-image">
+                  <%= image_tag(current_member.photo) %>
                   <span class="icon fab fa-twitter"></span>
-                  <span class="textarea-wrapper">
-                    <span class="textarea-tip"></span>
-                    <textarea class="textarea" placeholder="The Youtube Creator battle round is happening now between The Endless Adventure and Way Away on Flickbin. Go vote for The Endless Adventure now before it’s too late!"></textarea>
-                  </span>
-                </label>
-                <button class="form-button"> Send Tweet</button>
-              </form>
+                </div>
+                <div class="card-title">
+                  Spread the Word
+                </div>
+                <div class="card-description">
+                  Fans of <b><%= current_member.name %></b>, Tweet This.
+                </div>
+              </div>
+              <div class="card-body">
+                <form action="" class="form-tweets">
+                  <label class="form-control">
+                    <span class="icon fab fa-twitter"></span>
+                    <span class="textarea-wrapper">
+                      <span class="textarea-tip"></span>
+                      <textarea class="textarea" placeholder="The Youtube Creator battle round is happening now between <%= @battle.first_member.name %> and <%= @battle.second_member.name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!"></textarea>
+                    </span>
+                  </label>
+                  <button class="form-button">Send Tweet</button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="layout-item">
-          <div class="card-tweets">
-            <div class="card-header">
-              <div class="card-image">
-                <%= image_tag('https://getuikit.com/docs/images/light.jpg') %>
-              </div>
-              <div class="card-title">
-                Spread the Word
-              </div>
-              <div class="card-description">
-                Fans of The Endless Adventure, Tweet This.
-              </div>
-            </div>
-            <div class="card-body">
-              <form action="" class="form-tweets">
-                <label class="form-control">
-                  <span class="icon fab fa-twitter"></span>
-                  <span class="textarea-wrapper">
-                    <span class="textarea-tip"></span>
-                    <textarea class="textarea" placeholder="The Youtube Creator battle round is happening now between The Endless Adventure and Way Away on Flickbin. Go vote for The Endless Adventure now before it’s too late!"></textarea>
-                  </span>
-                </label>
-                <button class="form-button"> Send Tweet</button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
     </section>
     <section class="section-trending">
       <h1>
         Trending Now in
-        <%= link_to(@tag.title.capitalize, @tag) %>
+        <%= link_to(@battle.tag.title.capitalize, @battle.tag) %>
       </h1>
       <div class="tagSpecificWrapper">
         <ul class="entityList inTag specificTagList tagListHasNumber video-feed" video_ids="<%= @current_user_voted_video_ids %>">
@@ -192,4 +164,3 @@
 </div>
 
 <%= javascript_include_tag('specific_by_templates/battle') %>
-<%= javascript_include_tag('specific_by_templates/battle_votes') %>

@@ -3281,6 +3281,7 @@ input.grayNormal {
 }
 
 .wrapper-battle{
+
   .rightPanel{
     width: 100%;
   }
@@ -3485,15 +3486,14 @@ input.grayNormal {
       border-radius: 6px;
       color: #ffffff;
       background-color: #279693;
+      &:hover{
+        background: darken(#279693, 15%) ;
+        text-decoration: none;
+      }
     }
     .divider-button-mobile{
       margin-top: 60px;
       font-size: 17px;
-      text-align: center;
-      padding: 12px 20px;
-      border-radius: 6px;
-      color: #ffffff;
-      background-color: #279693;
       display: none;
       align-items: center;
       justify-content: center;
@@ -3510,7 +3510,7 @@ input.grayNormal {
       align-items: center;
       padding: 0 10px;
       .card-header{
-        max-width: 150px;
+        max-width: 200px;
         display: inline-block;
         margin-bottom: 12px;
         text-align: center;
@@ -3520,7 +3520,7 @@ input.grayNormal {
           font-size: 19px;
           line-height: 21px;
         }
-        .card-tag{
+        .card-twitter{
           font-size: 23px;
           line-height: 21px;
         }
@@ -3581,6 +3581,13 @@ input.grayNormal {
             background: darken(#279693, 15%) ;
             text-decoration: none;
           }
+          &.card-vote-used{
+            pointer-events: none;
+          }
+          &.card-vote-disabled{
+            background: #C1C8D6;
+            pointer-events: none;
+          }
         }
         .card-vote-winner{
           display: none;
@@ -3598,7 +3605,7 @@ input.grayNormal {
         }
       }
     }
-    .card-fight-selected{
+    .card-fight-winner{
       .card-body{
         .card-image{
           div img{

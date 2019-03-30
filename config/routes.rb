@@ -88,9 +88,7 @@ Rails.application.routes.draw do
     get '/:page/', action: :show
   end
 
-  scope module: :battles do
-    get '/battles/:tag_slug', action: :show
-  end
+  resources :battles, only: :show
 
   get  'stations/:channel_slug' => 'users#show', as: :station
 

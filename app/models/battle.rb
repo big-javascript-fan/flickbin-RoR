@@ -37,4 +37,12 @@ class Battle < ApplicationRecord
     duration = self.final_date - Time.now
     FinishBattleJob.set(wait: duration).perform_later(self.id)
   end
+
+  def live?
+    status == 'live'
+  end
+
+  def finished?
+    status == 'finished'
+  end
 end

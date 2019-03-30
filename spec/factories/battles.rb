@@ -4,11 +4,11 @@
 #
 #  id                         :bigint(8)        not null, primary key
 #  final_date                 :datetime
-#  first_member_voices        :integer
-#  number_of_rematch_requests :integer
-#  second_member_voices       :integer
+#  first_member_voices        :integer          default(0)
+#  number_of_rematch_requests :integer          default(0)
+#  second_member_voices       :integer          default(0)
 #  status                     :string           default("live")
-#  winner                     :string
+#  winner                     :string           default("")
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  first_member_id            :integer

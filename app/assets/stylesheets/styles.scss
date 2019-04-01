@@ -3613,17 +3613,8 @@ input.grayNormal {
           }
         }
         .card-vote{
-          background: #FFD756;
-          color: #000000;
-          &:hover{
-            background: #FFD756;
-          }
-          span{
-            display: none;
-          }
-          &-description{
-            display: none;
-          }
+          background: #FFD756!important;
+          color: #000000!important;
           &-winner{
             display: block;
           }

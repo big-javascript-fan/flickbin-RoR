@@ -80,8 +80,8 @@
                     </div>
                     <a href="#" class="card-vote
                                        <%= 'card-vote-used' if @battle.live? && @already_voted %>
-                                       <%= 'card-vote-disabled' if @battle.finished? %>
-                                       " data-member="1">
+                                       <%= 'card-vote-disabled' if @battle.finished? %>"
+                                data-member="<%= current_member == @battle.first_member ? '1' : '2' %>">
                       <%= current_voices %>
                       <% if @battle.live? && !@already_voted %>
                         <span class="icon icon-arrow_drop_up"></span>

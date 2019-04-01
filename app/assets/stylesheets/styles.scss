@@ -3490,6 +3490,10 @@ input.grayNormal {
         background: darken(#279693, 15%) ;
         text-decoration: none;
       }
+      &.divider-button-disabled{
+        background: #C1C8D6;
+        pointer-events: none;
+      }
     }
     .divider-button-mobile{
       margin-top: 60px;

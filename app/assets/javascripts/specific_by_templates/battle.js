@@ -58,7 +58,6 @@ $(function() {
       var member = $(this).data('member');
       var battleId = $(".section-fight").data('battle');
       var upvote = parseInt($(self).text());
-      var error = " You can vote once every 24 hours"
       if (member == '1') {
           $.ajax({
               type: 'PUT',
@@ -66,7 +65,6 @@ $(function() {
               data: { value1: true },
               error: function(xhr, message) {
                   console.log(xhr.status);
-                  console.log(xhr.statusText + error);
                   console.log(message);
               }
           }).then( function() {
@@ -91,5 +89,22 @@ $(function() {
       } else {
           alert("no");
       };
+  });
+
+  $(".divider-button, .divider-button-mobile").click(function(e) {
+      e.preventDefault()
+
+      var battleId = $(".section-fight").data('battle');
+      $.ajax({
+        type: 'POST',
+        url:  `/api/v1/battles/${battleId}/rematch_requests`,
+        error: function(xhr, message) {
+          console.log(xhr.status);
+          console.log(message);
+        }
+      }).then( function() {
+        $(".divider-button, .divider-button-mobile").addClass('divider-button-disabled');
+        $(".divider-button, .divider-button-mobile").text("Rematch Requested")
+      });
   });
 });

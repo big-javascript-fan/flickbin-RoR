@@ -27,6 +27,7 @@ class Battle < ApplicationRecord
   belongs_to :first_member, class_name: 'BattleMember', foreign_key: :first_member_id
   belongs_to :second_member, class_name: 'BattleMember', foreign_key: :second_member_id
   has_many   :vote_ips
+  has_many   :rematch_requests
 
   validates_inclusion_of :status, in: STATUSES
   validates_presence_of  :status, :tag, :first_member, :second_member, :final_date

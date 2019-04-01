@@ -13,7 +13,11 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
-      resources :battles, only: :update
+      resources :battles, only: :update do
+        member do
+          resources :rematch_requests, only: :create, module: 'battles'
+        end
+      end
 
       namespace :exceptions do
         post '/', action: :create

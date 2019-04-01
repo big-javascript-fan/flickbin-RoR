@@ -103,12 +103,20 @@
                   <div class="text-divider">
                     <span>VS.</span>
                   </div>
-                  <a href="#" class="divider-button <%= 'hidden' if @battle.live? %>">Request a Rematch</a>
+                  <a href="#" class="divider-button
+                                     <%= 'hidden' if @battle.live? %>
+                                     <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+                    <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
+                  </a>
                 </div>
               <% end %>
             <% end %>
           </div>
-          <a href="#" class="divider-button-mobile <%= 'hidden' if @battle.live? %>">Request a Rematch</a>
+          <a href="#" class="divider-button-mobile
+                             <%= 'hidden' if @battle.live? %>
+                             <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+            <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
+          </a>
         </div>
         <div class="layout-item">
           <%= image_tag('/images/Bitmap1.png', class: 'decore-image-secondary') %>

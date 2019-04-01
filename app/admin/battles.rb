@@ -14,10 +14,13 @@ ActiveAdmin.register Battle do
     column :first_member_id do |battle|
       battle.first_member.name
     end
+    column :first_member_voices
     column :second_member_id do |battle|
       battle.second_member.name
     end
+    column :second_member_voices
     column :final_date
+    column :number_of_rematch_requests
     column :status do |battle|
       case battle.status
       when 'live'

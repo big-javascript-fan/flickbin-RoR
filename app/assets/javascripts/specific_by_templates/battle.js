@@ -45,7 +45,7 @@ $(function() {
   if ($('.uk-countdown-days').text() > 0 ||
       $('.uk-countdown-hours').text() > 0 ||
       $('.uk-countdown-minutes').text() > 0) {
-    setInterval(function () {
+    timerID = setInterval(function () {
       if ($('.uk-countdown-days').text() == 0 &&
           $('.uk-countdown-hours').text() == 0 &&
           $('.uk-countdown-minutes').text() == 0) displayWinner();
@@ -61,16 +61,14 @@ $(function() {
         $('.card-vote').eq(1).html(response.second_member_voices)
         if (response.first_member_voices > response.second_member_voices) {
           $('#card-fight-1').addClass('card-fight-winner')
-        } else if (response.first_member_voices < response.second_member_voices) {
-          $('#card-fight-2').addClass('card-fight-winner')
         } else {
-          $('.card-fight').addClass('card-fight-winner')
+          $('#card-fight-2').addClass('card-fight-winner')
         };
-        if ($('.card-fight .card-header .card-title').text())
         $('.card-vote').addClass('card-vote-disabled');
         $('.card-vote .icon-arrow_drop_up').hide();
         $('.card-vote-description').hide();
-        $('.divider-button').removeClass('hidden');
+        $('.divider-button, .divider-button-mobile').removeClass('hidden'); 
+        clearInterval(timerID, 1000)
       });
    }
   

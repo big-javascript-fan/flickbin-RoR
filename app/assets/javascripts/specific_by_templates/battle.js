@@ -57,11 +57,11 @@ $(function() {
     function displayWinner() {
       var battleId = $(".section-fight").data('battle');
       $.get(`/api/v1/battles/${battleId}`).then(function(response) {
-        var firstMemberVoices = parseInt($('.card-vote')[0].textContent, 10)
-        var secondMemberVoices = parseInt($('.card-vote')[1].textContent, 10)
-        if (firstMemberVoices > secondMemberVoices) {
+        $('.card-vote').eq(0).html(response.first_member_voices)
+        $('.card-vote').eq(1).html(response.second_member_voices)
+        if (response.first_member_voices > response.second_member_voices) {
           $('#card-fight-1').addClass('card-fight-winner')
-        } else if (firstMemberVoices < secondMemberVoices) {
+        } else if (response.first_member_voices < response.second_member_voices) {
           $('#card-fight-2').addClass('card-fight-winner')
         } else {
           $('.card-fight').addClass('card-fight-winner')

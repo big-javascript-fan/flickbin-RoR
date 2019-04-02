@@ -57,12 +57,12 @@ $(function() {
     function displayWinner() {
       var battleId = $(".section-fight").data('battle');
       $.get(`/api/v1/battles/${battleId}`).then(function(response) {
-        $('.card-vote').eq(0).html(response.first_member_voices)
-        $('.card-vote').eq(1).html(response.second_member_voices)
+        $($('.card-vote')[0]).html(response.first_member_voices)
+        $($('.card-vote')[1]).html(response.second_member_voices)
         if (response.first_member_voices > response.second_member_voices) {
-          $('#card-fight-1').addClass('card-fight-winner')
+          $($('.card-fight')[0]).addClass('card-fight-winner')
         } else {
-          $('#card-fight-2').addClass('card-fight-winner')
+          $($('.card-fight')[1]).addClass('card-fight-winner')
         };
         $('.card-vote').addClass('card-vote-disabled');
         $('.card-vote .icon-arrow_drop_up').hide();

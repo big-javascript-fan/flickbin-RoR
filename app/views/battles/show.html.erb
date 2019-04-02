@@ -65,7 +65,7 @@
                  @battle.second_member => @battle.second_member_voices
                }.each_with_index do |(current_member, current_voices), index| %>
               <div class="layout-item layout-grow">
-                <div id="card-fight-<%= index + 1 %>" class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
+                <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
                   <div class="card-header">
                     <div class="card-title"><%= current_member.name %></div>
                     <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank'>

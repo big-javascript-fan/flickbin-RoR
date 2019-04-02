@@ -1,5 +1,6 @@
 $(function() {
   votesHandler();
+  
 
   function votesHandler() {
     $(document).on('click', '.card-tags-vote', function(e) {
@@ -44,13 +45,33 @@ $(function() {
   if ($('.uk-countdown-days').text() > 0 ||
       $('.uk-countdown-hours').text() > 0 ||
       $('.uk-countdown-minutes').text() > 0) {
-    setInterval(function () {
+    timerID = setInterval(function () {
       if ($('.uk-countdown-days').text() == 0 &&
           $('.uk-countdown-hours').text() == 0 &&
-          $('.uk-countdown-minutes').text() == 0) location.reload();
+          $('.uk-countdown-minutes').text() == 0) displayWinner();
     }, 1000);
   }
 
+  
+
+    function displayWinner() {
+      var battleId = $(".section-fight").data('battle');
+      $.get(`/api/v1/battles/${battleId}`).then(function(response) {
+        $($('.card-vote')[0]).html(response.first_member_voices)
+        $($('.card-vote')[1]).html(response.second_member_voices)
+        if (response.first_member_voices > response.second_member_voices) {
+          $($('.card-fight')[0]).addClass('card-fight-winner')
+        } else {
+          $($('.card-fight')[1]).addClass('card-fight-winner')
+        };
+        $('.card-vote').addClass('card-vote-disabled');
+        $('.card-vote .icon-arrow_drop_up').hide();
+        $('.card-vote-description').hide();
+        $('.divider-button, .divider-button-mobile').removeClass('hidden'); 
+        clearInterval(timerID, 1000)
+      });
+   }
+  
   $(".card-vote").click(function(e) {
       e.preventDefault()
 

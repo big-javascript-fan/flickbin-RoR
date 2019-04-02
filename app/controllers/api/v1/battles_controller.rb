@@ -1,6 +1,10 @@
 class Api::V1::BattlesController < Api::V1::BaseController
   before_action :set_battle
 
+  def show 
+    render json: @battle.to_json
+  end
+
   def update
     if @battle.finished?
       render status: 409, json: {message: "This battle was already finished" }.to_json

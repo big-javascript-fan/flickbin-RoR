@@ -7,6 +7,18 @@ ActiveAdmin.register Battle do
     end
   end
 
+  after_create do |battle|
+    FinishBattleJob.set(wait: battle.final_date - Time.now).perform_later(battle.id)
+
+    [battle.first_member, battle.second_member].each do |member|
+      ApplicationMailer.battle_participant_notification(member, battle).deliver_now
+    end
+
+    battle.tag.users.none_battle_members.uniq.each do |user|
+      ApplicationMailer.battle_tag_contributor_notification(user, battle).deliver_later
+    end
+  end
+
   index do
     selectable_column
     id_column

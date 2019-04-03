@@ -23,6 +23,6 @@ class BattleMember < ApplicationRecord
 
   mount_uploader :photo, BattleMemberChannelAvatarUploader
 
-  has_many :battles
+  belongs_to :user
   has_many :opponents, through: :battles
 end

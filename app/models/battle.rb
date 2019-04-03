@@ -27,7 +27,10 @@ class Battle < ApplicationRecord
 
   friendly_id :custom_title, use: [:slugged, :finders]
 
+  #FIXME rework to enum
   STATUSES = %w(live finished)
+
+  scope :live, -> { where(status: 'live') }
 
   belongs_to :tag
   belongs_to :first_member, class_name: 'BattleMember', foreign_key: :first_member_id
@@ -37,13 +40,6 @@ class Battle < ApplicationRecord
 
   validates_inclusion_of :status, in: STATUSES
   validates_presence_of  :status, :tag, :first_member, :second_member, :final_date
-
-  after_create :set_finish_battle_job
-
-  def set_finish_battle_job
-    duration = self.final_date - Time.now
-    FinishBattleJob.set(wait: duration).perform_later(self.id)
-  end
 
   def live?
     status == 'live'

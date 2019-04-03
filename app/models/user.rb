@@ -43,6 +43,9 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, UserAvatarUploader
 
+  scope :none_battle_members, -> { left_joins(:battle_members).where(battle_members: { id: nil }) }
+
+  has_many :battle_members
   has_many :videos, dependent: :destroy
   has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :tags, through: :videos

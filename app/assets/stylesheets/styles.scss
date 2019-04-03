@@ -2151,7 +2151,6 @@ input.grayNormal {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  }
   &:hover {
     background-color: #4e5766 ;
     .counterOption {
@@ -3282,6 +3281,7 @@ input.grayNormal {
 }
 
 .wrapper-battle{
+
   .rightPanel{
     width: 100%;
   }
@@ -3486,15 +3486,18 @@ input.grayNormal {
       border-radius: 6px;
       color: #ffffff;
       background-color: #279693;
+      &:hover{
+        background: darken(#279693, 15%) ;
+        text-decoration: none;
+      }
+      &.divider-button-disabled{
+        background: #C1C8D6;
+        pointer-events: none;
+      }
     }
     .divider-button-mobile{
       margin-top: 60px;
       font-size: 17px;
-      text-align: center;
-      padding: 12px 20px;
-      border-radius: 6px;
-      color: #ffffff;
-      background-color: #279693;
       display: none;
       align-items: center;
       justify-content: center;
@@ -3511,7 +3514,7 @@ input.grayNormal {
       align-items: center;
       padding: 0 10px;
       .card-header{
-        max-width: 150px;
+        max-width: 200px;
         display: inline-block;
         margin-bottom: 12px;
         text-align: center;
@@ -3521,7 +3524,7 @@ input.grayNormal {
           font-size: 19px;
           line-height: 21px;
         }
-        .card-tag{
+        .card-twitter{
           font-size: 23px;
           line-height: 21px;
         }
@@ -3533,8 +3536,8 @@ input.grayNormal {
         width: 100%;
         .card-image{
           margin-bottom: 18px;
-          max-width: 323px;
-          max-height: 323px;
+          max-width: 260px;
+          max-height: 260px;
           min-width: 182px;
           width: 100%;
           overflow: hidden;
@@ -3582,6 +3585,13 @@ input.grayNormal {
             background: darken(#279693, 15%) ;
             text-decoration: none;
           }
+          &.card-vote-used{
+            pointer-events: none;
+          }
+          &.card-vote-disabled{
+            background: #C1C8D6;
+            pointer-events: none;
+          }
         }
         .card-vote-winner{
           display: none;
@@ -3599,7 +3609,7 @@ input.grayNormal {
         }
       }
     }
-    .card-fight-selected{
+    .card-fight-winner{
       .card-body{
         .card-image{
           div img{
@@ -3607,17 +3617,8 @@ input.grayNormal {
           }
         }
         .card-vote{
-          background: #FFD756;
-          color: #000000;
-          &:hover{
-            background: #FFD756;
-          }
-          span{
-            display: none;
-          }
-          &-description{
-            display: none;
-          }
+          background: #FFD756!important;
+          color: #000000!important;
           &-winner{
             display: block;
           }
@@ -3740,37 +3741,43 @@ input.grayNormal {
           background: #F2F2F2;
           min-height: 100px;
           border: 0 none;
-          color: #000;
           transition: .2s ease-in-out;
           transition-property: color,background-color,border;
-          &::placeholder{
-            color: #1D1F23;
-            font-size: 16px;
-            font-family: "Helvetica Neue";
-            font-style: italic;
-            line-height: 25px;
-          }
+          color: #1D1F23;
+          font-size: 16px;
+          font-family: "Helvetica Neue";
+          font-style: italic;
+          line-height: 25px;
         }
       }
       .form-button{
-        height: 60px;
-        width: 149px;
-        color: #FFFFFF;
-        font-size: 17px;
+        height: 60px !important;
+        width: 149px !important;
+        color: #FFFFFF !important;
+        font-size: 17px !important;
         line-height: 21px;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor:pointer;
-        background-color: #4E5766;
+        background-color: #4E5766 !important;
         outline: none;
         border: none;
-        border-radius: 6px;
+        border-radius: 6px !important;
+        text-transform: uppercase;
         &:hover{
-          background-color: darken(#4E5766,15%);
+          background-color: darken(#4E5766,15%) !important;
+          text-decoration: none;
         }
       }
+    }
+  }
+  .section-trending{
+    padding: 72px 0;
+    margin: 0 30px;
+    h1 {
+      font-size: 26px;
     }
   }
   .uk-countdown{

@@ -116,11 +116,6 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Trending Now on Flickbin.")
   end
 
-  def test_mailing
-    @time_now  =Time.now
-    mail(to: 'magistr.koma@gmail.com', subject: "Test mailing")
-  end
-
   def notify_exception(recipient, exception, source)
     @exception = exception
     @source = source

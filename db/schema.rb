@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20190221125952) do
-=======
-ActiveRecord::Schema.define(version: 20190205145544) do
->>>>>>> develop
+ActiveRecord::Schema.define(version: 20190403063515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +41,34 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "battle_members", force: :cascade do |t|
+    t.string "youtube_channel_guid"
+    t.string "twitter_account_name"
+    t.string "photo"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_battle_members_on_user_id"
+  end
+
+  create_table "battles", force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "first_member_id"
+    t.integer "second_member_id"
+    t.integer "first_member_voices", default: 0
+    t.integer "second_member_voices", default: 0
+    t.integer "number_of_rematch_requests", default: 0
+    t.string "winner", default: ""
+    t.string "status", default: "live"
+    t.datetime "final_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_battles_on_slug", unique: true
+    t.index ["tag_id"], name: "index_battles_on_tag_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "commentator_id"
     t.integer "video_id"
@@ -72,7 +96,6 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.index ["user_id", "tag_id"], name: "index_contribution_points_on_user_id_and_tag_id"
   end
 
-<<<<<<< HEAD
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.json "event_object"
@@ -81,8 +104,6 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.datetime "updated_at", null: false
   end
 
-=======
->>>>>>> develop
   create_table "exception_loggers", force: :cascade do |t|
     t.text "message"
     t.string "source"
@@ -111,6 +132,16 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.datetime "updated_at", null: false
     t.boolean "read", default: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "rematch_requests", force: :cascade do |t|
+    t.bigint "battle_id"
+    t.bigint "user_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["battle_id"], name: "index_rematch_requests_on_battle_id"
+    t.index ["user_id"], name: "index_rematch_requests_on_user_id"
   end
 
   create_table "system_settings", force: :cascade do |t|
@@ -189,6 +220,16 @@ ActiveRecord::Schema.define(version: 20190205145544) do
     t.index ["tag_id"], name: "index_videos_on_tag_id"
     t.index ["url", "tag_id"], name: "index_videos_on_url_and_tag_id"
     t.index ["user_id", "tag_id"], name: "index_videos_on_user_id_and_tag_id"
+  end
+
+  create_table "vote_ips", force: :cascade do |t|
+    t.bigint "battle_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["battle_id"], name: "index_vote_ips_on_battle_id"
+    t.index ["user_id"], name: "index_vote_ips_on_user_id"
   end
 
   create_table "votes", force: :cascade do |t|

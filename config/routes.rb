@@ -13,6 +13,12 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
+      resources :battles, only: [:show, :update] do
+        member do
+          resources :rematch_requests, only: :create, module: 'battles'
+        end
+      end
+
       namespace :exceptions do
         post '/', action: :create
       end
@@ -54,6 +60,10 @@ Rails.application.routes.draw do
       scope module: :social_networks do
         get 'social_networks', action: :index
       end
+
+      scope module: :youtube_channels do
+        get 'youtube_channels', action: :index
+      end
     end
   end
 
@@ -82,9 +92,7 @@ Rails.application.routes.draw do
     get '/:page/', action: :show
   end
 
-  scope module: :battles do
-    get '/battles', action: :index
-  end
+  resources :battles, only: :show
 
   get  'stations/:channel_slug' => 'users#show', as: :station
 

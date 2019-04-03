@@ -1,0 +1,59 @@
+# == Schema Information
+#
+# Table name: battles
+#
+#  id                         :bigint(8)        not null, primary key
+#  final_date                 :datetime
+#  first_member_voices        :integer          default(0)
+#  number_of_rematch_requests :integer          default(0)
+#  second_member_voices       :integer          default(0)
+#  slug                       :string
+#  status                     :string           default("live")
+#  winner                     :string           default("")
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  first_member_id            :integer
+#  second_member_id           :integer
+#  tag_id                     :integer
+#
+# Indexes
+#
+#  index_battles_on_slug    (slug) UNIQUE
+#  index_battles_on_tag_id  (tag_id)
+#
+
+class Battle < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :custom_title, use: [:slugged, :finders]
+
+  STATUSES = %w(live finished)
+
+  belongs_to :tag
+  belongs_to :first_member, class_name: 'BattleMember', foreign_key: :first_member_id
+  belongs_to :second_member, class_name: 'BattleMember', foreign_key: :second_member_id
+  has_many   :vote_ips
+  has_many   :rematch_requests
+
+  validates_inclusion_of :status, in: STATUSES
+  validates_presence_of  :status, :tag, :first_member, :second_member, :final_date
+
+  after_create :set_finish_battle_job
+
+  def set_finish_battle_job
+    duration = self.final_date - Time.now
+    FinishBattleJob.set(wait: duration).perform_later(self.id)
+  end
+
+  def live?
+    status == 'live'
+  end
+
+  def finished?
+    status == 'finished'
+  end
+
+  def custom_title
+    "#{first_member.name} vs #{second_member.name} #{id}"
+  end
+end

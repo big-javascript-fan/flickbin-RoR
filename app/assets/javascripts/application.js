@@ -4,6 +4,7 @@
 //= require utilities
 //= require notifications_menu
 //= require specific_by_templates/trending_tags_bar
+
 window.onerror = function(error, url, line) {
   sendExceptionToServer(error, url, line)
 };
@@ -16,30 +17,22 @@ function sendExceptionToServer(error, url, line) {
   })
 }
 
-$(function() {
-  window.scrollDownAnimation =  function () {
-    var elementForScrollDown = $(window.location.hash);
-
-    if(elementForScrollDown.length > 0 && window.location.hash == '#message') {
-      $('html, body').animate({
-        scrollTop: elementForScrollDown.offset().top - 300
-      }, 250);
-      elementForScrollDown.addClass('is-fade');
-      history.replaceState(null, null, ' ');
-    }
-  }
-});
-
-$('.card-vote').on('click', function(e){
-  e.preventDefault();
-  $(this).parents('.card-fight').addClass('card-fight-selected')
-  $('.divider-button, .divider-button-mobile').removeClass('hidden')
-})
-$('.divider-button, .divider-button-mobile').on('click', function(e){
-  e.preventDefault();
-  $(this).addClass('hidden')
-  $('.card-fight').removeClass('card-fight-selected')
-})
 
 
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
 
+  t._e = [];
+  t.ready = function(f) {
+    console.log(f)
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));

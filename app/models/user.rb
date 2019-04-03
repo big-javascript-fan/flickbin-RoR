@@ -1,3 +1,39 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                            :bigint(8)        not null, primary key
+#  allowed_to_send_notifications :boolean          default(TRUE)
+#  avatar                        :string
+#  channel_description           :text
+#  channel_name                  :string
+#  confirmation_sent_at          :datetime
+#  confirmation_token            :string
+#  confirmed_at                  :datetime
+#  email                         :string           default(""), not null
+#  encrypted_password            :string           default(""), not null
+#  fake_avatar_url               :string           default("")
+#  rank                          :integer          default(0)
+#  receive_notification_emails   :boolean          default(TRUE)
+#  receive_promotional_emails    :boolean          default(TRUE)
+#  remember_created_at           :datetime
+#  reset_password_sent_at        :datetime
+#  reset_password_token          :string
+#  role                          :string           default("client")
+#  slug                          :string
+#  unconfirmed_email             :string
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_channel_name          (channel_name) UNIQUE
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
+#
+
 class User < ApplicationRecord
   extend FriendlyId
   friendly_id :channel_name, use: [:sequentially_slugged, :finders]
@@ -18,6 +54,8 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :top_15_notifications, -> { order(created_at: :desc).limit(15) }, class_name: 'Notification'
+  has_many :vote_ips
+  has_many :rematch_requests
 
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true

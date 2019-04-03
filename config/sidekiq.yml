@@ -18,11 +18,9 @@
   weekly_mailing_job:
     cron: '0 5 * * 1'
     class: WeeklyMailingJob
-  test_mailing_job:
-    cron: '30 8 * * 4'
-    class: TestMailingJob
 
 :queues:
+  - finish_battle
   - rank_calculation
   - video_tag_expiration
   - wasp_outreach

@@ -1,0 +1,174 @@
+<% if flash[:notice].present? %>
+  <div class="flashNotification">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="wrapper wrapper-battle scroll">
+  <div class="offCanvasMask"></div>
+  <aside class="leftPanel">
+    <%= link_to "flickbin", root_path, class: "brand" %>
+    <%= render 'partials/trending_tags_bar' %>
+  </aside>
+  <div class="rightPanel">
+    <section class="section-hero">
+      <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+      </button>
+      <div class="heading-hero">
+        <h1 class="heading-title">
+          CREATOR BATTLE
+        </h1>
+        <p class="heading-subtitle">
+          <span>The Youtube Channel with the</span> most votes <span>wins.</span> Choose your favorite.
+        </p>
+      </div>
+    </section>
+    <section class="section-countdown">
+      <h2 class="heading-countdown">
+        This Battle Ends In
+      </h2>
+      <%
+        # Anton Tkachov. We don't have seconds in our timer, therefore last minute will be cut
+        # I bring back this minute by adding it to the expiration time
+      %>
+      <div class="uk-countdown" uk-countdown="date: <%= @battle.final_date + 1.minute %>">
+        <div>
+          <div class="uk-countdown-number uk-countdown-days"></div>
+          <div class="uk-countdown-label">Days</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+          <div class="uk-countdown-number uk-countdown-hours"></div>
+          <div class="uk-countdown-label">Hours</div>
+        </div>
+        <div class="uk-countdown-separator">:</div>
+        <div>
+          <div class="uk-countdown-number uk-countdown-minutes"></div>
+          <div class="uk-countdown-label ">Minutes</div>
+        </div>
+      </div>
+    </section>
+    <section class="section-fight" data-battle="<%= @battle.id %>">
+
+      <div class="layout-fight">
+        <div class="layout-item">
+          <div class="effect">
+            <%= image_tag('/images/Bitmap.png', class: 'decore-image') %>
+          </div>
+        </div>
+        <div class="layout-item layout-grow layout-flex">
+          <div class="layout-fight-secondary">
+            <% {
+                 @battle.first_member => @battle.first_member_voices,
+                 @battle.second_member => @battle.second_member_voices
+               }.each_with_index do |(current_member, current_voices), index| %>
+              <div class="layout-item layout-grow">
+                <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
+                  <div class="card-header">
+                    <div class="card-title"><%= current_member.name %></div>
+                    <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank'>
+                      @<%= current_member.twitter_account_name %>
+                    </a>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-image">
+                      <div>
+                        <%= image_tag(current_member.photo) %>
+                      </div>
+                    </div>
+                    <a href="#" class="card-vote
+                                       <%= 'card-vote-used' if @battle.live? && @already_voted %>
+                                       <%= 'card-vote-disabled' if @battle.finished? %>"
+                                data-member="<%= index + 1 %>">
+                      <%= current_voices %>
+                      <% if @battle.live? && !@already_voted %>
+                        <span class="icon icon-arrow_drop_up"></span>
+                      <% end %>
+                    </a>
+                    <% if @battle.live? %>
+                      <div class="card-vote-description" >
+                        Vote for <%= current_member.name %>
+                      </div>
+                    <% end %>
+                    <div class="card-vote-winner">
+                      Winner
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% if current_member == @battle.first_member %>
+                <div class="layout-item layout-divider">
+                  <div class="text-divider">
+                    <span>VS.</span>
+                  </div>
+                  <a href="#" class="divider-button
+                                     <%= 'hidden' if @battle.live? %>
+                                     <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+                    <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
+                  </a>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <a href="#" class="divider-button-mobile
+                             <%= 'hidden' if @battle.live? %>
+                             <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+            <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
+          </a>
+        </div>
+        <div class="layout-item">
+          <%= image_tag('/images/Bitmap1.png', class: 'decore-image-secondary') %>
+        </div>
+      </div>
+    </section>
+    <section class="section-tweets">
+      <div class="layout-tweets">
+        <% [@battle.first_member, @battle.second_member].each do |current_member| %>
+          <div class="layout-item">
+            <div class="card-tweets">
+              <div class="card-header">
+                <div class="card-image">
+                  <%= image_tag(current_member.photo) %>
+                  <span class="icon fab fa-twitter"></span>
+                </div>
+                <div class="card-title">
+                  Spread the Word
+                </div>
+                <div class="card-description">
+                  Fans of <b><%= current_member.name %></b>, Tweet This.
+                </div>
+              </div>
+              <div class="card-body">
+                <form action="" class="form-tweets">
+                  <label class="form-control">
+                    <span class="icon fab fa-twitter"></span>
+                    <span class="textarea-wrapper">
+                      <span class="textarea-tip"></span>
+                      <div class="textarea"> The Youtube Creator battle round is happening now between <%= @battle.first_member.name %> and <%= @battle.second_member.name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!</div>
+                    </span>
+                  </label>
+                  <a class="form-button" href="https://twitter.com/intent/tweet?url=https://www.flickbin.tv/&text=The Youtube Creator battle round is happening now between <%= @battle.first_member.name %> and <%= @battle.second_member.name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!" >Send Tweet</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </section>
+    <section class="section-trending">
+      <h1>
+        Trending Now in
+        <%= link_to(@battle.tag.title.capitalize, @battle.tag) %>
+      </h1>
+      <div class="tagSpecificWrapper">
+        <ul class="entityList inTag specificTagList tagListHasNumber video-feed" video_ids="<%= @current_user_voted_video_ids %>">
+          <%= render 'tags/partials/videos_feed' %>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<%= javascript_include_tag('specific_by_templates/battle') %>

@@ -84,7 +84,7 @@ Rails.application.configure do
     email: {
       email_prefix: "[PREFIX] ",
       sender_address: %{"Flickbin Exception" <exception@flickbin.com>},
-      exception_recipients: %w{magistr.koma@gmail.com bleachtree@gmail.com}
+      exception_recipients: %w{flickbin.developer@gmail.com bleachtree@gmail.com}
     }
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?

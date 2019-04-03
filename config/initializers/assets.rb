@@ -12,6 +12,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 Rails.application.config.assets.precompile += %w(
+  specific_by_templates/battle.js
   specific_by_templates/login.js
   specific_by_templates/sign_up.js
   specific_by_templates/station.js

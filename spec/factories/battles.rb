@@ -7,6 +7,7 @@
 #  first_member_voices        :integer          default(0)
 #  number_of_rematch_requests :integer          default(0)
 #  second_member_voices       :integer          default(0)
+#  slug                       :string
 #  status                     :string           default("live")
 #  winner                     :string           default("")
 #  created_at                 :datetime         not null
@@ -17,6 +18,7 @@
 #
 # Indexes
 #
+#  index_battles_on_slug    (slug) UNIQUE
 #  index_battles_on_tag_id  (tag_id)
 #
 

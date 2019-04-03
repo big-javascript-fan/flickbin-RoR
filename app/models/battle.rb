@@ -7,6 +7,7 @@
 #  first_member_voices        :integer          default(0)
 #  number_of_rematch_requests :integer          default(0)
 #  second_member_voices       :integer          default(0)
+#  slug                       :string
 #  status                     :string           default("live")
 #  winner                     :string           default("")
 #  created_at                 :datetime         not null
@@ -17,10 +18,15 @@
 #
 # Indexes
 #
+#  index_battles_on_slug    (slug) UNIQUE
 #  index_battles_on_tag_id  (tag_id)
 #
 
 class Battle < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :custom_title, use: [:slugged, :finders]
+
   STATUSES = %w(live finished)
 
   belongs_to :tag
@@ -45,5 +51,9 @@ class Battle < ApplicationRecord
 
   def finished?
     status == 'finished'
+  end
+
+  def custom_title
+    "#{first_member.name} vs #{second_member.name} #{id}"
   end
 end

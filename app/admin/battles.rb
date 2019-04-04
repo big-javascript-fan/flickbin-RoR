@@ -1,9 +1,19 @@
 ActiveAdmin.register Battle do
-  permit_params :tag_id, :final_date, :first_member_id, :second_member_id, :status
+  permit_params :tag_id, :final_date, :first_member_id, :second_member_id, :status, :slug
 
   controller do
     def scoped_collection
       super.includes(:tag, :first_member, :second_member)
+    end
+
+    def new 
+      @battle = Battle.new(battle_params)
+    end
+
+    private 
+
+    def battle_params
+      params.permit(:first_member, :first_member_id, :second_member_id, :tag_id, :final_date)
     end
   end
 
@@ -43,7 +53,12 @@ ActiveAdmin.register Battle do
     end
     column :created_at
     column :updated_at
-    actions
+    actions defaults: true do |battle|
+      link_to 'Rematch', new_admin_battle_path(first_member_id: battle.first_member_id, 
+                                               second_member_id: battle.second_member_id,
+                                               tag_id: battle.tag_id,
+                                               final_date: Time.now + battle.duration) 
+    end
   end
 
   form do |f|

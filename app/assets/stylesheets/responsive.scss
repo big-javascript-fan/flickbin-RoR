@@ -29,7 +29,7 @@
 				display: flex;
 			}
 		}
-		.section-tweets{
+		.section-tweets, .section-trending{
 			margin: 0;
 			padding-right:10px;
 			padding-left: 10px;
@@ -133,9 +133,9 @@
 				}
 			}
 		}
-		.section-tweets{
+		.section-tweets, .section-trending{
 			margin: 0;
-			padding:  60px 72px;
+			padding:  60px 30px;
 			.layout-tweets{
 				flex-wrap: wrap;
 				> * {
@@ -154,6 +154,7 @@
 				}
 			}
 		}
+
     .uk-countdown{
       .uk-countdown-separator{
         font-size: 42px;
@@ -860,6 +861,14 @@
 							}
 						}
 					}
+				}
+			}
+		}
+		.section-trending {
+			padding: 60px 30px;
+			.grid-trending {
+				> .grid-item {
+					flex-basis: 100%;
 				}
 			}
 		}

@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20190405104331) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "battle_members_id"
+    t.bigint "battle_member_id"
     t.index ["battle_id"], name: "index_battle_votes_on_battle_id"
-    t.index ["battle_members_id"], name: "index_battle_votes_on_battle_members_id"
+    t.index ["battle_member_id"], name: "index_battle_votes_on_battle_member_id"
     t.index ["user_id"], name: "index_battle_votes_on_user_id"
   end
 

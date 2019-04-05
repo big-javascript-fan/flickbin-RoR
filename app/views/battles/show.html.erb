@@ -16,6 +16,10 @@
         <span class="offCanvasBar">&nbsp;</span>
         <span class="offCanvasBar">&nbsp;</span>
       </button>
+      <% if current_user.present? %>
+      <% else %>
+        <%= link_to "Sign Up for flickbin!", new_user_registration_path, class: "btn btn-battle btn-battle-position hideOnMobile" %>
+      <% end %>
       <div class="heading-hero">
         <h1 class="heading-title">
           CREATOR BATTLE

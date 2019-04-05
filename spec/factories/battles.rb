@@ -4,9 +4,7 @@
 #
 #  id                         :bigint(8)        not null, primary key
 #  final_date                 :datetime
-#  first_member_voices        :integer          default(0)
 #  number_of_rematch_requests :integer          default(0)
-#  second_member_voices       :integer          default(0)
 #  slug                       :string
 #  status                     :string           default("live")
 #  winner                     :string

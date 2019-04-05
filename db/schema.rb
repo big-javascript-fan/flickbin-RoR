@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190405104331) do
+ActiveRecord::Schema.define(version: 20190405151414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,8 +68,6 @@ ActiveRecord::Schema.define(version: 20190405104331) do
     t.integer "tag_id"
     t.integer "first_member_id"
     t.integer "second_member_id"
-    t.integer "first_member_voices", default: 0
-    t.integer "second_member_voices", default: 0
     t.integer "number_of_rematch_requests", default: 0
     t.string "status", default: "live"
     t.datetime "final_date"

@@ -52,8 +52,4 @@ class Battle < ApplicationRecord
   def custom_title
     "#{first_member.name} vs #{second_member.name} #{id}"
   end
-
-  def duration
-    final_date - created_at
-  end
 end

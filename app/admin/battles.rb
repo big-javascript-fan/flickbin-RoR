@@ -7,13 +7,13 @@ ActiveAdmin.register Battle do
     end
 
     def new 
-      @battle = Battle.new(battle_params)
-    end
-
-    private 
-
-    def battle_params
-      params.permit(:first_member, :first_member_id, :second_member_id, :tag_id, :final_date)
+      if params[:battle_id]
+        prev_battle = Battle.find(params[:battle_id])
+        @battle = prev_battle.dup
+        @battle.final_date = Time.now + (prev_battle.final_date - prev_battle.created_at) 
+      else
+        @battle = Battle.new 
+      end
     end
   end
 
@@ -54,10 +54,7 @@ ActiveAdmin.register Battle do
     column :created_at
     column :updated_at
     actions defaults: true do |battle|
-      link_to 'Rematch', new_admin_battle_path(first_member_id: battle.first_member_id, 
-                                               second_member_id: battle.second_member_id,
-                                               tag_id: battle.tag_id,
-                                               final_date: Time.now + battle.duration) 
+      link_to 'Rematch', new_admin_battle_path(battle_id: battle.id) 
     end
   end
 

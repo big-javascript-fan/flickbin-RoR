@@ -17,6 +17,8 @@ ActiveAdmin.register Battle do
     battle.tag.users.none_battle_members.uniq.each do |user|
       ApplicationMailer.battle_tag_contributor_notification(user, battle).deliver_later
     end
+
+    TweetBattleService.new(battle).call
   end
 
   index do

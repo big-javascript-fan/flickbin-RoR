@@ -13,10 +13,8 @@ class Api::V1::BattlesController < Api::V1::BaseController
     else
       if params[:value1]
         BattleVote.create(battle: @battle, ip: request.ip, user: current_user, battle_member_id: @battle.first_member_id)
-        @battle.increment!(:first_member_voices)
       else
         BattleVote.create(battle: @battle, ip: request.ip, user: current_user, battle_member_id: @battle.second_member_id)
-        @battle.increment!(:second_member_voices)
       end
       render status: 200, json: {message: "OK" }.to_json
     end

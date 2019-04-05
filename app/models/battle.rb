@@ -9,12 +9,13 @@
 #  second_member_voices       :integer          default(0)
 #  slug                       :string
 #  status                     :string           default("live")
-#  winner                     :string           default("")
+#  winner                     :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  first_member_id            :integer
 #  second_member_id           :integer
 #  tag_id                     :integer
+#  winner_id                  :bigint(8)
 #
 # Indexes
 #
@@ -51,5 +52,25 @@ class Battle < ApplicationRecord
 
   def custom_title
     "#{first_member.name} vs #{second_member.name} #{id}"
+  end
+
+  def winner_member
+    return first_member if winner == first_member.name
+    return second_member if winner == second_member.name
+  end
+
+  def loser_member
+    return second_member if winner == first_member.name
+    return first_member  if winner == second_member.name
+  end
+
+  def winner_votes
+    return first_member_voices if winner == first_member.name
+    return second_member_voices if winner == second_member.name
+  end
+
+  def loser_votes
+    return second_member_voices if winner == first_member.name
+    return first_member_voices if winner == second_member.name
   end
 end

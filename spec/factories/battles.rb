@@ -9,12 +9,13 @@
 #  second_member_voices       :integer          default(0)
 #  slug                       :string
 #  status                     :string           default("live")
-#  winner                     :string           default("")
+#  winner                     :string
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  first_member_id            :integer
 #  second_member_id           :integer
 #  tag_id                     :integer
+#  winner_id                  :bigint(8)
 #
 # Indexes
 #

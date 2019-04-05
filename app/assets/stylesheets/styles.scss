@@ -3774,6 +3774,7 @@ input.grayNormal {
       display: flex;
       max-width: 1270px;
       margin: 0 auto;
+      justify-content: center;
       > * {
         width: 50%;
         &:not(:first-child){

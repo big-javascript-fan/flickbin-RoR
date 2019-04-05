@@ -15,9 +15,10 @@
 #  index_vote_ips_on_user_id    (user_id)
 #
 
-class VoteIp < ApplicationRecord
+class BattleVote < ApplicationRecord
   belongs_to :battle
   belongs_to :user, optional: true
+  belongs_to :battle_member
 
   validates :ip, presence: true
 end

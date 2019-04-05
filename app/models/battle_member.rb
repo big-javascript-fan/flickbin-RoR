@@ -25,4 +25,5 @@ class BattleMember < ApplicationRecord
 
   belongs_to :user
   has_many :opponents, through: :battles
+  has_many :battle_votes
 end

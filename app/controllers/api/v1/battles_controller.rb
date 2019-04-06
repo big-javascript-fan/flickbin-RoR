@@ -2,9 +2,7 @@ class Api::V1::BattlesController < Api::V1::BaseController
   before_action :set_battle
 
   def show
-    @first_voices = @battle.battle_votes.where(battle_member_id: @battle.first_member.id).count.to_json
-    @second_voices = @battle.battle_votes.where(battle_member_id: @battle.second_member.id).count.to_json
-    render json: {@first_voices, @second_member}
+    render json: @battle.to_json
   end
 
   def update

@@ -63,12 +63,20 @@ class Battle < ApplicationRecord
   end
 
   def winner_votes
-    return first_member_voices if winner == first_member.name
-    return second_member_voices if winner == second_member.name
+    return first_member_votes if winner == first_member.name
+    return second_member_votes if winner == second_member.name
   end
 
   def loser_votes
-    return second_member_voices if winner == first_member.name
-    return first_member_voices if winner == second_member.name
+    return second_member_votes if winner == first_member.name
+    return first_member_votes if winner == second_member.name
+  end
+
+  def first_member_votes
+    battle_votes.where(battle_member_id: first_member.id).count
+  end
+
+  def second_member_votes
+    battle_votes.where(battle_member_id: second_member.id).count
   end
 end

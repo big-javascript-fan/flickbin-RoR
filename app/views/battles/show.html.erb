@@ -64,8 +64,8 @@
         <div class="layout-item layout-grow layout-flex">
           <div class="layout-fight-secondary">
             <% {
-                 @battle.first_member => @first_voices,
-                 @battle.second_member => @second_voices
+                 @battle.first_member => @battle.first_member_votes,
+                 @battle.second_member => @battle.second_member_votes
                }.each_with_index do |(current_member, current_voices), index| %>
               <div class="layout-item layout-grow">
                 <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">

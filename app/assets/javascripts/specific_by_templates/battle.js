@@ -102,7 +102,7 @@ $(function() {
     var winnerVotes = 0;
     var loserVotes = 0;
 
-    $.get(`/api/v1/battles/${battleId}`).then(function(response) {
+    $.get(`/api/v1/battles/${battleId}/battle_results/${battleId}`).then(function(response) {
       $('.card-vote').first().html(response.first_member_votes)
       $('.card-vote').last().html(response.second_member_votes)
       if (response.first_member_votes > response.second_member_votes) {

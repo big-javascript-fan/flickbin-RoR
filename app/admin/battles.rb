@@ -6,13 +6,14 @@ ActiveAdmin.register Battle do
       super.includes(:tag, :first_member, :second_member)
     end
 
-    def new 
+    def new
       if params[:battle_id]
         prev_battle = Battle.find(params[:battle_id])
         @battle = prev_battle.dup
-        @battle.final_date = Time.now + (prev_battle.final_date - prev_battle.created_at) 
+        @battle.final_date = Time.now + (prev_battle.final_date - prev_battle.created_at)
+        @battle.status = 'live'
       else
-        @battle = Battle.new 
+        @battle = Battle.new
       end
     end
   end
@@ -56,7 +57,7 @@ ActiveAdmin.register Battle do
     column :created_at
     column :updated_at
     actions defaults: true do |battle|
-      link_to 'Rematch', new_admin_battle_path(battle_id: battle.id) 
+      link_to 'Rematch', new_admin_battle_path(battle_id: battle.id)
     end
   end
 

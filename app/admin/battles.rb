@@ -1,5 +1,5 @@
 ActiveAdmin.register Battle do
-  permit_params :tag_id, :final_date, :first_member_id, :second_member_id, :status, :slug
+  permit_params :tag_id, :final_date, :first_member_id, :second_member_id, :status
 
   controller do
     def scoped_collection

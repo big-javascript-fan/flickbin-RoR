@@ -5,6 +5,16 @@ ActiveAdmin.register Battle do
     def scoped_collection
       super.includes(:tag, :first_member, :second_member)
     end
+
+    def new 
+      if params[:battle_id]
+        prev_battle = Battle.find(params[:battle_id])
+        @battle = prev_battle.dup
+        @battle.final_date = Time.now + (prev_battle.final_date - prev_battle.created_at) 
+      else
+        @battle = Battle.new 
+      end
+    end
   end
 
   after_create do |battle|
@@ -45,7 +55,9 @@ ActiveAdmin.register Battle do
     end
     column :created_at
     column :updated_at
-    actions
+    actions defaults: true do |battle|
+      link_to 'Rematch', new_admin_battle_path(battle_id: battle.id) 
+    end
   end
 
   form do |f|

@@ -82,7 +82,7 @@
                           <tbody>
                           <tr>
                             <td style="font-size: 20px;">
-                              A new creator battle has started on the {TAG} tag. Both creators have been recognized as the best of the best on Flickbin and now, the score between them must be settled.
+                              A new creator battle has started on the <%= @battle.tag.title %> tag. Both creators have been recognized as the best of the best on Flickbin and now, the score between them must be settled.
                             </td>
                           </tr>
                           </tbody>
@@ -98,7 +98,7 @@
               </tr>
               <tr>
                 <td align="left" style="padding: 0 40px 0 40px; font-size: 17px;">
-                  <a href="#" style="color: #31B4B0; text-decoration: none;">link</a> - Go check it out!
+                  <a href="<%= battle_url(@battle) %>" style="color: #31B4B0; text-decoration: none;"><%= battle_url(@battle) %></a> - Go check it out!
                 </td>
               </tr>
               <tr>

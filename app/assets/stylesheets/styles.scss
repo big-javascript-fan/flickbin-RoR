@@ -365,7 +365,20 @@ fieldset:disabled a.btn {
 a.btn:hover {
   text-decoration: none;
 }
-
+.btn-battle {
+  background: #fff;
+  color: #1D1F23;
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 17px;
+  font-family: "Helvetica Neue";
+  padding: 13px 15.5px;
+}
+.btn-battle-position {
+  position: absolute;
+  top: 49px;
+  right: 51px;
+}
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
@@ -2443,6 +2456,7 @@ input.grayNormal {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-wrap: wrap;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

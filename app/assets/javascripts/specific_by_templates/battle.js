@@ -96,6 +96,7 @@ $(function() {
   }
 
   function displayWinner() {
+    clearInterval(timerID, 1000)
     var battleId = $(".section-fight").data('battle');
     var winnerTwitterAccountName = '';
     var loserTwitterAccountName = '';

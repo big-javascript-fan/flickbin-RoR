@@ -4,9 +4,11 @@ class FinishBattleService
   end
 
   def call
-    if @battle.first_member_voices > @battle.second_member_voices
+    first_voices = @battle.battle_votes.where(battle_member_id: @battle.first_member.id).count
+    second_voices = @battle.battle_votes.where(battle_member_id: @battle.second_member.id).count 
+    if first_voices > second_voices
      @battle.update(winner: @battle.first_member.name, status: 'finished')
-    elsif @battle.first_member_voices < @battle.second_member_voices
+    elsif first_voices < second_voices
       @battle.update(winner: @battle.second_member.name, status: 'finished')
     else
       @battle.update(winner: 'draw', status: 'finished')

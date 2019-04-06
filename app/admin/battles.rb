@@ -39,11 +39,15 @@ ActiveAdmin.register Battle do
     column :first_member_id do |battle|
       battle.first_member.name
     end
-    column :first_member_voices
+    column :first_member_voices do |battle|
+      battle.battle_votes.where(battle_member_id: battle.first_member.id).count
+    end
     column :second_member_id do |battle|
       battle.second_member.name
     end
-    column :second_member_voices
+    column :second_member_voices do |battle|
+      battle.battle_votes.where(battle_member_id: battle.first_member.id).count
+    end
     column :final_date
     column :number_of_rematch_requests
     column :status do |battle|

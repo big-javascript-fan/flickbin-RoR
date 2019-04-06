@@ -73,64 +73,81 @@ $(function() {
     }, 1000);
   }
 
-  
+  function displayWinner() {
+    var battleId = $(".section-fight").data('battle');
+    var winnerTwitterAccountName = '';
+    var loserTwitterAccountName = '';
+    var winnerVotes = 0;
+    var loserVotes = 0;
 
-    function displayWinner() {
-      var battleId = $(".section-fight").data('battle');
-      $.get(`/api/v1/battles/${battleId}`).then(function(response) {
-        $($('.card-vote')[0]).html(response.first_member_voices)
-        $($('.card-vote')[1]).html(response.second_member_voices)
-        if (response.first_member_voices > response.second_member_voices) {
-          $($('.card-fight')[0]).addClass('card-fight-winner')
-        } else {
-          $($('.card-fight')[1]).addClass('card-fight-winner')
-        };
-        $('.card-vote').addClass('card-vote-disabled');
-        $('.card-vote .icon-arrow_drop_up').hide();
-        $('.card-vote-description').hide();
-        $('.divider-button, .divider-button-mobile').removeClass('hidden'); 
-        clearInterval(timerID, 1000)
-      });
-   }
-  
+    $.get(`/api/v1/battles/${battleId}`).then(function(response) {
+      $('.card-vote').first().html(response.first_member_voices)
+      $('.card-vote').last().html(response.second_member_voices)
+      if (response.first_member_voices > response.second_member_voices) {
+        $('.card-fight').first().addClass('card-fight-winner')
+        winnerTwitterAccountName = $('.card-twitter').first().text();
+        loserTwitterAccountName = $('.card-twitter').last().text();
+        winnerVotes = $('.card-vote').first().text();
+        loserVotes = $('.card-vote').last().text();
+      } else if (response.second_member_voices > response.first_member_voices) {
+        $('.card-fight').last().addClass('card-fight-winner')
+        winnerTwitterAccountName = $('.card-twitter').last().text();
+        loserTwitterAccountName = $('.card-twitter').first().text();
+        winnerVotes = $('.card-vote').last().text();
+        loserVotes = $('.card-vote').first().text();
+      }
+      if (response.first_member_voices != response.second_member_voices) {
+        $('.winner-tweet').removeClass('hidden');
+        $('.winner-tweet .card-image img').attr('src', $('.card-fight-winner .card-image img').attr('src'));
+        $('.winner-tweet .textarea').text("Congratulations to " + winnerTwitterAccountName + " for winning the Flickbin creator battle against " + loserTwitterAccountName + ". The final vote count " + winnerVotes + " to " + loserVotes + " in favor of " + winnerTwitterAccountName + ".");
+      }
+      $('.card-vote').addClass('card-vote-disabled');
+      $('.card-vote .icon-arrow_drop_up').hide();
+      $('.card-vote-description').hide();
+      $('.divider-button, .divider-button-mobile').removeClass('hidden');
+      $('.fan-tweet').addClass('hidden');
+      clearInterval(timerID, 1000)
+    });
+  }
+
   $(".card-vote").click(function(e) {
-      e.preventDefault()
+    e.preventDefault()
 
-      var self = this;
-      var member = $(this).data('member');
-      var battleId = $(".section-fight").data('battle');
-      var upvote = parseInt($(self).text());
-      if (member == '1') {
-          $.ajax({
-              type: 'PUT',
-              url:  `/api/v1/battles/${battleId}`,
-              data: { value1: true },
-              error: function(xhr, message) {
-                  console.log(xhr.status);
-                  console.log(message);
-              }
-          }).then( function() {
-              $(self).text(upvote + 1)
-              $('.card-fight .icon-arrow_drop_up').remove();
-          });
+    var self = this;
+    var member = $(this).data('member');
+    var battleId = $(".section-fight").data('battle');
+    var upvote = parseInt($(self).text());
+    if (member == '1') {
+        $.ajax({
+            type: 'PUT',
+            url:  `/api/v1/battles/${battleId}`,
+            data: { value1: true },
+            error: function(xhr, message) {
+                console.log(xhr.status);
+                console.log(message);
+            }
+        }).then( function() {
+            $(self).text(upvote + 1)
+            $('.card-fight .icon-arrow_drop_up').remove();
+        });
 
-      } else if (member == '2') {
-          $.ajax({
-              type: 'PUT',
-              url: `/api/v1/battles/${battleId}`,
-              data: { value2: true },
-              error: function(xhr, message) {
-                  console.log(xhr.status);
-                  console.log(xhr.statusText + error);
-                  console.log(message);
-              }
-          }).then( function() {
-              $(self).text(upvote + 1);
-              $('.card-fight .icon-arrow_drop_up').remove();
-          });
-      } else {
-          alert("no");
-      };
+    } else if (member == '2') {
+        $.ajax({
+            type: 'PUT',
+            url: `/api/v1/battles/${battleId}`,
+            data: { value2: true },
+            error: function(xhr, message) {
+                console.log(xhr.status);
+                console.log(xhr.statusText + error);
+                console.log(message);
+            }
+        }).then( function() {
+            $(self).text(upvote + 1);
+            $('.card-fight .icon-arrow_drop_up').remove();
+        });
+    } else {
+        alert("no");
+    };
   });
 
   $(".divider-button, .divider-button-mobile").click(function(e) {

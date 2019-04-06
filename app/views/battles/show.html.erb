@@ -146,16 +146,16 @@
                 </div>
               </div>
               <div class="card-body">
-                <form action="" class="form-tweets">
+                <div class="form-tweets">
                   <label class="form-control">
                     <span class="icon fab fa-twitter"></span>
-                    <span class="textarea-wrapper">
+                    <div class="textarea-wrapper">
                       <span class="textarea-tip"></span>
-                      <div class="textarea">The Creator battle round is happening now between <%= @battle.first_member.twitter_account_name %> and <%= @battle.second_member.twitter_account_name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!</div>
-                    </span>
+                      <textarea class="textarea">The Creator battle round is happening now between <%= @battle.first_member.twitter_account_name %> and <%= @battle.second_member.twitter_account_name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!</textarea>
+                    </div>
                   </label>
-                  <a class="form-button" href="https://twitter.com/intent/tweet?url=https://www.flickbin.tv/&text=The Youtube Creator battle round is happening now between <%= @battle.first_member.name %> and <%= @battle.second_member.name %> on Flickbin. Go vote for <%= current_member.name %> now before it’s too late!" >Send Tweet</a>
-                </form>
+                  <a class="form-button" href="#">Send Tweet</a>
+                </div>
               </div>
             </div>
           </div>
@@ -174,16 +174,16 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="" class="form-tweets">
+              <div class="form-tweets">
                 <label class="form-control">
                   <span class="icon fab fa-twitter"></span>
-                  <span class="textarea-wrapper">
+                  <div class="textarea-wrapper">
                     <span class="textarea-tip"></span>
-                    <div class="textarea">Congratulations to @<%= @battle.winner_member.try(:twitter_account_name) %> for winning the Flickbin creator battle against @<%= @battle.loser_member.try(:twitter_account_name) %>. The final vote count <%= @battle.winner_votes %> to <%= @battle.loser_votes %> in favor of @<%= @battle.winner_member.try(:twitter_account_name) %>.</div>
-                  </span>
+                    <textarea class="textarea">Congratulations to @<%= @battle.winner_member.try(:twitter_account_name) %> for winning the Flickbin creator battle against @<%= @battle.loser_member.try(:twitter_account_name) %>. The final vote count <%= @battle.winner_votes %> to <%= @battle.loser_votes %> in favor of @<%= @battle.winner_member.try(:twitter_account_name) %>.</textarea>
+                  </div>
                 </label>
-                <a class="form-button" href="https://twitter.com/intent/tweet?url=https://www.flickbin.tv/&text=STUB_STUB_STUB" >Send Tweet</a>
-              </form>
+                <a class="form-button" href="#">Send Tweet</a>
+              </div>
             </div>
           </div>
         </div>

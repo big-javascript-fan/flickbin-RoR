@@ -20,8 +20,30 @@ function twitterWinget() {
   }(document, "script", "twitter-wjs"));
 }
 
+
+
 $(function() {
   votesHandler();
+  sendTwitter();
+
+  function sendTwitter() {
+    $('.form-button').on('click', function (e){
+      e.preventDefault();
+
+      var location = document.location.href;
+      var parent = $(this).parent();
+      var textarea = parent.find('.textarea');
+      var textareaContent;
+
+      if (textarea.val() == ""){
+        textareaContent = textarea.text();
+      } else {
+        textareaContent = textarea.val();
+      }
+
+      $(this).attr("href", "https://twitter.com/intent/tweet?url=" + location + "/&text=" + textareaContent);
+    })
+  }
 
   function votesHandler() {
     $(document).on('click', '.card-tags-vote', function(e) {

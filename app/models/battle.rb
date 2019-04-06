@@ -4,9 +4,7 @@
 #
 #  id                         :bigint(8)        not null, primary key
 #  final_date                 :datetime
-#  first_member_voices        :integer          default(0)
 #  number_of_rematch_requests :integer          default(0)
-#  second_member_voices       :integer          default(0)
 #  slug                       :string
 #  status                     :string           default("live")
 #  winner                     :string
@@ -36,7 +34,7 @@ class Battle < ApplicationRecord
   belongs_to :tag
   belongs_to :first_member, class_name: 'BattleMember', foreign_key: :first_member_id
   belongs_to :second_member, class_name: 'BattleMember', foreign_key: :second_member_id
-  has_many   :vote_ips
+  has_many   :battle_votes
   has_many   :rematch_requests
 
   validates_inclusion_of :status, in: STATUSES
@@ -65,12 +63,20 @@ class Battle < ApplicationRecord
   end
 
   def winner_votes
-    return first_member_voices if winner == first_member.name
-    return second_member_voices if winner == second_member.name
+    return first_member_votes if winner == first_member.name
+    return second_member_votes if winner == second_member.name
   end
 
   def loser_votes
-    return second_member_voices if winner == first_member.name
-    return first_member_voices if winner == second_member.name
+    return second_member_votes if winner == first_member.name
+    return first_member_votes if winner == second_member.name
+  end
+
+  def first_member_votes
+    battle_votes.where(battle_member_id: first_member.id).count
+  end
+
+  def second_member_votes
+    battle_votes.where(battle_member_id: second_member.id).count
   end
 end

@@ -96,29 +96,30 @@ $(function() {
   }
 
   function displayWinner() {
+    clearInterval(timerID, 1000)
     var battleId = $(".section-fight").data('battle');
     var winnerTwitterAccountName = '';
     var loserTwitterAccountName = '';
     var winnerVotes = 0;
     var loserVotes = 0;
 
-    $.get(`/api/v1/battles/${battleId}`).then(function(response) {
-      $('.card-vote').first().html(response.first_member_voices)
-      $('.card-vote').last().html(response.second_member_voices)
-      if (response.first_member_voices > response.second_member_voices) {
+    $.get(`/api/v1/battles/${battleId}/battle_results/${battleId}`).then(function(response) {
+      $('.card-vote').first().html(response.first_member_votes)
+      $('.card-vote').last().html(response.second_member_votes)
+      if (response.first_member_votes > response.second_member_votes) {
         $('.card-fight').first().addClass('card-fight-winner')
         winnerTwitterAccountName = $('.card-twitter').first().text();
         loserTwitterAccountName = $('.card-twitter').last().text();
         winnerVotes = $('.card-vote').first().text();
         loserVotes = $('.card-vote').last().text();
-      } else if (response.second_member_voices > response.first_member_voices) {
+      } else if (response.second_member_votes > response.first_member_votes) {
         $('.card-fight').last().addClass('card-fight-winner')
         winnerTwitterAccountName = $('.card-twitter').last().text();
         loserTwitterAccountName = $('.card-twitter').first().text();
         winnerVotes = $('.card-vote').last().text();
         loserVotes = $('.card-vote').first().text();
       }
-      if (response.first_member_voices != response.second_member_voices) {
+      if (response.first_member_votes != response.second_member_votes) {
         $('.winner-tweet').removeClass('hidden');
         $('.winner-tweet .card-image img').attr('src', $('.card-fight-winner .card-image img').attr('src'));
         $('.winner-tweet .textarea').text("Congratulations to " + winnerTwitterAccountName + " for winning the Flickbin creator battle against " + loserTwitterAccountName + ". The final vote count " + winnerVotes + " to " + loserVotes + " in favor of " + winnerTwitterAccountName + ".");

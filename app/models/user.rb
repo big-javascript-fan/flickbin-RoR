@@ -57,7 +57,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :top_15_notifications, -> { order(created_at: :desc).limit(15) }, class_name: 'Notification'
-  has_many :vote_ips
+  has_many :battle_votes
   has_many :rematch_requests
 
   validates_presence_of   :channel_name

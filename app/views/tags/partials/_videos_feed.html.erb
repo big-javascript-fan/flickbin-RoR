@@ -1,6 +1,7 @@
 <% @tag_videos.each_with_index do |video, index| %>
   <li class="grid-item">
-    <div class="card card-video-tags card-secondary-video-tags">
+    <div class="card card-video-tags
+                <%= 'card-secondary-video-tags' if controller_name == 'battles' %>">
       <div class="card-media">
         <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
           <%= image_tag(video.cover.url.to_s, alt: video.title, class: "tagThumbnail large") %>
@@ -90,5 +91,3 @@
     <% end %>
   </li>
 <% end %>
-
-

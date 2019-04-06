@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :battles, only: [:show, :update] do
         member do
           resources :rematch_requests, only: :create, module: 'battles'
-          resources :results, only: :show, module: 'battles'
+          resource :result, only: :show, module: 'battles'
         end
       end
 

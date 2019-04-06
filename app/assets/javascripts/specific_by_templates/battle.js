@@ -103,21 +103,21 @@ $(function() {
     var winnerVotes = 0;
     var loserVotes = 0;
 
-    $.get(`/api/v1/battles/${battleId}/battle_results/${battleId}`).then(function(response) {
+    $.get(`/api/v1/battles/${battleId}/result`).then(function(response) {
       $('.card-vote').first().html(response.first_member_votes)
       $('.card-vote').last().html(response.second_member_votes)
       if (response.first_member_votes > response.second_member_votes) {
         $('.card-fight').first().addClass('card-fight-winner')
-        winnerTwitterAccountName = $('.card-twitter').first().text();
-        loserTwitterAccountName = $('.card-twitter').last().text();
-        winnerVotes = $('.card-vote').first().text();
-        loserVotes = $('.card-vote').last().text();
+        winnerTwitterAccountName = $('.card-twitter').first().text().trim();
+        loserTwitterAccountName = $('.card-twitter').last().text().trim();
+        winnerVotes = $('.card-vote').first().text().trim();
+        loserVotes = $('.card-vote').last().text().trim();
       } else if (response.second_member_votes > response.first_member_votes) {
         $('.card-fight').last().addClass('card-fight-winner')
-        winnerTwitterAccountName = $('.card-twitter').last().text();
-        loserTwitterAccountName = $('.card-twitter').first().text();
-        winnerVotes = $('.card-vote').last().text();
-        loserVotes = $('.card-vote').first().text();
+        winnerTwitterAccountName = $('.card-twitter').last().text().trim();
+        loserTwitterAccountName = $('.card-twitter').first().text().trim();
+        winnerVotes = $('.card-vote').last().text().trim();
+        loserVotes = $('.card-vote').first().text().trim();
       }
       if (response.first_member_votes != response.second_member_votes) {
         $('.winner-tweet').removeClass('hidden');

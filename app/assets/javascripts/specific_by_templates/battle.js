@@ -152,6 +152,7 @@ $(function() {
         }).then( function() {
             $(self).text(upvote + 1)
             $('.card-fight .icon-arrow_drop_up').remove();
+            $('.card-vote').not($(this)).addClass('card-vote-disabled')
         });
 
     } else if (member == '2') {

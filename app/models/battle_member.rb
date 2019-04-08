@@ -23,7 +23,7 @@ class BattleMember < ApplicationRecord
 
   mount_uploader :photo, BattleMemberChannelAvatarUploader
 
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :opponents, through: :battles
   has_many :battle_votes
 end

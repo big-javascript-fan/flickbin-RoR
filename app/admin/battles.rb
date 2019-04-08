@@ -77,7 +77,6 @@ ActiveAdmin.register Battle do
                     order_by: 'name_asc'
       f.input :final_date, as: :date_time_picker,
                            input_html: { style: 'width: 100px;' }
-      f.input :status, as: :select, collection: Battle::STATUSES
     end
     f.actions
   end

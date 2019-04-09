@@ -162,7 +162,7 @@
                           <tbody>
                           <tr>
                             <td style="font-size: 20px;">
-                              It’s quite simple, in this battle, we’ve paired you with the competition. In this case it’s <%= @opponent.name %>. You and <%= @opponent.name %> will go head to head in a <%= ((@battle.final_date - @battle.created_at) / 1.day).round %> day voting contest and whichever station comes out the winner, will get the pride of being declared the winner. As a trophy for winning, there will also be a web page which remains long after the battle is over which declares you the winner and superior station against your competition.
+                              It’s quite simple, in this battle, we’ve paired you with the competition. In this case it’s "<%= @opponent.name %>". You and <%= @opponent.name %> will go head to head in a <%= ((@battle.final_date - @battle.created_at) / 1.day).round %> day voting contest and whichever station comes out the winner, will get the pride of being declared the winner. As a trophy for winning, there will also be a web page which remains long after the battle is over which declares you the winner and superior station against your competition.
                             </td>
                           </tr>
                           </tbody>
@@ -178,7 +178,7 @@
               </tr>
               <tr>
                 <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
-                  The battle has already started. You can see the page <a href="<%=battle_url(@battle)%>"  style="color: #31B4B0; text-decoration: none;">here</a>.
+                  The battle has already started. You can see the page <%= link_to 'here', battle_url(@battle), style: "color: #31B4B0; text-decoration: none;" %>.
                 </td>
               </tr>
               <tr>
@@ -266,12 +266,9 @@
               </tr>
               <tr>
                 <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
-                  <a href="<%= battle_url(@battle) %>" style="color: #31B4B0; text-decoration: none;">“Check Out the Battle”</a>
+                  <%= link_to 'Check Out the Battle', battle_url(@battle), style: "color: #31B4B0; text-decoration: none;" %>
                 </td>
               </tr>
-
-
-
               <tr>
                 <td height="45"></td>
               </tr>

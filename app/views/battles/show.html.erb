@@ -83,7 +83,7 @@
                     </div>
                     <a href="#" class="card-vote
                                        <%= 'card-vote-used' if @battle.live? && @already_voted %>
-                                       <%= 'card-vote-disabled' if @battle.finished? %>"
+                                       <%= 'card-vote-disabled' if @battle.finished? || [current_member.id, nil].exclude?(@voted_member_id) %>"
                                 data-member="<%= index + 1 %>">
                       <%= current_voices %>
                       <% if @battle.live? && !@already_voted %>

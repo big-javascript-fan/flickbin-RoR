@@ -140,6 +140,7 @@ $(function() {
     var member = $(this).data('member');
     var battleId = $(".section-fight").data('battle');
     var upvote = parseInt($(self).text());
+    var memberName =  $(this).data('name');
     if (member == '1') {
         $.ajax({
             type: 'PUT',
@@ -152,6 +153,19 @@ $(function() {
         }).then( function() {
             $(self).text(upvote + 1)
             $('.card-fight .icon-arrow_drop_up').remove();
+            var tomorrow = new Date()
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            $('.card-vote-description').html(`You've voted for ${memberName}.
+              You can vote again in
+              <div class='card-vote-countdown' uk-countdown="date:${tomorrow.toISOString()}">
+                <div>
+                    <div class='uk-countdown-number uk-countdown-hours'></div>
+                </div>
+                <div class='uk-countdown-separator'>:</div>
+                <div>
+                    <div class='uk-countdown-number uk-countdown-minutes'></div>
+                </div>
+              </div>`)
             $('.card-vote').not($(this)).addClass('card-vote-disabled')
         });
 

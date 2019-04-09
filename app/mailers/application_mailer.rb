@@ -127,7 +127,7 @@ class ApplicationMailer < ActionMailer::Base
     @battle = battle
     @opponent = opponent
 
-    mail(to: @receiver.email, subject: 'You’ve been selected! A battle has begun.')
+    mail(to: @receiver.user.email, subject: 'You’ve been selected! A battle has begun.')
   end
 
   def battle_tag_contributor_notification(user, battle)

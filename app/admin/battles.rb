@@ -23,7 +23,7 @@ ActiveAdmin.register Battle do
 
     {battle.first_member => battle.second_member,
      battle.second_member => battle.first_member}.each do |receiver, opponent|
-      ApplicationMailer.battle_participant_notification(receiver.user, opponent.user, battle).deliver_now if receiver.user
+      ApplicationMailer.battle_participant_notification(receiver, opponent, battle).deliver_now if receiver.user
     end
 
     battle.tag.users.none_battle_members.uniq.each do |user|

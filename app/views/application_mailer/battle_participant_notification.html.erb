@@ -74,7 +74,7 @@
               </tr>
               <tr>
                 <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
-                  Greetings <%= @receiver.channel_name %>!
+                  Greetings <%= @receiver.name %>!
                 </td>
               </tr>
               <tr>
@@ -162,7 +162,7 @@
                           <tbody>
                           <tr>
                             <td style="font-size: 20px;">
-                              It’s quite simple, in this battle, we’ve paired you with the competition. In this case it’s <%= @opponent.channel_name %>. You and <%= @opponent.channel_name %> will go head to head in a <%= ((@battle.final_date - @battle.created_at) / 1.day).round %> day voting contest and whichever station comes out the winner, will get the pride of being declared the winner. As a trophy for winning, there will also be a web page which remains long after the battle is over which declares you the winner and superior station against your competition.
+                              It’s quite simple, in this battle, we’ve paired you with the competition. In this case it’s <%= @opponent.name %>. You and <%= @opponent.name %> will go head to head in a <%= ((@battle.final_date - @battle.created_at) / 1.day).round %> day voting contest and whichever station comes out the winner, will get the pride of being declared the winner. As a trophy for winning, there will also be a web page which remains long after the battle is over which declares you the winner and superior station against your competition.
                             </td>
                           </tr>
                           </tbody>

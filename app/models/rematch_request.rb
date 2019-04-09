@@ -17,7 +17,7 @@
 
 class RematchRequest < ApplicationRecord
   belongs_to :battle
-  belongs_to :user
+  belongs_to :user, optional: true 
 
   validates :ip, presence: true
 end

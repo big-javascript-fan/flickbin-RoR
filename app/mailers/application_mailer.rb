@@ -122,9 +122,10 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: recipient, subject: "Flickbin JS Exception")
   end
 
-  def battle_participant_notification(user, battle)
+  def battle_participant_notification(user, battle, opponent)
     @user = user
     @battle = battle
+    @opponent = opponent
 
     mail(to: @user.email, subject: 'You’ve been selected! A battle has begun.')
   end

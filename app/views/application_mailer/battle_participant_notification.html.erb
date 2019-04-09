@@ -74,14 +74,14 @@
               </tr>
               <tr>
                 <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
-                  Greetings <%= @user.channel_name %>!
+                  Greetings <%= @receiver.name %>!
                 </td>
               </tr>
               <tr>
                 <td height="5"></td>
               </tr>
               <tr>
-                <td style="padding: 10px 40px 0 40px;">
+                <td style="padding: 0 40px 0 40px;">
                   <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                     <tr>
@@ -99,6 +99,174 @@
                     </tr>
                     </tbody>
                   </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="15"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
+                  But now, down to business.
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px 0 40px;">
+                  <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tbody>
+                          <tr>
+                            <td style="font-size: 20px;">
+                              You have some serious competition brewing. Others stations are working really hard to infringe on your territory and conquer you as Top Contributor and overall best creator on the site. In order to settle the score and put the debate to rest, a battle has begun. And this battle isn’t just any battle, it’s a battle of pride, popularity and the loyal dedication of your audience.
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
+                  This battle is a voting contest.
+                </td>
+              </tr>
+              <tr>
+                <td height="15"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
+                  How does the battle work?
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px 0 40px;">
+                  <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tbody>
+                          <tr>
+                            <td style="font-size: 20px;">
+                              It’s quite simple, in this battle, we’ve paired you with the competition. In this case it’s "<%= @opponent.name %>". You and <%= @opponent.name %> will go head to head in a <%= ((@battle.final_date - @battle.created_at) / 1.day).round %> day voting contest and whichever station comes out the winner, will get the pride of being declared the winner. As a trophy for winning, there will also be a web page which remains long after the battle is over which declares you the winner and superior station against your competition.
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
+                  The battle has already started. You can see the page <%= link_to 'here', battle_url(@battle), style: "color: #31B4B0; text-decoration: none;" %>.
+                </td>
+              </tr>
+              <tr>
+                <td height="15"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
+                  How do I get votes?
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px 0 40px;">
+                  <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tbody>
+                          <tr>
+                            <td style="font-size: 20px;">
+                              Getting votes on Flickbin is as easy as sharing the battle with your audience, and encouraging them to share the battle with their audience. If enough people share, you should be able to obtain enough votes to win the competition. In short, acquire as many votes as you can.
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
+                  Your audience does not need a Flickbin account to vote and there is a voting limit of once per person every 24 hours.
+                </td>
+              </tr>
+              <tr>
+                <td height="15"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 10px 40px 10px 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #090A0B; font-size: 20px; font-weight: bold;">
+                  Thank you!
+                </td>
+              </tr>
+              <tr>
+                <td height="5"></td>
+              </tr>
+              <tr>
+                <td style="padding: 0 40px 0 40px;">
+                  <table align="center" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tbody>
+                          <tr>
+                            <td style="font-size: 20px;">
+                              Again, we want to recognize you as one of our best contributors and most creative stations on the entire site. You’ve been noticed and chosen for a reason! We truly wish you the best of luck in the battle.
+                            </td>
+                          </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
+                  You’d better hurry, time is running out. Start sharing with your audience!
+                </td>
+              </tr>
+              <tr>
+                <td height="10"></td>
+              </tr>
+              <tr>
+                <td align="left" style="padding: 0 40px 0 40px; font-size: 20px;">
+                  <%= link_to 'Check Out the Battle', battle_url(@battle), style: "color: #31B4B0; text-decoration: none;" %>
                 </td>
               </tr>
               <tr>

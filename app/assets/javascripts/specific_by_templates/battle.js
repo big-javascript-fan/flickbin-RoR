@@ -28,8 +28,8 @@ $(function() {
   animatePeople();
 
   function animatePeople() {
-    var offsetTop = 400;
     var checkAnimate = true;
+    var offsetTop = 400;
     var height = window.pageYOffset || document.documentElement.scrollTop;
 
     if(height > offsetTop && checkAnimate) {

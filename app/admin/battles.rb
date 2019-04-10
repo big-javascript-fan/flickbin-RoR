@@ -76,7 +76,7 @@ ActiveAdmin.register Battle do
       f.input :second_member_id, as: :search_select, url: admin_battle_members_path,
                     fields: [:name], display_name: :name, minimum_input_length: 2,
                     order_by: 'name_asc'
-      f.input :final_date, as: :date_time_picker,
+      f.input :final_date, as: :date_time_picker, picker_options: { min_date: Date.today },
                            input_html: { style: 'width: 100px;', autocomplete: 'off' }
     end
     f.actions

@@ -155,7 +155,7 @@
 			}
 		}
 
-    .uk-countdown{
+    .uk-countdown-battle{
       .uk-countdown-separator{
         font-size: 42px;
       }
@@ -379,6 +379,20 @@
 			margin: 0;
 		}
 	}
+	.battleFeatured {
+		div {
+			flex-direction: column;
+			text-align: center;
+			.icon-featured {
+				margin-bottom: 9px;
+				margin-right: 0;
+			}
+			a {
+				margin-top: 4px;
+			}
+		}
+	}
+
 	.tagsTitle {
 		clear: both;
 		text-align: center;

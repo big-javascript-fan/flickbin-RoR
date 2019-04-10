@@ -1,6 +1,5 @@
 @import "components/animation";
 
-
 a{ color:#31B4B0; text-decoration:none; word-wrap:break-word; cursor:pointer;}
 a:hover { text-decoration:underline; color:#31B4B0;}
 a:focus,
@@ -1871,6 +1870,27 @@ input[type="text"].hasNumber {
     }
   }
 }
+.battleFeatured {
+  margin: 0 37px 0 36px;
+  border: 3px solid #31B4B0;
+  border-radius: 12px;
+  margin-bottom: 32px;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+    font-size: 17px;
+    .icon-featured {
+      line-height: 0;
+      font-size: 35px;
+      margin-right: 15px;
+    }
+    a {
+      margin:0 5px;
+    }
+  }
+}
 .errorIcon {
   display: block;
   position: absolute;
@@ -3575,6 +3595,8 @@ input.grayNormal {
       flex-basis: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+
       .layout-grow{
         flex-grow: 1;
       }
@@ -3593,7 +3615,6 @@ input.grayNormal {
       max-width: 1028px;
       width: 100%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
       .layout-divider{
         min-width: 196px;
@@ -3603,6 +3624,7 @@ input.grayNormal {
         display: flex;
         align-items: center;
         flex-direction: column;
+        align-self: center;
       }
       .layout-grow{
         flex-basis: 100%;
@@ -3765,6 +3787,10 @@ input.grayNormal {
           line-height: 27px;
           text-align: center;
           font-weight: 300;
+        }
+
+        .card-vote-countdown {
+          display: inline-flex;
         }
       }
     }
@@ -3956,7 +3982,7 @@ input.grayNormal {
       font-size: 26px;
     }
   }
-  .uk-countdown{
+  .uk-countdown-battle{
     display: flex;
     justify-content: center;
     align-items: center;

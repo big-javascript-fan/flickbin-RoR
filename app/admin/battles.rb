@@ -21,8 +21,9 @@ ActiveAdmin.register Battle do
   after_create do |battle|
     FinishBattleJob.set(wait: battle.final_date - Time.now).perform_later(battle.id)
 
-    [battle.first_member, battle.second_member].each do |member|
-      ApplicationMailer.battle_participant_notification(member.user, battle).deliver_now if member.user
+    {battle.first_member => battle.second_member,
+     battle.second_member => battle.first_member}.each do |receiver, opponent|
+      ApplicationMailer.battle_participant_notification(receiver, opponent, battle).deliver_now if receiver.user
     end
 
     battle.tag.users.none_battle_members.uniq.each do |user|

@@ -57,10 +57,7 @@
 
       <div class="layout-fight">
         <div class="layout-item">
-          <div class="effect">
-            <img src="/images/Bitmap.png" alt="img" class="decore-image slideInLeft wow"  data-wow-delay="1s" data-wow-offset="600">
-
-          </div>
+            <%= image_tag('/images/Bitmap.png', class: 'decore-image', style: 'visibility:hidden;') %>
         </div>
         <div class="layout-item layout-grow layout-flex">
           <div class="layout-fight-secondary">
@@ -137,7 +134,7 @@
           </a>
         </div>
         <div class="layout-item">
-          <img src="/images/Bitmap1.png" alt="img" class="wow decore-image-secondary slideInRight" data-wow-delay="1s" data-wow-offset="600" >
+          <%= image_tag('/images/Bitmap1.png', class: 'decore-image-secondary', style: 'visibility:hidden;') %>
         </div>
       </div>
     </section>

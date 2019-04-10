@@ -25,6 +25,40 @@ function twitterWinget() {
 $(function() {
   votesHandler();
   sendTwitter();
+  animatePeople();
+
+  function animatePeople() {
+    var offsetTop = 400;
+    var checkAnimate = true;
+    var height = window.pageYOffset || document.documentElement.scrollTop;
+
+    if(height > offsetTop && checkAnimate) {
+      addAnimation('.decore-image', 'animation-slide-left');
+      addAnimation('.decore-image-secondary', 'animation-slide-right');
+
+      checkAnimate = false;
+    } else{
+      window.onscroll = function() {
+        height = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (height > offsetTop && checkAnimate) {
+          addAnimation('.decore-image', 'animation-slide-left');
+          addAnimation('.decore-image-secondary', 'animation-slide-right');
+
+          checkAnimate = false;
+        }
+
+      };
+    }
+
+    function addAnimation(elem, animateClass) {
+      UIkit.scrollspy(document.querySelector(elem), {
+        cls: animateClass,
+        repeat: false,
+        hidden: false
+      });
+    }
+  }
 
   function sendTwitter() {
     $('.form-button').on('click', function (e){

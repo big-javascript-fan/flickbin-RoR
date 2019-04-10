@@ -36,7 +36,7 @@
         # Anton Tkachov. We don't have seconds in our timer, therefore last minute will be cut
         # I bring back this minute by adding it to the expiration time
       %>
-      <div class="uk-countdown" uk-countdown="date: <%= @battle.final_date + 1.minute %>">
+      <div class="uk-countdown uk-countdown-battle " uk-countdown="date: <%= (@battle.final_date + 1.minute).to_formatted_s(:iso8601)%>">
         <div>
           <div class="uk-countdown-number uk-countdown-days"></div>
           <div class="uk-countdown-label">Days</div>
@@ -82,17 +82,31 @@
                       </div>
                     </div>
                     <a href="#" class="card-vote
-                                       <%= 'card-vote-used' if @battle.live? && @already_voted %>
-                                       <%= 'card-vote-disabled' if @battle.finished? || [current_member.id, nil].exclude?(@voted_member_id) %>"
-                                data-member="<%= index + 1 %>">
+                                       <%= 'card-vote-used' if @battle.live? && @already_voted.any? %>
+                                       <%= 'card-vote-disabled' if @battle.finished? || [current_member.name, nil].exclude?(@voted_member_name) %>"
+                                data-member="<%= index + 1 %>" data-name="<%=current_member.name%>">
                       <%= current_voices %>
-                      <% if @battle.live? && !@already_voted %>
+                      <% if @battle.live? && @already_voted.empty?%>
                         <span class="icon icon-arrow_drop_up"></span>
                       <% end %>
                     </a>
                     <% if @battle.live? %>
                       <div class="card-vote-description" >
-                        Vote for <%= current_member.name %>
+                        <%if @already_voted.any? %>
+                          You've voted for <%=@voted_member_name%>.
+                          You can vote again in
+                          <div class='card-vote-countdown' uk-countdown="date:<%= (@already_voted.last.updated_at + 1.day).to_formatted_s(:iso8601) %>">
+                            <div>
+                                <div class='uk-countdown-number uk-countdown-hours'></div>
+                            </div>
+                            <div class='uk-countdown-separator'>:</div>
+                            <div>
+                                <div class='uk-countdown-number uk-countdown-minutes'></div>
+                            </div>
+                          </div>
+                        <% else %>
+                          Vote for <%= current_member.name %>
+                        <% end %>
                       </div>
                     <% end %>
                     <div class="card-vote-winner">

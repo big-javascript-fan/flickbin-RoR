@@ -77,7 +77,7 @@ ActiveAdmin.register Battle do
                     fields: [:name], display_name: :name, minimum_input_length: 2,
                     order_by: 'name_asc'
       f.input :final_date, as: :date_time_picker,
-                           input_html: { style: 'width: 100px;' }
+                           input_html: { style: 'width: 100px;', autocomplete: 'off' }
     end
     f.actions
   end

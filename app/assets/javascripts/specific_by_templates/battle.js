@@ -119,13 +119,13 @@ $(function() {
     });
   }
 
-  if ($('.uk-countdown-days').text() > 0 ||
-      $('.uk-countdown-hours').text() > 0 ||
-      $('.uk-countdown-minutes').text() > 0) {
+  if ($('.uk-countdown-battle .uk-countdown-days').text() > 0 ||
+      $('.uk-countdown-battle .uk-countdown-hours').text() > 0 ||
+      $('.uk-countdown-battle .uk-countdown-minutes').text() > 0) {
     timerID = setInterval(function () {
-      if ($('.uk-countdown-days').text() == 0 &&
-          $('.uk-countdown-hours').text() == 0 &&
-          $('.uk-countdown-minutes').text() == 0) displayWinner();
+      if ($('.uk-countdown-battle .uk-countdown-days').text() == 0 &&
+          $('.uk-countdown-battle .uk-countdown-hours').text() == 0 &&
+          $('.uk-countdown-battle .uk-countdown-minutes').text() == 0) displayWinner();
     }, 1000);
   }
 
@@ -154,6 +154,7 @@ $(function() {
         loserVotes = $('.card-vote').first().text().trim();
       }
       if (response.first_member_votes != response.second_member_votes) {
+
         $('.winner-tweet').removeClass('hidden');
         $('.winner-tweet .card-image img').attr('src', $('.card-fight-winner .card-image img').attr('src'));
         $('.winner-tweet .textarea').text("Congratulations to " + winnerTwitterAccountName + " for winning the Flickbin creator battle against " + loserTwitterAccountName + ". The final vote count " + winnerVotes + " to " + loserVotes + " in favor of " + winnerTwitterAccountName + ".");

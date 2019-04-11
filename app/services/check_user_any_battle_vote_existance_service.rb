@@ -10,6 +10,6 @@ class CheckUserAnyBattleVoteExistanceService
       user: @user
     }
     where_params[:ip] = @ip if @user.blank?
-    @battle.battle_votes.where(where_params).any? ? false : true
+    @battle.battle_votes.where(where_params).empty?
   end
- end
+end

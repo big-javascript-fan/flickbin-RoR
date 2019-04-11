@@ -11,7 +11,7 @@ class Api::V1::BattlesController < Api::V1::BaseController
     elsif CheckUserBattleVoteExistanceService.new(@battle, request.ip, current_user).call.any?
       render status: 409, json: {message: "You can vote once every 24 hours" }.to_json
     else
-      if params[:value1]
+      if params[:value] == '1'
         BattleVote.create(battle: @battle, ip: request.ip, user: current_user, battle_member_id: @battle.first_member_id)
       else
         BattleVote.create(battle: @battle, ip: request.ip, user: current_user, battle_member_id: @battle.second_member_id)

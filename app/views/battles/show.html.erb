@@ -138,7 +138,7 @@
         </div>
       </div>
     </section>
-    <section class="section-tweets">
+    <section class="section-tweets <%= 'hidden' if @battle.finished? && @user_without_votes %>">
       <div class="layout-tweets">
         <% [@battle.first_member, @battle.second_member].each do |current_member| %>
           <div class="layout-item

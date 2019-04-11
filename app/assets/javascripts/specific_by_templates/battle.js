@@ -164,6 +164,7 @@ $(function() {
       $('.card-vote-description').hide();
       $('.divider-button, .divider-button-mobile').removeClass('hidden');
       $('.fan-tweet').addClass('hidden');
+      if (response.current_user_unvoted) $('.section-tweets').addClass('hidden') ;
       clearInterval(timerID, 1000)
     });
   }

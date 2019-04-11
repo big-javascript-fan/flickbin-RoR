@@ -140,14 +140,6 @@
 				flex-wrap: wrap;
 				> * {
 					width: 100%;
-
-					&:not(:last-child){
-						.card-tweets{
-							padding-bottom: 45px;
-							border-bottom: 1px dashed #E5E7E9;
-							margin-bottom: 45px;
-						}
-					}
 				}
 				> *:not(:first-child) {
 					margin-left: 0;

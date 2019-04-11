@@ -3800,8 +3800,8 @@ input.grayNormal {
           text-align: center;
           font-weight: 300;
         }
-
         .card-vote-countdown {
+          font-size: 16px !important;
           display: inline-flex;
         }
       }
@@ -3836,6 +3836,23 @@ input.grayNormal {
         width: 50%;
         &:not(:first-child){
           margin-left: 72px;
+        }
+      }
+      > * {
+        &:first-child {
+          .card-tweets {
+            padding-bottom: 45px !important;
+            border-bottom: 1px dashed #E5E7E9;
+            margin-bottom: 45px;
+          }
+        }
+      }
+      .winner-tweet {
+        margin-left: 0 !important;
+        .card-tweets {
+          padding-bottom: 0 !important;
+          border-bottom: none;
+          margin-bottom: 0;
         }
       }
     }

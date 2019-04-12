@@ -2,7 +2,7 @@ class RecalculateTagsRankService
   def call
     rank = 1
     upvote_for_last_three_days = "votes.value = 1 AND votes.created_at BETWEEN '#{3.days.ago.to_s}' AND '#{Time.now}'"
-    video_valid_for_ranking = "videos.removed = false AND videos.untagged = false"
+    video_valid_for_ranking = "videos.removed = false AND videos.untagged = false AND videos.wasp_post = false"
     order_expression = "
       SUM(CASE WHEN #{upvote_for_last_three_days} THEN 1 ELSE 0 END) +
       COUNT(CASE WHEN #{video_valid_for_ranking} THEN 1 ELSE null END) +

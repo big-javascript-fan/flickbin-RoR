@@ -11,7 +11,7 @@ class RecalculateTagsRankService
     "
     sorted_tags = Tag.left_outer_joins(videos: [:votes, :comments])
                      .group(:id)
-                     .order(order_expression)
+                     .order('wasp_post ASC', order_expression)
 
     sorted_tags.each do |tag|
       tag.update_attribute(:rank, rank)

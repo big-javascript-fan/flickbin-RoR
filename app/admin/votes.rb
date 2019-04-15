@@ -11,5 +11,16 @@ ActiveAdmin.register Vote do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-
+  index do
+    selectable_column
+    id_column
+    column :value
+    column :video
+    column :voter do |vote|
+        auto_link(vote, vote.voter_id)
+      end
+    column :created_at
+    column :updated_at
+    actions
+  end
 end

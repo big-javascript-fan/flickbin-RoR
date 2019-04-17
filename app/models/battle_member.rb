@@ -20,6 +20,7 @@ class BattleMember < ApplicationRecord
   attr_accessor :youtube_channel_url, :photo_url
 
   validates :twitter_account_name, :photo, :name, :youtube_channel_guid, presence: true
+  validates_uniqueness_of :youtube_channel_guid
 
   mount_uploader :photo, BattleMemberChannelAvatarUploader
 

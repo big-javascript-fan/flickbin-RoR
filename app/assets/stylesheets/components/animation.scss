@@ -1,0 +1,74 @@
+[class*='animation-'] {
+  animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+.animation-reverse {
+  animation-direction: reverse;
+  animation-timing-function: ease-in;
+}
+.animation-toggle:not(:hover):not(:focus) [class*='animation-'] {
+  animation-name: none;
+}
+.animation-toggle {
+  -webkit-tap-highlight-color: transparent;
+}
+.animation-toggle:focus {
+  outline: none;
+}
+.animation-slide-top {
+  animation-name: fade-top;
+}
+.animation-slide-bottom {
+  animation-name: fade-bottom;
+}
+.animation-slide-left {
+  animation-name: fade-left;
+}
+.animation-slide-right {
+  animation-name: fade-right;
+}
+
+@keyframes fade-top {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-right {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

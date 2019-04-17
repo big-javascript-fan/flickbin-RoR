@@ -29,7 +29,7 @@
 				display: flex;
 			}
 		}
-		.section-tweets{
+		.section-tweets, .section-trending{
 			margin: 0;
 			padding-right:10px;
 			padding-left: 10px;
@@ -133,28 +133,21 @@
 				}
 			}
 		}
-		.section-tweets{
+		.section-tweets, .section-trending{
 			margin: 0;
-			padding:  60px 72px;
+			padding:  60px 30px;
 			.layout-tweets{
 				flex-wrap: wrap;
 				> * {
 					width: 100%;
-
-					&:not(:last-child){
-						.card-tweets{
-							padding-bottom: 45px;
-							border-bottom: 1px dashed #E5E7E9;
-							margin-bottom: 45px;
-						}
-					}
 				}
 				> *:not(:first-child) {
 					margin-left: 0;
 				}
 			}
 		}
-    .uk-countdown{
+
+    .uk-countdown-battle{
       .uk-countdown-separator{
         font-size: 42px;
       }
@@ -755,6 +748,43 @@
 }
 
 @media(max-width: 639px){
+	.battleTopik {
+		> div {
+			padding: 62px 10px;
+			background-image: image-url('/images/battle_topic_bg2.png');
+			background-position: center;
+			font-size: 17px;
+			letter-spacing: 0.4px;
+			line-height: 20px;
+		}
+		&-content{
+			max-width: 270px;
+			margin: 0 auto;
+		}
+		&-title {
+			font-size: 23px;
+			letter-spacing: 1.85px;
+			line-height: 29px;
+		}
+	}
+	.wrapper-battle {
+		.section-hero {
+			.heading-hero {
+				.heading-title {
+					font-size: 47px;
+					line-height: 61px;
+					letter-spacing: 3.79px;
+				}
+
+				.heading-subtitle {
+					letter-spacing: 0.4px;
+					line-height: 19px;
+					text-shadow: -2px 3px 4px 0 rgba(61, 71, 68, 0.51);
+					font-size: 17px;
+				}
+			}
+		}
+	}
 	.notificationDropdown{
 		.jq-dropdown{
 			display: none !important;
@@ -860,6 +890,14 @@
 							}
 						}
 					}
+				}
+			}
+		}
+		.section-trending {
+			padding: 60px 30px;
+			.grid-trending {
+				> .grid-item {
+					flex-basis: 100%;
 				}
 			}
 		}
@@ -1067,39 +1105,7 @@
 				}
 			}
 		}
-	}
-}
-@media(max-width: 415px){
-	.wrapper-battle{
-		.section-fight{
-			.layout-fight-secondary{
-				.layout-divider{
-					display: none;
-					min-width: 23px;
-					.text-divider{
-						font-size: 16px;
-					}
-				}
-			}
-			.card-fight{
-				.card-header{
-					.card-title{
-						margin-bottom: 6px;
-						font-size: 16px;
-					}
-					.card-tag{
-						font-size: 18px;
-						line-height: 14px;
-					}
-				}
-				.card-body{
-					.card-image{
-						min-width: 140px;
-					}
-				}
-			}
-		}
-		.uk-countdown{
+		.uk-countdown-battle{
 			.uk-countdown-separator{
 				margin: 0 3px 20px;
 				font-size: 32px;
@@ -1153,6 +1159,38 @@
 		}
 	}
 }
+@media(max-width: 415px){
+	.wrapper-battle{
+		.section-fight{
+			.layout-fight-secondary{
+				.layout-divider{
+					display: none;
+					min-width: 23px;
+					.text-divider{
+						font-size: 16px;
+					}
+				}
+			}
+			.card-fight{
+				.card-header{
+					.card-title{
+						margin-bottom: 6px;
+						font-size: 16px;
+					}
+					.card-tag{
+						font-size: 18px;
+						line-height: 14px;
+					}
+				}
+				.card-body{
+					.card-image{
+						min-width: 140px;
+					}
+				}
+			}
+		}
+	}
+}
 @media(max-width: 360px){
 	.leftPanel{
 		.brand{
@@ -1171,4 +1209,59 @@
 	.wannaBeFeatured{
 		padding: 0 15px;
 	}
+	.wrapper-battle{
+		.uk-countdown-battle{
+			.uk-countdown-separator{
+				margin: 0 3px 20px;
+				font-size: 32px;
+			}
+			.uk-countdown-label{
+				font-size: 14px;
+			}
+			.uk-countdown-number{
+				display: flex;
+				span{
+					width: 48px;
+					height: 50px;
+					font-size: 22px;
+				}
+			}
+			> div:nth-child(2){
+				left: 6px;
+			}
+			> div:nth-child(3){
+				.uk-countdown-number{
+					span:first-child{
+						right: -9px;
+						top: -3px;
+						width: 48px;
+						height: 51px;
+					}
+					span:last-child{
+						width: 52px;
+						height: 48px;
+						left: -4px;
+						margin-left: -5px;
+					}
+				}
+			}
+			> div:nth-child(5){
+				.uk-countdown-number{
+					span:first-child{
+						width: 50px;
+						height: 50px;
+						left: -2px;
+						top: -4px;
+					}
+					span:last-child{
+						width: 52px;
+						height: 53px;
+						margin-left: -24px;
+						top: -4px;
+					}
+				}
+			}
+		}
+	}
+
 }

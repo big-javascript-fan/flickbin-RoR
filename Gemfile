@@ -36,6 +36,7 @@ gem 'sidekiq-scheduler'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'buffer', :github => 'bufferapp/buffer-ruby'
 gem 'exception_notification'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -59,4 +60,5 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
   gem 'pry-rails'
+  gem 'annotate'
 end

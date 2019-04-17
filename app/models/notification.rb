@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id           :bigint(8)        not null, primary key
+#  category     :string
+#  event_object :json
+#  read         :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  user_id      :integer
+#
+# Indexes
+#
+#  index_notifications_on_user_id  (user_id)
+#
+
 class Notification < ApplicationRecord
   belongs_to :user
 

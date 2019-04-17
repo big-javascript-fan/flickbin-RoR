@@ -1,92 +1,93 @@
 <% @tag_videos.each_with_index do |video, index| %>
-  <li class="card card-video-tags">
-    <div class="card-media">
-      <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
-        <%= image_tag(video.cover.url.to_s, alt: video.title, class: "tagThumbnail large") %>
-        <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-      <% end %>
-      <div class="card-cover">
-        <%= link_to video_path(video), class: "descText" do %>
-          <% if video.source == 'youtube' %>
-            <span class="icon youtube-icon"></span>
-          <%# elsif video.source == 'facebook' %>
-  <!--          <span class="icon facebook-icon"></span>-->
-          <% elsif video.source == 'daily_motion' %>
-            <span class="icon dailymotion-icon"></span>
-          <% elsif video.source == 'twitch' %>
-            <span class="icon fab fa-twitch"></span>
-          <% end %>
-          <%= video.title %>
+  <li class="grid-item">
+    <div class="card card-video-tags
+                <%= 'card-secondary-video-tags' if controller_name == 'battles' %>">
+      <div class="card-media">
+        <%= link_to video_path(video), class: "tagThumbnailLink large" do %>
+          <%= image_tag(video.cover.url.to_s, alt: video.title, class: "tagThumbnail large") %>
+          <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
         <% end %>
-      </div>
-    </div>
-    <% if params[:sort_by] == 'newest' %>
-      <div class="card-body card-body-newest">
-        <div><span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span></div>
-        <%= link_to video_path(video), class: "descText" do %>
-          <% if video.source == 'youtube' %>
-            <span class="icon youtube-icon"></span>
-          <%# elsif video.source == 'facebook' %>
-<!--            <span class="icon facebook-icon"></span>-->
-          <% elsif video.source == 'daily_motion' %>
-            <span class="icon dailymotion-icon"></span>
-          <% elsif video.source == 'twitch' %>
-            <span class="icon fab fa-twitch"></span>
+        <div class="card-cover">
+          <%= link_to video_path(video), class: "descText" do %>
+            <% if video.source == 'youtube' %>
+              <span class="icon youtube-icon"></span>
+              <%# elsif video.source == 'facebook' %>
+              <!--          <span class="icon facebook-icon"></span>-->
+            <% elsif video.source == 'daily_motion' %>
+              <span class="icon dailymotion-icon"></span>
+            <% elsif video.source == 'twitch' %>
+              <span class="icon fab fa-twitch"></span>
+            <% end %>
+            <%= video.title %>
           <% end %>
-          <%= video.title %>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="card-body">
-        <div class="card-description">
-          <%= link_to video.title, video_path(video), class: "descText" %>
         </div>
-        <div class="card-info">
-           <div class="card-tags">
+      </div>
+      <% if params[:sort_by] == 'newest' %>
+        <div class="card-body card-body-newest">
+          <div><span class="time"><%= "#{time_ago_in_words(video.created_at)} ago"%></span></div>
+          <%= link_to video_path(video), class: "descText" do %>
+            <% if video.source == 'youtube' %>
+              <span class="icon youtube-icon"></span>
+            <%# elsif video.source == 'facebook' %>
+  <!--            <span class="icon facebook-icon"></span>-->
+            <% elsif video.source == 'daily_motion' %>
+              <span class="icon dailymotion-icon"></span>
+            <% elsif video.source == 'twitch' %>
+              <span class="icon fab fa-twitch"></span>
+            <% end %>
+            <%= video.title %>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="card-body">
+          <div class="card-description">
+            <%= link_to video.title, video_path(video), class: "descText" %>
+          </div>
+          <div class="card-info">
+             <div class="card-tags">
 
-            <div class="card-tags-id">#<%= index + 1 %></div>
-            <% if current_user.present? %>
-              <div class="card-tags-vote card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
-                <span class="icon icon-arrow_drop_up"></span>
-                <%= number_with_delimiter(video.votes_amount) %>
-              </div>
-            <% else %>
-              <%= link_to new_user_session_path(video_id: video.id, event: 'vote'), class: "card-tags-like" do %>
-                <span class="icon icon-arrow_drop_up"></span>
-                <%= number_with_delimiter(video.votes_amount) %>
+              <div class="card-tags-id">#<%= index + 1 %></div>
+              <% if current_user.present? %>
+                <div class="card-tags-vote card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
+                  <span class="icon icon-arrow_drop_up"></span>
+                  <%= number_with_delimiter(video.votes_amount) %>
+                </div>
+              <% else %>
+                <%= link_to new_user_session_path(video_id: video.id, event: 'vote'), class: "card-tags-like" do %>
+                  <span class="icon icon-arrow_drop_up"></span>
+                  <%= number_with_delimiter(video.votes_amount) %>
+                  <% end %>
+              <% end %>
+
+              <% if current_user.present? %>
+                <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
+                  <span class="icon fas fa-comment-alt"></span>
+                  <%= video.comments_count %>
                 <% end %>
-            <% end %>
-
-            <% if current_user.present? %>
-              <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
-                <span class="icon fas fa-comment-alt"></span>
-                <%= video.comments_count %>
+              <% else %>
+                <%= link_to new_user_session_path(video_id: video.id, event: 'comment'), class: 'card-tags-comment' do %>
+                  <span class="icon fas fa-comment-alt"></span>
+                  <%= video.comments_count %>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to new_user_session_path(video_id: video.id, event: 'comment'), class: 'card-tags-comment' do %>
-                <span class="icon fas fa-comment-alt"></span>
-                <%= video.comments_count %>
-              <% end %>
-            <% end %>
-           <% if video.source == 'youtube' %>
-             <span class="icon youtube-icon"></span>
-           <%# elsif video.source == 'facebook' %>
-<!--             <span class="icon facebook-icon"></span>-->
-           <% elsif video.source == 'daily_motion' %>
-             <span class="icon dailymotion-icon"></span>
-           <% elsif video.source == 'twitch' %>
-             <span class="icon fab fa-twitch"></span>
-           <% end %>
-           </div>
-          <div class="card-posted">posted by
-            <span>
-              <%= link_to "#{video.user.channel_name} (#{video.user.rank.positive? ? video.user.rank : 0})", station_path(video.user) %>
-            </span>
+             <% if video.source == 'youtube' %>
+               <span class="icon youtube-icon"></span>
+             <%# elsif video.source == 'facebook' %>
+  <!--             <span class="icon facebook-icon"></span>-->
+             <% elsif video.source == 'daily_motion' %>
+               <span class="icon dailymotion-icon"></span>
+             <% elsif video.source == 'twitch' %>
+               <span class="icon fab fa-twitch"></span>
+             <% end %>
+             </div>
+            <div class="card-posted">posted by
+              <span>
+                <%= link_to "#{video.user.channel_name} (#{video.user.rank.positive? ? video.user.rank : 0})", station_path(video.user) %>
+              </span>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </li>
 <% end %>
-
-

@@ -1,11 +1,13 @@
 ActiveAdmin.register Comment, as: "VideoComment" do
-  index do
+  config.filters = false
+
+  index pagination_total: false do
     selectable_column
     id_column
     column :message
     column :commentator do |comment|
-        auto_link(comment, comment.commentator_id)
-      end
+      auto_link(comment, comment.commentator_id)
+    end
     column :created_at
     column :updated_at
     actions

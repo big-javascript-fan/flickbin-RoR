@@ -1,6 +1,7 @@
 $(function() {
   function toggle_parser_button() {
-    if($('#battle_member_youtube_channel_url').val().match(/https:\/\/www.youtube.com\/channel\/[A-Za-z0-9]+/)) {
+    let urlVal = $('#battle_member_youtube_channel_url').val()
+    if(urlVal.match(/https:\/\/www.youtube.com\/channel|user|c\/[A-Za-z0-9]+/)) {
       $('#parse_youtube_channel_info').removeClass('no-click');
     } else {
       $('#parse_youtube_channel_info').addClass('no-click');

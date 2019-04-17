@@ -14,6 +14,7 @@ ActiveAdmin.register Vote do
   config.filters = false
 
   index pagination_total: false do
+
     selectable_column
     id_column
     column :value

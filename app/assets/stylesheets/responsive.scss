@@ -26,6 +26,8 @@
 				}
 			}
 			.divider-button-mobile{
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 			}
 		}
@@ -82,11 +84,20 @@
 			padding: 60px 0;
 
 			.layout-fight {
+				-ms-flex-preferred-size: 100%;
 				flex-basis: 100%;
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
 				align-items: center;
+				-webkit-box-pack: justify;
+				-ms-flex-pack: justify;
 				justify-content: space-between;
 				.layout-grow {
+					-webkit-box-flex: 1;
+					-ms-flex-positive: 1;
 					flex-grow: 1;
 				}
 
@@ -137,6 +148,7 @@
 			margin: 0;
 			padding:  60px 30px;
 			.layout-tweets{
+				-ms-flex-wrap: wrap;
 				flex-wrap: wrap;
 				> * {
 					width: 100%;
@@ -147,58 +159,60 @@
 			}
 		}
 
-    .uk-countdown-battle{
-      .uk-countdown-separator{
-        font-size: 42px;
-      }
-      .uk-countdown-label{
+		.uk-countdown-battle{
+			.uk-countdown-separator{
+				font-size: 42px;
+			}
+			.uk-countdown-label{
 				font-size: 17px;
-      }
-      .uk-countdown-number{
-        display: flex;
-        span{
+			}
+			.uk-countdown-number{
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				span{
 					width: 75px;
 					height: 80px;
-          font-size: 42px;
-        }
-      }
-      > div:nth-child(2){
-        left: 6px;
-      }
-      > div:nth-child(3){
-        .uk-countdown-number{
-          span:first-child{
+					font-size: 42px;
+				}
+			}
+			> div:nth-child(2){
+				left: 6px;
+			}
+			> div:nth-child(3){
+				.uk-countdown-number{
+					span:first-child{
 						right: -9px;
 						top: -3px;
 						width: 76px;
 						height: 80px;
-          }
-          span:last-child{
+					}
+					span:last-child{
 						width: 84px;
 						height: 80px;
 						left: -4px;
 						margin-left: -10px;
-          }
-        }
-      }
-      > div:nth-child(5){
-        .uk-countdown-number{
-          span:first-child{
+					}
+				}
+			}
+			> div:nth-child(5){
+				.uk-countdown-number{
+					span:first-child{
 						width: 80px;
 						height: 80px;
 						left: -2px;
 						top: -4px;
-          }
-          span:last-child{
+					}
+					span:last-child{
 						width: 80px;
 						height: 84px;
 						margin-left: -24px;
 						top: -4px;
-          }
-        }
-      }
-    }
-  }
+					}
+				}
+			}
+		}
+	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
 }
@@ -222,6 +236,11 @@
 	.leftPanel:after { clear: both;}
 
 	.offCanvasBtn {	display: block;	}
+	.vidRowContainer > .vidRowColumn {
+		-ms-flex-preferred-size: 100%;
+		flex-basis: 100%;
+		margin-bottom: 20px;
+	}
 	.colHalf { float: none; width: 100%;}
 
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
@@ -874,12 +893,16 @@
 				.card-header{
 					.card-image{
 						.icon{
+							display: -webkit-box;
+							display: -ms-flexbox;
 							display: flex;
 						}
 					}
 				}
 				.card-body{
 					.form-tweets{
+						-webkit-box-align: center;
+						-ms-flex-align: center;
 						align-items: center;
 						.form-control{
 							.icon{
@@ -897,6 +920,7 @@
 			padding: 60px 30px;
 			.grid-trending {
 				> .grid-item {
+					-ms-flex-preferred-size: 100%;
 					flex-basis: 100%;
 				}
 			}
@@ -1006,7 +1030,11 @@
 				z-index: 1;
 				.descText{
 					color: #fff;
+					display: -webkit-box;
+					display: -ms-flexbox;
 					display: flex;
+					-webkit-box-align: center;
+					-ms-flex-align: center;
 					align-items: center;
 					max-width: 290px;
 					font-size: 17px;
@@ -1114,6 +1142,8 @@
 				font-size: 14px;
 			}
 			.uk-countdown-number{
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 				span{
 					width: 58px;
@@ -1219,6 +1249,8 @@
 				font-size: 14px;
 			}
 			.uk-countdown-number{
+				display: -webkit-box;
+				display: -ms-flexbox;
 				display: flex;
 				span{
 					width: 48px;

@@ -43,7 +43,7 @@ $(function() {
 
           if(leftTag.top_10_videos.length >= 10) {
             leftTagContent += `
-              <div id="${leftTag.id}" class="colHalf colTitle clearfix mobileColBottom left_tag top-margin-25">
+              <div id="${leftTag.id}" class="vidRowColumn colTitle clearfix mobileColBottom left_tag">
                 <div class="clearfix bottom-margin-15">
                 <span class="sideTitle">${leftTag.title}</span>
                 <a class="seeAllLink" href="/topics/${leftTag.slug}">SEE ALL</a>
@@ -77,7 +77,7 @@ $(function() {
 
           if(rightTag.top_10_videos.length >= 10) {
             rightTagContent += `
-              <div id="${rightTag.id}" class="colHalf clearfix right_tag top-margin-25">
+              <div id="${rightTag.id}" class="vidRowColumn clearfix right_tag">
                 <div class="clearfix bottom-margin-15">
                 <span class="sideTitle">${rightTag.title}</span>
                 <a class="seeAllLink" href="/topics/${rightTag.slug}">SEE ALL</a>
@@ -110,9 +110,7 @@ $(function() {
           }
           if(leftTag && rightTag != 0) {
             function createScrollRow () {
-              var vidScrollRow = document.createElement('div');
-              vidScrollRow.className = "vidRowContainer";
-              $('.video-feed').append(vidScrollRow)
+              var vidScrollRow = $('.vidRowContainer');
               $(vidScrollRow).append(leftTagContent)
               $(vidScrollRow).append(rightTagContent)
             }

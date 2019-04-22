@@ -1,5 +1,16 @@
 .card-video {
-  display: block;
+  --ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   padding: 55px 0;
   margin-bottom: $global-small-margin;
   .card-header {

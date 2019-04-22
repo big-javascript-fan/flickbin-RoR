@@ -8,8 +8,7 @@ $(function() {
     var nextSidbarTagsPageNumber = 3;
 
     $(window).scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 1300;
-      console.log(scrollReachedEndOfDocument);
+      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 800;
       if(loading || lastPageReached) {
         return false;
       } else if(scrollReachedEndOfDocument) {
@@ -42,26 +41,39 @@ $(function() {
           if(videos.length > 0) {
             $.each(videos, function(index, video) {
               videosContent += `
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <a class="thumbnailLink" href="/videos/${video.slug}">
-                      <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    </a>
+                <div class="grid-item">
+                  <div class="card card-video">
+                    <figure class="card-background">
+                      <img src="${ video.cover_url }">
+                    </figure>
+                    <div class="card-overlay"></div>
+                    <header class="card-header">
+                      <figure class="card-image">
+                        <img src="${ video.user.avatar.thumb_44x44.url }" alt="Person">
+                      </figure>
+                      <h5 class="card-title">
+                        <a href="/stations/${ video.user.slug }" class="card-link">${ video.user.slug }</a>
+                      </h5>
+                    </header>
+                    <div class="card-body">
+                    <a href="/videos/${ video.slug }" class="card-description">${ video.title }</a>
+                      <div class="card-posted-by">
+                        ${video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
+                        ${video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
+                        ${video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
+                        
+                        posted in <a href="/topics/${ video.tag.slug }" class="card-link bold">${ video.tag.title }</a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="entityCell serialText">${video.rank}</div>
-                  <div class="entityCell">
-                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
-                  </div>
-                </li>
+                </div>
               `
             });
-
           }
 
           if(videos != 0) {
             function createScrollRow () {
-              $('body').append(videosContent);
+              $('.section-videos .grid').append(videosContent);
             }
             createScrollRow();
           }

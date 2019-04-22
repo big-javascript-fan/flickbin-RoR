@@ -23,6 +23,7 @@ class Api::V1::Home::IndexSerializer < Api::V1::BaseSerializer
         title:     video.title,
         cover_url: video.cover.url,
         rank:      video.rank,
+        source:    video.source,
         user:      video.user,
       }
     end

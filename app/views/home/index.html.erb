@@ -84,7 +84,13 @@
               <div class="card-body">
                 <%=link_to video.title, video_path(video), class: "card-description"%>
                 <div class="card-posted-by">
+                  <% if video.source == 'youtube' %>
+                   <span class="icon youtube-icon"></span>
+                 <% elsif video.source == 'daily_motion' %>
                   <span class="icon icon-dailymotion"></span>
+                 <% elsif video.source == 'twitch' %>
+                   <span class="icon fab fa-twitch"></span>
+                 <% end %>
                   posted in <a href="<%= tag_path(video.tag) %>" class="card-link bold"><%=video.tag.title%></a>
                 </div>
               </div>

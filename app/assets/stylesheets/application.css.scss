@@ -1,10 +1,15 @@
+@import 'variables';
+@import 'reset';
+@import 'icons/style';
+@import "components/import";
+@import 'modules/import';
+@import 'styles';
+@import 'responsive';
+
 /*
- *= require reset.scss
- *= require icons/style.scss
- *= require styles.scss
- *= require responsive.scss
  *= require_self
 */
+
 .videoTopSource {
   color: #6de8dd;
   font-weight: bold;

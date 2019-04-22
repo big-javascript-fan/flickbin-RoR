@@ -16,14 +16,14 @@ class Api::V1::Home::IndexSerializer < Api::V1::BaseSerializer
 
   def videos_to_hash(videos)
     return [] if videos.blank?
-
     videos.map do |video|
       {
         id:        video.id,
         slug:      video.slug,
         title:     video.title,
         cover_url: video.cover.url,
-        rank:      video.rank
+        rank:      video.rank,
+        user:      video.user,
       }
     end
   end

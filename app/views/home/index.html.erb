@@ -75,7 +75,7 @@
               <div class="card-overlay"></div>
               <header class="card-header">
                 <figure class="card-image">
-                  <%= image_tag video.user.avatar.url, alt: "Person" %>
+                  <%= image_tag(video.user.avatar.url || '/images/avatar_holder.jpg',  alt: "Person") %>
                 </figure>
                 <h5 class="card-title">
                   <%=link_to video.user.channel_name, station_path(video.user), class: "card-link"%>

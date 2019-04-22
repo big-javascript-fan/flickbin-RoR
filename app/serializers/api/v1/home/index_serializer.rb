@@ -25,6 +25,7 @@ class Api::V1::Home::IndexSerializer < Api::V1::BaseSerializer
         rank:      video.rank,
         source:    video.source,
         user:      video.user,
+        tag:       video.tag,
       }
     end
   end

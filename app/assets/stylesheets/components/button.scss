@@ -1,0 +1,197 @@
+$button-line-height:                             22px;
+$button-small-line-height:                       $global-control-small-height;
+$button-large-line-height:                       $global-control-large-height;
+
+$button-font-size:                               $global-font-size;
+$button-small-font-size:                         $global-small-font-size;
+$button-large-font-size:                         $global-medium-font-size;
+
+$button-padding:                                 12px 24px;
+$button-padding-large:                           20px 30px;
+
+$button-text-transform:                          uppercase;
+
+$button-default-background:                      #4E5766;
+$button-default-color:                           $global-inverse-color;
+$button-default-hover-background:                #31B4B0;
+$button-default-hover-color:                     $global-inverse-color;
+$button-default-active-background:               #31B4B0;
+$button-default-active-color:                    $global-inverse-color;
+
+$button-primary-background:                      $global-primary-background;
+$button-primary-color:                           $global-inverse-color;
+$button-primary-hover-background:                #4E5766;
+$button-primary-hover-color:                     $global-inverse-color;
+$button-primary-active-background:               #4E5766;
+$button-primary-active-color:                    $global-inverse-color;
+
+$button-secondary-background:                    #7E889A;
+$button-secondary-color:                         $global-inverse-color;
+$button-secondary-hover-background:              #31B4B0;
+$button-secondary-hover-color:                   $global-inverse-color;
+$button-secondary-active-background:             #31B4B0;
+$button-secondary-active-color:                  $global-inverse-color;
+
+
+$button-border-width:                            $global-border-width;
+$button-disabled-border:                         $global-border;
+$button-radius:                                  0;
+$button-shadow:                                  $global-box-shadow; //0 2px 4px 0 rgba(0,0,0,0.5) invision variant
+$button-text-border-width:                       $global-border-width;
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: $button-padding;
+  font-size: $button-small-font-size;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: $button-line-height;
+  color: #ffffff;
+  background-color: #4E5766;
+  border-radius: $button-radius;
+  box-shadow: $button-shadow;
+  border: none;
+}
+.btn:hover,
+.btn:focus,
+.btn:active,
+.btn.active {
+  color: #fff;
+  background-color: #31B4B0;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+.btn-default {
+  color: $button-default-color;
+  background: $button-default-background;
+  &:hover {
+    background: $button-default-hover-background;
+    color: $button-default-hover-color;
+  }
+  &:active {
+    background: $button-default-active-background;
+    color: $button-default-active-color;
+  }
+}
+.btn-primary {
+  color: $button-primary-color;
+  background: $button-primary-background;
+  &:hover {
+    background: $button-primary-hover-background;
+    color: $button-primary-hover-color;
+  }
+  &:active {
+    background: $button-primary-active-background;
+    color: $button-primary-active-color;
+  }
+}
+.btn-secondary {
+  color: $button-secondary-color;
+  background: $button-secondary-background;
+  &:hover {
+    background: $button-secondary-hover-background;
+    color: $button-secondary-hover-color;
+  }
+  &:active {
+    background: $button-secondary-active-background;
+    color: $button-secondary-active-color;
+  }
+}
+
+.btn.btnSecondary {
+  background-color: $button-secondary-background;
+  color: $button-secondary-color;
+  border: none;
+}
+.btn.btnSecondary:hover,
+.btn.btnSecondary:focus,
+.btn.btnSecondary:active,
+.btn.btnSecondary.active {
+  color: $button-secondary-hover-color;
+  background-color: $button-secondary-hover-background;
+}
+.btn.colorNoBg {
+  background:none !important;
+  color: #fff !important;
+}
+.btn.large {
+  height: 68px;
+  padding: 19px 30px;
+  font-size: 17px;
+  line-height: 30px;
+}
+.btn.medium {
+  height: 50px;
+  padding: 14px 18px;
+  font-size: 14px;
+}
+.medium.border2x {
+  border-width: 2px;
+  padding: 13px 18px;
+}
+.btn.disabled,
+.btn:disabled {
+  cursor: not-allowed;
+  border-color: #ced4da;
+  background-color: #ced4da;
+  color: #fff;
+}
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+a.btn:hover {
+  text-decoration: none;
+}
+
+.sidebarBtn {
+  box-shadow: $button-shadow;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin: 10px 0px;
+  padding: 7px 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 22px;
+  color: #fff;
+  background-color: #4E5766;
+  border-radius: $button-radius;
+  border: none;
+}
+
+
+.btn-battle {
+  background: #fff;
+  color: #1D1F23;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 17px;
+  font-family: "Helvetica Neue";
+  padding: 13px 15.5px;
+}
+.btn-battle-position {
+  position: absolute;
+  top: 36px;
+  right: 36px;
+}

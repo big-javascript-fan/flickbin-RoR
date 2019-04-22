@@ -45,123 +45,62 @@
         <%= render 'partials/right_header' %>
       </div>
     <% end %>
-    <div class="homeOnboardingContainer">
-      <div class="homeOnboardingCopy">
+    <div class="homeOnboardingContainer ">
+      <div class="homeOnboardingCopy ">
         <%= image_tag("/images/flickBearOnboarding.png", alt: 'flickbear', class: 'flickbearHomeOnboarding') %>
         <p><strong>Welcome!</strong> flickbin is a collection of the best videos from around the web, submitted, organized and ranked by our community.</p>
       </div>
-      <div class="homeOngoardingButtonContainer">
+      <div class="homeOngoardingButtonContainer clearfix">
         <% if current_user.present? %>
-          <%= link_to 'Start Contributing, Post a Video!', videos_new_path, class: "homeOnboardingButton" %>
+          <%= link_to 'Start Contributing, Post a Video!', videos_new_path, class: "btn homeOnboardingButton" %>
         <% else %>
-          <%= link_to 'Sign Up and Join the Community', new_user_registration_path, class: "homeOnboardingButton" %>
+          <%= link_to 'Sign Up and Join the Community', new_user_registration_path, class: "btn homeOnboardingButton" %>
         <% end %>
       </div>
     </div>
-    <div class="row video-feed">
-      <div class="vidRowContainer">
-        <% if @top_1_tag.present? && @top_1_tag.top_10_videos.size == 10 %>
-          <div id="<%= @top_1_tag.id %>" class="vidRowColumn colTitle mobileColBottom left_tag">
-            <div class="clearfix bottom-margin-15">
-              <span class="sideTitle"><%= @top_1_tag.title %></span>
-              <%= link_to 'SEE ALL', tag_path(@top_1_tag), class: "seeAllLink" %>
-            </div>
 
-            <ul class="entityList">
-              <% @top_1_tag.top_10_videos.each_with_index do |top_video, index| %>
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url.to_s, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    <% end %>
-                  </div>
-                  <div class="entityCell serialText"><%= index + 1 %></div>
-                  <div class="entityCell">
-                    <%= link_to top_video.title, video_path(top_video), class: "descText homeTitle" %>
-                  </div>
-                </li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <% if @top_2_tag.present? && @top_2_tag.top_10_videos.size == 10 %>
-          <div id="<%= @top_2_tag.id %>" class="vidRowColumn right_tag">
-            <div class="clearfix bottom-margin-15">
-                <span class="sideTitle"><%= @top_2_tag.title %></span>
-                <%= link_to 'SEE ALL', tag_path(@top_2_tag), class: "seeAllLink" %>
-            </div>
 
-            <ul class="entityList top_2_tag">
-              <% @top_2_tag.top_10_videos.each_with_index do |top_video, index| %>
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url.to_s, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    <% end %>
-                  </div>
-                  <div class="entityCell serialText"><%= index + 1 %></div>
-                  <div class="entityCell">
-                    <%= link_to top_video.title, video_path(top_video), class: "descText homeTitle" %>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <% if @top_3_tag.present? && @top_3_tag.top_10_videos.size == 10 %>
-          <div id="<%= @top_3_tag.id %>" class="vidRowColumn colTitle mobileColBottom left_tag">
-            <div class="clearfix bottom-margin-15">
-              <span class="sideTitle"><%= @top_3_tag.title %></span>
-              <%= link_to 'SEE ALL', tag_path(@top_3_tag), class: "seeAllLink" %>
+    <section class="section section-videos">
+      <header class="section-header">
+        <h2 class="section-title">What’s Happening</h2>
+      </header>
+      <div class="section-body">
+        <div class="grid grid-video">
+          <% @videos.each do |video| %>
+          <div class="grid-item">
+            <div class="card card-video">
+              <figure class="card-background">
+                <%= image_tag video.cover.url %>
+              </figure>
+              <div class="card-overlay"></div>
+              <header class="card-header">
+                <figure class="card-image">
+                  <%= image_tag video.user.avatar.url, alt: "Person" %>
+                </figure>
+                <h5 class="card-title">
+                  <%=link_to video.user.channel_name, station_path(video.user), class: "card-link"%>
+                </h5>
+              </header>
+              <div class="card-body">
+                <%=link_to video.title, video_path(video), class: "card-description"%>
+                <div class="card-posted-by">
+                  <% if video.source == 'youtube' %>
+                   <span class="icon icon-youtube"></span>
+                 <% elsif video.source == 'daily_motion' %>
+                  <span class="icon icon-dailymotion"></span>
+                 <% elsif video.source == 'twitch' %>
+                   <span class="icon fab fa-twitch"></span>
+                 <% end %>
+                  posted in <a href="<%= tag_path(video.tag) %>" class="card-link bold"><%=video.tag.title%></a>
+                </div>
+              </div>
             </div>
-
-            <ul class="entityList">
-              <% @top_3_tag.top_10_videos.each_with_index do |top_video, index| %>
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    <% end %>
-                  </div>
-                  <div class="entityCell serialText"><%= index + 1 %></div>
-                  <div class="entityCell">
-                    <%= link_to top_video.title, video_path(top_video), class: "descText homeTitle" %>
-                  </div>
-                </li>
-            <% end %>
-            </ul>
           </div>
-        <% end %>
-        <% if @top_4_tag.present? && @top_4_tag.top_10_videos.size == 10 %>
-          <div id="<%= @top_4_tag.id %>" class="vidRowColumn right_tag">
-            <div class="clearfix bottom-margin-15">
-                <span class="sideTitle"><%= @top_4_tag.title %></span>
-                <%= link_to 'SEE ALL', tag_path(@top_4_tag), class: "seeAllLink" %>
-            </div>
-
-            <ul class="entityList top_4_tag">
-              <% @top_4_tag.top_10_videos.each_with_index do |top_video, index| %>
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <%= link_to video_path(top_video), class: "thumbnailLink" do %>
-                      <%= image_tag(top_video.cover.url, alt: top_video.title, class: "thumbnail") %>
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    <% end %>
-                  </div>
-                  <div class="entityCell serialText"><%= index + 1 %></div>
-                  <div class="entityCell">
-                    <%= link_to top_video.title, video_path(top_video), class: "descText homeTitle" %>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
+    </section>
+
   </section>
 </div>
 

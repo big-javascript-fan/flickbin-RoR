@@ -1,0 +1,42 @@
+$grid-gap: 0 5px;
+
+.grid-video {
+  > * {
+    display: flex;
+    flex-direction: column;
+    padding: $grid-gap;
+    flex-basis: 100%;
+  }
+}
+
+@media (min-width: 640px) {
+  .grid-video {
+    > * {
+      flex-basis: 50%;
+    }
+  }
+}
+
+@media (min-width: 768px){
+  .grid-video {
+    > * {
+      flex-basis: 100%;
+    }
+  }
+}
+
+@media (min-width: 960px) {
+  .grid-video {
+    > * {
+      flex-basis: 50%;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .grid-video {
+    > * {
+      flex-basis: 33.33%;
+    }
+  }
+}

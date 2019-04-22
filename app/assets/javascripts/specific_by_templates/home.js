@@ -4,7 +4,7 @@ $(function() {
   function infiniteScrollForVideos() {
     var loading = false;
     var lastPageReached = false;
-    var offset = 4;
+    var offset = 20;
     var nextSidbarTagsPageNumber = 3;
 
     $(window).scroll(function(e) {
@@ -23,11 +23,9 @@ $(function() {
           offset: offset
         }).then(function(response) {
           var sidbarTags = response.sidebar_tags;
-          var leftTag = response.left_tag;
-          var rightTag = response.right_tag;
+          var videos = response.videos;
           var sidbarTagsContent = '';
-          var leftTagContent = '';
-          var rightTagContent = '';
+          var videosContent = '';
 
           if(sidbarTags.length > 0) {
             $.each(sidbarTags, function(index, tag) {
@@ -41,19 +39,9 @@ $(function() {
             $('ul.leftPanelTags').append(sidbarTagsContent)
           }
 
-          if(leftTag.top_10_videos.length >= 10) {
-            leftTagContent += `
-              <div id="${leftTag.id}" class="vidRowColumn colTitle clearfix mobileColBottom left_tag">
-                <div class="clearfix bottom-margin-15">
-                <span class="sideTitle">${leftTag.title}</span>
-                <a class="seeAllLink" href="/topics/${leftTag.slug}">SEE ALL</a>
-              </div>
-
-              <ul class="entityList">
-            `
-
-            $.each(leftTag.top_10_videos, function(index, video) {
-              leftTagContent += `
+          if(videos.length > 0) {
+            $.each(videos, function(index, video) {
+              videosContent += `
                 <li class="entityRow">
                   <div class="entityCell thumbnailCell">
                     <a class="thumbnailLink" href="/videos/${video.slug}">
@@ -69,59 +57,19 @@ $(function() {
               `
             });
 
-            leftTagContent += `
-                </ul>
-              </div>
-            `
           }
 
-          if(rightTag.top_10_videos.length >= 10) {
-            rightTagContent += `
-              <div id="${rightTag.id}" class="vidRowColumn clearfix right_tag">
-                <div class="clearfix bottom-margin-15">
-                <span class="sideTitle">${rightTag.title}</span>
-                <a class="seeAllLink" href="/topics/${rightTag.slug}">SEE ALL</a>
-              </div>
-
-              <ul class="entityList">
-            `
-
-            $.each(rightTag.top_10_videos, function(index, video) {
-              rightTagContent += `
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <a class="thumbnailLink" href="/videos/${video.slug}">
-                      <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    </a>
-                  </div>
-                  <div class="entityCell serialText">${video.rank}</div>
-                  <div class="entityCell">
-                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
-                  </div>
-                </li>
-              `
-            });
-
-            rightTagContent += `
-                </ul>
-              </div>
-            `
-          }
-          if(leftTag && rightTag != 0) {
+          if(videos != 0) {
             function createScrollRow () {
-              var vidScrollRow = $('.vidRowContainer');
-              $(vidScrollRow).append(leftTagContent)
-              $(vidScrollRow).append(rightTagContent)
+              $('body').append(videosContent);
             }
             createScrollRow();
           }
 
           loading = false;
           nextSidbarTagsPageNumber += 1;
-          offset += 2;
-
-          if(leftTag.top_10_videos.length == 0 && rightTag.top_10_videos.length == 0 && sidbarTags.length == 0) {
+          offset += 10;
+          if(videos.length == 0  && sidbarTags.length == 0) {
             lastPageReached = true;
           }
         })

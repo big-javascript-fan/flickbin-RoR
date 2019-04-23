@@ -11,6 +11,7 @@ class VideosController < ApplicationController
     @sidebar_tags = get_sidebar_tags
 
     if @video.save
+      ActionCable.server.broadcast 'home_page', video: @video, user: current_user, tag: @video.tag
       render :create
     elsif @video.errors.messages[:invalid_url].present?
       @invalid_video_url = true

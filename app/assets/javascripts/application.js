@@ -1,5 +1,6 @@
 //= require jquery
 //= require countdown
+//= require cable
 //= require rails-ujs
 //= require utilities
 //= require notifications_menu

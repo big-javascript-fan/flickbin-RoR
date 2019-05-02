@@ -38,6 +38,9 @@
       margin: 0;
       font-size: 15px;
       color: $global-inverse-color;
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
   }
 

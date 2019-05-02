@@ -44,7 +44,7 @@ $(function() {
                 <div class="card-foreground">
                   <a href="/stations/${data.user.slug}" class="card-header">
                     <figure class="card-image">
-                      <img src="${data.user.avatar.thumb_44x44.url}" alt="Person">
+                      <img src=" ${data.user.avatar.thumb_44x44.url ? data.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'} " alt="Person">
                     </figure>
                     <h5 class="card-title">
                       ${data.user.slug}
@@ -132,7 +132,7 @@ $(function() {
                     <div class="card-foreground">
                       <a href="/stations/${video.user.slug}" class="card-header">
                         <figure class="card-image">
-                          <img src="${video.user.avatar.thumb_44x44.url}" alt="Person">
+                          <img src="${data.user.avatar.thumb_44x44.url ? data.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'}" alt="Person">
                         </figure>
                         <h5 class="card-title">
                           ${video.user.slug}

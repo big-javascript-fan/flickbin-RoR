@@ -69,7 +69,7 @@
                 <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
                   <div class="card-header">
                     <div class="card-title"><%= current_member.name %></div>
-                    <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank'>
+                    <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank' <%= "uk-tooltip=#{current_member.twitter_account_name}" if current_member.twitter_account_name.length > 12 %>>
                       @<%= current_member.twitter_account_name %>
                     </a>
                   </div>

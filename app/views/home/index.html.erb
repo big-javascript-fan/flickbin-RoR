@@ -60,7 +60,7 @@
     </div>
 
 
-    <section class="section section-videos">
+    <section id="section-videos" class="section section-videos">
       <header class="section-header">
         <h2 class="section-title">What’s Happening</h2>
       </header>
@@ -72,26 +72,28 @@
               <figure class="card-background">
                 <%= image_tag video.cover.url %>
               </figure>
-              <div class="card-overlay"></div>
-              <header class="card-header">
-                <figure class="card-image">
-                  <%= image_tag(video.user.avatar.url || '/images/avatar_holder.jpg',  alt: "Person") %>
-                </figure>
-                <h5 class="card-title">
-                  <%=link_to video.user.channel_name, station_path(video.user), class: "card-link"%>
-                </h5>
-              </header>
-              <div class="card-body">
-                <%=link_to video.title, video_path(video), class: "card-description"%>
-                <div class="card-posted-by">
-                  <% if video.source == 'youtube' %>
-                   <span class="icon icon-youtube"></span>
-                 <% elsif video.source == 'daily_motion' %>
-                  <span class="icon icon-dailymotion"></span>
-                 <% elsif video.source == 'twitch' %>
-                   <span class="icon fab fa-twitch"></span>
-                 <% end %>
-                  posted in <a href="<%= tag_path(video.tag) %>" class="card-link bold"><%=video.tag.title%></a>
+              <%=link_to '', video_path(video), class: "card-overlay"%>
+              <div class="card-foreground">
+                <%= link_to(station_path(video.user), class: 'card-header') do %>
+                  <figure class="card-image">
+                    <%= image_tag(video.user.avatar.url || '/images/avatar_holder.jpg',  alt: "Person") %>
+                  </figure>
+                  <h5 class="card-title">
+                    <%= video.user.channel_name%>
+                  </h5>
+                <% end %>
+                <div class="card-body">
+                  <%=link_to video.title, video_path(video), class: "card-description"%>
+                  <div class="card-posted-by">
+                    <% if video.source == 'youtube' %>
+                      <span class="icon icon-youtube"></span>
+                    <% elsif video.source == 'daily_motion' %>
+                      <span class="icon icon-dailymotion"></span>
+                    <% elsif video.source == 'twitch' %>
+                      <span class="icon fab fa-twitch"></span>
+                    <% end %>
+                    posted in <a href="<%= tag_path(video.tag) %>" class="card-link bold"><%=video.tag.title%></a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,8 +102,9 @@
         </div>
       </div>
     </section>
-
   </section>
 </div>
+
+<a id="js-scroll-trigger" href="#section-videos" class="btn btn-primary newVideoBtn" uk-scroll></a>
 
 <%= javascript_include_tag('specific_by_templates/home') %>

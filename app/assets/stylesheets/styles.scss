@@ -3418,7 +3418,13 @@ input.grayNormal {
         }
         .card-twitter{
           font-size: 23px;
-          line-height: 21px;
+          line-height: 1.2;
+          display: block;
+          max-width:140px;
+          overflow: hidden;
+          white-space: nowrap;
+          cursor: pointer;
+          text-overflow: ellipsis;
         }
       }
       .card-body{
@@ -3875,4 +3881,56 @@ input.grayNormal {
       }
     }
   }
+}
+
+
+.newVideoBtn {
+  display: none;
+  position: fixed;
+  bottom: 60px;
+  right: 5px ;
+  z-index: 2000;
+}
+
+
+/* ========================================================================
+   Component: Sortable
+ ========================================================================== */
+.uk-sortable {
+  position: relative;
+}
+/*
+ * Deactivate pointer-events on SVGs in Safari
+ */
+.uk-sortable svg {
+  pointer-events: none;
+}
+/*
+ * Remove margin from the last-child
+ */
+.uk-sortable > :last-child {
+  margin-bottom: 0;
+}
+/* Drag
+ ========================================================================== */
+.uk-sortable-drag {
+  position: absolute !important;
+  z-index: 1050 !important;
+  pointer-events: none;
+}
+/* Placeholder
+ ========================================================================== */
+.uk-sortable-placeholder {
+  opacity: 0;
+}
+/* Empty modifier
+ ========================================================================== */
+.uk-sortable-empty {
+  min-height: 50px;
+}
+/* Handle
+ ========================================================================== */
+/* Hover */
+.uk-sortable-handle:hover {
+  cursor: move;
 }

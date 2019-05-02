@@ -11,8 +11,15 @@
   flex-direction: column;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  padding: 55px 0;
+  padding: 55px 36px;
   margin-bottom: $global-small-margin;
+  .card-overlay {
+    cursor: pointer;
+  }
+  .card-foreground {
+    max-width: 308px;
+    margin: 0 auto;
+  }
   .card-header {
     display: flex;
     align-items: center;
@@ -35,10 +42,8 @@
   }
 
   .card-body {
-    padding: 0 36px;
     .card-description {
       display: block;
-      max-width: 308px;
       margin-right: auto;
       margin-left: auto;
       margin-bottom: $global-margin;
@@ -70,5 +75,12 @@
   }
   .card-link {
     color: $global-inverse-color;
+  }
+  &:hover .card-header .card-title, &:hover .card-body .card-description, &:hover .card-body .card-link{
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }

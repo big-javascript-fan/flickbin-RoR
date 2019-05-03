@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Api::V1::VotesController < Api::V1::BaseController
   before_action :authenticate_user!
 
   def create
     video = get_video
-    vote_value  = get_vote_value
+    vote_value = get_vote_value
 
     video.transaction do
       video_owner = video.user
@@ -18,7 +20,7 @@ class Api::V1::VotesController < Api::V1::BaseController
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }
-  rescue => e
+  rescue StandardError => e
     render_error(422, 'NotValid', e)
   end
 
@@ -45,7 +47,7 @@ class Api::V1::VotesController < Api::V1::BaseController
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }
-  rescue => e
+  rescue StandardError => e
     render_error(422, 'NotValid', e)
   end
 
@@ -55,7 +57,6 @@ class Api::V1::VotesController < Api::V1::BaseController
     video.transaction do
       video_owner = video.user
       prev_vote = Vote.find_by!(voter_id: current_user.id, video_id: video.id)
-
 
       if prev_vote.value.positive?
         video.decrement!(:positive_votes_amount)
@@ -68,7 +69,7 @@ class Api::V1::VotesController < Api::V1::BaseController
     end
 
     render json: { new_votes_amount_for_video: video.votes_amount }
-  rescue => e
+  rescue StandardError => e
     render_error(422, 'NotValid', e)
   end
 

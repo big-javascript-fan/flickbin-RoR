@@ -1,15 +1,16 @@
+# frozen_string_literal: true
+
 class RecalculateVideosRankService
   def call
     Tag.find_each do |tag|
       rank = 1
-      upvote_for_last_week = "votes.value = 1 AND votes.created_at BETWEEN '#{3.days.ago.to_s}' AND '#{Time.now}'"
+      upvote_for_last_week = "votes.value = 1 AND votes.created_at BETWEEN '#{3.days.ago}' AND '#{Time.now}'"
       sorted_videos_for_tag = Video.active
                                    .tagged
                                    .where(tag_id: tag.id)
                                    .left_outer_joins(:votes)
                                    .group(:id)
                                    .order("SUM(CASE WHEN #{upvote_for_last_week} THEN 1 ELSE 0 END) DESC, videos.created_at DESC")
-
 
       sorted_videos_for_tag.each do |video|
         # if rank == 1
@@ -53,7 +54,7 @@ class RecalculateVideosRankService
   def allowed_to_create_new_notification?(user, category)
     not_outdated_notifications_in_category = user.notifications
                                                  .where(category: category)
-                                                 .where("notifications.created_at BETWEEN '#{1.week.ago.to_s}' AND '#{Time.now}'")
+                                                 .where("notifications.created_at BETWEEN '#{1.week.ago}' AND '#{Time.now}'")
 
     user.role == 'dummy' || not_outdated_notifications_in_category.present? ? false : true
   end

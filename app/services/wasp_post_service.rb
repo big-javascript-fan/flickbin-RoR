@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WaspPostService
   YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
 
@@ -25,7 +27,7 @@ class WaspPostService
     }
 
     params.update(pageToken: nextPageToken) if nextPageToken.present?
-    response_body = RestClient.get(YOUTUBE_SEARCH_URL, { params: params }).body
+    response_body = RestClient.get(YOUTUBE_SEARCH_URL, params: params).body
     JSON.parse(response_body)
   end
 

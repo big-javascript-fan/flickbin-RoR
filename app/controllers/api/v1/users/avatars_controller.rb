@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Users::AvatarsController < Api::V1::BaseController
   before_action :authenticate_user!
 

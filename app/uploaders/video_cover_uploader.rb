@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VideoCoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 

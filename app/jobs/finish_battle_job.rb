@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FinishBattleJob < ApplicationJob
   queue_as :finish_battle
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: battle_members
@@ -18,9 +20,9 @@
 
 FactoryBot.define do
   factory :battle_member do
-    youtube_channel_guid { "MyString" }
-    twitter_account_name { "MyString" }
-    photo { "MyString" }
-    name { "MyString" }
+    youtube_channel_guid { 'MyString' }
+    twitter_account_name { 'MyString' }
+    photo { 'MyString' }
+    name { 'MyString' }
   end
 end

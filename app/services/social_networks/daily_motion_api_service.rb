@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SocialNetworks::DailyMotionApiService
   BASE_DAYLI_MOTION_API_URL = 'https://api.dailymotion.com'
 
@@ -11,7 +13,7 @@ class SocialNetworks::DailyMotionApiService
     parsed_body = JSON.parse(response_body)
 
     data = {
-      title:  parsed_body['title'],
+      title: parsed_body['title'],
       remote_cover_url: "https://www.dailymotion.com/thumbnail/video/#{@video_id}",
       channel: parsed_body['channel']
     }

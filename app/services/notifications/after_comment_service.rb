@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Notifications::AfterCommentService
   def initialize(comment_id, options = {})
     @comment = Comment.find(comment_id)

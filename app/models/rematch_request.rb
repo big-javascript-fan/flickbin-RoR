@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: rematch_requests
@@ -17,7 +19,7 @@
 
 class RematchRequest < ApplicationRecord
   belongs_to :battle
-  belongs_to :user, optional: true 
+  belongs_to :user, optional: true
 
   validates :ip, presence: true
 end

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Notifications::WeeklyMailingService
   def call
     tags_with_vidoes = get_valid_tags_with_vidoes
     User.where.not(role: 'dummy').find_each do |user|
-      ApplicationMailer::weekly_mailing(user, tags_with_vidoes).deliver_now
+      ApplicationMailer.weekly_mailing(user, tags_with_vidoes).deliver_now
     end
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'WeeklyMailingJob#perform', message: e)
     ExceptionNotifier.notify_exception(e, data: { source: 'WeeklyMailingJob#perform' })
   end
@@ -38,13 +40,13 @@ class Notifications::WeeklyMailingService
           number_of_valid_videos_for_tag += 1
         end
 
-        if number_of_valid_videos_for_tag == 3
-          tags_with_vidoes[tag] = videos
-          number_of_valid_tags += 1
-          counted_video_url = counted_video_url | counted_video_url_for_tag
-          counted_user_id = counted_user_id | counted_user_id_for_tag
-          break
-        end
+        next unless number_of_valid_videos_for_tag == 3
+
+        tags_with_vidoes[tag] = videos
+        number_of_valid_tags += 1
+        counted_video_url |= counted_video_url_for_tag
+        counted_user_id |= counted_user_id_for_tag
+        break
       end
     end
   end

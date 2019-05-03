@@ -69,13 +69,12 @@ ActiveRecord::Schema.define(version: 20190405151414) do
     t.integer "first_member_id"
     t.integer "second_member_id"
     t.integer "number_of_rematch_requests", default: 0
+    t.string "winner", default: ""
     t.string "status", default: "live"
     t.datetime "final_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.bigint "winner_id"
-    t.string "winner"
     t.index ["slug"], name: "index_battles_on_slug", unique: true
     t.index ["tag_id"], name: "index_battles_on_tag_id"
   end

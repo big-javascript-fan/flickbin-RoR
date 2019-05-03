@@ -1,22 +1,19 @@
+# frozen_string_literal: true
+
 class TagsController < ApplicationController
   def new
     @tag = Tag.new
   end
 
-  def create
-  end
+  def create; end
 
   def index
     @sidebar_tags = get_sidebar_tags(70)
     tags = Tag.order(first_character: :asc)
 
-    if params[:first_char].present?
-      tags = tags.where(first_character: params[:first_char]&.first)
-    end
+    tags = tags.where(first_character: params[:first_char]&.first) if params[:first_char].present?
 
-    if params[:query].present?
-      tags = tags.where('title ILIKE ?', "%#{params[:query]}%")
-    end
+    tags = tags.where('title ILIKE ?', "%#{params[:query]}%") if params[:query].present?
 
     @grouped_tags = tags.select(:id, :slug, :title, :first_character)
                         .limit(200)
@@ -39,11 +36,11 @@ class TagsController < ApplicationController
 
     @current_user_voted_video_ids = current_user.votes.map(&:video_id) if current_user.present?
     @tag_videos =
-      if params[:sort_by] == 'newest'
-        @tag_videos = @tag_videos.order(created_at: :desc).limit(10)
-      else
+      @tag_videos = if params[:sort_by] == 'newest'
+                      @tag_videos.order(created_at: :desc).limit(10)
+                    else
 
-        @tag_videos = @tag_videos.order(rank: :asc, positive_votes_amount: :desc, created_at: :desc).limit(10)
-      end
+                      @tag_videos.order(rank: :asc, positive_votes_amount: :desc, created_at: :desc).limit(10)
+                    end
   end
 end

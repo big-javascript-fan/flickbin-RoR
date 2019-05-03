@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -18,17 +20,17 @@
 class Notification < ApplicationRecord
   belongs_to :user
 
-  CATEGORIES = [
-    'comment_video',
-    'reply_video_comment',
-    'top_1_contributor',
-    'top_3_contributors',
-    'top_5_contributors',
-    'top_10_contributors',
-    'kicked_out_of_top_contributor',
-    'top_1_video_in_tag',
-    'top_10_videos_in_tag'
-  ]
+  CATEGORIES = %w[
+    comment_video
+    reply_video_comment
+    top_1_contributor
+    top_3_contributors
+    top_5_contributors
+    top_10_contributors
+    kicked_out_of_top_contributor
+    top_1_video_in_tag
+    top_10_videos_in_tag
+  ].freeze
 
   validates_inclusion_of :category, in: CATEGORIES
 
@@ -38,7 +40,7 @@ class Notification < ApplicationRecord
   scope :read, -> { where(read: true) }
 
   def leave_only_15_unread_notifications
-    unread_notifications = self.user.notifications.unread.order(created_at: :desc)
+    unread_notifications = user.notifications.unread.order(created_at: :desc)
     obsolete_notifications = unread_notifications - unread_notifications.first(15)
     if obsolete_notifications.present?
       obsolete_notifications.each do |obsolete_notificatio|

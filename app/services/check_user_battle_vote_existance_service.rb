@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CheckUserBattleVoteExistanceService
   def initialize(battle, ip, user)
     @battle = battle

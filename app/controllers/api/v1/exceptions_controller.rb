@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::ExceptionsController < Api::V1::BaseController
   def create
     ExceptionLogger.create(source: params[:source], message: params[:exception])

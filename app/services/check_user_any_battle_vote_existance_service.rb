@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class CheckUserAnyBattleVoteExistanceService
   def initialize(battle, ip, user)
     @battle = battle
     @user = user
     @ip = ip
   end
- 
+
   def call
     where_params = {
       user: @user

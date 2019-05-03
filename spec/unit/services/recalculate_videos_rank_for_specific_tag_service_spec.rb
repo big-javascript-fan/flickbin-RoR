@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe RecalculateVideosRankForSpecificTagService do
@@ -14,7 +16,6 @@ RSpec.describe RecalculateVideosRankForSpecificTagService do
                                  .tagged
                                  .where(tag_id: tag.id)
                                  .order(rank: :asc)
-
 
     expect(videos_sorted_by_rank.size).to eq(1)
     expect(videos_sorted_by_rank.last.rank).to eq(1)

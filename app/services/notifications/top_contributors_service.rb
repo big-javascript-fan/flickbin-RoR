@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Notifications::TopContributorsService
   def call
     tags = Tag.joins(:videos)
               .where(videos: { removed: false })
               .distinct
-                     
+
     tags.each do |tag|
       top_11_contributors = get_contributiors_for_tag(tag.id, 11)
       notification_handler(top_11_contributors, tag)
@@ -14,10 +16,10 @@ class Notifications::TopContributorsService
 
   def get_contributiors_for_tag(tag_id, limit)
     User.joins(:contribution_points)
-          .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
-          .where(contribution_points: { tag_id: tag_id })
-          .order('contribution_points.amount DESC')
-          .limit(limit)
+        .where.not(users: { role: 'dummy', email: AppConstants::NOT_RATED_USER_EMAILS })
+        .where(contribution_points: { tag_id: tag_id })
+        .order('contribution_points.amount DESC')
+        .limit(limit)
   end
 
   def notification_handler(contributors, tag)
@@ -28,7 +30,7 @@ class Notifications::TopContributorsService
         event_and_notification_handler(contributor, tag, 'top_3_contributors')
       elsif [4, 5].include?(index) && contributors.size > 10
         event_and_notification_handler(contributor, tag, 'top_5_contributors')
-      elsif (6..10).include?(index) && contributors.size > 10
+      elsif (6..10).cover?(index) && contributors.size > 10
         event_and_notification_handler(contributor, tag, 'top_10_contributors')
       end
     end
@@ -61,7 +63,7 @@ class Notifications::TopContributorsService
 
   def allowed_to_create_new_notification?(user, tag_id, category)
     notifications_per_tag = user.notifications.where("event_object ->> 'tag' = '#{tag_id}'")
-    query = "notifications.category = '#{category}' AND notifications.created_at BETWEEN '#{1.day.ago.to_s}' AND '#{Time.now}'"
+    query = "notifications.category = '#{category}' AND notifications.created_at BETWEEN '#{1.day.ago}' AND '#{Time.now}'"
     last_day_notification_per_tag = notifications_per_tag.where(query).limit(1)
     already_notificated_categories = notifications_per_tag.map(&:category)
     positions = already_notificated_categories.map { |c| c[/(\d+)_contributor/, 1].to_i }

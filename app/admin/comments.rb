@@ -1,4 +1,6 @@
-ActiveAdmin.register Comment, as: "VideoComment" do
+# frozen_string_literal: true
+
+ActiveAdmin.register Comment, as: 'VideoComment' do
   config.filters = false
 
   index pagination_total: false do

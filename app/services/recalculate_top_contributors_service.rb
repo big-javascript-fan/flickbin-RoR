@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class RecalculateTopContributorsService
   def call
     tag_ids = Tag.joins(:videos)
                  .where(videos: { removed: false })
                  .distinct
                  .pluck(:id)
-                     
+
     tag_ids.each { |tag_id| recalculate_contributors_rank(tag_id) }
   end
 

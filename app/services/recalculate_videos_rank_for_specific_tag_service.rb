@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RecalculateVideosRankForSpecificTagService
   def initialize(tag)
     @tag = tag

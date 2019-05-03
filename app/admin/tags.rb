@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Tag do
   permit_params :wasp_post
   config.sort_order = 'wasp_post_desc'

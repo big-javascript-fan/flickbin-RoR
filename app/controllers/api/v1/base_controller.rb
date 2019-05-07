@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::BaseController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -12,6 +14,6 @@ class Api::V1::BaseController < ApplicationController
 
   def render_not_found(error)
     message = I18n.t('errors.messages.not_found', klass: error.model, id: error.id)
-    render_error(404, 'NotFound', { record: [message] })
+    render_error(404, 'NotFound', record: [message])
   end
 end

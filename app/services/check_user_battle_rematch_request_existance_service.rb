@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CheckUserBattleRematchRequestExistanceService
   def initialize(battle, ip, user)
     @battle = battle

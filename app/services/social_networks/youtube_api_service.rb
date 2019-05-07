@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SocialNetworks::YoutubeApiService
   def initialize(video_id)
     @video_id = video_id

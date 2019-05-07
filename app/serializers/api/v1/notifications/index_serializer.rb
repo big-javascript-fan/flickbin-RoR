@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
   def initialize(notifications, current_page_notifications)
     @notifications = notifications
@@ -7,7 +9,7 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
   def call
     Oj.dump(
       current_page_notifications: notifications_to_hash(@current_page_notifications),
-      total_unread_notifications: @notifications.count {|n| n.read == false },
+      total_unread_notifications: @notifications.count { |n| n.read == false },
       total_pages: @current_page_notifications.total_pages
     )
   end
@@ -24,8 +26,8 @@ class Api::V1::Notifications::IndexSerializer < Api::V1::BaseSerializer
 
   def notification_to_hash(notification)
     notification_hash = {
-      id:           notification.id,
-      category:     notification.category,
+      id: notification.id,
+      category: notification.category,
       event_object: notification.event_object,
       read: notification.read
     }

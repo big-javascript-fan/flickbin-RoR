@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExtraVideoDataService
   def initialize(video)
     @video = video
@@ -21,9 +23,7 @@ class ExtraVideoDataService
   private
 
   def get_data_form_youtube_api
-    if ENV['YT_API_KEY'].blank?
-      return @video.errors.add(:credentials, 'YT_API_KEY is not set')
-    end
+    return @video.errors.add(:credentials, 'YT_API_KEY is not set') if ENV['YT_API_KEY'].blank?
 
     video_id = VideoHelper.get_video_id_form_youtube_url(@video.url)
     return @video.errors.add(:invalid_url, 'Oops, try a YouTube link instead.') if video_id.blank?
@@ -36,7 +36,7 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_youtube_api', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_youtube_api' })
     @video.errors.add(:invalid_url, 'Video url invalid')
@@ -57,7 +57,7 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_facebook_api', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_facebook_api' })
     @video.errors.add(:invalid_url, 'Video url invalid')
@@ -67,9 +67,7 @@ class ExtraVideoDataService
     return @video.errors.add(:credentials, 'TWITCH_APP_ID is not set') if ENV['TWITCH_APP_ID'].blank?
 
     video_id, type = VideoHelper.get_video_id_with_type_from_twitch_url(@video.url).values
-    if video_id.blank? || type.blank?
-      return @video.errors.add(:invalid_url, 'Oops, try a Twitch video link instead.')
-    end
+    return @video.errors.add(:invalid_url, 'Oops, try a Twitch video link instead.') if video_id.blank? || type.blank?
 
     api_data = SocialNetworks::TwitchApiService.new(video_id, type).call
     if api_data[:type] == 'stream' && api_data[:stream_available].blank?
@@ -81,7 +79,7 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_twitch_api', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_twitch_api' })
     @video.errors.add(:invalid_url, 'Video url invalid')
@@ -99,7 +97,7 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_daily_motion_api', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_daily_motion_api' })
     @video.errors.add(:invalid_url, 'Video url invalid')

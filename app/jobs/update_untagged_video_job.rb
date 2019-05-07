@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class UpdateUntaggedVideoJob < ApplicationJob
   queue_as :video_tag_expiration
 
-  def perform(*args)
+  def perform(*_args)
     UpdateUntaggedVideoService.new.call
-  rescue => e
+  rescue StandardError => e
     ExceptionLogger.create(source: 'UpdateUntaggedVideoJob#perform', message: e)
     ExceptionNotifier.notify_exception(e, data: { source: 'UpdateUntaggedVideoJob#perform' })
   end

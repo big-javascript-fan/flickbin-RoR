@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register SystemSetting do
   menu priority: 1
   config.paginate = false

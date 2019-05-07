@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: battles
@@ -7,13 +9,12 @@
 #  number_of_rematch_requests :integer          default(0)
 #  slug                       :string
 #  status                     :string           default("live")
-#  winner                     :string
+#  winner                     :string           default("")
 #  created_at                 :datetime         not null
 #  updated_at                 :datetime         not null
 #  first_member_id            :integer
 #  second_member_id           :integer
 #  tag_id                     :integer
-#  winner_id                  :bigint(8)
 #
 # Indexes
 #
@@ -24,10 +25,10 @@
 class Battle < ApplicationRecord
   extend FriendlyId
 
-  friendly_id :custom_title, use: [:slugged, :finders]
+  friendly_id :custom_title, use: %i[slugged finders]
 
-  #FIXME rework to enum
-  STATUSES = %w(live finished)
+  # FIXME: rework to enum
+  STATUSES = %w[live finished].freeze
 
   scope :live, -> { where(status: 'live') }
 

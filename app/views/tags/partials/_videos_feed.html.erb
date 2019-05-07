@@ -44,8 +44,7 @@
             <%= link_to video.title, video_path(video), class: "descText" %>
           </div>
           <div class="card-info">
-             <div class="card-tags">
-
+            <div class="card-tags">
               <div class="card-tags-id">#<%= index + 1 %></div>
               <% if current_user.present? %>
                 <div class="card-tags-vote card-tags-like <%= 'active' if @current_user_voted_video_ids&.include?(video.id) %>" video_slug="<%= video.slug %>">
@@ -58,28 +57,20 @@
                   <%= number_with_delimiter(video.votes_amount) %>
                   <% end %>
               <% end %>
-
-              <% if current_user.present? %>
-                <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
-                  <span class="icon fas fa-comment-alt"></span>
-                  <%= video.comments_count %>
-                <% end %>
-              <% else %>
-                <%= link_to new_user_session_path(video_id: video.id, event: 'comment'), class: 'card-tags-comment' do %>
-                  <span class="icon fas fa-comment-alt"></span>
-                  <%= video.comments_count %>
-                <% end %>
+              <%= link_to video_path(video, anchor: 'message'), class: 'card-tags-comment' do %>
+                <span class="icon fas fa-comment-alt"></span>
+                <%= video.comments_count %>
               <% end %>
-             <% if video.source == 'youtube' %>
+              <% if video.source == 'youtube' %>
                <span class="icon youtube-icon"></span>
-             <%# elsif video.source == 'facebook' %>
-  <!--             <span class="icon facebook-icon"></span>-->
-             <% elsif video.source == 'daily_motion' %>
+              <%# elsif video.source == 'facebook' %>
+              <!--             <span class="icon facebook-icon"></span>-->
+              <% elsif video.source == 'daily_motion' %>
                <span class="icon dailymotion-icon"></span>
-             <% elsif video.source == 'twitch' %>
+              <% elsif video.source == 'twitch' %>
                <span class="icon fab fa-twitch"></span>
-             <% end %>
-             </div>
+              <% end %>
+            </div>
             <div class="card-posted">posted by
               <span>
                 <%= link_to "#{video.user.channel_name} (#{video.user.rank.positive? ? video.user.rank : 0})", station_path(video.user) %>

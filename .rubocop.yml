@@ -1,0 +1,47 @@
+require: rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.5.1
+  TargetRailsVersion: 5.1.6
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/{rails,rake,setup,update,yarn,bundle,spring}'
+    - 'vendor/bundle/**/*' # Exclude circleci bundle path
+
+Style/Copyright:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: true
+#   Exclude:
+#     - app/views/**/*.jbuilder
+
+Style/FrozenStringLiteralComment:
+  Enabled: when_needed
+
+Style/SymbolArray:
+  Enabled: true
+#   Exclude:
+#     - spec/swagger_helper.rb
+
+Metrics/LineLength:
+  Max: 120
+
+# Ignoring MethodLength because it's useless when CyclomaticComplexity and AbcSize are enabled
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - lib/tasks/auto_annotate_models.rake
+
+Rails/ApplicationRecord:
+  Enabled: true
+  Exclude:
+    - db/migrate/*.rb

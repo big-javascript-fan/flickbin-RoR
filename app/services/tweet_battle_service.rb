@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TweetBattleService
   include Rails.application.routes.url_helpers
 
@@ -28,7 +30,6 @@ class TweetBattleService
       battle_url = battle_url(@battle.id)
     end
 
-    # "A battle has begun! This battle, a popularity contest, is between two incredible creators, @#{@battle.first_member.twitter_account_name} vs. @#{@battle.second_member.twitter_account_name} in the flickbin \##{@battle.tag.title.capitalize} topic. If you’re a fan, go vote/share to show your support before time runs out! #{battle_url}"
-    "A battle has begun! This battle, a popularity contest, is between two incredible creators, @mattboyd vs. @mattboyd in the flickbin \##{@battle.tag.title.capitalize} topic. If you’re a fan, go vote/share to show your support before time runs out! #{battle_url}"
+    "A battle has begun! This battle, a popularity contest, is between two incredible creators, @#{@battle.first_member.twitter_account_name} vs. @#{@battle.second_member.twitter_account_name} in the flickbin \##{@battle.tag.title.capitalize} topic. If you’re a fan, go vote/share to show your support before time runs out! #{battle_url}"
   end
 end

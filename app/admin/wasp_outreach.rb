@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Video, as: 'WASP Outreach' do
   permit_params :url, :tag_id, :twitter_handle
   menu label: 'WASP Outreach'
@@ -14,7 +16,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
       youtube_video_id = VideoHelper.get_video_id_form_youtube_url(video_url)
 
       if tag_id.blank? || youtube_video_id.blank?
-        flash[:error] = "Tag and video url must be present"
+        flash[:error] = 'Tag and video url must be present'
         return redirect_to new_admin_wasp_outreach_path
       elsif Video.active.tagged.exists?(source_id: youtube_video_id, tag_id: tag_id)
         @resource = Video.active.tagged.where(source_id: youtube_video_id, tag_id: tag_id).first
@@ -31,7 +33,7 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
       if @resource.save
         WaspOutreachJob.perform_later(@resource.id)
         TwitterPostingJob.perform_later(@resource.id)
-        flash[:notice] = "Video was successfully added!"
+        flash[:notice] = 'Video was successfully added!'
         redirect_to admin_wasp_outreach_path(@resource)
       else
         flash[:error] = @resource.errors.messages[:invalid_url].first
@@ -56,8 +58,8 @@ ActiveAdmin.register Video, as: 'WASP Outreach' do
     f.inputs do
       f.input :url, label: 'Video url'
       f.input :tag_id, as: :search_select, url: admin_tags_path,
-                    fields: [:title], display_name: 'title', minimum_input_length: 2,
-                    order_by: 'title_asc'
+                       fields: [:title], display_name: 'title', minimum_input_length: 2,
+                       order_by: 'title_asc'
       f.input :twitter_handle
     end
     f.actions

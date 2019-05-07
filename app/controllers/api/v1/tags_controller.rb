@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::TagsController < Api::V1::BaseController
   before_action :authenticate_user!, only: [:create]
 
@@ -5,7 +7,7 @@ class Api::V1::TagsController < Api::V1::BaseController
     tag = Tag.find_or_initialize_by(title: create_params[:title])
 
     if tag.save
-      render json: tag.to_json(only: [:id, :slug, :title])
+      render json: tag.to_json(only: %i[id slug title])
     else
       render json: tag.errors.messages, status: 422
     end
@@ -15,13 +17,13 @@ class Api::V1::TagsController < Api::V1::BaseController
     tags =
       if params[:query].present?
         Tag.where('title LIKE ?', "%#{params[:query].downcase}%")
-           .order("LENGTH(title) ASC")
+           .order('LENGTH(title) ASC')
            .limit(5)
       else
         get_sidebar_tags(params[:number_of_tags_per_page])
       end
 
-    render json: tags.to_json(only: [:id, :slug, :title])
+    render json: tags.to_json(only: %i[id slug title])
   end
 
   def show

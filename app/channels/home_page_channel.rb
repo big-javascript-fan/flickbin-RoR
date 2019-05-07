@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class HomePageChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "home_page"
+    stream_from 'home_page'
   end
 
   def unsubscribed

@@ -25,6 +25,8 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 15px;
+    color: $global-inverse-color;
+
     .card-image {
       margin: 0 9px 0 0;
     }
@@ -37,7 +39,6 @@
     .card-title {
       margin: 0;
       font-size: 15px;
-      color: $global-inverse-color;
       &::first-letter {
         text-transform: uppercase;
       }
@@ -78,9 +79,6 @@
   }
   .card-link {
     color: $global-inverse-color;
-  }
-  &:hover .card-header .card-title, &:hover .card-body .card-description, &:hover .card-body .card-link{
-    text-decoration: underline;
   }
   @media (max-width: 480px) {
     padding-left: 16px;

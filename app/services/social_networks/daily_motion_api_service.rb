@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SocialNetworks::DailyMotionApiService
   BASE_DAYLI_MOTION_API_URL = 'https://api.dailymotion.com'
 

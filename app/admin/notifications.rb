@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Notification do
   # permit_params :user_id, :category
 

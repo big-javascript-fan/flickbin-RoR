@@ -3,8 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :get_sidebar_tags, only: [:edit, :update]
-  before_action :get_user_videos, only: [:edit, :update]
+  before_action :get_sidebar_tags, only: %i[edit update]
+  before_action :get_user_videos, only: %i[edit update]
 
   # GET /resource/sign_up
   # def new
@@ -72,7 +72,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_resource(resource, params)
-    if  change_password_request?(params) && params[:password] != params[:password_confirmation]
+    if change_password_request?(params) && params[:password] != params[:password_confirmation]
       resource.errors.add(:password_confirmation, :confirmation, message: "doesn't match password")
       return false
     end
@@ -89,20 +89,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [
-      :channel_name, :channel_description, :receive_notification_emails, :receive_promotional_emails
-    ])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[
+                                        channel_name channel_description receive_notification_emails receive_promotional_emails
+                                      ])
   end
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     edit_user_registration_path
   end
 
-  def after_sign_up_path_for(resource)
+  def after_sign_up_path_for(_resource)
     root_path
   end
 
-  def after_inactive_sign_up_path_for(resource)
+  def after_inactive_sign_up_path_for(_resource)
     root_path
   end
 end

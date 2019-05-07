@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -36,7 +38,7 @@
 
 class User < ApplicationRecord
   extend FriendlyId
-  friendly_id :channel_name, use: [:sequentially_slugged, :finders]
+  friendly_id :channel_name, use: %i[sequentially_slugged finders]
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :confirmable
@@ -65,12 +67,12 @@ class User < ApplicationRecord
   validates_length_of     :channel_name, maximum: AppConstants::MAX_CHANNEL_NAME_LENGTH
   validates_length_of :channel_description, maximum: AppConstants::MAX_CHANNEL_DESCRIPTION_LENGTH,
                                             allow_blank: true
-  validates_inclusion_of :role, in: ['client', 'sidekiq_manager', 'dummy']
+  validates_inclusion_of :role, in: %w[client sidekiq_manager dummy]
 
   before_create :set_default_channel_decription
 
   def sidekiq_manager?
-    self.role == 'sidekiq_manager'
+    role == 'sidekiq_manager'
   end
 
   def set_default_channel_decription

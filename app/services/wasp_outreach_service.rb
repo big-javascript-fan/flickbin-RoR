@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WaspOutreachService
   MAX_TOP_1_VIDEO_UPVOTES = 20
 

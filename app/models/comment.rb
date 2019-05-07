@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -36,12 +38,12 @@ class Comment < ApplicationRecord
                                   allow_blank: true
 
   def reply_comment
-    return if self.root? || self.parent.commentator_id != self.commentator_id
+    return if root? || parent.commentator_id != commentator_id
 
     errors.add(:reply_comment, 'forbidden to comment your own comment')
   end
 
   def check_ancestry_depth
-    errors.add(:ancestry_depth, 'level cannot be more than 1') if self.depth > 1
+    errors.add(:ancestry_depth, 'level cannot be more than 1') if depth > 1
   end
 end

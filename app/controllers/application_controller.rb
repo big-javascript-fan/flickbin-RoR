@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :prepare_exception_notifier
@@ -6,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def prepare_exception_notifier
-    request.env["exception_notifier.exception_data"] = {
+    request.env['exception_notifier.exception_data'] = {
       current_user: current_user&.to_json
     }
   end
@@ -19,7 +21,7 @@ class ApplicationController < ActionController::Base
     @sidebar_tags ||= Tag.order(rank: :asc, created_at: :desc).page(params[:page]).per(number_of_tags_per_page)
   end
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     if params[:video_id].present? && params[:event] == 'comment'
       video_path(params[:video_id], anchor: 'message')
     elsif params[:video_id].present? && params[:event] == 'vote'

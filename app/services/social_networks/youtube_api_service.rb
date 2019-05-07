@@ -5,7 +5,7 @@ class SocialNetworks::YoutubeApiService
 
   def call
     youtube_video = Yt::Video.new(id: @video_id)
-    remote_cover_url = youtube_video&.snippet&.data.dig('thumbnails', 'standard', 'url'),
+    remote_cover_url = youtube_video&.snippet&.data.dig('thumbnails', 'standard', 'url')
 
     data = {
       title: youtube_video.title,

@@ -4,7 +4,12 @@ development:
 test:
   adapter: async
 
+staging:
+  adapter: redis
+  url: <%= "#{ENV["REDIS_URL"]}/1" %>
+  channel_prefix: birdy_stagign
+
 production:
   adapter: redis
-  url: redis://h:pf42fc2020229205de0585fa84b358e633dd2402e06c9a4de66cc592fbae7be23@ec2-3-213-63-110.compute-1.amazonaws.com:24539/1
+  url: <%= "#{ENV["REDIS_URL"]}/1" %>
   channel_prefix: birdy_production

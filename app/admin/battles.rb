@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Battle do
   permit_params :tag_id, :final_date, :first_member_id, :second_member_id, :status
 
@@ -21,8 +23,8 @@ ActiveAdmin.register Battle do
   after_create do |battle|
     FinishBattleJob.set(wait: battle.final_date - Time.now).perform_later(battle.id)
 
-    {battle.first_member => battle.second_member,
-     battle.second_member => battle.first_member}.each do |receiver, opponent|
+    { battle.first_member => battle.second_member,
+      battle.second_member => battle.first_member }.each do |receiver, opponent|
       ApplicationMailer.battle_participant_notification(receiver, opponent, battle).deliver_now if receiver.user
     end
 
@@ -54,9 +56,9 @@ ActiveAdmin.register Battle do
     column :status do |battle|
       case battle.status
       when 'live'
-        status_tag(battle.status, class: "orange abc")
+        status_tag(battle.status, class: 'orange abc')
       when 'finished'
-        status_tag(battle.status, :yes, class: "abc")
+        status_tag(battle.status, :yes, class: 'abc')
       end
     end
     column :created_at
@@ -71,11 +73,11 @@ ActiveAdmin.register Battle do
     f.inputs do
       f.input :tag
       f.input :first_member_id, as: :search_select, url: admin_battle_members_path,
-                    fields: [:name], display_name: :name, minimum_input_length: 2,
-                    order_by: 'name_asc'
+                                fields: [:name], display_name: :name, minimum_input_length: 2,
+                                order_by: 'name_asc'
       f.input :second_member_id, as: :search_select, url: admin_battle_members_path,
-                    fields: [:name], display_name: :name, minimum_input_length: 2,
-                    order_by: 'name_asc'
+                                 fields: [:name], display_name: :name, minimum_input_length: 2,
+                                 order_by: 'name_asc'
       f.input :final_date, as: :date_time_picker, picker_options: { min_date: Date.today },
                            input_html: { style: 'width: 100px;', autocomplete: 'off' }
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
@@ -34,7 +36,7 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-     %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # Override the filename of the uploaded files:

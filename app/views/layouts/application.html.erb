@@ -3,11 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= content_for?(:meta_title) ? yield(:meta_title) : 'flickbin | Discover and rank the best videos on the web.' %></title>
     <meta name='description' content='<%= yield(:meta_description) %>' />
     <meta name='keywords' content='<%= yield(:meta_keywords) %>' />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
@@ -24,16 +23,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128985749-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-128985749-1');
-    </script>
-    <script src="//rum-static.pingdom.net/pa-5be765c87e84eb0016000452.js" async></script>
 
+    <%= render 'partials/google_analytics' %>
+
+    <script src="//rum-static.pingdom.net/pa-5be765c87e84eb0016000452.js" async></script>
+    <%= action_cable_meta_tag %>
 
   </head>
 

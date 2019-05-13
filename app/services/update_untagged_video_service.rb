@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateUntaggedVideoService
   def call
     Video.active.tagged.find_each do |video|

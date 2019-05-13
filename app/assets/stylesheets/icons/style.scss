@@ -26,78 +26,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-twitch-bold {
-  &:before {
-    content: $icon-twitch-bold;
-  }
-}
-.icon-facebook-official {
-  &:before {
-    content: $icon-facebook-official;
-  }
-}
-.icon-chevron-down {
-  &:before {
-    content: $icon-chevron-down;
-  }
-}
-.icon-flag {
-  &:before {
-    content: $icon-flag;
-  }
-}
-.icon-check {
-  &:before {
-    content: $icon-check;
-  }
-}
-.icon-dailymotion {
-  &:before {
-    content: $icon-dailymotion;
-  }
-}
-.icon-twitch-3 {
-  &:before {
-    content: $icon-twitch-3;
-  }
-}
-.icon-twitch {
-  &:before {
-    content: $icon-twitch;
-    color: #673ab7;
-  }
-}
-.icon-facebook-full .path1 {
-  &:before {
-    content: $icon-facebook-full-path1;
-    color: rgb(66, 103, 178);
-  }
-}
-.icon-facebook-full .path2 {
-  &:before {
-    content: $icon-facebook-full-path2;
-    margin-left: -1em;
-    color: rgb(255, 255, 255);
-  }
-}
-.icon-youtube-full .path1 {
-  &:before {
-    content: $icon-youtube-full-path1;
-    color: rgb(244, 67, 54);
-  }
-}
-.icon-youtube-full .path2 {
-  &:before {
-    content: $icon-youtube-full-path2;
-    margin-left: -1em;
-    color: rgb(250, 250, 250);
-  }
-}
-.icon-arrow_drop_up {
-  &:before {
-    content: $icon-arrow_drop_up;
-  }
-}
 .icon-playlist_add {
   &:before {
     content: $icon-playlist_add;
@@ -123,6 +51,58 @@
     content: $icon-play_arrow;
   }
 }
+.icon-arrow_drop_up {
+  &:before {
+    content: $icon-arrow_drop_up;
+  }
+}
+.icon-check {
+  &:before {
+    content: $icon-check;
+  }
+}
+.icon-flag {
+  &:before {
+    content: $icon-flag;
+  }
+}
+.icon-chevron-down {
+  &:before {
+    content: $icon-chevron-down;
+  }
+}
+.icon-dailymotion {
+  &:before {
+    content: $icon-dailymotion;
+  }
+}
+.icon-twitch {
+  &:before {
+    content: $icon-twitch;
+  }
+}
+.icon-uniE90C {
+  &:before {
+    content: $icon-uniE90C;
+  }
+}
+.icon-facebook-official {
+  &:before {
+    content: $icon-facebook-official;
+  }
+}
+.icon-twitch-bold {
+  &:before {
+    content: $icon-twitch-bold;
+  }
+}
+.icon-youtube {
+  &:before {
+    content: $icon-youtube;
+  }
+}
+
+
 
 
 

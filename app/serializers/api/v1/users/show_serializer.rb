@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::Users::ShowSerializer < Api::V1::BaseSerializer
   include ActionView::Helpers::DateHelper
 
@@ -22,21 +24,21 @@ class Api::V1::Users::ShowSerializer < Api::V1::BaseSerializer
 
     videos.map do |video|
       {
-        id:        video.id,
-        slug:      video.slug,
-        title:     video.title,
+        id: video.id,
+        slug: video.slug,
+        title: video.title,
         cover_url: video.cover.url,
-        rank:      video.rank,
+        rank: video.rank,
         post_time: time_ago_in_words(video.created_at),
-        tag:       tag_to_hash(video.tag)
+        tag: tag_to_hash(video.tag)
       }
     end
   end
 
   def tag_to_hash(tag)
     {
-      id:    tag.id,
-      slug:  tag.slug,
+      id: tag.id,
+      slug: tag.slug,
       title: tag.title
     }
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: videos
@@ -38,12 +40,12 @@ class Video < ApplicationRecord
   attr_accessor :tag_name
 
   extend FriendlyId
-  friendly_id :title, use: [:sequentially_slugged, :finders]
+  friendly_id :title, use: %i[sequentially_slugged finders]
 
   mount_uploader :cover, VideoCoverUploader
 
-  SOURCES = %w(youtube facebook twitch daily_motion)
-  KINDS_OF = %w(video clip stream)
+  SOURCES = %w[youtube facebook twitch daily_motion].freeze
+  KINDS_OF = %w[video clip stream].freeze
 
   belongs_to :user
   belongs_to :tag
@@ -54,7 +56,7 @@ class Video < ApplicationRecord
   validates :title, presence: true
   validates_inclusion_of :source, in: SOURCES
   validates_inclusion_of :kind_of, in: KINDS_OF
-  validates_uniqueness_of :source_id, scope: [:tag_id, :source], conditions: -> { where(untagged: false, removed: false) }
+  validates_uniqueness_of :source_id, scope: %i[tag_id source], conditions: -> { where(untagged: false, removed: false) }
 
   before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank
@@ -76,17 +78,17 @@ class Video < ApplicationRecord
   end
 
   def votes_amount
-    votes_sum = self.positive_votes_amount + self.negative_votes_amount
+    votes_sum = positive_votes_amount + negative_votes_amount
     votes_sum.negative? ? 0 : votes_sum
   end
 
   def set_init_rank
-    max_rank = Video.active.tagged.where(tag_id: self.tag.id).maximum(:rank) || 0
-    self.update(rank: max_rank + 1)
+    max_rank = Video.active.tagged.where(tag_id: tag.id).maximum(:rank) || 0
+    update(rank: max_rank + 1)
   end
 
   def recalculate_videos_rank
-    RecalculateVideosRankForSpecificTagJob.perform_later(self.tag)
+    RecalculateVideosRankForSpecificTagJob.perform_later(tag)
   end
 
   def tagged?
@@ -98,6 +100,6 @@ class Video < ApplicationRecord
   end
 
   def remaining_days
-    AppConstants::LIFETIME_IN_DAYS_OF_TAGGED_VIDEO - ((Time.now - self.created_at) / 1.day).round
+    AppConstants::LIFETIME_IN_DAYS_OF_TAGGED_VIDEO - ((Time.now - created_at) / 1.day).round
   end
 end

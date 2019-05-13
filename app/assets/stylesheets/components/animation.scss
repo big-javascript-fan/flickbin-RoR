@@ -1,21 +1,33 @@
+/* ========================================================================
+   Component: Animation
+ ========================================================================== */
 [class*='animation-'] {
-  animation-duration: 1.5s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
+animation-duration: 0.5s;
+animation-timing-function: ease-out;
+animation-fill-mode: both;
 }
-.animation-reverse {
-  animation-direction: reverse;
-  animation-timing-function: ease-in;
+/* Animations
+ ========================================================================== */
+/*
+ * Fade
+ */
+.animation-fade {
+  animation-name: fade;
+  animation-duration: 0.8s;
+  animation-timing-function: linear;
 }
-.animation-toggle:not(:hover):not(:focus) [class*='animation-'] {
-  animation-name: none;
+/*
+ * Scale
+ */
+.animation-scale-up {
+  animation-name: fade-scale-02;
 }
-.animation-toggle {
-  -webkit-tap-highlight-color: transparent;
+.animation-scale-down {
+  animation-name: fade-scale-18;
 }
-.animation-toggle:focus {
-  outline: none;
-}
+/*
+ * Slide
+ */
 .animation-slide-top {
   animation-name: fade-top;
 }
@@ -28,7 +40,112 @@
 .animation-slide-right {
   animation-name: fade-right;
 }
-
+/*
+ * Slide Small
+ */
+.animation-slide-top-small {
+  animation-name: fade-top-small;
+}
+.animation-slide-bottom-small {
+  animation-name: fade-bottom-small;
+}
+.animation-slide-left-small {
+  animation-name: fade-left-small;
+}
+.animation-slide-right-small {
+  animation-name: fade-right-small;
+}
+/*
+ * Slide Medium
+ */
+.animation-slide-top-medium {
+  animation-name: fade-top-medium;
+}
+.animation-slide-bottom-medium {
+  animation-name: fade-bottom-medium;
+}
+.animation-slide-left-medium {
+  animation-name: fade-left-medium;
+}
+.animation-slide-right-medium {
+  animation-name: fade-right-medium;
+}
+/*
+ * Kenburns
+ */
+.animation-kenburns {
+  animation-name: scale-kenburns;
+  animation-duration: 15s;
+}
+/*
+ * Shake
+ */
+.animation-shake {
+  animation-name: shake;
+}
+/*
+ * SVG Stroke
+ * The `--animation-stroke` custom property contains the longest path length.
+ * Set it manually or use `svg="stroke-animation: true"` to set it automatically.
+ * All strokes are animated by the same pace and doesn't end simultaneously.
+ * To end simultaneously, `pathLength="1"` could be used, but it's not working in Safari yet.
+ */
+.animation-stroke {
+  animation-name: stroke;
+  stroke-dasharray: var(--animation-stroke);
+  animation-duration: 2s;
+}
+/* Direction modifier
+ ========================================================================== */
+.animation-reverse {
+  animation-direction: reverse;
+  animation-timing-function: ease-in;
+}
+/* Duration modifier
+ ========================================================================== */
+.animation-fast {
+  animation-duration: 0.1s;
+}
+.animation-slow {
+  animation-duration: 2s;
+}
+/* Toggle (Hover + Focus)
+========================================================================== */
+/*
+ * The toggle is triggered on touch devices using `:focus` and tabindex
+ */
+.animation-toggle:not(:hover):not(:focus) [class*='animation-'] {
+  animation-name: none;
+}
+/*
+ * 1. Prevent tab highlighting on iOS.
+ */
+.animation-toggle {
+  /* 1 */
+  -webkit-tap-highlight-color: transparent;
+}
+/*
+ * Remove outline for `tabindex`
+ */
+.animation-toggle:focus {
+  outline: none;
+}
+/* Keyframes used by animation classes
+ ========================================================================== */
+/*
+ * Fade
+ */
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*
+ * Slide Top
+ */
 @keyframes fade-top {
   0% {
     opacity: 0;
@@ -39,7 +156,9 @@
     transform: translateY(0);
   }
 }
-
+/*
+ * Slide Bottom
+ */
 @keyframes fade-bottom {
   0% {
     opacity: 0;
@@ -50,7 +169,9 @@
     transform: translateY(0);
   }
 }
-
+/*
+ * Slide Left
+ */
 @keyframes fade-left {
   0% {
     opacity: 0;
@@ -61,7 +182,9 @@
     transform: translateX(0);
   }
 }
-
+/*
+ * Slide Right
+ */
 @keyframes fade-right {
   0% {
     opacity: 0;
@@ -70,5 +193,236 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+/*
+ * Slide Top Small
+ */
+@keyframes fade-top-small {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*
+ * Slide Bottom Small
+ */
+@keyframes fade-bottom-small {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*
+ * Slide Left Small
+ */
+@keyframes fade-left-small {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/*
+ * Slide Right Small
+ */
+@keyframes fade-right-small {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/*
+ * Slide Top Medium
+ */
+@keyframes fade-top-medium {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*
+ * Slide Bottom Medium
+ */
+@keyframes fade-bottom-medium {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/*
+ * Slide Left Medium
+ */
+@keyframes fade-left-medium {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/*
+ * Slide Right Medium
+ */
+@keyframes fade-right-medium {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/*
+ * Scale Up
+ */
+@keyframes fade-scale-02 {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/*
+ * Scale Down
+ */
+@keyframes fade-scale-18 {
+  0% {
+    opacity: 0;
+    transform: scale(1.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/*
+ * Kenburns
+ */
+@keyframes scale-kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+/*
+ * Shake
+ */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-9px);
+  }
+  20% {
+    transform: translateX(8px);
+  }
+  30% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  90% {
+    transform: translateX(-1px);
+  }
+}
+/*
+ * Stroke
+ */
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: var(--animation-stroke);
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-9px);
+  }
+  20% {
+    transform: translateX(8px);
+  }
+  30% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(4px);
+  }
+  70% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  90% {
+    transform: translateX(-1px);
+  }
+}
+/*
+ * Stroke
+ */
+@keyframes stroke {
+  0% {
+    stroke-dashoffset: var(--animation-stroke);
+  }
+  100% {
+    stroke-dashoffset: 0;
   }
 }

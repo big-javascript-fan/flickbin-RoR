@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class VideosController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: %i[new create destroy]
 
   def new
     @sidebar_tags = get_sidebar_tags
@@ -11,6 +13,7 @@ class VideosController < ApplicationController
     @sidebar_tags = get_sidebar_tags
 
     if @video.save
+      ActionCable.server.broadcast 'home_page', video: @video, user: current_user, tag: @video.tag
       render :create
     elsif @video.errors.messages[:invalid_url].present?
       @invalid_video_url = true
@@ -30,7 +33,7 @@ class VideosController < ApplicationController
     @sidebar_tags = get_sidebar_tags(70)
     @video = Video.friendly.find(params[:video_slug])
     @last_hour_upvotes = @video.votes
-                               .where("votes.value = 1 AND votes.created_at BETWEEN '#{1.hour.ago.to_s}' AND '#{Time.now}'")
+                               .where("votes.value = 1 AND votes.created_at BETWEEN '#{1.hour.ago}' AND '#{Time.now}'")
                                .count
     @video_owner = @video.user
     @tag = @video.tag
@@ -42,9 +45,7 @@ class VideosController < ApplicationController
     comments = comments.limit(6) unless params[:all_comments].present?
     @comments_tree = comments.map { |comment| comment.subtree(to_depth: 1).arrange }
 
-    if current_user.present?
-      @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id)
-    end
+    @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id) if current_user.present?
 
     @meta_title = "#{@video.title} | "
   end

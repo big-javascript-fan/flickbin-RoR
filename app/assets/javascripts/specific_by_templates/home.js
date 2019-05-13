@@ -1,131 +1,183 @@
 $(function() {
-  infiniteScrollForVideos();
+  realTimeVideo ();
 
-  function infiniteScrollForVideos() {
-    var loading = false;
-    var lastPageReached = false;
-    var offset = 4;
-    var nextSidbarTagsPageNumber = 3;
+  function realTimeVideo () {
+    var scrollState = false;
+    var newVideos = [];
 
-    $(window).scroll(function(e) {
-      var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 1300;
-      console.log(scrollReachedEndOfDocument);
-      if(loading || lastPageReached) {
-        return false;
-      } else if(scrollReachedEndOfDocument) {
-        loading = true;
-        loadNextBatchOfVideos();
+    infiniteScrollForVideos();
+    createNewVideo();
+
+    function setVideoToPage (state) {
+
+      var videoButton = $('.newVideoBtn');
+
+      if (state) {
+        videoButton.fadeIn();
+        videoButton.text('New videos ' + newVideos.length);
+      } else {
+        videoButton.fadeOut();
+        newVideos.forEach(function(item) {
+          $('.grid-video').prepend(item);
+          newVideos = [];
+        });
       }
 
-      function loadNextBatchOfVideos() {
-        $.get('/api/v1/home', {
-          page: nextSidbarTagsPageNumber,
-          offset: offset
-        }).then(function(response) {
-          var sidbarTags = response.sidebar_tags;
-          var leftTag = response.left_tag;
-          var rightTag = response.right_tag;
-          var sidbarTagsContent = '';
-          var leftTagContent = '';
-          var rightTagContent = '';
+    }
+    UIkit.util.on('#js-scroll-trigger', 'scrolled', function () {
+      newVideos.forEach(function(video){
+        $('.grid-video').prepend(video);
+        newVideos = [];
+      });
+    });
+    function createNewVideo() {
+      App.messages = App.cable.subscriptions.create('HomePageChannel', {
+        received: function(data) {
 
-          if(sidbarTags.length > 0) {
-            $.each(sidbarTags, function(index, tag) {
-              sidbarTagsContent += `
+          var videosContent = `
+            <div class="grid-item new-grid-item animation-fade animation-slow">
+              <div class="card card-video">
+                <figure class="card-background">
+                  <img src="${data.video.cover.url}">
+                </figure>
+                <a href="/videos/${data.video.slug}" class="card-overlay"></a>
+                <div class="card-foreground">
+                  <a href="/stations/${data.user.slug}" class="card-header">
+                    <figure class="card-image">
+                      <img src=" ${data.user.avatar.thumb_44x44.url ? data.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'} " alt="Person">
+                    </figure>
+                    <h5 class="card-title">
+                      ${data.user.slug}
+                    </h5>
+                  </a>
+                  <div class="card-body">
+                    <a href="/videos/${data.video.slug}" class="card-description">${data.video.title}</a>
+                    <div class="card-posted-by">
+                      ${data.video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
+                      ${data.video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
+                      ${data.video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
+                      
+                      posted in <a href="/topics/${data.tag.slug}" class="card-link bold">${data.tag.title}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          newVideos.push(videosContent);
+          setVideoToPage (scrollState);
+        }
+      });
+    }
+
+    function infiniteScrollForVideos() {
+      var loading = false;
+      var lastPageReached = false;
+      var offset = 20;
+      var nextSidbarTagsPageNumber = 3;
+
+
+      $(window).scroll(function (e) {
+        var scrollReachedEndOfDocument = ($('body').height() - $(this).scrollTop()) < $(this).height() + 1200;
+
+        if($(this).scrollTop() <= $('.section-videos').offset().top){
+          scrollState = false;
+          setVideoToPage (scrollState);
+        } else {
+          scrollState = true;
+          if( newVideos.length < 0) {
+            setVideoToPage (scrollState);
+          }
+        }
+
+        if (loading || lastPageReached) {
+          return false;
+        } else if (scrollReachedEndOfDocument) {
+          loading = true;
+          scrollState = true;
+          loadNextBatchOfVideos();
+        }
+
+        function loadNextBatchOfVideos() {
+          $.get('/api/v1/home', {
+            page: nextSidbarTagsPageNumber,
+            offset: offset
+          }).then(function (response) {
+            var sidbarTags = response.sidebar_tags;
+            var videos = response.videos;
+            var sidbarTagsContent = '';
+            var videosContent = '';
+
+            if (sidbarTags.length > 0) {
+              $.each(sidbarTags, function (index, tag) {
+                sidbarTagsContent += `
                 <li>
                   <a href="/topics/${tag.slug}">${tag.title}</a>
                 </li>
               `
-            });
+              });
 
-            $('ul.leftPanelTags').append(sidbarTagsContent)
-          }
-
-          if(leftTag.top_10_videos.length >= 10) {
-            leftTagContent += `
-              <div id="${leftTag.id}" class="vidRowColumn colTitle clearfix mobileColBottom left_tag">
-                <div class="clearfix bottom-margin-15">
-                <span class="sideTitle">${leftTag.title}</span>
-                <a class="seeAllLink" href="/topics/${leftTag.slug}">SEE ALL</a>
-              </div>
-
-              <ul class="entityList">
-            `
-
-            $.each(leftTag.top_10_videos, function(index, video) {
-              leftTagContent += `
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <a class="thumbnailLink" href="/videos/${video.slug}">
-                      <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    </a>
-                  </div>
-                  <div class="entityCell serialText">${video.rank}</div>
-                  <div class="entityCell">
-                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
-                  </div>
-                </li>
-              `
-            });
-
-            leftTagContent += `
-                </ul>
-              </div>
-            `
-          }
-
-          if(rightTag.top_10_videos.length >= 10) {
-            rightTagContent += `
-              <div id="${rightTag.id}" class="vidRowColumn clearfix right_tag">
-                <div class="clearfix bottom-margin-15">
-                <span class="sideTitle">${rightTag.title}</span>
-                <a class="seeAllLink" href="/topics/${rightTag.slug}">SEE ALL</a>
-              </div>
-
-              <ul class="entityList">
-            `
-
-            $.each(rightTag.top_10_videos, function(index, video) {
-              rightTagContent += `
-                <li class="entityRow">
-                  <div class="entityCell thumbnailCell">
-                    <a class="thumbnailLink" href="/videos/${video.slug}">
-                      <img alt="${video.title}" class="thumbnail" src="${video.cover_url}">
-                      <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                    </a>
-                  </div>
-                  <div class="entityCell serialText">${video.rank}</div>
-                  <div class="entityCell">
-                    <a class="descText homeTitle" href="/videos/${video.slug}">${video.title}</a>
-                  </div>
-                </li>
-              `
-            });
-
-            rightTagContent += `
-                </ul>
-              </div>
-            `
-          }
-          if(leftTag && rightTag != 0) {
-            function createScrollRow () {
-              var vidScrollRow = $('.vidRowContainer');
-              $(vidScrollRow).append(leftTagContent)
-              $(vidScrollRow).append(rightTagContent)
+              $('ul.leftPanelTags').append(sidbarTagsContent)
             }
-            createScrollRow();
-          }
 
-          loading = false;
-          nextSidbarTagsPageNumber += 1;
-          offset += 2;
+            if (videos.length > 0) {
+              $.each(videos, function (index, video) {
+                videosContent += `
+                <div class="grid-item">
+                  <div class="card card-video">
+                    <figure class="card-background">
+                      <img src="${video.cover_url}">
+                    </figure>
+                    <a href="/videos/${video.slug}" class="card-overlay"></a>
+                    <div class="card-foreground">
+                      <a href="/stations/${video.user.slug}" class="card-header">
+                        <figure class="card-image">
+                          <img src="${video.user.avatar.thumb_44x44.url ? video.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'}" alt="Person">
+                        </figure>
+                        <h5 class="card-title">
+                          ${video.user.slug}
+                        </h5>
+                      </a>
+                      <div class="card-body">
+                        <a href="/videos/${video.slug}" class="card-description">${video.title}</a>
+                        <div class="card-posted-by">
+                          ${video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
+                          ${video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
+                          ${video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
+                          
+                          posted in <a href="/topics/${video.tag.slug}" class="card-link bold">${video.tag.title}</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `
+              });
+            }
 
-          if(leftTag.top_10_videos.length == 0 && rightTag.top_10_videos.length == 0 && sidbarTags.length == 0) {
-            lastPageReached = true;
-          }
-        })
-      }
+            if (videos != 0) {
+              function createScrollRow() {
+                $('.section-videos .grid').append(videosContent);
+              }
+              createScrollRow();
+
+            }
+
+
+            loading = false;
+            nextSidbarTagsPageNumber += 1;
+            offset += 10;
+            if (videos.length == 0 && sidbarTags.length == 0) {
+              lastPageReached = true;
+            }
+          })
+        }
+      });
+    }
+
+    var getGridVideo = document.querySelector(".grid-video");
+    animateCSSGrid.wrapGrid(getGridVideo, {
+      duration: 700
     });
   }
 });

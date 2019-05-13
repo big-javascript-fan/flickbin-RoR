@@ -1,0 +1,87 @@
+.card-video {
+  --ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  padding: 55px 36px;
+  margin-bottom: $global-small-margin;
+  .card-overlay {
+    cursor: pointer;
+  }
+  .card-foreground {
+    max-width: 308px;
+    margin: 0 auto;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: $global-inverse-color;
+
+    .card-image {
+      margin: 0 9px 0 0;
+    }
+    .card-image img {
+      min-width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+    }
+    .card-title {
+      margin: 0;
+      font-size: 15px;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .card-body {
+    .card-description {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: $global-margin;
+      color: $global-inverse-color;
+      font-family: $secondary-font-family;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 20px;
+      text-align: center;
+    }
+    .card-posted-by {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #929498;
+      font-family: $secondary-font-family;
+      font-size: 14px;
+      font-style: italic;
+      line-height: 20px;
+      > .icon {
+        margin-right: 10px;
+        color: $global-inverse-color;
+        font-size: 30px;
+      }
+      > .card-link {
+        margin-left: 2px;
+      }
+    }
+  }
+  .card-link {
+    color: $global-inverse-color;
+  }
+  @media (max-width: 480px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

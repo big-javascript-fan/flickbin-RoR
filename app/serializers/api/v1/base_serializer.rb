@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Api::V1::BaseSerializer
   private
 
@@ -6,9 +8,9 @@ class Api::V1::BaseSerializer
 
     tags.map do |tag|
       {
-        id:            tag.id,
-        title:         tag.title,
-        slug:          tag.slug
+        id: tag.id,
+        title: tag.title,
+        slug: tag.slug
       }
     end
   end

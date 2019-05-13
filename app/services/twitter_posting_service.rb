@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwitterPostingService
   include Rails.application.routes.url_helpers
 

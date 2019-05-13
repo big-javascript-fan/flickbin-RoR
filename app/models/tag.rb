@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tags
@@ -21,7 +23,7 @@
 
 class Tag < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: [:sequentially_slugged, :finders]
+  friendly_id :title, use: %i[sequentially_slugged finders]
 
   has_many :videos, -> { order(rank: :asc, created_at: :desc) }, dependent: :destroy
   has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
@@ -57,11 +59,11 @@ class Tag < ApplicationRecord
 
   def set_init_rank
     max_rank = Tag.maximum(:rank) || 0
-    self.update(rank: max_rank + 1)
+    update(rank: max_rank + 1)
   end
 
   def convert_to_lowercase_title_and_set_first_character
-    self.title.downcase!
-    self.first_character = self.title.first
+    self.title = title.downcase
+    self.first_character = title.first
   end
 end

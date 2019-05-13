@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -44,7 +46,7 @@ FactoryBot.define do
   end
 
   factory :rspec_user do
-    sequence(:email) { |n| "rspec@example.com" }
+    sequence(:email) { |_n| 'rspec@example.com' }
     password { 'password' }
     channel_name { 'Rspec tester' }
     channel_description { 'Channel for rpsec tests' }

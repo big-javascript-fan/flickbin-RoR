@@ -1,28 +1,27 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: battle_with_title_and_members
 #
 #  id                                          :bigint(8)        primary key
 #  final_date                                  :datetime
-#  first_members_battles_name                  :text
-#  first_members_battles_photo                 :text
-#  first_members_battles_twitter_account_name  :text
+#  first_members_battles_name                  :string
+#  first_members_battles_photo                 :string
+#  first_members_battles_twitter_account_name  :string
 #  first_members_battles_voices                :bigint(8)
-#  loser_members_battles_twitter_account_name  :text
+#  loser_members_battles_twitter_account_name  :string
 #  loser_members_battles_voices                :bigint(8)
 #  number_of_rematch_requests                  :integer
-#  second_members_battles_name                 :text
-#  second_members_battles_photo                :text
-#  second_members_battles_twitter_account_name :text
+#  second_members_battles_name                 :string
+#  second_members_battles_photo                :string
+#  second_members_battles_twitter_account_name :string
 #  second_members_battles_voices               :bigint(8)
 #  slug                                        :string
 #  status                                      :string
 #  title                                       :text
 #  winner                                      :string
-#  winner_members_battles_photo                :text
-#  winner_members_battles_twitter_account_name :text
+#  winner_members_battles_photo                :string
+#  winner_members_battles_twitter_account_name :string
 #  winner_members_battles_voices               :bigint(8)
 #  created_at                                  :datetime
 #  updated_at                                  :datetime

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: battle_with_title_and_members
 #
 #  id                                          :bigint(8)        primary key
+#  custom_title                                :text
 #  final_date                                  :datetime
 #  first_members_battles_name                  :string
 #  first_members_battles_photo                 :string

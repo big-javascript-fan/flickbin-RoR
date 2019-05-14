@@ -20,8 +20,8 @@ namespace :update_cover_for_video do
   task twitch: :environment do
     Video.where(source: 'twitch').each do |video|
       cover_url = SocialNetworks::TwitchApiService.new(video.source_id, video.kind_of)
-                                                   .call
-                                                   .dig(:remote_cover_url)
+                                                  .call
+                                                  .dig(:remote_cover_url)
       video.update(
         remote_cover_url: cover_url
       )

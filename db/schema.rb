@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514122801) do
+ActiveRecord::Schema.define(version: 20190514133517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -255,6 +255,7 @@ ActiveRecord::Schema.define(version: 20190514122801) do
       battles.created_at,
       battles.updated_at,
       battles.slug,
+      ((((((array_agg(first_members_battles.name))[1])::text || ' vs '::text) || ((array_agg(second_members_battles.name))[1])::text) || ' '::text) || battles.id) AS custom_title,
       ((upper(((array_agg(first_members_battles.name))[1])::text) || ' vs '::text) || upper(((array_agg(second_members_battles.name))[1])::text)) AS title,
       (array_agg(first_members_battles.id))[1] AS first_members_battles_id,
       (array_agg(first_members_battles.name))[1] AS first_members_battles_name,

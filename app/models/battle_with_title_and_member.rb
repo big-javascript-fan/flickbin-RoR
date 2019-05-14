@@ -1,9 +1,11 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: battle_with_title_and_members
 #
 #  id                                          :bigint(8)        primary key
+#  custom_title                                :text
 #  final_date                                  :datetime
 #  first_members_battles_name                  :string
 #  first_members_battles_photo                 :string
@@ -34,10 +36,11 @@
 #
 
 class BattleWithTitleAndMember < ApplicationRecord
-  self.primary_key = :id
+  extend FriendlyId
 
-  belongs_to :first_member, class_name: 'BattleMember', foreign_key: :first_member_id
-  belongs_to :second_member, class_name: 'BattleMember', foreign_key: :second_member_id
+  self.primary_key = :id
+  friendly_id :custom_title, use: %i[slugged finders]
+
   belongs_to :tag
   has_many :battle_votes, foreign_key: :battle_id
   has_many :rematch_requests, foreign_key: :battle_id
@@ -48,10 +51,5 @@ class BattleWithTitleAndMember < ApplicationRecord
 
   def readonly?
     true
-  end
-
-  def winner_member
-    return first_member if winner == first_members_battles_name
-    return second_member if winner == second_members_battles_name
   end
 end

@@ -7,7 +7,9 @@
 #  id                    :bigint(8)        not null, primary key
 #  comments_count        :integer          default(0)
 #  cover                 :string
+#  duration              :integer
 #  kind_of               :string           default("")
+#  length                :string
 #  negative_votes_amount :integer          default(0)
 #  positive_votes_amount :integer          default(0)
 #  rank                  :integer
@@ -54,9 +56,19 @@ class Video < ApplicationRecord
 
   validates :url, presence: true
   validates :title, presence: true
-  validates_inclusion_of :source, in: SOURCES
-  validates_inclusion_of :kind_of, in: KINDS_OF
-  validates_uniqueness_of :source_id, scope: %i[tag_id source], conditions: -> { where(untagged: false, removed: false) }
+  validates_inclusion_of(
+    :source,
+    in: SOURCES
+  )
+  validates_inclusion_of(
+    :kind_of,
+    in: KINDS_OF
+  )
+  validates_uniqueness_of(
+    :source_id,
+    scope: %i[tag_id source],
+    conditions: -> { where(untagged: false, removed: false) }
+  )
 
   before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank

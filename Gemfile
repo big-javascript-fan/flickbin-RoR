@@ -40,6 +40,8 @@ gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'yt', '~> 0.28.0'
+gem 'webpacker', github: "rails/webpacker"
+gem 'react_on_rails', '11.2.1'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

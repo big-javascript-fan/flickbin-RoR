@@ -8,7 +8,7 @@ class Video
     end
 
     def call
-      videos = VideoForHomePage.all
+      videos = VideoForHomePage.all.order('id desc')
       # videos = Video.select('*')
       #      .where("v.wasp_post = 'f'")
       #      .from(Video.select('DISTINCT ON (source_id) source_id, *'), :v)

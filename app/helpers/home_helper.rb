@@ -2,7 +2,7 @@
 
 module HomeHelper
   def home_cover_for(video)
-    video.cover
+    video.cover.url
   end
 
   def home_slug_for(video)
@@ -18,7 +18,7 @@ module HomeHelper
   end
 
   def home_user_avatar_for(video)
-    video.user_avatar
+    video.user_avatar.url
   end
 
   def home_user_avatar_thumb_44x44_for(video)

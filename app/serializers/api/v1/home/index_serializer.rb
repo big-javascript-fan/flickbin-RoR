@@ -24,10 +24,11 @@ class Api::V1::Home::IndexSerializer < Api::V1::BaseSerializer
         slug: video.slug,
         title: video.title,
         cover_url: video.cover.url,
-        rank: video.rank,
         source: video.source,
-        user: video.user,
-        tag: video.tag
+        user_slug: video.user_slug,
+        user_avatar: video.user_avatar,
+        tag_slug: video.tag_slug,
+        tag_title: video.tag_title
       }
     end
   end

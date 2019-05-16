@@ -9,7 +9,7 @@
 
 import ReactOnRails from 'react-on-rails';
 
-import Tv from '../bundles/tv/components/tv';
+import Tv from '../bundles/tv/startup/tv';
 
 // This is how react_on_rails can see the Tv in the browser.
 ReactOnRails.register({

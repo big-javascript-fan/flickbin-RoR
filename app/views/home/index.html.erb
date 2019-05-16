@@ -70,29 +70,29 @@
           <div class="grid-item">
             <div class="card card-video">
               <figure class="card-background">
-                <%= image_tag video.cover.url %>
+                <%= image_tag home_cover_for(video) %>
               </figure>
-              <%=link_to '', video_path(video), class: "card-overlay"%>
+              <%=link_to '', video_path(home_slug_for(video)), class: "card-overlay"%>
               <div class="card-foreground">
-                <%= link_to(station_path(video.user), class: 'card-header') do %>
+                <%= link_to(station_path(home_user_slug(video)), class: 'card-header') do %>
                   <figure class="card-image">
-                    <%= image_tag(video.user.avatar.url || '/images/avatar_holder.jpg',  alt: "Person") %>
+                    <%= image_tag(home_user_avatar_for(video) || '/images/avatar_holder.jpg',  alt: "Person") %>
                   </figure>
                   <h5 class="card-title">
-                    <%= video.user.channel_name%>
+                    <%= home_user_channel_name_for(video)%>
                   </h5>
                 <% end %>
                 <div class="card-body">
-                  <%=link_to video.title, video_path(video), class: "card-description"%>
+                  <%=link_to home_title_for(video), video_path(video), class: "card-description"%>
                   <div class="card-posted-by">
-                    <% if video.source == 'youtube' %>
+                    <% if home_video_from_youtube?(video) %>
                       <span class="icon icon-youtube"></span>
-                    <% elsif video.source == 'daily_motion' %>
+                    <% elsif home_video_from_daily_motion?(video) %>
                       <span class="icon icon-dailymotion"></span>
-                    <% elsif video.source == 'twitch' %>
+                    <% elsif home_video_from_twitch?(video) %>
                       <span class="icon fab fa-twitch"></span>
                     <% end %>
-                    posted in <a href="<%= tag_path(video.tag) %>" class="card-link bold"><%=video.tag.title%></a>
+                    posted in <a href="<%= tag_path(home_tag_slug_for(video)) %>" class="card-link bold"><%=home_tag_title_for(video)%></a>
                   </div>
                 </div>
               </div>

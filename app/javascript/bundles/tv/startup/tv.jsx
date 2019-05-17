@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import configureStore from '../store/helloWorldStore';
+import configureStore from '../store/tvStore';
 import TvContainer from '../containers/tvContainer';
 
 // See documentation for https://github.com/reactjs/react-redux.

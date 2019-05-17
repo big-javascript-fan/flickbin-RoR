@@ -4,6 +4,6 @@ class TvController < ApplicationController
   layout "application"
 
   def index
-    @hello_world_props = { name: "Stranger" }
+    @hello_world_props = { name: "Stranger", names: [] }
   end
 end

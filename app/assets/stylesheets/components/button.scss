@@ -52,6 +52,7 @@ $button-text-border-width:                       $global-border-width;
   font-size: $button-small-font-size;
   text-transform: uppercase;
   font-weight: 400;
+  -webkit-appearance: none;
   line-height: $button-line-height;
   color: #ffffff;
   background-color: #4E5766;
@@ -193,4 +194,20 @@ a.btn:hover {
   position: absolute;
   top: 36px;
   right: 36px;
+}
+
+.btn-subscribe {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 17px;
+  span {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+  }
 }

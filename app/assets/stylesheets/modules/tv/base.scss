@@ -1,0 +1,17 @@
+$base-tv-background:       #1D1F23;
+
+
+.wrapper-tv {
+  position: relative;
+  overflow: hidden;
+  background: $base-tv-background;
+  padding-bottom: 50px;
+  .leftPanel {
+    padding: 0 !important;
+  }
+  @media (min-width: 768px ) {
+    .leftPanel {
+      display: none;
+    }
+  }
+}

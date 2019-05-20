@@ -33,7 +33,7 @@ $(function() {
     function createNewVideo() {
       App.messages = App.cable.subscriptions.create('HomePageChannel', {
         received: function(data) {
-
+          console.log(data);
           var videosContent = `
             <div class="grid-item new-grid-item animation-fade animation-slow">
               <div class="card card-video">

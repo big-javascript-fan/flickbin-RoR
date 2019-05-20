@@ -56,7 +56,7 @@ $(function() {
                       ${data.video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
                       ${data.video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
                       ${data.video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
-                      
+
                       posted in <a href="/topics/${data.tag.slug}" class="card-link bold">${data.tag.title}</a>
                     </div>
                   </div>
@@ -130,12 +130,12 @@ $(function() {
                     </figure>
                     <a href="/videos/${video.slug}" class="card-overlay"></a>
                     <div class="card-foreground">
-                      <a href="/stations/${video.user.slug}" class="card-header">
+                      <a href="/stations/${video.user_slug}" class="card-header">
                         <figure class="card-image">
-                          <img src="${video.user.avatar.thumb_44x44.url ? video.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'}" alt="Person">
+                          <img src="${video.user_avatar.thumb_44x44.url ? video.user_avatar.thumb_44x44.url : '/images/avatar_holder.jpg'}" alt="Person">
                         </figure>
                         <h5 class="card-title">
-                          ${video.user.slug}
+                          ${video.user_slug}
                         </h5>
                       </a>
                       <div class="card-body">
@@ -144,8 +144,8 @@ $(function() {
                           ${video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
                           ${video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
                           ${video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
-                          
-                          posted in <a href="/topics/${video.tag.slug}" class="card-link bold">${video.tag.title}</a>
+
+                          posted in <a href="/topics/${video.tag_slug}" class="card-link bold">${video.tag_title}</a>
                         </div>
                       </div>
                     </div>

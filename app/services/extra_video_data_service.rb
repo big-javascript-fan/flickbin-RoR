@@ -36,9 +36,15 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
+    @video.length = api_data[:length]
+    @video.duration = api_data[:duration]
   rescue StandardError => e
-    ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_youtube_api', message: e, params: params)
-    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_youtube_api' })
+    ExceptionService.call(
+      source: 'ExtraVideoDataService#get_data_form_youtube_api',
+      message: e,
+      params: params,
+      env: request.env
+    )
     @video.errors.add(:invalid_url, 'Video url invalid')
   end
 
@@ -58,8 +64,12 @@ class ExtraVideoDataService
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
   rescue StandardError => e
-    ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_facebook_api', message: e, params: params)
-    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_facebook_api' })
+    ExceptionService.call(
+      source: 'ExtraVideoDataService#get_data_form_facebook_api',
+      message: e,
+      params: params,
+      env: request.env
+    )
     @video.errors.add(:invalid_url, 'Video url invalid')
   end
 
@@ -80,17 +90,29 @@ class ExtraVideoDataService
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
   rescue StandardError => e
-    ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_twitch_api', message: e, params: params)
-    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_twitch_api' })
+    ExceptionService.call(
+      source: 'ExtraVideoDataService#get_data_form_twitch_api',
+      message: e,
+      params: params,
+      env: request.env
+    )
     @video.errors.add(:invalid_url, 'Video url invalid')
   end
 
   def get_data_form_daily_motion_api
     video_id = VideoHelper.get_video_id_form_daily_motion_url(@video.url)
-    return @video.errors.add(:invalid_url, 'Oops, try a Daily Motion video link instead.') if video_id.blank?
+    if video_id.blank?
+      return @video.errors.add(
+        :invalid_url, 'Oops, try a Daily Motion video link instead.'
+      )
+    end
 
     api_data = SocialNetworks::DailyMotionApiService.new(video_id).call
-    return @video.errors.add(:invalid_url, 'Video encoding is in progress. This video cannot be embedded.') if api_data[:channel].blank?
+    if api_data[:channel].blank?
+      return @video.errors.add(
+        :invalid_url, 'Video encoding is in progress. This video cannot be embedded.'
+      )
+    end
 
     @video.kind_of = 'video'
     @video.source = 'daily_motion'
@@ -98,8 +120,12 @@ class ExtraVideoDataService
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
   rescue StandardError => e
-    ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_daily_motion_api', message: e, params: params)
-    ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_daily_motion_api' })
+    ExceptionService.call(
+      source: 'ExtraVideoDataService#get_data_form_daily_motion_api',
+      message: e,
+      params: params,
+      env: request.env
+    )
     @video.errors.add(:invalid_url, 'Video url invalid')
   end
 end

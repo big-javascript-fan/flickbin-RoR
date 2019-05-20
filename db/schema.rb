@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514133517) do
+ActiveRecord::Schema.define(version: 20190515130136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,8 @@ ActiveRecord::Schema.define(version: 20190514133517) do
     t.integer "comments_count", default: 0
     t.string "source", default: ""
     t.string "kind_of", default: ""
+    t.string "length"
+    t.integer "duration"
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["source_id"], name: "index_videos_on_source_id"
@@ -243,6 +245,25 @@ ActiveRecord::Schema.define(version: 20190514133517) do
   end
 
 
+  create_view "video_for_home_pages", sql_definition: <<-SQL
+      SELECT DISTINCT ON (videos.source_id) videos.source_id,
+      videos.id,
+      videos.cover,
+      videos.title,
+      videos.source,
+      videos.wasp_post,
+      videos.slug,
+      users.id AS user_id,
+      users.avatar AS user_avatar,
+      users.channel_name AS user_channel_name,
+      users.slug AS user_slug,
+      tags.title AS tag_title,
+      tags.slug AS tag_slug
+     FROM ((videos
+       JOIN users ON ((users.id = videos.user_id)))
+       JOIN tags ON ((tags.id = videos.tag_id)))
+    WHERE (videos.wasp_post = false);
+  SQL
   create_view "battle_with_title_and_members", sql_definition: <<-SQL
       SELECT battles.id,
       battles.tag_id,

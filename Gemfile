@@ -39,7 +39,7 @@ gem 'sidekiq-scheduler'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'yt', '~> 0.28.0'
+gem 'yt', '~> 0.32.3'
 gem "react_on_rails", "11.1.4"
 gem "webpacker", "~> 3"
 
@@ -69,5 +69,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-gem 'mini_racer', platforms: :ruby

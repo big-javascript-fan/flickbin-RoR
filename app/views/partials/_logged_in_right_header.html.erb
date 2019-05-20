@@ -1,8 +1,8 @@
 <ul class="afterLoginBtns">
   <li>  <span class="postHoverTip">Post a Video</span> </li>
-  <li>
-    <a href="/tv" class="play-item icon-play-alt"></a>
-  </li>
+<!--  <li>-->
+<!--    <a href="/tv" class="play-item icon-play-alt"></a>-->
+<!--  </li>-->
   <li class="notificationDropdown">
     <% if current_user.present? && current_user.top_15_notifications.count {|n| n.read == false } > 0 %>
       <span class="addCircle bell icon-bell">

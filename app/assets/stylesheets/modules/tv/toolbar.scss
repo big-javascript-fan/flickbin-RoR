@@ -1,0 +1,24 @@
+.toolbar-tv {
+  .afterLoginBtns {
+    margin: 0;
+    padding: 0;
+    > li {
+      margin-left: 10px;
+      > * {
+        color: $global-inverse-color ;
+        border-color: $global-inverse-color;
+      }
+      .addCircle:hover {
+        color: $global-primary-color;
+        border-color: $global-primary-color;
+      }
+      .play-item::after {
+        background: #1D1F23;
+      }
+    }
+    .bell-dropdown-open > .addCircle {
+      color: $global-primary-color;
+      border-color: $global-primary-color;
+    }
+  }
+}

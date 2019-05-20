@@ -26,11 +26,13 @@ gem 'jquery-rails', '~> 4.3.1'
 gem 'kaminari'
 gem 'lograge'
 gem 'mini_magick'
+gem 'mini_racer', platforms: :ruby
 gem 'nokogiri'
 gem 'oj'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.6'
+gem 'react_on_rails', '11.1.4'
 gem 'rest-client'
 gem 'sassc-rails'
 gem 'scenic'
@@ -39,9 +41,8 @@ gem 'sidekiq-scheduler'
 gem 'simple_form'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
+gem 'webpacker', '~> 3'
 gem 'yt', '~> 0.32.3'
-gem "react_on_rails", "11.1.4"
-gem "webpacker", "~> 3"
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

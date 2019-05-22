@@ -8,12 +8,14 @@ class SocialNetworks::YoutubeApiService
   def call
     youtube_video = Yt::Video.new(id: @video_id)
     yt_snippet_data = youtube_video&.snippet&.data
-    remote_cover_url = yt_snippet_data&.dig('thumbnails', 'standard', 'url') || yt_snippet_data&.dig('thumbnails', 'high', 'url')
+    high_quality = yt_snippet_data&.dig('thumbnails', 'standard', 'url')
+    low_quality = yt_snippet_data&.dig('thumbnails', 'high', 'url')
 
     data = {
       title: youtube_video.title,
-      remote_cover_url: remote_cover_url,
-      embeddable: youtube_video.embeddable?
+      remote_cover_url: high_quality || low_quality,
+      embeddable: youtube_video.embeddable?,
+      high_quality_cover: (high_quality || '').blank?
     }
 
     data

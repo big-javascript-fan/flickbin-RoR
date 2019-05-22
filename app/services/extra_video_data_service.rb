@@ -36,6 +36,7 @@ class ExtraVideoDataService
     @video.source_id = video_id
     @video.title = api_data[:title]
     @video.remote_cover_url = api_data[:remote_cover_url]
+    @video.high_quality_cover = api_data[:high_quality_cover]
   rescue StandardError => e
     ExceptionLogger.create(source: 'ExtraVideoDataService#get_data_form_youtube_api', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'ExtraVideoDataService#get_data_form_youtube_api' })

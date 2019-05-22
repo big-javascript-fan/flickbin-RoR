@@ -15,7 +15,7 @@ class SocialNetworks::YoutubeApiService
       title: youtube_video.title,
       remote_cover_url: high_quality || low_quality,
       embeddable: youtube_video.embeddable?,
-      high_quality_cover: (high_quality || '').blank?
+      high_quality_cover: !high_quality.nil?
     }
 
     data

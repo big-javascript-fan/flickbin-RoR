@@ -12,6 +12,8 @@ class UpdateThumbnailsForVideosService < ApplicationService
           high_quality_cover: yt_data[:high_quality_cover]
         )
       end
+    rescue StandardError
+      video.delete
     end
   rescue StandardError => e
     ExceptionLogger.create(source: 'UpdateThumbnailsForVideosService#call', message: e)

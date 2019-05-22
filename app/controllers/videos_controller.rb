@@ -47,7 +47,7 @@ class VideosController < ApplicationController
 
     @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id) if current_user.present?
 
-    @meta_title = "#{@video.title} | "
+    @meta_title = "#{@video.title} posted to #{@video.user.channel_name}"
   end
 
   def destroy

@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :prepare_exception_notifier
+  before_action :meta_title
   layout :layout_by_resource
 
   private
@@ -29,5 +30,12 @@ class ApplicationController < ActionController::Base
     else
       root_path
     end
+  end
+
+  def meta_title
+    @meta_title = [
+      'flickbin',
+      'Discover and rank the best videos on the web.'
+    ]
   end
 end

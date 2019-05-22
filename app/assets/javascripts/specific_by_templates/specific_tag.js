@@ -77,14 +77,14 @@ $(function() {
                     <div class="tagThumbnailLink large">
                       <img alt="${video.title}" class="tagThumbnail large" src="${video.cover_url}">
                       <span class="playerIcon displayNone"><i class="fas fa-play"></i></span>
-                      <div class="card-cover">
+                    </div>
+                    <div class="card-cover">
                         ${video.source === 'youtube' ? '<span class="icon youtube-icon"></span>' : ''}
                         ${video.source === 'facebook' ? '<span class="icon facebook-icon"></span>' : ''}
                         ${video.source === 'daily_motion' ? '<span class="icon dailymotion-icon"></span>' : ''}
                         ${video.source === 'twitch' ? '<span class="icon fab fa-twitch"></span>' : ''}
                         <a href="/videos/${video.slug}" class="descText">${video.title}</a>
                       </div>
-                    </div>
                     </div>
                   </div>
                   <div class="card-body card-body-newest">

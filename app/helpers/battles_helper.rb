@@ -2,7 +2,7 @@
 
 module BattlesHelper
   def battle_heading_title
-    "#{@battle.title} CREATOR BATTLE"
+    'CREATOR BATTLE'
   end
 
   def battle_final_date

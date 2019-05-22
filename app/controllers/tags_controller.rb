@@ -75,7 +75,7 @@ class TagsController < ApplicationController
     @meta_title = case action_name
                   when 'show'
                     [
-                      "#{find_tag.title.upcase} on flickbin.tv",
+                      "#{find_tag.title} on flickbin.tv",
                       'Discover and rank the best videos on the web.'
                     ]
                   else

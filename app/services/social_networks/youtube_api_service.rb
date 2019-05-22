@@ -17,7 +17,7 @@ class SocialNetworks::YoutubeApiService
       embeddable: youtube_video.embeddable?,
       length: youtube_video.length,
       duration: youtube_video.duration,
-      high_quality_cover: (high_quality || '').blank?
+      high_quality_cover: !high_quality.nil?
     }
   end
 end

@@ -41,4 +41,15 @@ class BattlesController < ApplicationController
   def user_without_votes
     @user_without_votes ||= CheckUserAnyBattleVoteExistanceService.new(battle, request.ip, current_user).call
   end
+
+  def meta_title
+    @meta_title = case action_name
+                  when 'show'
+                    [
+                      "#{battle.title}, Flickbin Creator Battle"
+                    ]
+                  else
+                    super
+    end
+  end
 end

@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def meta_title
-    @meta_title = [
+    @meta_title ||= [
       'flickbin',
       'Discover and rank the best videos on the web.'
     ]

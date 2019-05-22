@@ -2,10 +2,6 @@
 
 module ApplicationHelper
   def meta_title
-    [
-      @meta_title,
-      'flickbin',
-      'Discover and rank the best videos on the web.'
-    ].compact.join(' | ')
+    (@meta_title || ['flickbin', 'Discover and rank the best videos on the web.']).compact.join(' | ')
   end
 end

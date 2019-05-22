@@ -246,7 +246,9 @@
 	.leftPanel { position: relative; padding:15px; float: none; clear: both; width: 100%; background-color: #fff; }
 
 	.brand { float: left; margin: 13px 0 0 0; width: 117px; background-position: right center; background: url('/images/logo.png') no-repeat; background-size: contain;}
-
+	.brand-white {
+		background-image: url('/images/logo_placement.png');
+	}
 	.contentPanel { padding: 20px 15px; margin: 0; float: none; width: 100%; margin-bottom: 80px;}
 	.container-tags {
 		z-index: 2;
@@ -674,9 +676,6 @@
 		width: 70%;
 		padding: 9px;
 	}
-	.btnReverseTheme .btn:last-child {
-		margin-left: 0;
-	}
 	.btnReverseTheme .btn {
 		padding-left: 14px;
 		padding-right: 14px;
@@ -724,9 +723,6 @@
 	}
 	.videoLoginBtns {
 		margin-top: 7px;
-	}
-	.btn {
-		margin-right: 4px;
 	}
 	.siteFooter {
 		bottom: 0;

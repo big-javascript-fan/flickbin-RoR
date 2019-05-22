@@ -2,7 +2,7 @@
 
 module HomeHelper
   def home_cover_for(video)
-    video.cover.url
+    video.cover.url || ''
   end
 
   def home_slug_for(video)

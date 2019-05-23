@@ -24,10 +24,10 @@ ActiveAdmin.setup do |config|
   # will be added to.
   #
   # eg:
-  #   config.default_namespace = :hello_world
+  #   config.default_namespace = :tv
   #
-  # This will create resources in the HelloWorld module and
-  # will namespace routes to /hello_world/*
+  # This will create resources in the Tv module and
+  # will namespace routes to /tv/*
   #
   # To set no namespace by default, use:
   #   config.default_namespace = false

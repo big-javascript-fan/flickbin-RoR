@@ -6,7 +6,11 @@ class BattleMemberChannelAvatarUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    if model.is_a?(BattleMember)
+      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    else
+      "uploads/battle_member/photo/#{model.send(extraction_column_member_id(mounted_as))}"
+    end
   end
   process resize_to_fit: [260, 260]
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -37,4 +41,9 @@ class BattleMemberChannelAvatarUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  private
+
+  def extraction_column_member_id(args)
+    args.to_s.gsub('photo', 'id')
+  end
 end

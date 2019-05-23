@@ -1,0 +1,55 @@
+.card-tv {
+  .card-title {
+    font-size: 14px;
+    color: rgba( 255,255,255,0.46 );
+    margin-bottom: 0;
+  }
+  .card-description {
+    font-size: 18px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+.card-tv-video {
+  display: flex;
+  align-items: center;
+  .card-media {
+    margin-bottom: 0;
+    img {
+      max-width: 40px;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+    }
+  }
+  .card-body {
+    padding: 21px 21px 28px;
+    line-height: 20px;
+    &-small {
+      padding:0 11px;
+    }
+  }
+}
+
+.card-tv-chanel-video {
+  display: flex;
+  background: green;
+  .card-media {
+    margin-bottom: 0;
+    img {
+      max-width: 93px;
+      width: 93px;
+      height: 93px;
+      object-fit: cover;
+    }
+  }
+  .card-body {
+    padding: 21px 21px 28px;
+    line-height: 20px;
+  }
+}

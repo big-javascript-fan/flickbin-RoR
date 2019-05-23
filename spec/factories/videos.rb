@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: videos
@@ -6,8 +7,10 @@
 #  id                    :bigint(8)        not null, primary key
 #  comments_count        :integer          default(0)
 #  cover                 :string
+#  duration              :integer
 #  high_quality_cover    :boolean          default(FALSE)
 #  kind_of               :string           default("")
+#  length                :string
 #  negative_votes_amount :integer          default(0)
 #  positive_votes_amount :integer          default(0)
 #  rank                  :integer

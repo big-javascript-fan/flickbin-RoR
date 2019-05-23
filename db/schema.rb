@@ -225,6 +225,8 @@ ActiveRecord::Schema.define(version: 20190522081916) do
     t.string "source", default: ""
     t.string "kind_of", default: ""
     t.boolean "high_quality_cover", default: false
+    t.string "length"
+    t.integer "duration"
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["source_id"], name: "index_videos_on_source_id"
@@ -262,5 +264,65 @@ ActiveRecord::Schema.define(version: 20190522081916) do
        JOIN users ON ((users.id = videos.user_id)))
        JOIN tags ON ((tags.id = videos.tag_id)))
     WHERE (videos.wasp_post = false);
+  SQL
+  create_view "battle_with_title_and_members", sql_definition: <<-SQL
+      SELECT battles.id,
+      battles.tag_id,
+      battles.first_member_id,
+      battles.second_member_id,
+      battles.number_of_rematch_requests,
+      battles.winner,
+      battles.status,
+      battles.final_date,
+      battles.created_at,
+      battles.updated_at,
+      battles.slug,
+      ((((((array_agg(first_members_battles.name))[1])::text || ' vs '::text) || ((array_agg(second_members_battles.name))[1])::text) || ' '::text) || battles.id) AS custom_title,
+      ((upper(((array_agg(first_members_battles.name))[1])::text) || ' vs '::text) || upper(((array_agg(second_members_battles.name))[1])::text)) AS title,
+      (array_agg(first_members_battles.id))[1] AS first_members_battles_id,
+      (array_agg(first_members_battles.name))[1] AS first_members_battles_name,
+      (array_agg(first_members_battles.twitter_account_name))[1] AS first_members_battles_twitter_account_name,
+      (array_agg(first_members_battles.photo))[1] AS first_members_battles_photo,
+      count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = first_members_battles.id)) AS first_members_battles_voices,
+      (array_agg(second_members_battles.id))[1] AS second_members_battles_id,
+      (array_agg(second_members_battles.name))[1] AS second_members_battles_name,
+      (array_agg(second_members_battles.twitter_account_name))[1] AS second_members_battles_twitter_account_name,
+      (array_agg(second_members_battles.photo))[1] AS second_members_battles_photo,
+      count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = second_members_battles.id)) AS second_members_battles_voices,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN (array_agg(first_members_battles.id))[1]
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN (array_agg(second_members_battles.id))[1]
+              ELSE NULL::bigint
+          END AS winner_members_battles_id,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN (array_agg(first_members_battles.twitter_account_name))[1]
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN (array_agg(second_members_battles.twitter_account_name))[1]
+              ELSE NULL::character varying
+          END AS winner_members_battles_twitter_account_name,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN (array_agg(first_members_battles.photo))[1]
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN (array_agg(second_members_battles.photo))[1]
+              ELSE NULL::character varying
+          END AS winner_members_battles_photo,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN (array_agg(second_members_battles.twitter_account_name))[1]
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN (array_agg(first_members_battles.twitter_account_name))[1]
+              ELSE NULL::character varying
+          END AS loser_members_battles_twitter_account_name,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = first_members_battles.id))
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = second_members_battles.id))
+              ELSE NULL::bigint
+          END AS winner_members_battles_voices,
+          CASE
+              WHEN ((battles.winner)::text = ((array_agg(first_members_battles.name))[1])::text) THEN count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = second_members_battles.id))
+              WHEN ((battles.winner)::text = ((array_agg(second_members_battles.name))[1])::text) THEN count(battle_votes.id) FILTER (WHERE (battle_votes.battle_member_id = first_members_battles.id))
+              ELSE NULL::bigint
+          END AS loser_members_battles_voices
+     FROM (((battles
+       LEFT JOIN battle_votes ON ((battle_votes.battle_id = battles.id)))
+       JOIN battle_members first_members_battles ON ((first_members_battles.id = battles.first_member_id)))
+       JOIN battle_members second_members_battles ON ((second_members_battles.id = battles.second_member_id)))
+    GROUP BY battles.id;
   SQL
 end

@@ -21,7 +21,7 @@
       <% end %>
       <div class="heading-hero">
         <h1 class="heading-title">
-          CREATOR BATTLE
+          <%= battle_heading_title %>
         </h1>
         <p class="heading-subtitle">
           <span>The creator with the</span> most votes <span>wins.</span> Choose your favorite.
@@ -36,7 +36,7 @@
         # Anton Tkachov. We don't have seconds in our timer, therefore last minute will be cut
         # I bring back this minute by adding it to the expiration time
       %>
-      <div class="uk-countdown uk-countdown-battle " uk-countdown="date: <%= (@battle.final_date + 1.minute).to_formatted_s(:iso8601)%>">
+      <div class="uk-countdown uk-countdown-battle " uk-countdown="date: <%= battle_final_date %>">
         <div>
           <div class="uk-countdown-number uk-countdown-days"></div>
           <div class="uk-countdown-label">Days</div>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </section>
-    <section class="section-fight" data-battle="<%= @battle.id %>">
+    <section class="section-fight" data-battle="<%= battle_id %>">
 
       <div class="layout-fight">
         <div class="layout-item">
@@ -61,36 +61,36 @@
         </div>
         <div class="layout-item layout-grow layout-flex">
           <div class="layout-fight-secondary">
-            <% {
-                 @battle.first_member => @battle.first_member_votes,
-                 @battle.second_member => @battle.second_member_votes
-               }.each_with_index do |(current_member, current_voices), index| %>
+            <% [
+                 'first_members',
+                 'second_members'
+               ].each_with_index do |current_member, index| %>
               <div class="layout-item layout-grow">
-                <div class="card-fight <%= 'card-fight-winner' if @battle.winner == current_member.name %>">
+                <div class="card-fight <%= 'card-fight-winner' if battle_winner?(current_member) %>">
                   <div class="card-header">
-                    <div class="card-title"><%= current_member.name %></div>
-                    <a href="https://twitter.com/<%= current_member.twitter_account_name %>" class="card-twitter" target='_blank' <%= "uk-tooltip=#{current_member.twitter_account_name}" if current_member.twitter_account_name.length > 12 %>>
-                      @<%= current_member.twitter_account_name %>
+                    <div class="card-title"><%= battles_name_for(current_member) %></div>
+                    <a href="https://twitter.com/<%= battles_twitter_account_name_for(current_member) %>" class="card-twitter" target='_blank' <%= "uk-tooltip=#{battles_twitter_account_name_for(current_member)}" if battles_twitter_account_name_for(current_member).length > 12 %>>
+                      @<%= battles_twitter_account_name_for(current_member) %>
                     </a>
                   </div>
                   <div class="card-body">
                     <div class="card-image">
                       <div>
-                        <%= image_tag(current_member.photo) %>
+                        <%= image_tag(battles_photo_for(current_member)) %>
                       </div>
                     </div>
                     <a href="#" class="card-vote
-                                       <%= 'card-vote-used' if @battle.live? && @already_voted.any? %>
-                                       <%= 'card-vote-disabled' if @battle.finished? || [current_member.name, nil].exclude?(@voted_member_name) %>"
-                                data-member="<%= index + 1 %>" data-name="<%=current_member.name%>">
-                      <%= current_voices %>
-                      <% if @battle.live? && @already_voted.empty?%>
+                                       <%= 'card-vote-used' if battle_live? && already_voted_any? %>
+                                       <%= 'card-vote-disabled' if battle_finished? || [battles_name_for(current_member), nil].exclude?(@voted_member_name) %>"
+                                data-member="<%= index + 1 %>" data-name="<%= battles_name_for(current_member) %>">
+                      <%= battles_voices_for(current_member) %>
+                      <% if battle_live? && !already_voted_any?%>
                         <span class="icon icon-arrow_drop_up"></span>
                       <% end %>
                     </a>
-                    <% if @battle.live? %>
+                    <% if battle_live? %>
                       <div class="card-vote-description" >
-                        <%if @already_voted.any? %>
+                        <%if already_voted_any? %>
                           You've voted for <%=@voted_member_name%>.
                           You can vote again in
                           <div class='card-vote-countdown' uk-countdown="date:<%= (@already_voted.last.updated_at + 1.day).to_formatted_s(:iso8601) %>">
@@ -103,7 +103,7 @@
                             </div>
                           </div>
                         <% else %>
-                          Vote for <%= current_member.name %>
+                          Vote for <%= battles_name_for(current_member) %>
                         <% end %>
                       </div>
                     <% end %>
@@ -113,14 +113,14 @@
                   </div>
                 </div>
               </div>
-              <% if current_member == @battle.first_member %>
+              <% if current_member == 'first_members' %>
                 <div class="layout-item layout-divider">
                   <div class="text-divider">
                     <span>VS.</span>
                   </div>
                   <a href="#" class="divider-button
-                                     <%= 'hidden' if @battle.live? %>
-                                     <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+                                     <%= 'hidden' if battle_live? %>
+                                     <%= 'divider-button-disabled' if battle_finished? && @rematch_request_sent %>">
                     <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
                   </a>
                 </div>
@@ -128,8 +128,8 @@
             <% end %>
           </div>
           <a href="#" class="divider-button-mobile
-                             <%= 'hidden' if @battle.live? %>
-                             <%= 'divider-button-disabled' if @battle.finished? && @rematch_request_sent %>">
+                             <%= 'hidden' if battle_live? %>
+                             <%= 'divider-button-disabled' if battle_finished? && @rematch_request_sent %>">
             <%= @rematch_request_sent ? "Rematch Requested" : "Request a Rematch" %>
           </a>
         </div>
@@ -138,23 +138,23 @@
         </div>
       </div>
     </section>
-    <section class="section-tweets <%= 'hidden' if @battle.finished? && @user_without_votes %>">
+    <section class="section-tweets <%= 'hidden' if battle_finished? && @user_without_votes %>">
       <div class="layout-tweets">
-        <% [@battle.first_member, @battle.second_member].each do |current_member| %>
+        <% ['first_members', 'second_members'].each do |current_member| %>
           <div class="layout-item
                       fan-tweet
-                      <%= 'hidden' if @battle.finished? %>">
+                      <%= 'hidden' if battle_finished? %>">
             <div class="card-tweets">
               <div class="card-header">
                 <div class="card-image">
-                  <%= image_tag(current_member.photo) %>
+                  <%= image_tag(battles_photo_for(current_member)) %>
                   <span class="icon fab fa-twitter"></span>
                 </div>
                 <div class="card-title">
                   Spread the Word
                 </div>
                 <div class="card-description">
-                  Fans of <b><%= current_member.name %></b>, Tweet This.
+                  Fans of <b><%= battles_name_for(current_member) %></b>, Tweet This.
                 </div>
               </div>
               <div class="card-body">
@@ -163,7 +163,7 @@
                     <span class="icon fab fa-twitter"></span>
                     <div class="textarea-wrapper">
                       <span class="textarea-tip"></span>
-                      <textarea class="textarea">The Creator battle round is happening now between @<%= @battle.first_member.twitter_account_name %> and @<%= @battle.second_member.twitter_account_name %> on Flickbin. Go vote for @<%= current_member.twitter_account_name %> now before it’s too late!</textarea>
+                      <textarea class="textarea">The Creator battle round is happening now between @<%= battles_twitter_account_name_for('first_members') %> and @<%= battles_twitter_account_name_for('second_members') %> on Flickbin. Go vote for @<%= battles_twitter_account_name_for(current_member) %> now before it’s too late!</textarea>
                     </div>
                   </label>
                   <a class="form-button" href="#">Send Tweet</a>
@@ -174,11 +174,11 @@
         <% end %>
         <div class="layout-item
                     winner-tweet
-                    <%= 'hidden' if @battle.live? || @battle.winner == 'draw' %>">
+                    <%= 'hidden' if battle_live? || battle_draw? %>">
           <div class="card-tweets">
             <div class="card-header">
               <div class="card-image">
-                <%= image_tag(@battle.winner_member.try(:photo) || '') %>
+                <%= image_tag(battles_photo_for('winner_member') || '') %>
                 <span class="icon fab fa-twitter"></span>
               </div>
               <div class="card-title">
@@ -191,7 +191,7 @@
                   <span class="icon fab fa-twitter"></span>
                   <div class="textarea-wrapper">
                     <span class="textarea-tip"></span>
-                    <textarea class="textarea">Congratulations to @<%= @battle.winner_member.try(:twitter_account_name) %> for winning the Flickbin creator battle against @<%= @battle.loser_member.try(:twitter_account_name) %>. The final vote count <%= @battle.winner_votes %> to <%= @battle.loser_votes %> in favor of @<%= @battle.winner_member.try(:twitter_account_name) %>.</textarea>
+                    <textarea class="textarea">Congratulations to @<%= battles_twitter_account_name_for('winner_members') %> for winning the Flickbin creator battle against @<%= battles_twitter_account_name_for('loser_members') %>. The final vote count <%= battles_voices_for('winner_members') %> to <%= battles_voices_for('loser_members') %> in favor of @<%= battles_twitter_account_name_for('winner_members') %>.</textarea>
                   </div>
                 </label>
                 <a class="form-button" href="#">Send Tweet</a>
@@ -203,10 +203,10 @@
     </section>
     <section class="section-trending">
       <div class="container-trending">
-        <h1>
+        <h2>
           Trending Now in
           <%= link_to(@battle.tag.title.capitalize, @battle.tag) %>
-        </h1>
+        </h2>
         <div class="tagSpecificWrapper">
           <ul class="entityList inTag specificTagList tagListHasNumber video-feed grid-trending" video_ids="<%= @current_user_voted_video_ids %>">
             <%= render 'tags/partials/videos_feed' %>

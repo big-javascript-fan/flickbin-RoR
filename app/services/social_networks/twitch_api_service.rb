@@ -16,7 +16,7 @@ class SocialNetworks::TwitchApiService
 
       api_data = {
         type: 'video',
-        title:  parsed_body['title'],
+        title: parsed_body['title'],
         remote_cover_url: remote_cover_url
       }
     when 'clip'
@@ -27,19 +27,19 @@ class SocialNetworks::TwitchApiService
 
       api_data = {
         type: 'clip',
-        title:  parsed_body['title'],
+        title: parsed_body['title'],
         remote_cover_url: remote_cover_url
       }
     when 'stream'
       video_url = "https://api.twitch.tv/kraken/streams/#{@video_id}"
       response_body = RestClient.get(video_url, params: { client_id: ENV['TWITCH_APP_ID'] }).body
       parsed_body = JSON.parse(response_body)
-      remote_cover_url = parsed_body.dig('stream', 'preview','large' )
+      remote_cover_url = parsed_body.dig('stream', 'preview', 'large')
 
       api_data = {
         type: 'stream',
         stream_available: parsed_body['stream'].present?,
-        title:  parsed_body.dig('stream', 'game'),
+        title: parsed_body.dig('stream', 'game'),
         remote_cover_url: remote_cover_url
       }
     end

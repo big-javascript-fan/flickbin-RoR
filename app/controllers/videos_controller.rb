@@ -2,6 +2,7 @@
 
 class VideosController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
+  before_action :find_video, only: %i[show]
 
   def new
     @sidebar_tags = get_sidebar_tags
@@ -31,7 +32,6 @@ class VideosController < ApplicationController
 
   def show
     @sidebar_tags = get_sidebar_tags(70)
-    @video = Video.friendly.find(params[:video_slug])
     @last_hour_upvotes = @video.votes
                                .where("votes.value = 1 AND votes.created_at BETWEEN '#{1.hour.ago}' AND '#{Time.now}'")
                                .count
@@ -46,8 +46,6 @@ class VideosController < ApplicationController
     @comments_tree = comments.map { |comment| comment.subtree(to_depth: 1).arrange }
 
     @vote = Vote.find_by(voter_id: current_user.id, video_id: @video.id) if current_user.present?
-
-    @meta_title = "#{@video.title} | "
   end
 
   def destroy
@@ -62,5 +60,24 @@ class VideosController < ApplicationController
 
   def create_params
     params.fetch(:video, {}).permit(:url, :tag_name, :tag_id)
+  end
+
+  private
+
+  def find_video
+    @video ||= Video.friendly.find(params[:video_slug])
+  end
+
+  def meta_title
+    @meta_title = case action_name
+                  when 'show'
+                    [
+                      "#{find_video.title} posted to #{find_video.user.channel_name}",
+                      'flickbin',
+                      'Discover and rank the best videos on the web.'
+                    ]
+                  else
+                    super
+    end
   end
 end

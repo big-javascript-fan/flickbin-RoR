@@ -1,23 +1,21 @@
-<% content_for :meta_title, @meta_title %>
-
 <div class="wrapper scroll">
   <div class="offCanvasMask"></div>
   <aside class="leftPanel">
     <div>
-       <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
-      <span class="offCanvasBar">&nbsp;</span>
-      <span class="offCanvasBar">&nbsp;</span>
-      <span class="offCanvasBar">&nbsp;</span>
-    </button>
+      <button type="button" class="offCanvasBtn offCanvasBtnStyle hideOnDesktop">
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+        <span class="offCanvasBar">&nbsp;</span>
+      </button>
 
-    <%= link_to "flickbin", root_path, class: "brand" %>
-    <% if current_user.present? %>
-      <div class="clearfix hideOnDesktop mobileBtnPosition">
-        <%= render 'partials/logged_in_right_header' %>
-      </div>
-    <% end %>
+      <%= link_to "flickbin", root_path, class: "brand" %>
+      <% if current_user.present? %>
+        <div class="clearfix hideOnDesktop mobileBtnPosition">
+          <%= render 'partials/logged_in_right_header' %>
+        </div>
+      <% end %>
 
-    <%= render 'partials/trending_tags_bar' %>
+      <%= render 'partials/trending_tags_bar' %>
     </div>
 
   </aside>
@@ -28,16 +26,16 @@
   </div>
   <section class="videoContentPanel specificVideo comments">
     <div class="videoOnboarding displayNone">
-        <div class="closeVideoOnboarding">
-          <a href="#" class="closeOnboardLink">&times;</a>
-        </div>
-        <div class="vidOnboardContent">
-          <div class="vidOnboardFlickbear">
-            <%= image_tag("/images/flickBearOnboarding.png", alt: 'flickbear') %>
-          </div>
-          <p><span>Welcome!</span> flickbin is a collection of the best videos from around the web, submitted, organized and ranked by our community.</p>
-        </div>
+      <div class="closeVideoOnboarding">
+        <a href="#" class="closeOnboardLink">&times;</a>
       </div>
+      <div class="vidOnboardContent">
+        <div class="vidOnboardFlickbear">
+          <%= image_tag("/images/flickBearOnboarding.png", alt: 'flickbear') %>
+        </div>
+        <p><span>Welcome!</span> flickbin is a collection of the best videos from around the web, submitted, organized and ranked by our community.</p>
+      </div>
+    </div>
     <section class="videoTop">
       <% unless Rails.env.production? %>
         <div class='technical_info'>
@@ -65,13 +63,13 @@
                 </span>
                 <span class="counterOption upVote"><span class="icon icon-arrow_drop_up"></span></span>
                 <%# if @video.votes_amount.zero? %>
-<!--                <span class="counterOption downVote inactiveDownVote <%#= 'voted' if @vote&.value&.negative? %>">-->
-<!--                  <i class="fas fa-caret-down"></i>-->
-<!--                </span>-->
+                <!--                <span class="counterOption downVote inactiveDownVote <%#= 'voted' if @vote&.value&.negative? %>">-->
+                <!--                  <i class="fas fa-caret-down"></i>-->
+                <!--                </span>-->
                 <%# else %>
-<!--                <span class="counterOption downVote <%#= 'voted' if @vote&.value&.negative? %>">-->
-<!--                  <i class="fas fa-caret-down"></i>-->
-<!--                </span>-->
+                <!--                <span class="counterOption downVote <%#= 'voted' if @vote&.value&.negative? %>">-->
+                <!--                  <i class="fas fa-caret-down"></i>-->
+                <!--                </span>-->
                 <%# end %>
               </div>
             </div>
@@ -94,13 +92,13 @@
                 <span class="counterOption upVote"><span class="icon icon-arrow_drop_up"></span></span>
                 <span class="counterNumber counterValueHolder"><%= @video.votes_amount %></span>
                 <% if @video.votes_amount.zero? %>
-<!--                <span class="counterOption downVote inactiveDownVote">-->
-<!--                  <i class="fas fa-caret-down"></i>-->
-<!--                </span>-->
+                  <!--                <span class="counterOption downVote inactiveDownVote">-->
+                  <!--                  <i class="fas fa-caret-down"></i>-->
+                  <!--                </span>-->
                 <% else %>
-<!--                <span class="counterOption downVote">-->
-<!--                  <i class="fas fa-caret-down"></i>-->
-<!--                </span>-->
+                  <!--                <span class="counterOption downVote">-->
+                  <!--                  <i class="fas fa-caret-down"></i>-->
+                  <!--                </span>-->
                 <% end %>
               </div>
             </div>

@@ -1,9 +1,173 @@
 # frozen_string_literal: true
 
 class TvController < ApplicationController
-  layout "application"
+  layout 'application'
 
   def index
-    @hello_world_props = { name: "Stranger", names: [] }
+    @tv_props = { channels: [{
+                                                            playlist: [{
+                                                              comments_count: 0,
+                                                              cover: {url: "http://localhost:3000/uploads/video/cover/3845/sddefault.jpg"},
+                                                              created_at: "2019-05-22T05:40:27.003Z",
+                                                              duration: 771,
+                                                              id: 3845,
+                                                              kind_of: "video",
+                                                              length: "00:12:51",
+                                                              negative_votes_amount: 0,
+                                                              positive_votes_amount: 0,
+                                                              rank: 27,
+                                                              removed: false,
+                                                              slug: "александр-гудков-гарик-харламов-и-тимур-батрутдинов-ошуительное-хоу",
+                                                              source: "youtube",
+                                                              source_id: "3i0bQmGZeXw",
+                                                              tag_id: 7,
+                                                              twitter_handle: nil,
+                                                              title: "Александр Гудков, Гарик Харламов и Тимур Батрутдинов. Ошуительное Хоу.",
+                                                              untagged: false,
+                                                              updated_at: "2019-05-22T05:40:27.037Z",
+                                                              url: "https://www.youtube.com/watch?v=3i0bQmGZeXw",
+                                                              user_id: 7,
+                                                              wasp_outreach: false,
+                                                              wasp_post: false
+                                                            }, {
+                                                                cover: { url: "http://localhost:3000/uploads/video/cover/3848/sddefault.jpg"},
+                                                                created_at: "2019-05-22T06:41:06.170Z",
+                                                                duration: 174,
+                                                                id: 3846,
+                                                                kind_of: "video",
+                                                                length: "00:02:54",
+                                                                negative_votes_amount: 0,
+                                                                positive_votes_amount: 0,
+                                                                rank: 101,
+                                                                removed: false,
+                                                                slug: "ragnbone-man-human-official-video-2",
+                                                                source: "youtube",
+                                                                source_id: "L3wKzyIN1yk",
+                                                                tag_id: 1158,
+                                                                title: "Rag'n'Bone Man - Human (Official Video)",
+                                                                twitter_handle: nil,
+                                                                untagged: false,
+                                                                updated_at: "2019-05-22T06:41:06.191Z",
+                                                                url: "https://www.youtube.com/watch?v=L3wKzyIN1yk&list=RDZbZSe6N_BXs&index=2",
+                                                                user_id: 7,
+                                                                wasp_outreach: false,
+                                                                wasp_post: false
+                                                            }],
+                                                            user: {
+                                                              allowed_to_send_notifications: true,
+                                                              avatar: {
+                                                                  url: "http://localhost:3000/uploads/user/avatar/7/coach3.jpeg",
+                                                                  thumb_44x44: {url: "http://localhost:3000/uploads/user/avatar/7/thumb_44x44_coach3.jpeg"},
+                                                                  thumb_128x128: {url: '"http://localhost:3000/uploads/user/avatar/7/thumb_128x128_coach3.jpeg"'}
+                                                              },
+                                                              channel_description: "This is a station description",
+                                                              channel_name: "new_blogger",
+                                                              created_at: "2018-10-16T15:46:29.815Z",
+                                                              email: "magistr.koma@gmail.com",
+                                                              fake_avatar_url: "",
+                                                              id: 7,
+                                                              rank: 0,
+                                                              receive_notification_emails: true,
+                                                              receive_promotional_emails: true,
+                                                              role: "sidekiq_manager",
+                                                              slug: "new_blogger",
+                                                              updated_at: "2018-12-21T16:40:11.502Z"
+                                                            }}, {
+                                                            playlist: [{
+                                                              cover: { url: "http://localhost:3000/uploads/video/cover/3847/sddefault.jpg" },
+                                                              created_at: "2019-05-22T12:01:41.105Z",
+                                                              duration: 241,
+                                                              id: 3857,
+                                                              kind_of: "video",
+                                                              length: "00:02:54",
+                                                              negative_votes_amount: 0,
+                                                              positive_votes_amount: 0,
+                                                              rank: 101,
+                                                              removed: false,
+                                                              slug: "pharrell-williams-happy-official-music-video",
+                                                              source: "youtube",
+                                                              source_id: "ZbZSe6N_BXs",
+                                                              tag_id: 1159,
+                                                              title: "Pharrell Williams - Happy (Official Music Video)",
+                                                              twitter_handle: nil,
+                                                              untagged: false,
+                                                              updated_at: "2019-05-22T06:41:06.191Z",
+                                                              url: "https://www.youtube.com/watch?v=6_W_xLWtNa0&list=RD6_W_xLWtNa0&start_radio=1",
+                                                              user_id: 8,
+                                                              wasp_outreach: false,
+                                                              wasp_post: false
+                                                          },
+                                                             {
+                                                                 cover: { url: "http://localhost:3000/uploads/video/cover/3848/sddefault.jpg"},
+                                                                 created_at: "2019-05-22T06:41:06.170Z",
+                                                                 duration: 174,
+                                                                 id: 3849,
+                                                                 kind_of: "video",
+                                                                 length: "00:02:54",
+                                                                 negative_votes_amount: 0,
+                                                                 positive_votes_amount: 0,
+                                                                 rank: 101,
+                                                                 removed: false,
+                                                                 slug: "ragnbone-man-human-official-video-2",
+                                                                 source: "youtube",
+                                                                 source_id: "L3wKzyIN1yk",
+                                                                 tag_id: 1160,
+                                                                 title: "Rag'n'Bone Man - Human (Official Video)",
+                                                                 twitter_handle: nil,
+                                                                 untagged: false,
+                                                                 updated_at: "2019-05-22T06:41:06.191Z",
+                                                                 url: "https://www.youtube.com/watch?v=L3wKzyIN1yk&list=RDZbZSe6N_BXs&index=2",
+                                                                 user_id: 8,
+                                                                 wasp_outreach: false,
+                                                                 wasp_post: false
+                                                             },
+                                                               {
+                                                                   comments_count: 0,
+                                                                   cover: {url: "http://localhost:3000/uploads/video/cover/3845/sddefault.jpg"},
+                                                                   created_at: "2019-05-22T05:40:27.003Z",
+                                                                   duration: 771,
+                                                                   id: 3855,
+                                                                   kind_of: "video",
+                                                                   length: "00:12:51",
+                                                                   negative_votes_amount: 0,
+                                                                   positive_votes_amount: 0,
+                                                                   rank: 27,
+                                                                   removed: false,
+                                                                   slug: "александр-гудков-гарик-харламов-и-тимур-батрутдинов-ошуительное-хоу",
+                                                                   source: "youtube",
+                                                                   source_id: "3i0bQmGZeXw",
+                                                                   tag_id: 8,
+                                                                   twitter_handle: nil,
+                                                                   title: "Александр Гудков, Гарик Харламов и Тимур Батрутдинов. Ошуительное Хоу.",
+                                                                   untagged: false,
+                                                                   updated_at: "2019-05-22T05:40:27.037Z",
+                                                                   url: "https://www.youtube.com/watch?v=3i0bQmGZeXw",
+                                                                   user_id: 8,
+                                                                   wasp_outreach: false,
+                                                                   wasp_post: false
+                                                               }
+                                                            ],
+                                                            user: {
+                                                              allowed_to_send_notifications: true,
+                                                              avatar: {
+                                                                  url: "http://localhost:3000/uploads/user/avatar/1/user_avatar.jpeg",
+                                                                  thumb_44x44: {url: "http://localhost:3000/uploads/user/avatar/1/thumb_44x44_user_avatar.jpg"},
+                                                                  thumb_128x128: {url: "http://localhost:3000/uploads/user/avatar/1/thumb_128x128_user_avatar.jpeg"}
+                                                              },
+                                                              channel_description: "This is a station description",
+                                                              channel_name: "old_blogger",
+                                                              created_at: "2018-10-16T15:46:29.815Z",
+                                                              email: "serg@gmail.com",
+                                                              fake_avatar_url: "",
+                                                              id: 8,
+                                                              rank: 0,
+                                                              receive_notification_emails: true,
+                                                              receive_promotional_emails: true,
+                                                              role: "sidekiq_manager",
+                                                              slug: "old_blogger",
+                                                              updated_at: "2018-12-21T16:40:11.502Z"
+                                                            }
+                                                          }
+    ]}
   end
 end

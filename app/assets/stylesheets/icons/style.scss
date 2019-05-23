@@ -26,6 +26,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-multiple-play {
+  &:before {
+    content: $icon-multiple-play;
+  }
+}
+.icon-play-alt {
+  &:before {
+    content: $icon-play-alt;
+  }
+}
+.icon-play {
+  &:before {
+    content: $icon-play;
+  }
+}
 .icon-playlist_add {
   &:before {
     content: $icon-playlist_add;
@@ -81,9 +96,9 @@
     content: $icon-twitch;
   }
 }
-.icon-uniE90C {
+.icon-facebook {
   &:before {
-    content: $icon-uniE90C;
+    content: $icon-facebook;
   }
 }
 .icon-facebook-official {
@@ -101,8 +116,3 @@
     content: $icon-youtube;
   }
 }
-
-
-
-
-

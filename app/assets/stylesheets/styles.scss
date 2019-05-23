@@ -164,6 +164,10 @@
   margin: 36px auto;
   background-size: contain;
 }
+.brand-white {
+  background-image: url('/images/logo_placement.png');
+}
+
 .sidebarBrand {
 
 }
@@ -562,6 +566,13 @@
   list-style: none;
   padding: 0;
   margin: 3px 0 0 0;
+  .play-item {
+    color: currentColor;
+    font-size: 34px;
+    &:hover {
+      color: currentColor;
+    }
+  }
 }
 .afterLoginBtns > li {
   float: left;
@@ -598,15 +609,34 @@
   line-height: 28px;
   border-radius: 50%;
 }
+.afterLoginBtns  .play-item {
+  color: #4E5766;
+  position: relative;
+  &:after {
+    font-weight: bold;
+    content: 'TV';
+    background: #fff;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    bottom: -5px;
+    border-radius: 50%;
+    right: -4px;
+    position: absolute;
+  }
+}
 .afterLoginBtns li:not(.notificationDropdown){
-  .addCircle:hover{
+  .addCircle:hover, .play-item:hover{
     text-decoration: none;
     color: #31B4B0;
     border-color: #31B4B0;
   }
 }
 .afterLoginBtns.reverseThemeHoler li:not(.notificationDropdown){
-  .addCircle:hover{
+  .addCircle:hover, .play-item:hover{
     text-decoration: none;
     color: #4E5766;
     border-color: #4E5766;
@@ -973,6 +1003,18 @@ input[type="text"].searchField {
 .reverseThemeHoler {
   margin-top: 16px;
   padding-bottom: 15px;
+  .afterLoginBtns .play-item {
+    color: #fff;
+    &::after{
+      color: #4E5766;
+    }
+    &:hover {
+      &::after{
+        background: #4E5766;
+        color: #31B4B0;
+      }
+    }
+  }
 }
 .reverseThemeHoler .addCircle {
   color: #fff;
@@ -1804,8 +1846,9 @@ input.grayNormal {
 .counter-wrapper{
   cursor: pointer;
   padding: 9px 17px;
-  border-radius:6px;
   background-color: #FFFFFF;
+  box-shadow: 0 8px 14px -5px rgba(0, 0, 0, 0.5);
+
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1834,6 +1877,9 @@ input.grayNormal {
 }
 .offCanvasMask{
   display: none !important;
+}
+.offCanvasBtn {
+  outline: none;
 }
 .offCanvasBtnClose {
   display: none;

@@ -1,0 +1,111 @@
+.section-tv {
+  background-image: url('/images/section-tv-bg.png');
+  -webkit-background-size: cover;
+  background-size: cover;
+  .section-header {
+    padding: 20px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-left {
+      display: flex;
+      align-items: center;
+      .videoInfoControls {
+        display: none;
+      }
+      .brand {
+        margin: 0 8px 0 0;
+      }
+      .upDownOptions {
+        border-right: none;
+        padding:0;
+      }
+    }
+    &-right {
+      display: flex;
+      align-items: center;
+
+      .button-wrapper {
+        display: flex;
+      }
+      .button-wrapper > * {
+        margin: 0 0 0 6px;
+      }
+      .offCanvasBtn {
+        background: transparent;
+      }
+    }
+  }
+  .section-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 17px 20px;
+    &-left {
+
+    }
+    &-right {
+      .subscribe-tv {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        &-watching {
+          color: rgba(255,255,255,0.3);
+          font-size: 14px;
+          vertical-align: middle;
+          margin-bottom: 14px;
+          &::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50% ;
+            background: $global-primary-background;
+            margin-right: 7px;
+          }
+        }
+        .btn {
+          color: #fff;
+        }
+      }
+    }
+  }
+  @media(min-width: $breakpoint-small ) {
+    .section-header {
+      padding: 37px 42px;
+      &-left {
+        .brand {
+          margin: 0 32px 0 0;
+        }
+        .videoInfoControls {
+          display: flex;
+        }
+      }
+    }
+    .section-footer {
+      padding: 24px 43px;
+    }
+  }
+}
+
+.section-tv-channel {
+  display: flex;
+  padding: 5px 0;
+  .section-sidebar {
+    .chanel-icon{
+      margin: 0;
+      img {
+        max-width: 40px;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+    }
+  }
+  .section-body {
+
+  }
+}

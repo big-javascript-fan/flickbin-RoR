@@ -13,7 +13,7 @@ class UpdateThumbnailsForVideosService < ApplicationService
         )
       end
     rescue StandardError
-      video.delete
+      # video.delete
     end
   rescue StandardError => e
     ExceptionLogger.create(source: 'UpdateThumbnailsForVideosService#call', message: e)

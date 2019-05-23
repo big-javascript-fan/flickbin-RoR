@@ -90,6 +90,7 @@ const Tv = ({
             { channels.map( (channel, channelIndex ) => {
               return <li key={channel.user.id} className="list-item" onClick={() => {
                 channel.user.channel_name !== channels[currentChannel].user.channel_name && setCurrentChannel(channelIndex);
+                setCurrentVideo(0);
               }}>
                 <figure className="chanel-icon">
                   <img src={channel.user.avatar.thumb_44x44.url} alt="icon" />

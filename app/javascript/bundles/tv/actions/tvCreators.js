@@ -1,28 +1,17 @@
 /* eslint-disable import/prefer-default-export */
 
-import { TV_NAME_UPDATE, TV_NAME_ADD, TV_NAME_REMOVE, TV_FILTER_NAMES, TV_TOGGLE_COMPLETED_NAME } from '../constants/tvConstants';
+import { GET_TV_CHANNELS, SET_TV_CURRENT_CHANNEL, SET_TV_CURRENT_VIDEO } from '../constants/tvConstants';
 
-export const updateName = (text) => ({
-  type: TV_NAME_UPDATE,
-  text,
+export const getChannels = (channels) => ({
+  type: GET_TV_CHANNELS,
+  channels
 });
 
-export const addName = (value) =>  ({
-  type: TV_NAME_ADD,
-  value,
+export const setCurrentVideo = (video) => ({
+  type: SET_TV_CURRENT_VIDEO,
+  currentVideo: video
 });
-
-export const removeName = (key) =>  ({
-  type: TV_NAME_REMOVE,
-  key,
-});
-
-export const filterNames = (filter) =>  ({
-  type: TV_FILTER_NAMES,
-  filter,
-});
-
-export const toggleCompletedName = (id) =>  ({
-  type: TV_TOGGLE_COMPLETED_NAME,
-  id,
+export const setCurrentChannel = (channel) => ({
+  type: SET_TV_CURRENT_CHANNEL,
+  currentChannel: channel
 });

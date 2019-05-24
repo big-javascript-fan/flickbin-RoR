@@ -83,8 +83,6 @@ const Tv = ({
           </div>
         </footer>
       </section>
-
-
       <section className="section-tv-channel">
         <aside className="section-sidebar">
           <ul   className="list list-tv-channels" >
@@ -94,16 +92,13 @@ const Tv = ({
                 setCurrentVideo(0);
               }}>
                 <figure className="chanel-icon">
-                  <img src={channel.user.avatar.thumb_44x44.url} alt="icon" />
+                  <img src={channel.user.avatar.thumb_44x44.url && 'images/avatar_holder.jpg'} alt="icon" />
                 </figure>
               </li>
               })
             }
           </ul>
-
         </aside>
-
-
         <div className="section-body">
           {channels.map((channel, channelIndex) => {
             return <ul key={channel.user.id} className="list list-slide-videos">

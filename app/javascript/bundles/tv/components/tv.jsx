@@ -9,6 +9,7 @@ const Tv = ({
   setCurrentChannel,
   currentVideo
 }) => {
+  console.log(channels);
   return <div>
     <div className="wrapper-tv scroll dark-theme">
       <section className="section section-tv">

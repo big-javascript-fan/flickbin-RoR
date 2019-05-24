@@ -8,6 +8,7 @@ default: &default
 
 development:
   <<: *default
+  host: <%= ENV["PG_HOST"] %>
 
 test:
   <<: *default

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190515130136) do
+ActiveRecord::Schema.define(version: 20190522081916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,6 +224,7 @@ ActiveRecord::Schema.define(version: 20190515130136) do
     t.integer "comments_count", default: 0
     t.string "source", default: ""
     t.string "kind_of", default: ""
+    t.boolean "high_quality_cover", default: false
     t.string "length"
     t.integer "duration"
     t.index ["rank"], name: "index_videos_on_rank"

@@ -38,6 +38,7 @@ class ExtraVideoDataService
     @video.remote_cover_url = api_data[:remote_cover_url]
     @video.length = api_data[:length]
     @video.duration = api_data[:duration]
+    @video.high_quality_cover = api_data[:high_quality_cover]
   rescue StandardError => e
     ExceptionService.call(
       source: 'ExtraVideoDataService#get_data_form_youtube_api',

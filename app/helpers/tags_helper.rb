@@ -2,7 +2,7 @@
 
 module TagsHelper
   def tag_heading_title
-    "#{tag_title.upcase} on flickbin.tv | Discover and rank the best videos on the web."
+    tag_title.to_s
   end
 
   def tag_title

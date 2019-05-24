@@ -2549,6 +2549,8 @@ input.grayNormal {
     margin-right: 0;
     margin-bottom: 16px;
     overflow: hidden;
+    padding-bottom: 70%;
+    position: relative;
     &:before{
       content: "";
       position: absolute;
@@ -2569,18 +2571,17 @@ input.grayNormal {
       width: 100%;
       height: auto;
       max-width: 615px;
-      padding-bottom: 60%;
+      position: absolute;
+      top: -20%;
+      right: 0;
+      left: 0;
+      bottom: -20%;
       img{
         width: 100%;
-        height: 100%;
+        height: 100% ;
         -o-object-fit: cover;
         object-fit: cover;
         margin: 0;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
       }
     }
     .card-cover{

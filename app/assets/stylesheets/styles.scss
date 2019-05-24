@@ -2967,6 +2967,7 @@ input.grayNormal {
       display: none;
     }
     &.disabled{
+      pointer-events: none;
       background: #CED4DA;
       cursor: not-allowed;
     }

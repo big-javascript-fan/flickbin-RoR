@@ -37,7 +37,7 @@ const Tv = ({
             <div className="embed-container">
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${channels[currentChannel].playlist[currentVideo].source_id}`}
-                playing
+                playing={true}
                 controls={false}
                 onEnded={() => {
                   let nextVideo;

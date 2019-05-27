@@ -38,7 +38,7 @@ const Tv = ({
               <ReactPlayer
                 url={`https://www.youtube.com/watch?v=${channels[currentChannel].playlist[currentVideo].source_id}`}
                 playing
-                controls={true}
+                controls={false}
                 onEnded={() => {
                   let nextVideo;
                   let nextChannel;
@@ -88,8 +88,10 @@ const Tv = ({
           <ul   className="list list-tv-channels" >
             { channels.map( (channel, channelIndex ) => {
               return <li key={channel.user.id} className="list-item" onClick={() => {
-                channel.user.channel_name !== channels[currentChannel].user.channel_name && setCurrentChannel(channelIndex);
-                setCurrentVideo(0);
+                if (channel.user.channel_name !== channels[currentChannel].user.channel_name && setCurrentChannel(channelIndex)) {
+                  setCurrentVideo(0);
+                }
+
               }}>
                 <figure className="chanel-icon">
                   <img src={channel.user.avatar.thumb_44x44.url ? channel.user.avatar.thumb_44x44.url : 'images/avatar_holder.jpg'} alt="icon" />

@@ -818,7 +818,10 @@ input[type="text"].searchField {
   margin-right: 10px;
 }
 .pillNav > li:first-child a.current {
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
+}
+.pillNav > li a.filter.current {
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
 }
 
 .pillNav > li > a {
@@ -830,7 +833,7 @@ input[type="text"].searchField {
 .pillNav > li > a:hover {
   border: 2px solid #219D99;
   background-color: #219D99;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
   line-height: 28px;
   padding: 0 16px 0 16px;
   color: #fff;
@@ -1832,7 +1835,7 @@ input.grayNormal {
   cursor: pointer;
   padding: 9px 17px;
   background-color: #FFFFFF;
-  box-shadow: 0 8px 14px -5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2433,7 +2436,7 @@ input.grayNormal {
       align-items: center;
       -webkit-box-pack: center;
       -ms-flex-pack: center;
-      box-shadow: 0 3px 5px 0 rgba(0,0,0,0.5);
+      box-shadow: 0 10px 9px -7px rgba(186, 186, 186, 0.58);
       justify-content: center;
     }
     &-id{

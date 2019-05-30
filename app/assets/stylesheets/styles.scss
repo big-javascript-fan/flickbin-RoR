@@ -1738,7 +1738,7 @@ input.hasRightNumber {
     box-shadow: 0 2px 17px 0 rgba(21,23,26,0.22);
     height: 68px;
   }
-  .button-primary{
+  .button-primary, .btn-primary{
     display: none;
     margin-top: 30px;
     &:hover{
@@ -2165,7 +2165,7 @@ input.grayNormal {
   .prev, .next{
     width: 25px;
     height: 25px;
-    border-radius: 6px;
+    border-radius: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2970,7 +2970,9 @@ input.grayNormal {
     font-size: 17px;
     display: inline-block;
     padding: 20px 25px;
-    border-radius: 6px;
+    border-radius: 0;
+    -webkit-box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
+    box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
     line-height: 21px;
     text-align: center;
     background: #4E5766;

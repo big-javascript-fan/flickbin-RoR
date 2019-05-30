@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190522081916) do
+ActiveRecord::Schema.define(version: 20190530110223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,16 @@ ActiveRecord::Schema.define(version: 20190522081916) do
     t.datetime "updated_at", null: false
     t.index ["battle_id"], name: "index_rematch_requests_on_battle_id"
     t.index ["user_id"], name: "index_rematch_requests_on_user_id"
+  end
+
+  create_table "subscriptions_follows", force: :cascade do |t|
+    t.integer "subscription_id"
+    t.integer "follower_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["follower_id"], name: "index_subscriptions_follows_on_follower_id"
+    t.index ["subscription_id", "follower_id"], name: "index_subscriptions_follows_on_subscription_id_and_follower_id", unique: true
+    t.index ["subscription_id"], name: "index_subscriptions_follows_on_subscription_id"
   end
 
   create_table "system_settings", force: :cascade do |t|

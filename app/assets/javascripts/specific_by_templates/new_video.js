@@ -1,10 +1,14 @@
 $(function() {
   var apiRequestInProgress = false;
-  $('a').click(function(){
-    $('html, body').animate({
-      scrollTop: $( $(this).attr('href') ).offset().top - 57
-    }, 700);
-    return false;
+  $('a').click(function(e){
+    if(!$(this).hasClass('disabled')){
+      $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top - 57
+      }, 700);
+      return false;
+    } else {
+      e.preventDefault();
+    }
   });
 
   videoUrlInput = {
@@ -110,9 +114,6 @@ $(function() {
       $('.section-video-post-secondary .section-background').addClass('animation-bg-reverse');
       $('.video-players-list').removeClass('active');
       $('.section-video-post-first .labelFields').addClass('labelFieldsChecked');
-      // $('html, body').animate({
-      //   scrollTop: $( $(this).attr('href') ).offset().top
-      // }, 1500);
     }
   });
 
@@ -173,7 +174,7 @@ $(function() {
   });
 
   function getVideoSource(videoUrl) {
-    var domains = ['youtube.', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
+    var domains = ['youtube.com/watch', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
     var findSubstring = function(str, substr) {
       if (str.indexOf(substr) != -1) {
         return substr;
@@ -182,7 +183,7 @@ $(function() {
 
     var source = domains.reduce(function (acum, item) {
       switch (findSubstring(videoUrl, item)) {
-        case 'youtube.':
+        case 'youtube.com/watch':
           acum = 'youtube';
           break;
         case 'youtu.be':

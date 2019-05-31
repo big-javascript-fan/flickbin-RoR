@@ -1,4 +1,8 @@
 .card-tv {
+  position: relative;
+  .card-overlay {
+    background: rgba(000,000,000,0.5);
+  }
   .card-title {
     font-size: 14px;
     color: rgba( 255,255,255,0.46 );
@@ -38,7 +42,7 @@
 
 .card-tv-chanel-video {
   display: flex;
-  background: green;
+  background: #B312D4;
   .card-media {
     margin-bottom: 0;
     img {
@@ -51,5 +55,33 @@
   .card-body {
     padding: 21px 21px 28px;
     line-height: 20px;
+  }
+}
+
+//костыль временно
+
+.list-slide-videos > *:nth-child(2){
+  .card-tv-chanel-video {
+    background: #7DB446;
+  }
+}
+.list-slide-videos > *:nth-child(3){
+  .card-tv-chanel-video {
+    background: #DD7D35;
+  }
+}
+.list-slide-videos > *:nth-child(4){
+  .card-tv-chanel-video {
+    background: #5DA1F1;
+  }
+}
+.list-slide-videos > *:nth-child(5){
+  .card-tv-chanel-video {
+    background: #FF6679;
+  }
+}
+.list-slide-videos > *:nth-child(6){
+  .card-tv-chanel-video {
+    background: #3CC4A5;
   }
 }

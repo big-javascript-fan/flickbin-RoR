@@ -62,6 +62,24 @@ class User < ApplicationRecord
   has_many :battle_votes
   has_many :rematch_requests
 
+  # subscriptions
+  has_and_belongs_to_many(
+    :subscriptions,
+    foreign_key: :follower_id,
+    association_foreign_key: :subscription_id,
+    join_table: :subscriptions_follows,
+    uniq: true,
+    class_name: 'User'
+  )
+  has_and_belongs_to_many(
+    :followers,
+    foreign_key: :subscription_id,
+    association_foreign_key: :follower_id,
+    join_table: :subscriptions_follows,
+    uniq: true,
+    class_name: 'User'
+  )
+
   validates_presence_of   :channel_name
   validates_uniqueness_of :channel_name, allow_blank: true
   validates_length_of     :channel_name, maximum: AppConstants::MAX_CHANNEL_NAME_LENGTH
@@ -89,5 +107,17 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
+  end
+
+  def subscribe(user)
+    subscriptions.push(user)
+  end
+
+  def unsubscribe(user)
+    subscriptions.delete(user)
+  end
+
+  def subscribe?(user)
+    subscriptions.include?(user)
   end
 end

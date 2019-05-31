@@ -566,13 +566,6 @@
   list-style: none;
   padding: 0;
   margin: 3px 0 0 0;
-  .play-item {
-    color: currentColor;
-    font-size: 34px;
-    &:hover {
-      color: currentColor;
-    }
-  }
 }
 .afterLoginBtns > li {
   float: left;
@@ -824,15 +817,23 @@ input[type="text"].searchField {
 .pillNav > li:first-child {
   margin-right: 10px;
 }
+.pillNav > li:first-child a.current {
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
+}
+.pillNav > li a.filter.current {
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
+}
+
 .pillNav > li > a {
   color: #707681;
   display: block;
   padding: 0 18px 0 18px;
+
 }
 .pillNav > li > a:hover {
   border: 2px solid #219D99;
-  border-radius: 6px;
   background-color: #219D99;
+  box-shadow: 0 10px 9px -6px rgba(186, 186, 186, 0.76);
   line-height: 28px;
   padding: 0 16px 0 16px;
   color: #fff;
@@ -840,7 +841,6 @@ input[type="text"].searchField {
 }
 .pillNav > li > a.current {
   border: 2px solid #31B4B0;
-  border-radius: 6px;
   background-color: #FFFFFF;
   line-height: 28px;
   padding: 0 16px 0 16px;
@@ -1003,18 +1003,6 @@ input[type="text"].searchField {
 .reverseThemeHoler {
   margin-top: 16px;
   padding-bottom: 15px;
-  .afterLoginBtns .play-item {
-    color: #fff;
-    &::after{
-      color: #4E5766;
-    }
-    &:hover {
-      &::after{
-        background: #4E5766;
-        color: #31B4B0;
-      }
-    }
-  }
 }
 .reverseThemeHoler .addCircle {
   color: #fff;
@@ -1750,7 +1738,7 @@ input.hasRightNumber {
     box-shadow: 0 2px 17px 0 rgba(21,23,26,0.22);
     height: 68px;
   }
-  .button-primary{
+  .button-primary, .btn-primary{
     display: none;
     margin-top: 30px;
     &:hover{
@@ -1847,8 +1835,7 @@ input.grayNormal {
   cursor: pointer;
   padding: 9px 17px;
   background-color: #FFFFFF;
-  box-shadow: 0 8px 14px -5px rgba(0, 0, 0, 0.5);
-
+  box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2178,7 +2165,7 @@ input.grayNormal {
   .prev, .next{
     width: 25px;
     height: 25px;
-    border-radius: 6px;
+    border-radius: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2438,9 +2425,9 @@ input.grayNormal {
     align-items: center;
     margin-right: 7px;
     > *{
-      margin-right: 6px;
+      margin-right: 7px;
       padding: 6px 10px;
-      border-radius: 6px;
+      border-radius: 0;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -2449,6 +2436,7 @@ input.grayNormal {
       align-items: center;
       -webkit-box-pack: center;
       -ms-flex-pack: center;
+      box-shadow: 0 10px 9px -7px rgba(186, 186, 186, 0.58);
       justify-content: center;
     }
     &-id{
@@ -2506,6 +2494,7 @@ input.grayNormal {
     }
   }
   .youtube-icon{
+    box-shadow: none;
     margin-right: 0;
     min-width: 31px;
     height: 21px;
@@ -2582,6 +2571,11 @@ input.grayNormal {
         -o-object-fit: cover;
         object-fit: cover;
         margin: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
       }
     }
     .card-cover{
@@ -2957,7 +2951,7 @@ input.grayNormal {
     cursor: pointer;
     border:none;
     outline: none;
-    border-radius: 6px;
+    border-radius: 0;
     background: #279693;
     text-transform: uppercase;
     &:hover{
@@ -2967,6 +2961,7 @@ input.grayNormal {
       display: none;
     }
     &.disabled{
+      pointer-events: none;
       background: #CED4DA;
       cursor: not-allowed;
     }
@@ -2975,7 +2970,9 @@ input.grayNormal {
     font-size: 17px;
     display: inline-block;
     padding: 20px 25px;
-    border-radius: 6px;
+    border-radius: 0;
+    -webkit-box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
+    box-shadow: 0 10px 9px -7px rgba(54, 54, 54, 0.48);
     line-height: 21px;
     text-align: center;
     background: #4E5766;
@@ -3515,7 +3512,7 @@ input.grayNormal {
         .card-vote{
           cursor: pointer;
           padding: 12px 20px;
-          border-radius: 6px;
+          border-radius: 0;
           color: #ffffff;
           background-color: #279693;
           display: -webkit-box;
@@ -3789,7 +3786,7 @@ input.grayNormal {
         background-color: #4E5766 !important;
         outline: none;
         border: none;
-        border-radius: 6px !important;
+        border-radius: 0px !important;
         text-transform: uppercase;
         &:hover{
           background-color: darken(#4E5766,15%) !important;

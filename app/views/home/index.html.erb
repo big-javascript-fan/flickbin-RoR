@@ -67,7 +67,7 @@
       <div class="section-body">
         <div class="grid grid-video">
           <% @videos.each do |video| %>
-          <div class="grid-item">
+          <div id="<%= video.id %>" class="grid-item">
             <div class="card card-video">
               <figure class="card-background">
                 <%= image_tag home_cover_for(video) %>

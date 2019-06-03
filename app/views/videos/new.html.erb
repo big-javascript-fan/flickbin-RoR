@@ -52,6 +52,12 @@
                   <%= @video.errors.messages[:invalid_url].first %>
                 </div>
               <% end %>
+              <% if @invalid_source_id.present? %>
+                <span class="errorIcon"><i class="fas fa-exclamation"></i></span>
+                <div class="validationContent largeTooltip">
+                  <%= @invalid_source_id %>
+                </div>
+              <% end %>
               <%= f.text_field :url, class: "block hasNumber", placeholder: 'https://www.youtube.com/watch?v=ABuQA13l29' %>
               <a href="#video-scroll" id="nextstep" class="button-video button-video-nextstep disabled"  >NEXT STEP</a>
             </div>

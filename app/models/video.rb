@@ -65,9 +65,13 @@ class Video < ApplicationRecord
     :kind_of,
     in: KINDS_OF
   )
+  # validates_uniqueness_of(
+  #   :source_id,
+  #   scope: %i[tag_id source],
+  #   conditions: -> { where(untagged: false, removed: false) }
+  # )
   validates_uniqueness_of(
     :source_id,
-    scope: %i[tag_id source],
     conditions: -> { where(untagged: false, removed: false) }
   )
 

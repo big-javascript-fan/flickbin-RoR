@@ -12,7 +12,7 @@ $(function() {
 
       var videoButton = $('.newVideoBtn');
 
-      if (state) {
+      if (state && newVideos.length > 0) {
         videoButton.fadeIn();
         videoButton.text('New videos ' + newVideos.length);
       } else {
@@ -34,8 +34,9 @@ $(function() {
       App.messages = App.cable.subscriptions.create('HomePageChannel', {
         received: function(data) {
           console.log(data);
-          var videosContent = `
-            <div class="grid-item new-grid-item animation-fade animation-slow">
+          if (data.action === 'create') {
+            var videosContent = `
+            <div id="${data.video.id}" class="grid-item new-grid-item animation-fade animation-slow">
               <div class="card card-video">
                 <figure class="card-background">
                   <img src="${data.video.cover.url}">
@@ -64,8 +65,18 @@ $(function() {
               </div>
             </div>
           `;
-          newVideos.push(videosContent);
-          setVideoToPage (scrollState);
+            newVideos.push(videosContent);
+            console.log(newVideos);
+            setVideoToPage (scrollState);
+          } else if (data.action === 'destroy'){
+            newVideos.forEach(function (item,i) {
+              if(item.indexOf(`id="${data.video.id}"`) !== -1 ) {
+                newVideos.splice(newVideos.indexOf(i), 1);
+              };
+            });
+            setVideoToPage (scrollState);
+            $(`.grid-video .grid-item#${data.video.id}`).remove();
+          }
         }
       });
     }
@@ -123,7 +134,7 @@ $(function() {
             if (videos.length > 0) {
               $.each(videos, function (index, video) {
                 videosContent += `
-                <div class="grid-item">
+                <div id="${video.id}" class="grid-item">
                   <div class="card card-video">
                     <figure class="card-background">
                       <img src="${video.cover_url}">

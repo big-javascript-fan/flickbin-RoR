@@ -234,9 +234,9 @@ ActiveRecord::Schema.define(version: 20190603055032) do
     t.integer "comments_count", default: 0
     t.string "source", default: ""
     t.string "kind_of", default: ""
-    t.boolean "high_quality_cover", default: false
     t.string "length"
     t.integer "duration"
+    t.boolean "high_quality_cover", default: false
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["source_id"], name: "index_videos_on_source_id"

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Broadcast
   class HomePageService < ApplicationService
     def initialize(action, **params)
-      @params = params.merge( action: action )
+      @params = params.merge(action: action)
     end
 
     def call

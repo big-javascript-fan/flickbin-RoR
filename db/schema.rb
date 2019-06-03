@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190530110223) do
+ActiveRecord::Schema.define(version: 20190603055032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,25 +256,6 @@ ActiveRecord::Schema.define(version: 20190530110223) do
   end
 
 
-  create_view "video_for_home_pages", sql_definition: <<-SQL
-      SELECT DISTINCT ON (videos.source_id) videos.source_id,
-      videos.id,
-      videos.cover,
-      videos.title,
-      videos.source,
-      videos.wasp_post,
-      videos.slug,
-      users.id AS user_id,
-      users.avatar AS user_avatar,
-      users.channel_name AS user_channel_name,
-      users.slug AS user_slug,
-      tags.title AS tag_title,
-      tags.slug AS tag_slug
-     FROM ((videos
-       JOIN users ON ((users.id = videos.user_id)))
-       JOIN tags ON ((tags.id = videos.tag_id)))
-    WHERE (videos.wasp_post = false);
-  SQL
   create_view "battle_with_title_and_members", sql_definition: <<-SQL
       SELECT battles.id,
       battles.tag_id,
@@ -334,5 +315,24 @@ ActiveRecord::Schema.define(version: 20190530110223) do
        JOIN battle_members first_members_battles ON ((first_members_battles.id = battles.first_member_id)))
        JOIN battle_members second_members_battles ON ((second_members_battles.id = battles.second_member_id)))
     GROUP BY battles.id;
+  SQL
+  create_view "video_for_home_pages", sql_definition: <<-SQL
+      SELECT DISTINCT ON (videos.source_id) videos.source_id,
+      videos.id,
+      videos.cover,
+      videos.title,
+      videos.source,
+      videos.wasp_post,
+      videos.slug,
+      users.id AS user_id,
+      users.avatar AS user_avatar,
+      users.channel_name AS user_channel_name,
+      users.slug AS user_slug,
+      tags.title AS tag_title,
+      tags.slug AS tag_slug
+     FROM ((videos
+       JOIN users ON ((users.id = videos.user_id)))
+       JOIN tags ON ((tags.id = videos.tag_id)))
+    WHERE ((videos.wasp_post = false) AND (videos.removed = false));
   SQL
 end

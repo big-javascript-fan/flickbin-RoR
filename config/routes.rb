@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
@@ -5,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  authenticate :user, lambda { |u| u.sidekiq_manager? } do
+  authenticate :user, ->(u) { u.sidekiq_manager? } do
     mount Sidekiq::Web => '/sidekiq'
   end
   mount ActionCable.server => '/cable'
@@ -16,7 +18,7 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
-      resources :battles, only: [:show, :update] do
+      resources :battles, only: %i[show update] do
         member do
           resources :rematch_requests, only: :create, module: 'battles'
           resource :result, only: :show, module: 'battles'
@@ -73,8 +75,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
+    sessions: 'users/sessions',
+    passwords: 'users/passwords',
     confirmations: 'users/confirmations'
   }
 
@@ -84,6 +86,7 @@ Rails.application.routes.draw do
     get  'topics/:tag_slug', action: :show, as: :tag
     post 'topics',           action: :create
   end
+  get 'tags/:tag_slug', to: redirect('topics/%{tag_slug}', status: 301)
 
   scope module: :videos do
     get    'videos/new',         action: :new

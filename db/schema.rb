@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190603055032) do
+ActiveRecord::Schema.define(version: 20190607112505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -234,9 +234,9 @@ ActiveRecord::Schema.define(version: 20190603055032) do
     t.integer "comments_count", default: 0
     t.string "source", default: ""
     t.string "kind_of", default: ""
+    t.boolean "high_quality_cover", default: false
     t.string "length"
     t.integer "duration"
-    t.boolean "high_quality_cover", default: false
     t.index ["rank"], name: "index_videos_on_rank"
     t.index ["slug"], name: "index_videos_on_slug", unique: true
     t.index ["source_id"], name: "index_videos_on_source_id"
@@ -334,5 +334,16 @@ ActiveRecord::Schema.define(version: 20190603055032) do
        JOIN users ON ((users.id = videos.user_id)))
        JOIN tags ON ((tags.id = videos.tag_id)))
     WHERE ((videos.wasp_post = false) AND (videos.removed = false));
+  SQL
+  create_view "rank_for_topics", sql_definition: <<-SQL
+      SELECT tags.id,
+      tags.title,
+      tags.rank,
+      count(DISTINCT videos.id) AS video_count,
+      count(votes.id) AS vote_count
+     FROM ((tags
+       LEFT JOIN videos ON (((videos.tag_id = tags.id) AND (videos.removed = false) AND (videos.created_at > (CURRENT_DATE - 3)))))
+       LEFT JOIN votes ON ((votes.video_id = videos.id)))
+    GROUP BY tags.id;
   SQL
 end

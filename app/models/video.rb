@@ -65,15 +65,21 @@ class Video < ApplicationRecord
     :kind_of,
     in: KINDS_OF
   )
+  # validates_uniqueness_of(
+  #   :source_id,
+  #   scope: %i[tag_id source],
+  #   conditions: -> { where(untagged: false, removed: false) }
+  # )
   validates_uniqueness_of(
     :source_id,
-    scope: %i[tag_id source],
     conditions: -> { where(untagged: false, removed: false) }
   )
 
   before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank
   after_save :recalculate_videos_rank, if: :saved_change_to_removed?
+  after_create :send_message_in_broadcast_after_create
+  after_save :send_message_in_broadcast_after_destroy, if: :saved_change_to_removed?
 
   scope :active, -> { where(removed: false) }
   scope :tagged, -> { where(untagged: false) }
@@ -114,5 +120,15 @@ class Video < ApplicationRecord
 
   def remaining_days
     AppConstants::LIFETIME_IN_DAYS_OF_TAGGED_VIDEO - ((Time.now - created_at) / 1.day).round
+  end
+
+  private
+
+  def send_message_in_broadcast_after_create
+    Broadcast::HomePageService.call(:create, video: self, user: user, tag: tag)
+  end
+
+  def send_message_in_broadcast_after_destroy
+    Broadcast::HomePageService.call(:destroy, video: self)
   end
 end

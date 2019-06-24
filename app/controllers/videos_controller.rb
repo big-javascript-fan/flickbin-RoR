@@ -14,10 +14,12 @@ class VideosController < ApplicationController
     @sidebar_tags = get_sidebar_tags
 
     if @video.save
-      ActionCable.server.broadcast 'home_page', video: @video, user: current_user, tag: @video.tag
       render :create
     elsif @video.errors.messages[:invalid_url].present?
       @invalid_video_url = true
+      render :new
+    elsif @video.errors.messages[:source_id].present?
+      @invalid_source_id = 'Already Posted'
       render :new
     else
       @second_step = true

@@ -109,6 +109,10 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def after_confirmation
+    User::AutoSubscriptionService.call(self)
+  end
+
   def subscribe(user)
     subscriptions.push(user)
   end

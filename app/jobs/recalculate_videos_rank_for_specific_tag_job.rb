@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RecalculateVideosRankForSpecificTagJob < ApplicationJob
-  queue_as :rank_calculation
+  queue_as :rank_video_special_cal
 
   def perform(tag)
     RecalculateVideosRankForSpecificTagService.new(tag).call

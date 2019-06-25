@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RecalculateTopContributorsJob < ApplicationJob
-  queue_as :rank_calculation
+  queue_as :rank_contributor_cal
 
   def perform(*_args)
     RecalculateTopContributorsService.new.call

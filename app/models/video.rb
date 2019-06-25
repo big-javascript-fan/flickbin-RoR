@@ -70,10 +70,10 @@ class Video < ApplicationRecord
   #   scope: %i[tag_id source],
   #   conditions: -> { where(untagged: false, removed: false) }
   # )
-  validates_uniqueness_of(
-    :source_id,
-    conditions: -> { where(untagged: false, removed: false) }
-  )
+  # validates_uniqueness_of(
+  #   :source_id,
+  #   conditions: -> { where(untagged: false, removed: false) }
+  # )
 
   before_validation :add_extra_video_data, if: :will_save_change_to_url?
   after_create :set_init_rank

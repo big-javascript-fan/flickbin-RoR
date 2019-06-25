@@ -72,7 +72,9 @@
               <figure class="card-background">
                 <%= image_tag home_cover_for(video) %>
               </figure>
+              <%if video.slug?%>
               <%=link_to '', video_path(home_slug_for(video)), class: "card-overlay"%>
+              <%end%>
               <div class="card-foreground">
                 <%= link_to(station_path(home_user_slug(video)), class: 'card-header') do %>
                   <figure class="card-image">

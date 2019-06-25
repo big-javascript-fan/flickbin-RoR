@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WaspPostJob < ApplicationJob
-  queue_as :rank_calculation
+  queue_as :rank_wasp_cal
 
   def perform(*_args)
     Sidekiq.set_schedule('wasp_post_job',

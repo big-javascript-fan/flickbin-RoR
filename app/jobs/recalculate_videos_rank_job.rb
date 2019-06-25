@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RecalculateVideosRankJob < ApplicationJob
-  queue_as :rank_calculation
+  queue_as :rank_video_cal
 
   def perform(*_args)
     RecalculateVideosRankService.new.call

@@ -7,28 +7,29 @@ class VideosController < ApplicationController
   def new
     @sidebar_tags = get_sidebar_tags
     @video = current_user.videos.build
+    puts @video
   end
 
   def create
     @video = current_user.videos.build(create_params)
     @sidebar_tags = get_sidebar_tags
 
-    if @video.save
-      render :create
-    elsif @video.errors.messages[:invalid_url].present?
-      @invalid_video_url = true
-      render :new
-    elsif @video.errors.messages[:source_id].present?
-      @invalid_source_id = 'Already Posted'
+    @existing_video = Video.active
+                            .tagged
+                            .includes(:tag)
+                            .where(tag_id: @video.tag_id, url: @video.url)
+    
+    if @existing_video.exists?
+      @invalid_source_id = 'It looks like this video has already been posted within ' + @existing_video.first.tag.title + '. Try again in '+ @existing_video.first.remaining_days.to_s + ' days.'
+      @second_step = true
       render :new
     else
-      @second_step = true
-      @existing_video = Video.active
-                             .tagged
-                             .includes(:tag)
-                             .where(tag_id: @video.tag_id, source_id: @video.source_id, source: @video.source)
-                             .first
-      render :new
+      if @video.save
+        render :create
+      elsif @video.errors.messages[:invalid_url].present?
+        @invalid_video_url = true
+        render :new
+      end
     end
   end
 

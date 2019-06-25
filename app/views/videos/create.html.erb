@@ -35,7 +35,9 @@
           Your Post is Now Live!
         </h2>
         <p class="description">You post is now live on station. You can
-          <%= link_to 'check it out here.', video_path(@video), class: "link" %>
+          <%if @video.slug?%>
+            <%= link_to 'check it out here.', video_path(@video), class: "link" %>
+          <%end%>
         </p>
         <%= link_to 'POST ANOTHER VIDEO', videos_new_path, id: "flashButton", class: "button-video-flash"%>
       </div>

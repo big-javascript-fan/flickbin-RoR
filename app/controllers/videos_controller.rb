@@ -7,7 +7,6 @@ class VideosController < ApplicationController
   def new
     @sidebar_tags = get_sidebar_tags
     @video = current_user.videos.build
-    puts @video
   end
 
   def create

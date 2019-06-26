@@ -173,7 +173,7 @@ $(function() {
   });
 
   function getVideoSource(videoUrl) {
-    var domains = ['youtube.com/watch', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
+    var domains = ['youtube.com/watch', 'youtu.be', 'youtube-nocookie', 'facebook.', 'dailymotion.', 'twitch.'];
     var findSubstring = function(str, substr) {
       if (str.indexOf(substr) != -1) {
         return substr;
@@ -186,6 +186,9 @@ $(function() {
           acum = 'youtube';
           break;
         case 'youtu.be':
+          acum = 'youtube';
+          break;
+        case 'youtube-nocookie':
           acum = 'youtube';
           break;
         // case 'facebook.':

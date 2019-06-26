@@ -1,5 +1,5 @@
 module AppConstants
-  YOUTUBE_URL_REGEXP = /\Ahttps:\/\/(www\.)?(m\.)?(youtu)(be)?(\.be)?(\.com)?.+/
+  YOUTUBE_URL_REGEXP = /\Ahttps:\/\/(www\.)?(m\.)?(youtu)(be)?(-nocookie)?(\.be)?(\.com)?.+/
   FACEBOOK_URL_REGEXP = /\Ahttps:\/\/(www\.)?(facebook)(\.com)?.+/
   TWITCH_URL_REGEXP = /\Ahttps:\/\/(www\.)?(twitch)(\.tv)?.+/
   DAILY_MOTION_URL_REGEXP = /\Ahttps:\/\/(www\.)?(dailymotion)(\.com)?.+/

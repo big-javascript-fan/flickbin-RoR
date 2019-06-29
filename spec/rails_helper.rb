@@ -49,6 +49,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   keep_tables = %w[]
 
+  config.include Devise::TestHelpers, type: :controller
+  config.include Warden::Test::Helpers
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation, { except: keep_tables }
     DatabaseCleaner.clean_with(:truncation, except: keep_tables)

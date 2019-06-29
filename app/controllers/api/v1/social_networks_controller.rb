@@ -55,7 +55,7 @@ class Api::V1::SocialNetworksController < Api::V1::BaseController
       { error: 'Video url invalid' }
     end
   rescue StandardError => e
-    ExceptionLogger.create(source: 'Api::V1::SocialNetworksController#index', message: e, params: params)
+    # ExceptionLogger.create(source: 'Api::V1::SocialNetworksController#index', message: e, params: params)
     ExceptionNotifier.notify_exception(e, env: request.env, data: { source: 'Api::V1::SocialNetworksController#index' })
     { error: 'Video url invalid' }
   end

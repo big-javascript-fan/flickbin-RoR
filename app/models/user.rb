@@ -45,9 +45,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, UserAvatarUploader
 
-  scope :none_battle_members, -> { left_joins(:battle_members).where(battle_members: { id: nil }) }
-
-  has_many :battle_members
   has_many :videos, dependent: :destroy
   has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :tags, through: :videos
@@ -59,7 +56,6 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :top_15_notifications, -> { order(created_at: :desc).limit(15) }, class_name: 'Notification'
-  has_many :battle_votes
   has_many :rematch_requests
 
   has_and_belongs_to_many(

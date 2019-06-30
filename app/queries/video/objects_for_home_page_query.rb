@@ -9,10 +9,6 @@ class Video
 
     def call
       videos = VideoForHomePage.where.not(cover: nil).order('id desc')
-      # videos = Video.select('*')
-      #      .where("v.wasp_post = 'f'")
-      #      .from(Video.select('DISTINCT ON (source_id) source_id, *'), :v)
-      #      .order('v.id desc')
       videos = videos.limit(@limit) unless @limit.nil?
       videos = videos.offset(@offset) unless @offset.nil?
       videos

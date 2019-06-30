@@ -21,8 +21,6 @@
 #  twitter_handle        :string
 #  untagged              :boolean          default(FALSE)
 #  url                   :string
-#  wasp_outreach         :boolean          default(FALSE)
-#  wasp_post             :boolean          default(FALSE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  source_id             :string

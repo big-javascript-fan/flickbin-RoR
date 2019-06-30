@@ -22,7 +22,6 @@
 :queues:
   - rank_calculation
   - finish_battle
-  - rank_wasp_cal
   - rank_contributor_cal
   - rank_video_cal
   - rank_video_special_cal

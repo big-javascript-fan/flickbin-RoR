@@ -14,7 +14,6 @@
 #  user_avatar       :string
 #  user_channel_name :string
 #  user_slug         :string
-#  wasp_post         :boolean
 #  source_id         :string
 #  user_id           :bigint(8)
 #

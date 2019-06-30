@@ -154,16 +154,6 @@ ActiveRecord::Schema.define(version: 20190607112505) do
     t.index ["user_id"], name: "index_rematch_requests_on_user_id"
   end
 
-  create_table "subscriptions_follows", force: :cascade do |t|
-    t.integer "subscription_id"
-    t.integer "follower_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["follower_id"], name: "index_subscriptions_follows_on_follower_id"
-    t.index ["subscription_id", "follower_id"], name: "index_subscriptions_follows_on_subscription_id_and_follower_id", unique: true
-    t.index ["subscription_id"], name: "index_subscriptions_follows_on_subscription_id"
-  end
-
   create_table "system_settings", force: :cascade do |t|
     t.json "data"
     t.datetime "created_at", null: false
@@ -177,7 +167,6 @@ ActiveRecord::Schema.define(version: 20190607112505) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "first_character", default: ""
-    t.boolean "wasp_post", default: false
     t.index ["first_character"], name: "index_tags_on_first_character"
     t.index ["rank"], name: "index_tags_on_rank"
     t.index ["slug"], name: "index_tags_on_slug", unique: true
@@ -228,9 +217,7 @@ ActiveRecord::Schema.define(version: 20190607112505) do
     t.string "source_id"
     t.integer "positive_votes_amount", default: 0
     t.integer "negative_votes_amount", default: 0
-    t.boolean "wasp_outreach", default: false
     t.string "twitter_handle"
-    t.boolean "wasp_post", default: false
     t.integer "comments_count", default: 0
     t.string "source", default: ""
     t.string "kind_of", default: ""
@@ -322,7 +309,6 @@ ActiveRecord::Schema.define(version: 20190607112505) do
       videos.cover,
       videos.title,
       videos.source,
-      videos.wasp_post,
       videos.slug,
       users.id AS user_id,
       users.avatar AS user_avatar,
@@ -333,7 +319,7 @@ ActiveRecord::Schema.define(version: 20190607112505) do
      FROM ((videos
        JOIN users ON ((users.id = videos.user_id)))
        JOIN tags ON ((tags.id = videos.tag_id)))
-    WHERE ((videos.wasp_post = false) AND (videos.removed = false));
+    WHERE (videos.removed = false);
   SQL
   create_view "rank_for_topics", sql_definition: <<-SQL
       SELECT tags.id,

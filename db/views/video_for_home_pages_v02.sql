@@ -4,7 +4,6 @@ SELECT
   videos.cover,
   videos.title,
   videos.source,
-  videos.wasp_post,
   videos.slug,
   users.id as user_id,
   users.avatar as user_avatar,
@@ -16,4 +15,4 @@ FROM
   videos
 INNER JOIN users ON users.id = videos.user_id
 INNER JOIN tags ON tags.id = videos.tag_id
-WHERE videos.wasp_post = 'f' AND videos.removed = 'f'
+WHERE videos.removed = 'f'

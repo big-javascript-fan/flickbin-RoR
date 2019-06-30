@@ -77,7 +77,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return false
     end
 
-    resource.update_without_password(params)
+    resource.update_with_password(params)
   end
 
   def change_password_request?(params)

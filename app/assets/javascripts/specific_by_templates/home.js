@@ -6,7 +6,6 @@ $(function() {
     var newVideos = [];
 
     infiniteScrollForVideos();
-    createNewVideo();
 
     function setVideoToPage (state) {
 
@@ -30,56 +29,6 @@ $(function() {
         newVideos = [];
       });
     });
-    function createNewVideo() {
-      App.messages = App.cable.subscriptions.create('HomePageChannel', {
-        received: function(data) {
-          console.log(data);
-          if (data.action === 'create') {
-            var videosContent = `
-            <div id="${data.video.id}" class="grid-item new-grid-item animation-fade animation-slow">
-              <div class="card card-video">
-                <figure class="card-background">
-                  <img src="${data.video.cover.url}">
-                </figure>
-                <a href="/videos/${data.video.slug}" class="card-overlay"></a>
-                <div class="card-foreground">
-                  <a href="/stations/${data.user.slug}" class="card-header">
-                    <figure class="card-image">
-                      <img src=" ${data.user.avatar.thumb_44x44.url ? data.user.avatar.thumb_44x44.url : '/images/avatar_holder.jpg'} " alt="Person">
-                    </figure>
-                    <h5 class="card-title">
-                      ${data.user.slug}
-                    </h5>
-                  </a>
-                  <div class="card-body">
-                    <a href="/videos/${data.video.slug}" class="card-description">${data.video.title}</a>
-                    <div class="card-posted-by">
-                      ${data.video.source === 'youtube' ? '<span class="icon icon-youtube"></span>' : ''}
-                      ${data.video.source === 'daily_motion' ? '<span class="icon icon-dailymotion"></span>' : ''}
-                      ${data.video.source === 'twitch' ? '<span class="icon icon-twitch"></span>' : ''}
-
-                      posted in <a href="/topics/${data.tag.slug}" class="card-link bold">${data.tag.title}</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-            newVideos.push(videosContent);
-            console.log(newVideos);
-            setVideoToPage (scrollState);
-          } else if (data.action === 'destroy'){
-            newVideos.forEach(function (item,i) {
-              if(item.indexOf(`id="${data.video.id}"`) !== -1 ) {
-                newVideos.splice(newVideos.indexOf(i), 1);
-              };
-            });
-            setVideoToPage (scrollState);
-            $(`.grid-video .grid-item#${data.video.id}`).remove();
-          }
-        }
-      });
-    }
 
     function infiniteScrollForVideos() {
       var loading = false;

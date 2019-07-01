@@ -70,6 +70,7 @@
           <div id="<%= video.id %>" class="grid-item">
             <div class="card card-video">
               <figure class="card-background">
+                <%= image_tag home_cover_for(video) %>
               </figure>
               <%if video.slug?%>
               <%=link_to '', video_path(home_slug_for(video)), class: "card-overlay"%>

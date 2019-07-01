@@ -21,3 +21,9 @@
   width: 100px;
   height: 100px;
 }
+
+@media screen and (min-width: 576px) {
+  body.logged_in.new .input .select2-container, body.logged_in.edit .input .select2-container, body.logged_in.create .input .select2-container, body.logged_in.update .input .select2-container {
+      width: 100px !important;
+  }
+}

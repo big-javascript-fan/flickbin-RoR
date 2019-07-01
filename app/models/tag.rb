@@ -9,7 +9,6 @@
 #  rank            :integer
 #  slug            :string
 #  title           :string
-#  wasp_post       :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -35,7 +34,6 @@ class Tag < ApplicationRecord
   has_many :comments, through: :videos
   has_many :contribution_points, dependent: :destroy
   has_many :contributors, -> { where(videos: { removed: false, untagged: false }) }, through: :videos, source: :user
-  has_many :battles
 
   validates_presence_of :title
   validates_length_of   :title, maximum: AppConstants::MAX_TAG_TITLE_LENGTH,

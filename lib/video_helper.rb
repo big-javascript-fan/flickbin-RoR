@@ -5,7 +5,15 @@ module VideoHelper
     if url.include?('/watch')
       url[%r{/watch\?v=([^&.]+)}, 1]
     elsif url.include?('v=')
-      url.split('?').last.split('v=').last
+      url.split('?').last.split('v=').last.split('&').first
+    elsif url.include?('v/')
+      url.split('?').first.split('v/').last
+    elsif url.include?('vi=')
+      url.split('?').last.split('vi=').last.split('&').first
+    elsif url.include?('vi/')
+      url.split('?').first.split('vi/').last
+    elsif url.include?('embed/')
+      url.split('?').first.split('embed/').last
     else
       url.split('/').last
     end

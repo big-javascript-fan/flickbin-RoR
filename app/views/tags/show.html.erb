@@ -76,18 +76,6 @@
           </ul>
         </div>
 
-        <% if @tag.battles.live.any? %>
-          <a href="<%= battle_path(@tag.battles.live.first) %>" class="battleTopik">
-            <div>
-              <div class="battleTopik-content">
-                <span class="battleTopik-text">A</span>
-                <span class="battleTopik-title">Creator Battle</span>
-                <span class="battleTopik-text"> is raging on this topic and we need your vote. </span>
-              </div>
-            </div>
-          </a>
-        <% end %>
-
         <ul class="entityList inTag specificTagList tagListHasNumber video-feed" video_ids="<%= @current_user_voted_video_ids %>">
           <%= render 'tags/partials/videos_feed' %>
         </ul>

@@ -9,7 +9,6 @@
 #  rank            :integer
 #  slug            :string
 #  title           :string
-#  wasp_post       :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

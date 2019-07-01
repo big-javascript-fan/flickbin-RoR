@@ -3,7 +3,8 @@
 class StaticsController < ApplicationController
   before_action :load_sidebar_tags
 
-  def show; end
+  def show;
+  end
 
   private
 

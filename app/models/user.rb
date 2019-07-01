@@ -45,9 +45,6 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, UserAvatarUploader
 
-  scope :none_battle_members, -> { left_joins(:battle_members).where(battle_members: { id: nil }) }
-
-  has_many :battle_members
   has_many :videos, dependent: :destroy
   has_many :accounting_videos, -> { active.tagged }, class_name: 'Video'
   has_many :tags, through: :videos
@@ -59,23 +56,11 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :top_15_notifications, -> { order(created_at: :desc).limit(15) }, class_name: 'Notification'
-  has_many :battle_votes
   has_many :rematch_requests
 
-  # subscriptions
-  has_and_belongs_to_many(
-    :subscriptions,
-    foreign_key: :follower_id,
-    association_foreign_key: :subscription_id,
-    join_table: :subscriptions_follows,
-    uniq: true,
-    class_name: 'User'
-  )
   has_and_belongs_to_many(
     :followers,
-    foreign_key: :subscription_id,
     association_foreign_key: :follower_id,
-    join_table: :subscriptions_follows,
     uniq: true,
     class_name: 'User'
   )
@@ -107,21 +92,5 @@ class User < ApplicationRecord
 
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
-  end
-
-  def after_confirmation
-    User::AutoSubscriptionService.call(self)
-  end
-
-  def subscribe(user)
-    subscriptions.push(user)
-  end
-
-  def unsubscribe(user)
-    subscriptions.delete(user)
-  end
-
-  def subscribe?(user)
-    subscriptions.include?(user)
   end
 end

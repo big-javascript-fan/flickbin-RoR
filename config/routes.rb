@@ -16,13 +16,6 @@ Rails.application.routes.draw do
         get '/', action: :index
       end
 
-      resources :battles, only: [:show, :update] do
-        member do
-          resources :rematch_requests, only: :create, module: 'battles'
-          resource :result, only: :show, module: 'battles'
-        end
-      end
-
       namespace :exceptions do
         post '/', action: :create
       end
@@ -95,8 +88,6 @@ Rails.application.routes.draw do
   namespace :statics do
     get '/:page/', action: :show
   end
-
-  resources :battles, only: :show
 
   get  'stations/:channel_slug' => 'users#show', as: :station
 

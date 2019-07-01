@@ -12,26 +12,16 @@
   update_untagged_video_job:
     every: 30m
     class: UpdateUntaggedVideoJob
-  wasp_post_job:
-    every: 60m
-    class: WaspPostJob
-  weekly_mailing_job:
-    cron: '0 5 * * 1'
-    class: WeeklyMailingJob
   update_thumbnails_for_videos_job:
     every: 60m
     class: UpdateThumbnailsForVideosJob
 
 :queues:
   - rank_calculation
-  - finish_battle
-  - rank_wasp_cal
   - rank_contributor_cal
   - rank_video_cal
   - rank_video_special_cal
   - video_tag_expiration
-  - wasp_outreach
-  - wasp_post
   - twitter_posting
   - default
   - mailers

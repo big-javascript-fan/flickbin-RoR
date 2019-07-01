@@ -67,7 +67,6 @@ $(function() {
     if(existingVideoError.length > 0) {
       var videoUrl = $('#video_url').val();
       var videoSource = getVideoSource(videoUrl);
-      $('#nextstep').removeClass('disabled');
 
       if(videoUrl.length > 10 && !apiRequestInProgress) {
         apiRequestInProgress = true;
@@ -95,7 +94,7 @@ $(function() {
       if (elem.dataset.media === videoSource && videoUrl.length > 10) {
         $(elem).addClass('active');
         $('.video-players-list').addClass('active');
-        $('#nextstep').removeClass('disabled');
+        // $('#nextstep').removeClass('disabled');
       } else {
         $(elem).removeClass('active');
       }
@@ -174,7 +173,7 @@ $(function() {
   });
 
   function getVideoSource(videoUrl) {
-    var domains = ['youtube.com/watch', 'youtu.be', 'facebook.', 'dailymotion.', 'twitch.'];
+    var domains = ['youtube.com/watch', 'youtu.be', 'youtube-nocookie', 'facebook.', 'dailymotion.', 'twitch.'];
     var findSubstring = function(str, substr) {
       if (str.indexOf(substr) != -1) {
         return substr;
@@ -187,6 +186,9 @@ $(function() {
           acum = 'youtube';
           break;
         case 'youtu.be':
+          acum = 'youtube';
+          break;
+        case 'youtube-nocookie':
           acum = 'youtube';
           break;
         // case 'facebook.':
@@ -247,6 +249,7 @@ $(function() {
         $('.card-video-post').html(videoPreview);
         $('.card-video-post-wrapper').slideDown(500)
 
+        $('#nextstep').removeClass('disabled');
       }
 
       apiRequestInProgress = false;

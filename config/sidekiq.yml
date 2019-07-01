@@ -12,9 +12,6 @@
   update_untagged_video_job:
     every: 30m
     class: UpdateUntaggedVideoJob
-  weekly_mailing_job:
-    cron: '0 5 * * 1'
-    class: WeeklyMailingJob
   update_thumbnails_for_videos_job:
     every: 60m
     class: UpdateThumbnailsForVideosJob

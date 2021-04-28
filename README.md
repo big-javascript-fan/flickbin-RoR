@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -25,4 +24,3 @@ Things you may want to cover:
 * ...
 =======
 # birdy
->>>>>>> 15fc3ef9212d94ef4948e5556aa36caa93442c2c

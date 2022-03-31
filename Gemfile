@@ -31,7 +31,7 @@ gem 'mini_racer', platforms: :ruby
 gem 'nokogiri'
 gem 'oj'
 gem 'pg'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 5.1.6'
 gem 'react_on_rails', '11.1.4'
 gem 'rest-client'
